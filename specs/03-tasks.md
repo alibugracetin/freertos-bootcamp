@@ -29,7 +29,7 @@ Paz 20   Pzt 21   Sal 22   Çar 23   Per 24   Cum 25   Cmt 26   Paz 27
 
 **Değişmeyen tek kural:** Süre sıkışırsa grafik sadeleşir, video kısalır, GUI çirkin kalır — **ölçüm verisi asla kısılmaz.**
 
-**İlerleme:** 7 / 26 · Pazartesi ✅ · Salı ✅
+**İlerleme:** 14 / 26 · Pazartesi ✅ · Salı ✅ · Çarşamba ✅ · Perşembe firmware ✅ (iki gün önde)
 
 ---
 
@@ -132,30 +132,29 @@ Bugün iş yok. Yalnızca istersen:
 # Çarşamba 23 — Ölçüm çekirdeği II 🎯
 ### 🏁 Gün hedefi: Tek bir basışın t₀…t₄'ünü görmek
 
-### T-08 · UartTxTask + DMA + **TC yolu doğrulaması** 🔴
-- [ ] `g_tx_buf` global tampon (normal SRAM — CCM değil)
-- [ ] `HAL_UART_Transmit_DMA` + `ulTaskNotifyTake` ile TC bekleme
-- [ ] `HAL_UART_TxCpltCallback` içinde t₄ + görev uyandırma
-- [ ] **HAL kaynağını oku:** `UART_DMATransmitCplt`, `UART_EndTransmit_IT`
-- [ ] Doğrula: callback USART **TC bayrağında** mı, DMA tamamlanmasında mı?
-- [ ] Bulguyu `docs/code-notes.md` taslağına **hemen yaz**
-- **Kanıt:** HAL kaynağından alıntı + `t₄−t₃` ≈ **5.56 ms**
-- **Gereksinim:** FR-40…46, risk R-2
-- **⚠️ Ödevin en kritik doğrulaması.** Yanlışsa 180 ölçümün tamamı ≈5.56 ms kayar — ve bunu ancak analiz gününde fark edersin.
+> ⏩ **T-08…T-14 Salı gecesi, plandan iki gün önce tamamlandı.** Kanıt: `hafta-01/docs/kanitlar/t08-t13-e2e-s0-s3.log`
 
-### T-09 · 64 bayt mesaj formatlama
-- [ ] `make_telemetry()`, `make_button_reply()` — boşluk dolgusu + LF
-- [ ] 63 bayt taşma → `fmt_err`, sessiz kesme yok
-- **Kanıt:** Terminaldeki her satır tam 64 bayt
+### T-08 · UartTxTask + DMA + **TC yolu doğrulaması** ✅ 🔴
+- [x] `s_tx_buf` kalıcı `static` tampon (.bss → SRAM, CCMRAM 0 B)
+- [x] `HAL_UART_Transmit_DMA` + `ulTaskNotifyTake(1 s)`; hata/zaman aşımında kayıt kapatılır
+- [x] t₄ = USART2 ISR giriş zamanı (`uart_irq_entry`), TC geri çağrısında kayda yazılır
+- [x] **HAL 1.8.5 kaynağı okundu:** normal modda `UART_DMATransmitCplt` geri çağrı **yapmaz**, yalnızca `TCIE` açar; `TxCpltCallback` USART TC bayrağında `UART_EndTransmit_IT`'ten gelir
+- [x] **Ölçümle doğrulandı:** DMA kesmesi → TC arası **173 µs = 2 karakter** (DR + kaydırma register'ı)
+- **Kanıt:** ✅ t₄ − t₃ = **5 551–5 559 µs**, S0 ve S3'te **sabit**. Gerçek baud 115 385 (BRR yuvarlaması, +%0,16) → 640 bit = 5 547 µs + başlatma yükü
+- **Gereksinim:** FR-40…46, risk R-2 **kapandı**
+
+### T-09 · 64 bayt mesaj formatlama ✅
+- [x] `proto_fmt_fixed()` — boşluk dolgusu + LF; 63 bayt aşılırsa kesmez, `false` döner (`fmt_err_*`)
+- [x] Kontrol satırları için `proto_fmt_line()` (değişken uzunluk, ≤ 127 bayt)
+- **Kanıt:** ✅ S1/S2/S3'te toplam ~430 TEL satırı, **64 bayt olmayan: 0**
 - **Gereksinim:** FR-50…53
 
-### T-10 · Uçtan uca tek olay 🎯
-- [ ] `ButtonTask`: t₁ → mesaj hazırla → t₂ → `txQ`
-- [ ] Tek basış → **beş damganın da** dolduğunu doğrula
-- [ ] `R = t₄ − t₀` hesapla, geçici olarak UART'tan yazdır
-- **Kanıt:** Telemetri kapalıyken bir basışın t₀…t₄ ve R ≈ 6 ms
+### T-10 · Uçtan uca tek olay ✅ 🎯
+- [x] `ButtonTask`: t₁ → BTN → t₂ → `txQ` (t₂ kayda gönderimden sonra yazılır; öncelik sırası bunu güvenli kılar)
+- [x] **Beş damganın beşi de dolu**, 10 olayın hepsi `ok`
+- **Kanıt:** ✅ S0: **R = 5.70–5.71 ms**. S3: **R = 5.69–10.82 ms**, büyüyen aşama **t₃ − t₂** (109 → 5 236 µs)
+- ⚠️ **Bulgu:** S0'da boş kuyrukta t₃ − t₂ = 125 µs — ButtonTask'ın gönderim sonrası bakım turu (stack taraması) UartTx'i geciktiriyordu. Bakım olaydan sonraya değil, boşta çalışacak şekilde taşındı.
 - **Gereksinim:** FR-30…35
-- **🎯 Buraya geldiğinde ödevin kalbi çalışıyor.** Gerisi çoğaltma ve sunum.
 
 > **Gün sonu kontrolü — haftanın dönüm noktası.** Beş damgayı görebiliyorsan plan sağlam. Göremiyorsan **yarın sabah bana yaz**, Perşembe'yi kurtarma gününe çeviririz.
 
@@ -164,35 +163,35 @@ Bugün iş yok. Yalnızca istersen:
 # Perşembe 24 — Deney kontrolü + minimal PC
 ### 🏁 Gün hedefi: Tam bir senaryo koşusu, elinde ilk CSV
 
-### T-11 · Sayaçlar
-- [ ] Tasarım §9'daki 11 sayaç
-- [ ] `txq_hwm` her `xQueueSend` sonrası
-- [ ] Stack high-water mark
-- **Kanıt:** `txQ`'yu kasten doldur → `txq_drop_tel` artıyor
+### T-11 · Sayaçlar ✅
+- [x] ISR (11) ve görev (10) sayaçları ayrı yapılarda, tek yazar kuralıyla (`app_diag.h`)
+- [x] `txq_hwm`: UartTxTask, her alımdan önce (±1). S3'te **2**
+- [x] Stack high-water mark, heap en düşük değer: `read_diag.py`
+- **Kanıt:** ✅ `CNI` / `CNT` satırları dökümle birlikte geliyor; `txq_drop_*` kasıtlı doldurma testi T-17'de
 - **Gereksinim:** FR-64, FR-65
 
-### T-12 · Komut alma (RX)
-- [ ] `HAL_UART_Receive_IT` bayt bayt, LF'de satır tamamlama
-- [ ] Tampon taşması → `cmd_overflow`
-- [ ] Ayrıştırma **ISR'de değil**, `ButtonTask` housekeeping turunda
-- **Kanıt:** Terminalden `CMD,STAT\n` → `CNT,...` yanıtı
+### T-12 · Komut alma (RX) ✅
+- [x] `HAL_UART_Receive_IT` bayt bayt; LF'de satır ISR'dan göreve bayrakla devredilir
+- [x] Taşma → `rx_overflow`, meşgulken yeni komut → `cmd_busy`, UART hatası → `rx_err` + yeniden başlatma
+- [x] HAL 1.8.5'te TX-DMA / RX-IT ortak kilit yok (kaynakta doğrulandı)
+- **Kanıt:** ✅ `CMD,STAT` → `STA`; `CMD,BOGUS` → `ERR,unknown`; yanlış durumda `START` → `ERR,state`
 - **Gereksinim:** FR-80…84, FR-92
 
-### T-13 · Deney durum makinesi + LED
-- [ ] `IDLE → ARMED → WARMUP → MEASURING → DRAINING → DONE`
-- [ ] `experiment_tick()` 50 ms timeout yolunda
-- [ ] Senaryo değişimi yalnızca `IDLE`'da; sayaç + kayıt sıfırlama
-- [ ] 5 sn ısınma; ısınmada buton olayı kayda alınmaz
-- [ ] 30 olayda otomatik `DRAINING`
-- [ ] LED: yeşil / turuncu / mavi / kırmızı
-- **Kanıt:** Tam bir S1 koşusu; LED geçişleri gözlendi, kendi kendine durdu
-- **Gereksinim:** FR-85…90
+### T-13 · Deney durum makinesi + LED ✅
+- [x] `IDLE → ARMED → WARMUP → MEASURING → DRAINING → DONE`, `experiment.c`
+- [x] `exp_tick()` ButtonTask bakım turunda; **4. görev yok**
+- [x] SCEN yalnızca IDLE/ARMED/DONE'da ve telemetri tamamen durmuşken (`ERR,busy`)
+- [x] 5 s ısınma; ölçüm dışındaki basışlar `idle_press` sayılır, kayıt açılmaz
+- [x] `CMD,START,n` ile hedef olay sayısı (varsayılan 30, en fazla 64)
+- [x] TelemetryTask: S0'da süresiz bloklu, diğerlerinde `vTaskDelayUntil` (FreeRTOS 10.3.1)
+- **Kanıt:** ✅ Kartın ölçtüğü periyot S1 **100.00**, S2 **20.00**, S3 **10.00** ms (ort.); S0 ve S3'te 5'er olayla tam koşu, kendiliğinden DONE
+- **Gereksinim:** FR-85…90, FR-20…22
 
-### T-14 · Kayıt dökümü
-- [ ] `DRAINING`: telemetri dur → `txQ` boşalt → 1 sn'de kapanmayan `ST_TIMEOUT`
-- [ ] `CMD,DUMP` → `REC` satırları + `CNT` özeti
-- [ ] Alınamamış damgalar **boş** (0 değil)
-- **Kanıt:** 30 `REC` satırı, biçim MR-20/21'e uygun
+### T-14 · Kayıt dökümü ✅
+- [x] DRAINING: telemetri durur → `txQ` boşalır → UART boşta → açık kayıt kalmaz (ya da 1 s → `timeout`)
+- [x] `CMD,DUMP` → `REC` + `TST` (gerçek telemetri periyodu, iş süresi) + `CNI` + `CNT` + `END`
+- [x] Alınamamış damga boş (`have` bitleri)
+- **Kanıt:** ✅ `REC,S0,1,476844878,476844890,476844906,476845031,476850584,ok`
 - **Gereksinim:** FR-66…69, FR-89
 
 ### T-15 · Minimal Python betiği (GUI değil)

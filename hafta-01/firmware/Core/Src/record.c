@@ -78,6 +78,28 @@ bool rec_read(uint32_t slot, EventRecord *out)
     return true;
 }
 
+uint32_t rec_count_open(void)
+{
+    uint32_t n = 0u;
+    for (unsigned s = 0; s < APP_REC_POOL_SIZE; s++) {
+        if (s_pool[s].status == REC_OPEN) {
+            n++;
+        }
+    }
+    return n;
+}
+
+uint32_t rec_timeout_open(void)
+{
+    uint32_t n = 0u;
+    for (unsigned s = 0; s < APP_REC_POOL_SIZE; s++) {
+        if (s_pool[s].status == REC_OPEN && rec_close(s_pool[s].event_id, REC_TIMEOUT)) {
+            n++;
+        }
+    }
+    return n;
+}
+
 void rec_reset(void)
 {
     for (unsigned s = 0; s < APP_REC_POOL_SIZE; s++) {

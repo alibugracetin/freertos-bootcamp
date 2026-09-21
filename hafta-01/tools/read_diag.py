@@ -38,11 +38,14 @@ STRUCTS: dict[str, list[str]] = {
         "magic", "selfcheck", "selfcheck_opened", "selfcheck_rejected", "task_count",
         "heap_free", "heap_min_free", "btn_wakeups", "last_event_id", "last_t0",
         "last_t1", "last_t1_minus_t0", "max_t1_minus_t0", "fault", "btn_stack_hwm",
+        "work_us_per_100k", "last_dma_to_tc_us", "max_dma_to_tc_us", "last_t4_minus_t3",
     ],
-    "g_cnt_isr": ["accepted", "debounce_rej", "btnq_drop", "rec_ovf", "rec_mismatch", "unarmed_rej"],
-    "g_cnt_task": ["txq_drop_tel", "txq_drop_btn", "rec_mismatch", "uart_err", "uart_timeout"],
+    "g_cnt_isr": ["accepted", "debounce_rej", "btnq_drop", "rec_ovf", "rec_mismatch", "unarmed_rej",
+                  "events", "idle_press", "rx_overflow", "rx_err", "cmd_busy"],
+    "g_cnt_task": ["txq_drop_tel", "txq_drop_btn", "rec_mismatch", "uart_err", "uart_timeout",
+                   "rec_mismatch_tx", "fmt_err_tel", "fmt_err_btn", "txq_hwm", "cmd_err"],
 }
-DIAG_MAGIC = 0xD1A60001
+DIAG_MAGIC = 0xD1A60002
 
 
 def symbol_table(elf: Path) -> dict[str, tuple[int, int]]:

@@ -118,6 +118,21 @@ bool rec_close(uint32_t id, RecStatus status);
 bool rec_read(uint32_t slot, EventRecord *out);
 
 /**
+ * @brief   Hâlâ açık (`REC_OPEN`) kayıt sayısı.
+ * @ingroup record
+ * @return  Açık kayıt sayısı. DRAINING durumunda ölçümün bitip bitmediğini anlamak için.
+ */
+uint32_t rec_count_open(void);
+
+/**
+ * @brief   Açık kalan tüm kayıtları `REC_TIMEOUT` ile kapatır (MR-06).
+ * @ingroup record
+ * @return  Kapatılan kayıt sayısı.
+ * @note    Yalnızca yeni olay açılmıyorken (ölçüm durmuşken) çağrılmalıdır.
+ */
+uint32_t rec_timeout_open(void);
+
+/**
  * @brief   Tüm slotları `REC_FREE` yapar.
  * @ingroup record
  * @note    Yalnızca ölçüm durmuşken çağrılmalıdır (açılış veya senaryo değişimi, FR-86).

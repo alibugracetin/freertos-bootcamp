@@ -20,12 +20,11 @@
 #include "app_diag.h"
 #include "app_tasks.h"
 #include "app_types.h"
+#include "experiment.h"
 #include "record.h"
 #include "timing.h"
 
 #include <stdbool.h>
-
-#if !HW_SELFTEST   /* öz-test kendi EXTI geri çağrısını tanımlar */
 
 /**
  * @brief   Bu kesme çağrısında yakalanan t₀.
@@ -111,12 +110,17 @@ void button_rearm_poll(void)
  *             basılı tutma, FR-12b). Silahı yalnızca @ref button_rearm_poll açar.
  *          Sıra bilinçlidir: iki olgu raporda ayrı sayılabilsin.
  * @note    Kuyruk henüz oluşturulmamışsa (açılışın ilk mikrosaniyeleri) olay yok sayılır.
+ * @note    Filtreden geçen basış yalnızca **MEASURING** durumunda olay olur; diğer
+ *          durumlarda `idle_press` sayılır ve kayıt açılmaz (FR-87). Filtre durumu
+ *          (silah, son kabul zamanı) her durumda güncellenir; böylece ölçüm başladığında
+ *          filtre gerçek buton durumuyla uyumludur.
  *
  * @par Zaman damgası
  *      **t₀** @ref button_irq_entry tarafından alınmıştır; burada kayda yazılır.
  * @par Paylaşılan durum
  *      Yazar: `g_cnt_isr.accepted / debounce_rej / btnq_drop / rec_ovf` (yalnızca ISR).
  */
+#if !HW_SELFTEST   /* öz-test kendi EXTI geri çağrısını tanımlar */
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
     if (GPIO_Pin != BTN_USER_Pin || g_button_q == NULL) {
@@ -137,7 +141,13 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
     s_have_accept    = true;
     s_last_accept_us = t0;
 
+    if (!exp_is_measuring()) {
+        g_cnt_isr.idle_press++;                          /* FR-87: kayda alınmaz */
+        return;
+    }
+
     const uint32_t id = ++s_event_counter;              /* FR-14 */
+    g_cnt_isr.events++;
 
     if (!rec_open(id, t0)) {
         g_cnt_isr.rec_ovf++;                             /* FR-61 */

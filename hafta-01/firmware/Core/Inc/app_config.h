@@ -23,10 +23,11 @@
 /**
  * @brief TX mesaj tamponu [bayt].
  *
- * TEL/BTN tam @ref APP_MSG_LEN bayt kullanır. Fazlası yalnızca deney sonundaki
- * `REC` döküm satırı içindir (en kötü durum 83 bayt; tasarım §3).
+ * TEL/BTN tam @ref APP_MSG_LEN bayt kullanır. Fazlası yalnızca deney dışındaki
+ * kontrol satırları içindir: en uzunu `CNI` sayaç satırı, en kötü durumda
+ * 4 + 11 × 10 hane + 10 virgül + LF = 125 bayt (tasarım §3).
  */
-#define APP_TX_BUF_LEN         96u
+#define APP_TX_BUF_LEN         128u
 
 /** @brief Tekrar-kenar filtresi penceresi [µs] (FR-12). */
 #define APP_DEBOUNCE_US        30000u
@@ -57,5 +58,26 @@
 
 /** @brief Her uygulama görevinin stack boyutu [word = 4 bayt]. */
 #define APP_TASK_STACK_WORDS   512u
+
+/** @brief Deney başında ısınma süresi [ms] (MR-03, FR-87). */
+#define APP_WARMUP_MS          5000u
+
+/** @brief `CMD,START` sayı verilmezse hedef olay sayısı (MR-01). */
+#define APP_DEFAULT_TARGET     30u
+
+/** @brief DRAINING durumunda kapanmayan kayıtları `timeout` sayma süresi [ms] (MR-06). */
+#define APP_DRAIN_TIMEOUT_MS   1000u
+
+/**
+ * @brief S4 için ek CPU işi [iterasyon] — hedef ≈ 2 ms (FR-23).
+ *
+ * **İlk kalibrasyon (22.09.2026, Debug -O0):** açılışta `calibrated_work(100 000)`
+ * = 14 305 µs ölçüldü → 2 000 µs × 100 000 / 14 305 ≈ 13 981 iterasyon.
+ * Derleme ayarı değişirse (ör. -O2) bu değer geçersizdir; T-16'da ölçüm
+ * firmware'inin son ayarlarıyla doğrulanır ve TST satırındaki gerçek iş süresi raporlanır.
+ */
+#define APP_WORK_ITERS_S4      13981u
+/** @brief S5 için ek CPU işi [iterasyon] — hedef ≈ 5 ms: 5 000 × 100 000 / 14 305 ≈ 34 953. */
+#define APP_WORK_ITERS_S5      34953u
 
 #endif /* APP_CONFIG_H */

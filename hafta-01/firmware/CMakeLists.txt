@@ -50,6 +50,9 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE
     Core/Src/record.c
     Core/Src/button_isr.c
     Core/Src/app_tasks.c
+    Core/Src/protocol.c
+    Core/Src/uart_link.c
+    Core/Src/experiment.c
 )
 
 # Donanım öz-testi (T-03 / T-04). Açıkken main() RTOS'u başlatmaz.

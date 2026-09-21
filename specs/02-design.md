@@ -136,8 +136,8 @@ typedef struct {
     MsgKind  kind;
     uint32_t event_id;              /* MSG_BTN için: t₃/t₄ bu kaydı kapatacak */
     uint16_t len;                   /* gönderilecek bayt sayısı */
-    char     data[96];              /* TEL/BTN tam 64 bayt kullanır; REC en fazla 83 */
-} TxMsg;                            /* ≈108 bayt; txQ = 16 × 108 ≈ 1.7 KB */
+    char     data[128];             /* TEL/BTN tam 64 bayt; kontrol satırları ≤ 127 */
+} TxMsg;                            /* ≈140 bayt; txQ = 16 × 140 ≈ 2.2 KB */
 
 /* ---- Ölçüm kaydı ---- */
 typedef enum { ST_OPEN, ST_OK, ST_BTNQ_DROP, ST_TXQ_DROP,
@@ -154,7 +154,7 @@ typedef struct {
 static EventRecord g_rec[REC_POOL_SIZE];
 ```
 
-**Tampon neden 96 bayt? (düzeltme, 22.09.2026)** İlk taslakta 64'tü. Ancak `REC` döküm satırının en kötü durumu: `REC,` (4) + `S5,` (3) + 10 haneli kimlik ve virgül (11) + 5 × (10 hane + virgül) (55) + `btnq_drop` (9) + LF (1) = **83 bayt**. 64 baytlık tampon bu satırı keserdi. TEL/BTN yine tam 64 bayt gönderir (FR-50); fazladan alan yalnızca deney dışındaki döküm için kullanılır.
+**Tampon neden 128 bayt? (düzeltme, 22.09.2026)** İlk taslakta 64'tü, sonra 96'ya çıktı; sayaç dökümü (`CNI`, 11 alan) en kötü durumda 125 bayt olduğu için 128'e çıkarıldı. Ancak `REC` döküm satırının en kötü durumu: `REC,` (4) + `S5,` (3) + 10 haneli kimlik ve virgül (11) + 5 × (10 hane + virgül) (55) + `btnq_drop` (9) + LF (1) = **83 bayt**. 64 baytlık tampon bu satırı keserdi. TEL/BTN yine tam 64 bayt gönderir (FR-50); fazladan alan yalnızca deney dışındaki döküm için kullanılır.
 
 **Slot kuralı:** Bir slot yalnızca `REC_FREE` durumundayken açılabilir. Açık **veya kapanmış ama henüz dökülmemiş** bir kaydın üzerine yazılmaz; bu durumda `rec_ovf` artar ve yeni olay ölçülmez (FR-61). Havuz yalnızca senaryo değişiminde (`IDLE`) sıfırlanır.
 
@@ -661,6 +661,23 @@ void EXTI0_IRQHandler(void);
 **Dikkat:** `t₄−t₃` bir buton mesajı için yaklaşık sabit kalmalıdır (≈5.56 ms hat süresi) — çünkü hat süresi baud'a bağlıdır, yüke değil. Eğer ölçümde `t₄−t₃` senaryolarla birlikte artıyorsa, bu ya TC yolunun yanlış kurulduğuna (R-2) ya da DMA'nın beklenmedik şekilde geciktiğine işarettir. Bu, tasarımın **kendi kendini sınayan** noktasıdır.
 
 **CPU % ile UART % toplanmaz** — biri işlemci zamanı, diğeri hat kapasitesi; farklı kaynaklardır.
+
+### 12.1 İlk gözlemler (T-10, 22.09.2026 — S0 ve S3'te 5'er olay, Debug -O0)
+
+*Resmî ölçüm değildir (n = 5); hipotezin yönünü sınamak içindir.*
+
+| Aşama | S0 | S3 | Hipotez |
+|---|---|---|---|
+| t₁ − t₀ | 12 µs | 11–12 µs | sabit ✅ (ek CPU yükü yok) |
+| t₂ − t₁ | 16 µs | 16–17 µs | sabit ✅ |
+| **t₃ − t₂** | 124–125 µs | **109 – 5 236 µs** | **S3'te büyür ✅** |
+| t₄ − t₃ | 5 551–5 559 µs | 5 552–5 557 µs | **sabit ✅ (kendini sınama geçti)** |
+| **R** | 5.70–5.71 ms | 5.69–10.82 ms | |
+
+- **t₃ − t₂'nin dağılımı:** Buton mesajı, o an hatta olan TEL mesajının kalanını bekler: 0 … 5.55 ms, basışın telemetri fazına bağlı. 100 Hz'de her TEL 10 ms'nin 5.55'ini kullandığı için kuyruk birikmez (`txq_hwm = 2`). Beklenen en kötü S3 değeri ≈ 5.55 + 5.55 + ~0.1 ≈ 11.2 ms.
+- **DMA → TC = 173 µs** (2 karakter). R-2 ölçümle de kapandı.
+- **Gerçek baud 115 385** (BRR = 22.75; APB1 42 MHz). 64 baytın hat süresi 5.547 ms (nominal 5.556).
+- **Ölçüm aletinin izi:** S0'daki 125 µs'lik t₃ − t₂, ButtonTask'ın gönderimden sonraki bakım turundan (stack taraması) geliyordu; UartTx (öncelik 1) ButtonTask (2) bloklanmadan koşamaz. Bakım turu boşta çalışacak şekilde taşındı (§5.2); etkisi resmî ölçümde görülecek.
 
 ---
 
