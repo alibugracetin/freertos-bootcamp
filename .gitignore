@@ -1,0 +1,28 @@
+# --- Eğitmen materyali: yeniden yayınlanmaz ---
+ders-materyali/
+
+# --- STM32CubeIDE derleme çıktıları ---
+Debug/
+Release/
+*.elf
+*.bin
+*.hex
+*.map
+*.list
+*.o
+*.d
+*.su
+*.cyclo
+
+# --- IDE yerel çalışma alanı ---
+.metadata/
+.settings/language.settings.xml
+
+# --- Python ---
+__pycache__/
+*.pyc
+.venv/
+
+# --- İşletim sistemi ---
+Thumbs.db
+desktop.ini
