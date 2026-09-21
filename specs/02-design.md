@@ -136,8 +136,8 @@ typedef struct {
     MsgKind  kind;
     uint32_t event_id;              /* MSG_BTN için: t₃/t₄ bu kaydı kapatacak */
     uint16_t len;                   /* gönderilecek bayt sayısı */
-    char     data[64];              /* TEL/BTN için tam 64; REC/ACK için değişken */
-} TxMsg;                            /* ≈76 bayt; txQ = 16 × 76 ≈ 1.2 KB */
+    char     data[96];              /* TEL/BTN tam 64 bayt kullanır; REC en fazla 83 */
+} TxMsg;                            /* ≈108 bayt; txQ = 16 × 108 ≈ 1.7 KB */
 
 /* ---- Ölçüm kaydı ---- */
 typedef enum { ST_OPEN, ST_OK, ST_BTNQ_DROP, ST_TXQ_DROP,
@@ -153,6 +153,12 @@ typedef struct {
 #define REC_POOL_SIZE 64            /* FR-60 */
 static EventRecord g_rec[REC_POOL_SIZE];
 ```
+
+**Tampon neden 96 bayt? (düzeltme, 22.09.2026)** İlk taslakta 64'tü. Ancak `REC` döküm satırının en kötü durumu: `REC,` (4) + `S5,` (3) + 10 haneli kimlik ve virgül (11) + 5 × (10 hane + virgül) (55) + `btnq_drop` (9) + LF (1) = **83 bayt**. 64 baytlık tampon bu satırı keserdi. TEL/BTN yine tam 64 bayt gönderir (FR-50); fazladan alan yalnızca deney dışındaki döküm için kullanılır.
+
+**Slot kuralı:** Bir slot yalnızca `REC_FREE` durumundayken açılabilir. Açık **veya kapanmış ama henüz dökülmemiş** bir kaydın üzerine yazılmaz; bu durumda `rec_ovf` artar ve yeni olay ölçülmez (FR-61). Havuz yalnızca senaryo değişiminde (`IDLE`) sıfırlanır.
+
+**t₀ yakalama noktası:** CubeMX'in ürettiği `EXTI0_IRQHandler()` içinde `HAL_GPIO_EXTI_IRQHandler()` çağrısından önceki USER CODE bloğunda `button_irq_entry()` çağrılır ve timer okunur. HAL daha sonra bayrağı temizleyip `HAL_GPIO_EXTI_Callback()`'i çağırır; filtre ve kuyruk işlemleri orada, yakalanmış t₀ ile yapılır. Aynı kesme çağrısı içinde yazılıp okunduğu için bu ara değişken yarış oluşturmaz.
 
 **`have` bit maskesi neden gerekli?** MR-21 alınamamış zaman damgalarının CSV'de **boş** bırakılmasını, 0 yazılmamasını istiyor. `t[i] == 0` ile "0 mikrosaniyede alındı" ayırt edilemez — sayaç gerçekten 0'dan geçebilir. Ayrı bir geçerlilik biti bu belirsizliği kaldırır.
 
@@ -220,6 +226,29 @@ EXTI0_IRQHandler:
 **Neden ISR içinde 30 ms filtresi?** Discovery'nin mavi butonunda **donanım debounce yok**. Filtre göreve bırakılsaydı, zıplama sırasındaki her kenar `buttonQ`'ya bir olay yazar, 8 elemanlı kuyruğu tek basışta doldurabilirdi.
 
 **Ölçülmüş kanıt (T-03, 21.09.2026):** Filtresiz EXTI sayacıyla 6 basışta **9 yükselen kenar** sayıldı; bir basış 2, bir basış 3 kenar üretti. Filtre varsayım değil, ölçülmüş bir ihtiyaçtır.
+
+### 4.1.1 Bırakış zıplaması ve yeniden silahlanma (FR-12b) — 22.09.2026
+
+**Bulgu (T-07):** Kullanıcı 5 kez bastı (ikisi uzun basış); sistem **8** olay kabul etti. Kayıt defterindeki t₀ zaman çizelgesi, fazladan üç olayın önceki basıştan 176 ms, 1 318 ms ve 1 240 ms sonra geldiğini gösterdi: bunlar **bırakış anındaki zıplamanın** yükselen kenarlarıdır. FR-12'nin 30 ms penceresi yalnızca kabul edilen kenardan sonraki 30 ms'yi korur; bırakış yüzlerce milisaniye sonra gelir ve pencerenin dışında kalır.
+
+**Neden önemli:** Hayalet olaylar gerçek bir yanıt ve geçerli görünen bir R üretir. Veride ayırt edilemezler; "30 basış" dediğimiz örneklemin bir kısmı insan basışı olmaz.
+
+**Çözüm:** Kesme yalnızca yükselen kenarda kalır ("sadece basış kenarı" korunur). Buna bir **silah** bayrağı eklenir:
+
+```
+ISR (yükselen kenar):
+    son kabulden < 30 ms     → debounce_rej++   (basış zıplaması, FR-12)
+    silah kapalı             → unarmed_rej++    (bırakış zıplaması / basılı tutma, FR-12b)
+    aksi halde               → KABUL, silahı kapat
+
+ButtonTask (≤ 50 ms'de bir):
+    pin LOW ve ilk LOW gözleminden beri ≥ 30 ms geçti → silahı aç
+```
+
+- **Başlangıçta silah açıktır** — ilk basış filtrelenmez (FR-13).
+- **Silahı açma** kritik bölüm içinde, pin yeniden okunarak yapılır: görev pini LOW okuyup bayrağı açana kadar geçen mikrosaniyelerde bir basış kenarı gelirse, EXTI bekleyen kesme olarak kilitlenir ve kritik bölümden çıkınca silah açık bulunarak kabul edilir. Kritik bölüm yalnızca birkaç komut sürer ve ölçüm yolunda değildir.
+- **Maliyet:** ButtonTask 50 ms'de bir uyanır ve bir pin okur (~1 µs). Bu uyanma §7'deki deney durum makinesi için zaten planlıydı.
+- **Sınır:** 30 ms'den kısa süren bırakışlar (basış–bırakış–basış) tek basış sayılır. MR-02 basışlar arasında ≥ 0,5 s istediği için ölçüm senaryolarında oluşmaz.
 
 **Neden t₀ yoklamayla alınmaz?** Aynı testte 5 ms'lik yoklama döngüsünün aldığı basış zamanlarının hepsi `…954` µs ile bitti: döngü hep aynı milisaniye fazında uyandığı için damga, basış anını değil *döngünün basışı fark ettiği anı* (0–5 ms gecikmeyle) gösteriyordu. t₀'ın ISR girişinde alınması (FR-11) bu nicemleme gürültüsünü ortadan kaldırır.
 
@@ -662,7 +691,9 @@ CMSIS-RTOS v2 seçiliyken CubeMX bazı değerleri `.ioc`'den bağımsız olarak 
 | `configUSE_TIMERS` | 1 | `#undef` → **0** | `FreeRTOSConfig.h` USER CODE Defines |
 | `INCLUDE_xTimerPendFunctionCall` | 1 | → **0** (timer kapalıyken `timers.c` derlenmez) | aynı |
 | `configUSE_OS2_EVENTFLAGS_FROM_ISR` | 1 | → **0** (yukarıdakine bağımlı; kullanılmıyor) | aynı |
-| `defaultTask` | üretiliyor | Scheduler başlamadan `osThreadTerminate()` | `freertos.c` USER CODE RTOS_THREADS |
+| `defaultTask` | üretiliyor (öncelik 24) | İlk koşusunda **kendini siler**: `vTaskDelete(NULL)` | `freertos.c` USER CODE StartDefaultTask |
+
+> ⚠️ **İlk deneme hatalıydı (T-07'de bulundu):** `defaultTask` önce scheduler başlamadan dışarıdan `osThreadTerminate()` ile siliniyordu. FreeRTOS scheduler öncesinde `pxCurrentTCB`'yi en yüksek öncelikli göreve (24) ayarladığı için bu silme "kendini silme" yoluna düştü; görev yalnızca bekleme listesine kondu ve öncelik 1–3'teki görevlerimiz `pxCurrentTCB`'yi değiştirmediği için scheduler **silinmiş görevi başlattı**. Sonuç: her 1 ms'de diğer görevleri kesen bir zombi. `g_diag.task_count = 5` ile yakalandı; düzeltmeden sonra 4.
 
 **Doğrulama (ELF sembol tablosu):** `prvTimerTask` / `xTimerCreateTimerTask` → **0 sembol** (timer daemon yok). `prvIdleTask` → 1 sembol.
 

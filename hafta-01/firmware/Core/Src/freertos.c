@@ -25,7 +25,8 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "app_tasks.h"
+#include "app_diag.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -69,27 +70,41 @@ void vApplicationStackOverflowHook(xTaskHandle xTask, signed char *pcTaskName);
 void vApplicationMallocFailedHook(void);
 
 /* USER CODE BEGIN 4 */
+/**
+ * @brief   Stack taşması kancası (`configCHECK_FOR_STACK_OVERFLOW = 2`).
+ * @param   xTask       Taşan görev.
+ * @param   pcTaskName  Taşan görevin adı.
+ * @ingroup diag
+ *
+ * Taşma sonrası bellek bozuk kabul edilir; sistem durdurulur. Kırmızı LED yanar
+ * ve `g_diag.fault = 1` yazılır — sessiz bozulma yerine görünür durma. Bir ölçüm
+ * koşusu bu durumda **geçersizdir**.
+ */
 void vApplicationStackOverflowHook(xTaskHandle xTask, signed char *pcTaskName)
 {
-   /* Run time stack overflow checking is performed if
-   configCHECK_FOR_STACK_OVERFLOW is defined to 1 or 2. This hook function is
-   called if a stack overflow is detected. */
+  (void)xTask;
+  (void)pcTaskName;
+  g_diag.fault = 1u;
+  taskDISABLE_INTERRUPTS();
+  HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, GPIO_PIN_SET);
+  for (;;) { }
 }
 /* USER CODE END 4 */
 
 /* USER CODE BEGIN 5 */
+/**
+ * @brief   Heap tükenme kancası (`configUSE_MALLOC_FAILED_HOOK = 1`).
+ * @ingroup diag
+ *
+ * Görev veya kuyruk oluşturulamadı demektir. Kırmızı LED yanar,
+ * `g_diag.fault = 2` yazılır ve sistem durur.
+ */
 void vApplicationMallocFailedHook(void)
 {
-   /* vApplicationMallocFailedHook() will only be called if
-   configUSE_MALLOC_FAILED_HOOK is set to 1 in FreeRTOSConfig.h. It is a hook
-   function that will get called if a call to pvPortMalloc() fails.
-   pvPortMalloc() is called internally by the kernel whenever a task, queue,
-   timer or semaphore is created. It is also called by various parts of the
-   demo application. If heap_1.c or heap_2.c are used, then the size of the
-   heap available to pvPortMalloc() is defined by configTOTAL_HEAP_SIZE in
-   FreeRTOSConfig.h, and the xPortGetFreeHeapSize() API function can be used
-   to query the size of free heap space that remains (although it does not
-   provide information on how the remaining heap might be fragmented). */
+  g_diag.fault = 2u;
+  taskDISABLE_INTERRUPTS();
+  HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, GPIO_PIN_SET);
+  for (;;) { }
 }
 /* USER CODE END 5 */
 
@@ -124,20 +139,12 @@ void MX_FREERTOS_Init(void) {
   defaultTaskHandle = osThreadNew(StartDefaultTask, NULL, &defaultTask_attributes);
 
   /* USER CODE BEGIN RTOS_THREADS */
-  /*
-   * defaultTask kaldırma (FR-01: tam olarak 3 uygulama görevi).
-   *
-   * CubeMX, CMSIS-RTOS v2 projelerinde görev listesi boş bırakılsa bile
-   * defaultTask'ı üretiyor ve oluşturma satırı USER CODE dışında kaldığı
-   * için elle silinemiyor. Görev, zamanlayıcı başlamadan hemen önce burada
-   * silinir; henüz hiç koşmadığından yan etkisi yoktur. Başka bir görevin
-   * silinmesi durumunda FreeRTOS TCB ve stack belleğini anında geri verir.
-   */
-  osThreadTerminate(defaultTaskHandle);
-  defaultTaskHandle = NULL;
+  /* defaultTask burada SİLİNMEZ; ilk koşusunda kendini siler (bkz. StartDefaultTask
+   * ve tasarım §13.3). Scheduler öncesi silmek onu "zombi" olarak çalıştırıyordu. */
 
-  /* Uygulama görevleri (TelemetryTask, ButtonTask, UartTxTask) T-07'de
-   * native xTaskCreate ile 3 / 2 / 1 öncelikleriyle burada oluşturulacak. */
+  /* Kuyruklar ve üç uygulama görevi: TelemetryTask (3), ButtonTask (2),
+   * UartTxTask (1) — native xTaskCreate ile (T-07). */
+  app_create_rtos_objects();
   /* USER CODE END RTOS_THREADS */
 
   /* USER CODE BEGIN RTOS_EVENTS */
@@ -156,11 +163,24 @@ void MX_FREERTOS_Init(void) {
 void StartDefaultTask(void *argument)
 {
   /* USER CODE BEGIN StartDefaultTask */
-  /* Infinite loop */
-  for(;;)
-  {
-    osDelay(1);
-  }
+  /*
+   * defaultTask kaldırma (FR-01: tam olarak 3 uygulama görevi).
+   *
+   * CubeMX, CMSIS-RTOS v2'de görev listesi boş olsa bile bu görevi öncelik 24
+   * (osPriorityNormal) ile üretiyor; oluşturma satırı USER CODE dışında.
+   *
+   * Scheduler başlamadan önce dışarıdan silmek HATALIYDI (T-07'de g_diag
+   * görev sayısını 5 gösterdi): FreeRTOS, scheduler öncesi pxCurrentTCB'yi en
+   * yüksek öncelikli göreve, yani buna ayarlar. vTaskDelete() bunu "kendini
+   * silen görev" sanıp yalnızca bekleme listesine koyar; bizim görevlerimiz
+   * (öncelik 1-3) pxCurrentTCB'yi değiştirmediği için scheduler silinmiş görevi
+   * başlatır ve osDelay(1) ile her 1 ms'de diğer görevleri kesen bir zombi olur.
+   *
+   * Doğrusu: scheduler başladığında en yüksek öncelikli olduğu için ilk bu görev
+   * koşar ve burada kendini siler. Normal kendi-silme yolu işler; TCB ve stack'i
+   * Idle görevi geri verir. Uygulama görevleri henüz hiç koşmamış olur.
+   */
+  vTaskDelete(NULL);
   /* USER CODE END StartDefaultTask */
 }
 

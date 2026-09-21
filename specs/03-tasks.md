@@ -29,7 +29,7 @@ Paz 20   Pzt 21   Sal 22   Çar 23   Per 24   Cum 25   Cmt 26   Paz 27
 
 **Değişmeyen tek kural:** Süre sıkışırsa grafik sadeleşir, video kısalır, GUI çirkin kalır — **ölçüm verisi asla kısılmaz.**
 
-**İlerleme:** 4 / 26 · Pazartesi hedefleri tamam ✅
+**İlerleme:** 7 / 26 · Pazartesi ✅ · Salı ✅
 
 ---
 
@@ -96,30 +96,34 @@ Bugün iş yok. Yalnızca istersen:
 # Salı 22 — Ölçüm çekirdeği I
 ### 🏁 Gün hedefi: 3 görev ayakta, buton olayı göreve ulaşıyor
 
-### T-05 · Veri yapıları ve kayıt defteri
-- [ ] `ButtonEvent`, `TxMsg`, `EventRecord`, `RecStatus`
-- [ ] `rec_open()`, `rec_stamp()`, `rec_close()`, `rec_reset()`
-- [ ] `event_id` doğrulaması — yanlış slota yazma engeli
-- [ ] ISR/görev sayaç ayrımı: `g_ovf_isr` / `g_ovf_task`
-- [ ] **Doxygen yorumları aynı anda** (`@par Paylaşılan durum`)
-- **Kanıt:** 100 sahte olay yaz → slot çakışmasında `ovf` artıyor
+### T-05 · Veri yapıları ve kayıt defteri ✅
+- [x] `ButtonEvent`, `TxMsg` (tampon **96 bayt** — REC satırı 83'e çıkabiliyor), `EventRecord`, `RecStatus`
+- [x] `rec_open()`, `rec_stamp()`, `rec_close()`, `rec_read()`, `rec_reset()` — `record.c`
+- [x] `event_id` doğrulaması; slot yalnızca `REC_FREE` iken açılır
+- [x] ISR/görev sayaç ayrımı: `g_cnt_isr` / `g_cnt_task` — `app_diag.h`
+- [x] Doxygen yorumları kodla birlikte yazıldı
+- [x] SWD tanı aracı: `hafta-01/tools/read_diag.py` (UART trafiği eklemeden okur)
+- **Kanıt:** ✅ Açılış öz-testi: 100 sahte olaydan **64 açıldı, 36 reddedildi**, tüm kurallar geçti
 - **Gereksinim:** FR-60…62, DOC-06, tasarım §3, §3.1
 
-### T-06 · EXTI0 ISR + debounce
-- [ ] t₀ **ilk satırda**, sonra bayrak temizle
-- [ ] 30 ms tekrar-kenar filtresi; **ilk olay muaf**
-- [ ] `event_id` ata → `rec_open()` → `xQueueSendFromISR`
-- [ ] Dönüş değeri kontrolü + drop kaydı
-- [ ] **Doxygen** (`@note ISR bağlamı`, `@par Zaman damgası: t₀`)
-- **Kanıt:** Hızlı 10 basış → `accepted` 1–2, `debounce_rej` belirgin artar
-- **Gereksinim:** FR-10…18, DOC-04, DOC-05
+### T-06 · EXTI0 ISR + debounce ✅
+- [x] t₀ `EXTI0_IRQHandler`'ın ilk satırında, HAL bayrağa dokunmadan (`button_irq_entry`)
+- [x] 30 ms tekrar-kenar filtresi; ilk olay muaf
+- [x] `event_id` → `rec_open()` → `xQueueSendFromISR`, dönüş kontrolü, drop kaydı
+- [x] ⚠️ **Yeni: bırakış zıplaması bulundu** — 5 basışta 8 olay. **FR-12b "yeniden silahlanma"** eklendi
+- **Kanıt:** ✅ Aynı 5 basış: önce **8** kabul, düzeltmeden sonra **5** kabul + `unarmed_rej = 1`
+- **Gereksinim:** FR-10…18, FR-12b, DOC-04, DOC-05, tasarım §4.1.1
 
-### T-07 · Üç görev + kuyruklar
-- [ ] `buttonQ` (8 × `ButtonEvent`), `txQ` (16 × `TxMsg`)
-- [ ] `TelemetryTask` (3), `ButtonTask` (2), `UartTxTask` (1)
-- [ ] Görevler şimdilik iskelet: blokla + LED yak
-- **Kanıt:** `uxTaskGetNumberOfTasks()` = **4** (3 + Idle); öncelikler debugger'da doğru
-- **Gereksinim:** FR-01…06
+### T-07 · Üç görev + kuyruklar ✅
+- [x] `buttonQ` (8 × `ButtonEvent`), `txQ` (16 × `TxMsg`), kuyruk kayıt defterinde isimli
+- [x] `TelemetryTask` (3), `ButtonTask` (2), `UartTxTask` (1) — native `xTaskCreate`
+- [x] ButtonTask: t₁ + 50 ms bakım turu; Telemetry: S0 gibi süresiz bloklu; UartTx: `txQ`'da bloklu
+- [x] Stack taşması / heap tükenmesi kancaları: kırmızı LED + `g_diag.fault`
+- [x] ⚠️ **Hata bulundu ve düzeltildi:** defaultTask zombi olarak koşuyordu (görev sayısı 5)
+- **Kanıt:** ✅ `task_count = 4`; Idle 912 bayt geri verdi; **t₁ − t₀ = 11–14 µs**
+- **Gereksinim:** FR-01…06, tasarım §13.3
+
+> Kanıt dosyası: `hafta-01/docs/kanitlar/t05-t07-diag.md`
 
 > **Gün sonu kontrolü:** Butona bastığında `ButtonTask` uyanıp LED yakıyor mu? Evet ise ISR→kuyruk→görev zinciri çalışıyor demektir.
 

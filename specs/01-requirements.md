@@ -91,6 +91,7 @@ Proje çıktısı iki parçalıdır:
 | **FR-10** | Buton kesmesi yalnızca **basış kenarını** (press edge) işlemelidir; bırakma kenarı ölçüme dahil edilmemelidir. |
 | **FR-11** | ISR, kesme bayrağını temizledikten sonra monoton timer'ı okuyup **t₀**'ı kaydetmelidir. |
 | **FR-12** | Sistem, kabul edilen bir kenardan sonraki **30 ms** içindeki tekrar kenarları reddetmeli ve ayrı bir sayaçta saymalıdır. |
+| **FR-12b** | Bir basış kabul edildikten sonra, buton **en az 30 ms kesintisiz bırakılmış** gözlenmeden yeni basış kabul edilmemelidir ("yeniden silahlanma"). Bu koşulla reddedilen kenarlar ayrı bir sayaçta sayılmalıdır. *Gerekçe: T-07'de 5 fiziksel basışta 8 olay kabul edildi; fazlalık üçü de bırakış zıplamasıydı (bkz. tasarım §4.1). FR-12'nin 30 ms penceresi yalnızca basış anındaki zıplamayı kapsar.* |
 | **FR-13** | Sistemin **ilk** buton olayı debounce filtresi tarafından yanlışlıkla reddedilmemelidir (ayrı ilk-olay durumu gerekir). |
 | **FR-14** | ISR her kabul edilen olaya benzersiz, monoton artan bir `event_id` atamalıdır. |
 | **FR-15** | ISR olayı `xQueueSendFromISR` ile `buttonQ`'ya yazmalı, dönüş değerini kontrol etmeli ve başarısızlıkta drop sayacını artırmalıdır. |

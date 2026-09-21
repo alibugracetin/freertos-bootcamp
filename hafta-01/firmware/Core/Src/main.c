@@ -27,6 +27,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "hw_selftest.h"
+#include "app_tasks.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -102,6 +103,8 @@ int main(void)
    * maskeleyeceği için HAL_Delay() sonrasında kilitlenirdi. Geri dönmez. */
   hw_selftest_run();
 #endif
+  /* TIM2'yi başlat, kayıt defteri öz-testini koş (T-05). Scheduler öncesi. */
+  app_init_early();
   /* USER CODE END 2 */
 
   /* Init scheduler */

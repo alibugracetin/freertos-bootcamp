@@ -46,6 +46,10 @@ target_link_directories(${CMAKE_PROJECT_NAME} PRIVATE
 target_sources(${CMAKE_PROJECT_NAME} PRIVATE
     # Add user sources here
     Core/Src/hw_selftest.c
+    Core/Src/timing.c
+    Core/Src/record.c
+    Core/Src/button_isr.c
+    Core/Src/app_tasks.c
 )
 
 # Donanım öz-testi (T-03 / T-04). Açıkken main() RTOS'u başlatmaz.
