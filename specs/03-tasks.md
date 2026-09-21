@@ -29,7 +29,14 @@ Paz 20   Pzt 21   Sal 22   Çar 23   Per 24   Cum 25   Cmt 26   Paz 27
 
 **Değişmeyen tek kural:** Süre sıkışırsa grafik sadeleşir, video kısalır, GUI çirkin kalır — **ölçüm verisi asla kısılmaz.**
 
-**İlerleme:** 14 / 26 · Pazartesi ✅ · Salı ✅ · Çarşamba ✅ · Perşembe firmware ✅ (iki gün önde)
+**İlerleme:** 17 / 26 · Pazartesi ✅ · Salı ✅ · Çarşamba ✅ · Perşembe ✅ · Cumartesi arayüz + grafikler ✅ (öne çekildi)
+
+> ⏩ **22.09.2026 Salı gecesi ek:** T-15 (minimal PC betiği) yerine doğrudan tam arayüz yazıldı (T-19); grafik modülü (T-20) de kullanıcının isteğiyle öne çekildi.
+> - `interface/`: `serial_link.py`, `protocol.py`, `recorder.py`, `plots.py`, `gui.py`, `make_plots.py`, `main.py`
+> - Arayüz: senaryo seç → Başlat (SCEN→START sırası; koşarken STOP→bekle→SCEN), telemetri hızı **kart saatinden**, UART hat doluluğu çubuğu, "Butona basıldı · Olay N", DONE'da **otomatik** döküm → CSV → grafik
+> - CSV: hedef < 30 → `measurements/deneme/`; var olan dosya `arsiv/`'e taşınır, üzerine yazılmaz; `summary.csv` her resmî koşuda yeniden üretilir
+> - Grafikler: olay→R (senaryo başına panel, 20 ms çizgisi), aşama dağılımı (yığılmış sütun), tablo görünümü; fare üstü ipucu; PNG → `analysis/plots/`
+> - Çevrimdışı test: `protocol` + `recorder` 15/15 geçti (gerçek e2e kaydıyla)
 
 ---
 
