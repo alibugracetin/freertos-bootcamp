@@ -29,7 +29,7 @@ Paz 20   Pzt 21   Sal 22   Çar 23   Per 24   Cum 25   Cmt 26   Paz 27
 
 **Değişmeyen tek kural:** Süre sıkışırsa grafik sadeleşir, video kısalır, GUI çirkin kalır — **ölçüm verisi asla kısılmaz.**
 
-**İlerleme:** 2 / 26
+**İlerleme:** 4 / 26 · Pazartesi hedefleri tamam ✅
 
 ---
 
@@ -72,20 +72,21 @@ Bugün iş yok. Yalnızca istersen:
 - **Kalan:** `uxTaskGetNumberOfTasks()` = 1 çalışma zamanı kanıtı T-03'te karta yüklenince alınacak.
 - **Gereksinim:** FR-01…04, tasarım §2.2, §8, §13
 
-### T-03 · Donanım doğrulama 🔴
-- [ ] FT232 kablola: TXD→PA3, RXD→PA2, GND→GND. **VCC bağlama.**
-- [ ] Blocking `HAL_UART_Transmit` ile `"hello\n"` → terminalde gör
-- [ ] PA0'ı GPIO giriş olarak oku → **aktif seviyeyi doğrula** (HIGH bekliyoruz)
-- [ ] 4 LED'i sırayla yak
-- **Kanıt:** Terminal çıktısı + butonun aktif seviyesi yazılı not
+### T-03 · Donanım doğrulama ✅
+- [x] FT232 kablolandı: TXD→PA3, RXD→PA2, GND→GND, VCC bağlı değil → **COM7**
+- [x] Öz-test firmware'i (`hw_selftest.c`, `-DHW_SELFTEST=ON`) STM32_Programmer_CLI ile SWD'den yüklendi
+- [x] UART: açılış satırı bozulmadan okundu; SYSCLK 168 MHz, PCLK1 42 MHz, PCLK2 84 MHz
+- [x] Buton: boşta 0, basılı **1 → aktif-HIGH** (HW-04)
+- [x] Zıplama ölçüldü: 6 basışta **9 kenar** (bir basışta 3'e kadar) → FR-12 filtresi gerekli
+- [x] LED'ler: yeşil (buton), turuncu, kırmızı, mavi — kullanıcı gözle doğruladı
+- **Kanıt:** ✅ `hafta-01/docs/kanitlar/t03-t04-hwtest.log`
 - **Gereksinim:** HW-01…04
-- **⚠️ Buradan geçmeden ilerleme.** Kablolama hatası sonraki her adımı yanıltır.
 
-### T-04 · TIM2 zaman kaynağı
-- [ ] `timer_us()` → `TIM2->CNT` doğrudan okuma
-- [ ] `HAL_Delay(1000)` etrafında ölç → **1 000 000 ± birkaç yüz µs**
-- [ ] `uint32_t` sarma aritmetiğini elle test et
-- **Kanıt:** Ölçülen 1 sn değerinin çıktısı
+### T-04 · TIM2 zaman kaynağı ✅
+- [x] `TIM2->CNT` doğrudan okuma; ⚠️ `HAL_TIM_Base_Start(&htim2)` gerekli (tasarım §2.1)
+- [x] 1 s aralık TIM2 ve DWT->CYCCNT ile bağımsız ölçüldü: **fark 1 µs / 1 000 770 µs**
+- [x] Sarma: `0x00000010 − 0xFFFFFFF0 = 32` ✓
+- **Kanıt:** ✅ aynı log, `HWTEST,TIM` ve `HWTEST,WRAP` satırları
 - **Gereksinim:** FR-68, FR-72, FR-73
 
 > **Gün sonu kontrolü:** Terminalde kartın mesajını görüyor musun? Butonun hangi seviyede olduğunu biliyor musun? Timer 1 µs sayıyor mu? Üçü de evet ise yarına hazırsın.

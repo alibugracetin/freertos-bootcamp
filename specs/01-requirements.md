@@ -48,7 +48,7 @@ Proje çıktısı iki parçalıdır:
 | RTOS | FreeRTOS (CMSIS-RTOS v2 veya native API) | CubeMX üzerinden |
 | IDE | STM32CubeIDE | |
 | Buton | **B1 USER (mavi), PA0** | Aktif-HIGH, harici pull-down. Donanım debounce **yok** → yazılım filtresi zorunlu. |
-| Seri bağlantı | **FT232RL USB-TTL dönüştürücü** | Kartta ST-Link VCP yok. VCCIO 3.3 V moduna alınmalı. |
+| Seri bağlantı | **FT232RL USB-TTL dönüştürücü → COM7** | VCCIO 3.3 V. Kartın ST-LINK/V2-1'i PC'de ayrıca bir sanal COM port (COM6) sunar; bu projede kullanılmaz, ölçüm hattı FT232RL'dir. |
 | PC arayüzü | Python | `pyserial` + GUI + `matplotlib` |
 | Zaman kaynağı | 32-bit donanım timer, 1 MHz | ≈71.6 dakikada sarar |
 
@@ -359,8 +359,8 @@ freertos-bootcamp/
 
 | ID | Soru | Karar | Tarih |
 |---|---|---|---|
-| **S-1** | Kart modeli ve seri bağlantı yöntemi | **STM32F4DISCOVERY**; ST-Link VCP yok → **FT232RL USB-TTL** kullanılacak (§3) | 20.09.2026 |
-| **S-2** | Buton pini ve aktif seviyesi | **B1 USER (mavi), PA0, aktif-HIGH**, donanım debounce yok → yazılım filtresi zorunlu (HW-04 ile doğrulanacak) | 20.09.2026 |
+| **S-1** | Kart modeli ve seri bağlantı yöntemi | **STM32F4DISCOVERY** (ST-LINK/V2-1, PID 374B); ölçüm hattı **FT232RL USB-TTL, COM7** (§3). T-03'te doğrulandı. | 20.09.2026 |
+| **S-2** | Buton pini ve aktif seviyesi | **B1 USER (mavi), PA0, aktif-HIGH** — T-03'te ölçüldü: boşta 0, basılı 1. Donanım debounce yok; 6 basışta 9 kenar ölçüldü → yazılım filtresi zorunlu. | 21.09.2026 |
 | **S-3** | Senaryo seçimi | **Çalışma zamanında UART komutu.** 4. görev açılmadan çözülecek (§4.9) | 20.09.2026 |
 | **S-4** | Kayıt dışa aktarımı | Hedef basış sayısına ulaşınca **otomatik**; döküm alınınca arayüz CSV'yi kendiliğinden yazar (FR-88, UI-08) | 20.09.2026 |
 | **S-5** | Depo yapısı | Mevcut dizin git deposuna çevrilecek; ders dosyaları `ders-materyali/`, teslim `hafta-01/` altında | 20.09.2026 |

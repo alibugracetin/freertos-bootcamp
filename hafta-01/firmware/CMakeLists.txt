@@ -45,7 +45,17 @@ target_link_directories(${CMAKE_PROJECT_NAME} PRIVATE
 # Add sources to executable
 target_sources(${CMAKE_PROJECT_NAME} PRIVATE
     # Add user sources here
+    Core/Src/hw_selftest.c
 )
+
+# Donanım öz-testi (T-03 / T-04). Açıkken main() RTOS'u başlatmaz.
+# Kullanım: cmake --preset Debug -DHW_SELFTEST=ON
+# Ölçüm firmware'i için mutlaka OFF: cmake --preset Debug -DHW_SELFTEST=OFF
+option(HW_SELFTEST "Donanim oz-testi firmware'i derle" OFF)
+if(HW_SELFTEST)
+    target_compile_definitions(${CMAKE_PROJECT_NAME} PRIVATE HW_SELFTEST=1)
+    message(WARNING "HW_SELFTEST=ON: bu firmware olcum icin KULLANILMAZ")
+endif()
 
 # Add include paths
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE

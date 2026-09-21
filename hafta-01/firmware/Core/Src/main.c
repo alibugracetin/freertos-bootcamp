@@ -26,7 +26,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "hw_selftest.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -95,7 +95,13 @@ int main(void)
   MX_USART2_UART_Init();
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
-
+#if HW_SELFTEST
+  /* Donanım öz-testi (T-03 / T-04). Burada çağrılmasının nedeni: çevre birimleri
+   * kurulmuş, FreeRTOS ise henüz başlamamıştır. MX_FREERTOS_Init() içindeki
+   * çekirdek çağrıları BASEPRI'yi yükseltip HAL tick kesmesini (öncelik 15)
+   * maskeleyeceği için HAL_Delay() sonrasında kilitlenirdi. Geri dönmez. */
+  hw_selftest_run();
+#endif
   /* USER CODE END 2 */
 
   /* Init scheduler */

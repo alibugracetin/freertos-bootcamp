@@ -90,6 +90,10 @@ Okuma:
 static inline uint32_t timer_us(void) { return TIM2->CNT; }
 ```
 
+> ⚠️ **Başlatma şart:** CubeMX `MX_TIM2_Init()` timer'ı yapılandırır ama **başlatmaz**. `HAL_TIM_Base_Start(&htim2)` çağrılmadan `TIM2->CNT` sıfırda sabit kalır ve tüm zaman damgaları 0 çıkar. Ölçüm firmware'inde bu çağrı scheduler başlamadan önce yapılmalıdır.
+
+**Doğrulama (T-04, 21.09.2026):** Aynı 1 s'lik aralık iki bağımsız sayaçla ölçüldü — TIM2 (APB1 timer saati, ÷84) ve DWT->CYCCNT (HCLK 168 MHz). Üç turda fark **1 µs** (tam sayı bölmesi yuvarlaması), yani TIM2 ile çekirdek saati 1 ppm içinde eşleşiyor. Ön-bölücü hatası olsaydı fark ≈12 000 µs/s olurdu. Kanıt: `hafta-01/docs/kanitlar/t03-t04-hwtest.log`.
+
 **Neden kesmesiz ve HAL'siz?** Tek bir hizalı 32-bit register okuması Cortex-M4'te atomiktir — kilit gerekmez, ISR içinden güvenle çağrılabilir (FR-73). HAL sarmalayıcısı ekstra çağrı yükü getirir; ölçüm noktalarında bu yükü istemiyoruz.
 
 **Sarma (FR-68):** Tüm farklar `uint32_t` aritmetiğiyle hesaplanır; işaretsiz çıkarma mod 2³² doğal olarak doğru sonucu verir:
@@ -214,6 +218,10 @@ EXTI0_IRQHandler:
 **Neden bayrak temizlemeden önce timer okunuyor?** Bayrak temizleme bir periferik yazması; F4'te bu yazmanın tamamlanması birkaç çevrim sürebilir. Timer'ı önce okumak t₀'ı kenara en yakın ana sabitler. Şartname de t₀'ı "ISR girişinde" diye tanımlıyor.
 
 **Neden ISR içinde 30 ms filtresi?** Discovery'nin mavi butonunda **donanım debounce yok**. Filtre göreve bırakılsaydı, zıplama sırasındaki her kenar `buttonQ`'ya bir olay yazar, 8 elemanlı kuyruğu tek basışta doldurabilirdi.
+
+**Ölçülmüş kanıt (T-03, 21.09.2026):** Filtresiz EXTI sayacıyla 6 basışta **9 yükselen kenar** sayıldı; bir basış 2, bir basış 3 kenar üretti. Filtre varsayım değil, ölçülmüş bir ihtiyaçtır.
+
+**Neden t₀ yoklamayla alınmaz?** Aynı testte 5 ms'lik yoklama döngüsünün aldığı basış zamanlarının hepsi `…954` µs ile bitti: döngü hep aynı milisaniye fazında uyandığı için damga, basış anını değil *döngünün basışı fark ettiği anı* (0–5 ms gecikmeyle) gösteriyordu. t₀'ın ISR girişinde alınması (FR-11) bu nicemleme gürültüsünü ortadan kaldırır.
 
 ### 4.2 USART2 — TC (t₄)
 
