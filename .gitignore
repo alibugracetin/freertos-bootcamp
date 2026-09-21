@@ -1,7 +1,8 @@
 # --- Eğitmen materyali: yeniden yayınlanmaz ---
 ders-materyali/
 
-# --- STM32CubeIDE derleme çıktıları ---
+# --- Derleme çıktıları (CMake + STM32CubeIDE) ---
+build/
 Debug/
 Release/
 *.elf

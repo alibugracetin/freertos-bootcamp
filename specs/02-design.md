@@ -429,9 +429,9 @@ LED:  IDLE=yeşil   WARMUP=turuncu   MEASURING=mavi   DRAINING/DONE=kırmızı
 | Ayar | Değer | Gerekçe |
 |---|---|---|
 | `configUSE_PREEMPTION` | 1 | FR-03 |
-| `configMAX_PRIORITIES` | 5 | FR-04 (en az 4); 0=Idle, 1..3 uygulama |
+| `configMAX_PRIORITIES` | **56** | CMSIS-RTOS v2'de CubeMX bu değeri kilitler. FR-04'ü (en az 4) karşılar. Görevler native `xTaskCreate` ile **1 / 2 / 3** önceliğinde açılır; 4…55 kullanılmaz. (bkz. §13) |
 | `configTICK_RATE_HZ` | 1000 | 1 ms tick → 10/20/100 ms periyotlar tam sayı tick'e oturur |
-| `configUSE_TIMERS` | **0** | Software timer daemon **fazladan bir görev** yaratır → FR-01 riski |
+| `configUSE_TIMERS` | **0** | Software timer daemon **fazladan bir görev** yaratır → FR-01 riski. CubeMX 1'e zorladığı için USER CODE'da geçersiz kılınır (§13) |
 | `configUSE_IDLE_HOOK` | 0 | Idle CPU ölçümü gerekirse 1 yapılır |
 | `configCHECK_FOR_STACK_OVERFLOW` | 2 | Sessiz bozulma yerine erken yakalama |
 | `configUSE_MALLOC_FAILED_HOOK` | 1 | Kuyruk/görev oluşturma hatasını görünür kılar |
@@ -627,8 +627,52 @@ void EXTI0_IRQHandler(void);
 
 ---
 
+## 13. Uygulama sırasında alınan kararlar
+
+Tasarım kod üretimiyle karşılaştığında ortaya çıkan sapmalar. Her biri `README.md`'ye de taşınacaktır.
+
+### 13.1 Proje formatı: CubeIDE managed build yerine **CMake** (21.09.2026)
+
+| | |
+|---|---|
+| **Sorun** | CubeMX 6.18.1'in betik modunda (`-q`) STM32CubeIDE proje dosyalarını üreten iç servis hata vermeden zaman aşımına uğradı; `.cproject` hiç oluşmadı. |
+| **Karar** | `ProjectManager.TargetToolchain = CMake`. CubeMX CMake projesini IDE servisine ihtiyaç duymadan kendisi üretir. |
+| **Araçlar** | STM32CubeIDE 2.2.0'ın **kendi paketlediği** CMake, Ninja ve GNU Tools for STM32 14.3 kullanılır — ek kurulum yok. |
+| **Derleme** | `cmake --preset Debug` → `cmake --build --preset Debug` → `build/Debug/firmware.elf` |
+| **Etkisi** | Yok. Kaynak kod, HAL, FreeRTOS ve `.ioc` aynı. CMake, derlemeyi komut satırından tekrarlanabilir kıldığı için DR-03 (derleme adımları) açısından ek fayda sağlar. |
+
+### 13.2 `syscalls.c` / `sysmem.c` paketten kopyalandı
+
+CubeMX betik modunda bu iki dosyayı yazarken yolu hatalı birleştiriyor (`firmware\D:\RTOS\…`). Dosyalar ST'nin her projede aynı olan newlib stub'larıdır; `STM32Cube_FW_F4_V1.28.3` paketindeki resmi kopyalarından alındı. Linker betiğinin gerektirdiği `_estack`, `_Min_Stack_Size`, `_end` sembolleri doğrulandı.
+
+### 13.3 CubeMX'in zorladığı FreeRTOS ayarları — USER CODE ile düzeltildi
+
+CMSIS-RTOS v2 seçiliyken CubeMX bazı değerleri `.ioc`'den bağımsız olarak zorluyor. Düzeltmeler **USER CODE blokları** içinde olduğu için yeniden üretimde korunur.
+
+| Ayar | CubeMX'in ürettiği | Düzeltme | Yer |
+|---|---|---|---|
+| `configUSE_TIMERS` | 1 | `#undef` → **0** | `FreeRTOSConfig.h` USER CODE Defines |
+| `INCLUDE_xTimerPendFunctionCall` | 1 | → **0** (timer kapalıyken `timers.c` derlenmez) | aynı |
+| `configUSE_OS2_EVENTFLAGS_FROM_ISR` | 1 | → **0** (yukarıdakine bağımlı; kullanılmıyor) | aynı |
+| `defaultTask` | üretiliyor | Scheduler başlamadan `osThreadTerminate()` | `freertos.c` USER CODE RTOS_THREADS |
+
+**Doğrulama (ELF sembol tablosu):** `prvTimerTask` / `xTimerCreateTimerTask` → **0 sembol** (timer daemon yok). `prvIdleTask` → 1 sembol.
+
+### 13.4 Derleme sonucu (T-02 kanıtı)
+
+```
+0 hata · 0 uyarı
+RAM     25 008 B / 128 KB   (%19)
+CCMRAM       0 B /  64 KB   (%0)    ← HW-05: DMA tamponları CCM'e düşmüyor
+FLASH   22 092 B /   1 MB   (%2)
+```
+
+RAM'in büyük kısmı `configTOTAL_HEAP_SIZE = 20480` (FreeRTOS heap). Görevler ve kuyruklar bu heap'ten ayrılacak.
+
+---
+
 ## Onay
 
-- [ ] Kullanıcı tasarımı okudu ve onayladı.
-- [ ] R-2 (TC yolu) doğrulama adımı task listesine eklendi.
-- [ ] `03-tasks.md` yazımına geçilebilir.
+- [x] Kullanıcı tasarımı okudu ve onayladı. *(21.09.2026 — "başlayabiliriz")*
+- [x] R-2 (TC yolu) doğrulama adımı task listesine eklendi. *(T-08)*
+- [x] `03-tasks.md` yazımına geçilebilir.

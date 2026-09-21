@@ -29,7 +29,7 @@ Paz 20   Pzt 21   Sal 22   Çar 23   Per 24   Cum 25   Cmt 26   Paz 27
 
 **Değişmeyen tek kural:** Süre sıkışırsa grafik sadeleşir, video kısalır, GUI çirkin kalır — **ölçüm verisi asla kısılmaz.**
 
-**İlerleme:** 0 / 26
+**İlerleme:** 2 / 26
 
 ---
 
@@ -45,28 +45,32 @@ Bugün iş yok. Yalnızca istersen:
 # Pazartesi 21 — Ortam ve donanım
 ### 🏁 Gün hedefi: Kart PC ile konuşuyor, buton ve timer doğrulandı
 
-### T-01 · Git kurulumu ve depo
-- [ ] `winget install --id Git.Git -e`
-- [ ] Terminali kapat–aç (PATH yenilensin)
-- [ ] `git init` + `.gitignore` (`Debug/`, `Release/`, `__pycache__/`, `*.elf`, `*.o`, `*.bin`)
-- [ ] İlk commit: `specs/`, `ders-materyali/`
-- [ ] GitHub deposu aç, `remote add`, push
-- **Kanıt:** Çalışan GitHub linki
+### T-01 · Git kurulumu ve depo ✅
+- [x] Git 2.55 kuruldu (winget) — ayrıca Python 3.12, Doxygen 1.18, Graphviz 16.1
+- [x] `git init -b main` + `.gitignore` (derleme çıktıları, `build/`, Python önbelleği)
+- [x] `ders-materyali/` **depo dışında** — eğitmen materyali yeniden yayınlanmaz
+- [x] İlk commit: `specs/` → `28f87d2`
+- [x] GitHub: [alibugracetin/freertos-bootcamp](https://github.com/alibugracetin/freertos-bootcamp) (private), push ✓
+- **Kanıt:** ✅ Çalışan GitHub linki
 - **Gereksinim:** DR-01
 
-### T-02 · CubeMX projesi
-- [ ] Yeni proje: **STM32F407VGT6**, kart STM32F4DISCOVERY
-- [ ] Saat: HSE → PLL → **SYSCLK 168 MHz**
-- [ ] **SYS → Timebase Source = TIM6** ⚠️ (SysTick FreeRTOS'a ait)
-- [ ] USART2: 115200 8N1, PA2/PA3, **DMA1 Stream6 Ch4 (TX)**, global interrupt açık
-- [ ] TIM2: `PSC = 83`, `ARR = 0xFFFFFFFF`, kesme **kapalı**
-- [ ] PA0 → GPIO_EXTI0, yükselen kenar
-- [ ] PD12–PD15 → GPIO çıkış
-- [ ] FreeRTOS: CMSIS_V2, `configUSE_TIMERS = 0`, `configMAX_PRIORITIES = 5`, tick 1000 Hz
-- [ ] ⚠️ **`defaultTask`'i sil** — yoksa görev sayısı 4 olur, FR-01 ihlal
-- [ ] NVIC: EXTI0 = 5, USART2 = 5, DMA1_Stream6 = 5
-- **Kanıt:** Derleniyor; `uxTaskGetNumberOfTasks()` = 1
-- **Gereksinim:** FR-01…04, tasarım §2.2, §8
+### T-02 · CubeMX projesi ✅
+- [x] **CubeMX betik modunda** üretildi (`-q`), `.ioc` elle yazıldı → `hafta-01/firmware/firmware.ioc`
+- [x] Saat: HSE 8 MHz → PLL (M=8, N=336, P=2, Q=7) → **SYSCLK 168 MHz**, APB1 42 / timer 84 MHz
+- [x] **SYS → Timebase Source = TIM6**
+- [x] USART2: 115200 8N1, **PA2/PA3**, **DMA1 Stream6 Ch4 (TX)**, global interrupt açık
+- [x] TIM2: `PSC = 83`, `ARR = 0xFFFFFFFF`, kesme **kapalı**
+- [x] PA0 → EXTI0, yükselen kenar, pull yok, etiket `BTN_USER`
+- [x] PD12–PD15 → çıkış, `LED_GREEN / ORANGE / RED / BLUE`
+- [x] FreeRTOS CMSIS_V2, tick 1000 Hz, stack overflow kontrolü 2, malloc hook, newlib reentrant, heap 20 KB
+- [x] `configMAX_PRIORITIES` = **56** (CubeMX kilitli; ödeve uygun, görevler 1/2/3 ile açılacak)
+- [x] `configUSE_TIMERS = 0` — CubeMX zorladığı için USER CODE'da geçersiz kılındı
+- [x] `defaultTask` — CubeMX silinmesine izin vermedi, USER CODE'da scheduler öncesi sonlandırılıyor
+- [x] NVIC: EXTI0 = 5, USART2 = 5, DMA1_Stream6 = 5 (üretilen kodda doğrulandı)
+- [x] Proje formatı **CMake** — CubeIDE servis hatası nedeniyle (tasarım §13.1)
+- **Kanıt:** ✅ **0 hata, 0 uyarı**; RAM %19, CCMRAM 0 B, FLASH %2. ELF'te timer daemon sembolü **yok**.
+- **Kalan:** `uxTaskGetNumberOfTasks()` = 1 çalışma zamanı kanıtı T-03'te karta yüklenince alınacak.
+- **Gereksinim:** FR-01…04, tasarım §2.2, §8, §13
 
 ### T-03 · Donanım doğrulama 🔴
 - [ ] FT232 kablola: TXD→PA3, RXD→PA2, GND→GND. **VCC bağlama.**
