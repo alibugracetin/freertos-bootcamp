@@ -11,7 +11,52 @@
 
 Telemetri yükü arttıkça yanıt süresi **5,62 ms'den 8,25 ms'ye** kadar kademeli olarak büyüdü ve büyümenin tamamı **tek bir aşamadan**, buton mesajının TX kuyruğunda beklemesinden (`t₃−t₂`) geldi. S5'te (100 Hz + %50 CPU yükü) sistem nitel olarak farklı bir rejime geçti: kuyruk doydu, yanıt süresi **115 ms ortalamaya** çıktı, 30 olayın 6'sı hiç gönderilemedi ve 20 ms deadline'ı **23 kez** ihlal edildi.
 
-## 2. Özet tablo
+## 2. Zaman damgaları — neyi ölçüyoruz
+
+Bir buton basışının yanıtı sistemde dört durak geçer. Her durakta **aynı kart
+saatinden** (TIM2, 1 MHz) bir zaman damgası alınır. Toplam beş damga vardır:
+
+```
+   parmak                                                         son bit
+   butona                                                         hattan
+   basar                                                          çıkar
+     │                                                              │
+     ▼                                                              ▼
+  ───●──────────●───────────●──────────────●──────────────────────●────►  zaman
+     t₀         t₁          t₂             t₃                     t₄
+     │          │           │              │                      │
+  EXTI0      ButtonTask  yanıt hazır    UART gönderimi        TC kesmesi
+  kesmesi    olayı aldı  kuyruğa        başlatılmak üzere     (aktarım bitti)
+  girişi                 verilmeden
+```
+
+| Damga | Tam olarak nerede alınır | Neyi işaretler |
+|---|---|---|
+| **t₀** | `EXTI0_IRQHandler`'ın ilk satırı, HAL bayrağı temizlemeden önce | Zıplama filtresinin **kabul ettiği** buton kenarı |
+| **t₁** | `ButtonTask`, `xQueueReceive` döner dönmez | Olayın göreve ulaştığı an |
+| **t₂** | `xQueueSend` çağrısından hemen önce | Yanıt mesajının hazır olduğu an |
+| **t₃** | `HAL_UART_Transmit_DMA` çağrısından hemen önce | Gönderimin başlatılmak üzere olduğu an |
+| **t₄** | USART2 **TC** kesmesinin girişi | Son stop bitinin hattan çıktığının gözlendiği an |
+
+Aradaki farklar, gecikmenin **hangi aşamadan** geldiğini söyler:
+
+| Aralık | Adı | İçerdiği süre |
+|---|---|---|
+| **t₁ − t₀** | görev bekleme | Kesmenin kalanı + bağlam geçişi + `ButtonTask`'ın CPU'yu bekleme süresi. Yüksek öncelikli bir görev CPU'yu tutuyorsa burası büyür. |
+| **t₂ − t₁** | yanıt hazırlama | 64 baytlık mesajın biçimlendirilmesi. Görev bu sırada kesilirse (preemption) burası da büyür. |
+| **t₃ − t₂** | TX kuyruğu + başlatma | Mesajın `txQ`'da sırasını beklemesi, `UartTxTask`'ın CPU'ya erişmesi ve DMA'yı başlatması. **Hat meşgulse asıl bekleme buradadır.** |
+| **t₄ − t₃** | UART hattı + TC | 64 baytın hattan fiziksel olarak akması (ayar 115 200, gerçekte 115 385 baud — §4.1). Yüke değil baud'a bağlıdır. |
+| **R = t₄ − t₀** | **yanıt süresi** | Kart tarafında gözlenen toplam süre. Ödevin deadline'ı: ≤ 20 ms. |
+
+Farklar işaretsiz 32-bit aritmetiğiyle hesaplanır; sayaç 71,6 dakikada sardığı
+için bu, sarma anına denk gelen olaylarda da doğru sonucu verir.
+
+**Neyin ölçülmediği de önemlidir.** t₀ parmağın butona değdiği an değil, kesmenin
+gördüğü elektriksel kenardır. t₄ ise son bitin çıkışı değil, o çıkışı bildiren
+kesmenin gözlem anıdır (aradaki fark §8'de). Bu iki sınır, ölçülen R'nin gerçek
+uçtan uca gecikmeden biraz **dar** olduğu anlamına gelir.
+
+## 3. Özet tablo
 
 | Senaryo | Telemetri | Ek CPU | n (ok) | R min | R ort | R medyan | R max | >20 ms | Kayıp |
 |---|---|---|---|---|---|---|---|---|---|
@@ -24,7 +69,7 @@ Telemetri yükü arttıkça yanıt süresi **5,62 ms'den 8,25 ms'ye** kadar kade
 
 Birim: ms. Yalnızca `status = ok` olaylar; kayıplar ayrı sütunda ve **deadline karşılandı sayılmadı** (AR-03). S5'teki 6 olay `tx_drop`: kuyruk dolu olduğu için yanıt mesajı hiç gönderilemedi.
 
-## 3. Aşama analizi — hangi bileşen değişti?
+## 4. Aşama analizi — hangi bileşen değişti?
 
 Ortalama süreler (µs, yalnızca `ok`):
 
@@ -37,7 +82,7 @@ Ortalama süreler (µs, yalnızca `ok`):
 | S4 | **88** | 17 | **2 596** | 5 553 |
 | S5 | **886** | **227** | **108 358** | 5 554 |
 
-### 3.1 Sabit kalan: UART hat süresi
+### 4.1 Sabit kalan: UART hat süresi
 
 `t₄−t₃` altı senaryoda **5 553–5 555 µs**; yükten tamamen bağımsız. Beklenen sonuç budur, çünkü hat süresi baud hızına bağlıdır:
 
@@ -49,7 +94,7 @@ Gerçek baud 115 385'tir (nominal 115 200 değil): HAL'in BRR hesabı 42 MHz APB
 
 **Bu sabitlik tasarımın kendi kendini sınama testiydi.** `t₄−t₃` yükle birlikte değişseydi, ya zaman damgası yanlış yerden alınıyor ya da DMA beklenmedik biçimde gecikiyor olurdu. Değişmedi.
 
-### 3.2 Telemetri frekansının etkisi: `t₃−t₂`
+### 4.2 Telemetri frekansının etkisi: `t₃−t₂`
 
 Buton mesajı TX kuyruğuna girdiğinde, o an hatta olan telemetri mesajının bitmesini bekler. Bekleme 0 ile 5,55 ms arasında, **basışın telemetri periyoduna göre fazına** bağlıdır. Ölçülen çarpışma oranları teorik hat doluluğuyla uyumlu:
 
@@ -65,7 +110,7 @@ Buton mesajı TX kuyruğuna girdiğinde, o an hatta olan telemetri mesajının b
 
 R dağılımı bu yüzden **iki tepelidir**: çarpışma olmayan olaylar 5,62 ms'de toplanır, çarpışanlar 5,6–11,2 ms arasına yayılır (bkz. `plots/r_per_event.png`, S2 ve S3 panelleri).
 
-### 3.3 CPU yükünün etkisi: `t₁−t₀` ve `t₂−t₁`
+### 4.3 CPU yükünün etkisi: `t₁−t₀` ve `t₂−t₁`
 
 S0–S3'te `t₁−t₀` sabit 12 µs'dir: kesmenin kalanı, bağlam geçişi ve görevin uyanması. S4 ve S5'te ilk kez büyür, çünkü `TelemetryTask` (öncelik 3) CPU'yu `ButtonTask`'tan (öncelik 2) önce alır. Basış, telemetrinin hesap yaptığı ana denk gelirse görev hesabın bitmesini bekler:
 
@@ -78,7 +123,7 @@ S0–S3'te `t₁−t₀` sabit 12 µs'dir: kesmenin kalanı, bağlam geçişi ve
 
 S5'te `t₂−t₁` de büyüdü (17 → 227 µs, en büyük 5 065 µs): `ButtonTask` yanıt mesajını hazırlarken bir sonraki telemetri periyodu başlayıp onu kesiyor.
 
-## 4. S5: aşırı yük rejimi
+## 5. S5: aşırı yük rejimi
 
 S5 yalnızca "daha yavaş" değil, **niteliksel olarak farklıdır**. `t₃−t₂` olay sırasına göre düzenli biçimde tırmanır ve ~160 ms'de doyar:
 
@@ -116,7 +161,7 @@ Sonuç: **periyot başına tam bir mesaj**, yani 100 mesaj/s. Üretim de 100 mes
 
 Bu yorum iki bağımsız koşuyla desteklenir: aynı gün yapılan ve basış aralıkları çok daha kısa olan ön denemede (`measurements/arsiv/protokol-disi-20260923/`) kuyruk **daha hızlı** doldu (R ort 110,8 ms, 7 kayıp). Basış hızı doymanın *hızını* değiştirir, doymanın *kendisini* değiştirmez.
 
-## 5. Hipotez ile gözlemin karşılaştırması
+## 6. Hipotez ile gözlemin karşılaştırması
 
 Tasarım dosyasının §12'sinde, ölçümden **önce** şu hipotez yazılmıştı:
 
@@ -129,17 +174,17 @@ Tasarım dosyasının §12'sinde, ölçümden **önce** şu hipotez yazılmışt
 
 Hipotezde eksik kalan nokta: S5 için yalnızca "ihlal muhtemel" denmişti. Gerçekte sistem kararlı bir gecikme artışı değil, **kuyruk taşması ve veri kaybı** üretti. Hipotez, `UartTxTask`'ın düşük önceliğinin servis hızını üretim hızına kilitleyeceğini öngörmemişti.
 
-## 6. Ödevin dört sorusu
+## 7. Ödevin dört sorusu
 
 **Hangi bileşen değişti?** S1–S4'te değişen tek aşama TX kuyruğunda bekleme (`t₃−t₂`). S4'ten itibaren buna görev bekleme (`t₁−t₀`) eklendi. S5'te değişen şey bir aşamanın süresi değil, **sistemin rejimi**: kuyruk kararlı çalışmaktan çıkıp doydu.
 
 **Neden?** Üç mekanizma: (1) telemetri mesajı hattı 5,55 ms meşgul eder, buton mesajı sırasını bekler; (2) yüksek öncelikli telemetri görevi CPU'yu alarak `ButtonTask`'ı geciktirir; (3) en düşük öncelikli `UartTxTask` yalnızca telemetri bloklandığında koşabildiği için servis hızı telemetri periyoduna kilitlenir.
 
-**Hangi ölçüm destekliyor?** Sırasıyla: aşama tablosu ve çarpışma oranları (§3.2); `t₁−t₀` maksimumunun iş süresiyle sınırlı olması (§3.3); kuyruk doluyken hat doluluğunun yalnızca %56 olması ve servis hızının 101,6 mesaj/s çıkması (§4).
+**Hangi ölçüm destekliyor?** Sırasıyla: aşama tablosu ve çarpışma oranları (§4.2); `t₁−t₀` maksimumunun iş süresiyle sınırlı olması (§4.3); kuyruk doluyken hat doluluğunun yalnızca %56 olması ve servis hızının 101,6 mesaj/s çıkması (§5).
 
-**Ne henüz bilinmiyor?** §7'de.
+**Ne henüz bilinmiyor?** §8'de.
 
-## 7. Ölçümün sınırları — neyi iddia etmiyoruz
+## 8. Ölçümün sınırları — neyi iddia etmiyoruz
 
 - **Gözlenen maksimum, kanıtlanmış worst-case değildir (AR-10).** n = 30 ve basışlar rastgele fazdadır. S3'te teorik en kötü bekleme 5,55 ms iken en yüksek gözlenen çarpışma 5,45 ms'dir; en kötü duruma yaklaşıldı ama ona ulaşıldığı garanti edilemez.
 - **t₀ fiziksel basma anı değildir.** Kesme girişinde, zıplama filtresi tarafından kabul edilen kenarın zamanıdır. Butonun elektriksel kenarı ile parmağın teması arasındaki süre ölçülmedi (logic analyzer gerekirdi).
@@ -149,7 +194,7 @@ Hipotezde eksik kalan nokta: S5 için yalnızca "ihlal muhtemel" denmişti. Ger�
 - **Kuyruk yüksek su seviyesi ±1 hassasiyetindedir**; `UartTxTask` derinliği alımdan hemen önce okur.
 - **PC saati hiçbir hesaba girmedi.** Tüm damgalar kartın TIM2 sayacından alındı. (Arayüz geliştirilirken PC tarafında 100 Hz telemetrinin 128 Hz olarak sayıldığı görüldü; USB satırları paketler halinde teslim ettiği için PC varış zamanları ölçüme uygun değildir.)
 
-## 8. Kayıplar ve sayaçlar (MR-09 — hiçbiri gizlenmedi)
+## 9. Kayıplar ve sayaçlar (MR-09 — hiçbiri gizlenmedi)
 
 | Senaryo | tx_drop | btnq_drop | tx_error | timeout | txq_hwm | TEL düşen | debounce_rej | unarmed_rej |
 |---|---|---|---|---|---|---|---|---|
@@ -165,7 +210,7 @@ Hipotezde eksik kalan nokta: S5 için yalnızca "ihlal muhtemel" denmişti. Ger�
 - `idle_press` altı senaryoda da 0: ısınma sırasında yanlışlıkla basılmadı.
 - Telemetri periyodu her senaryoda ortalama **9 999 / 19 999 / 99 999 µs**; planlanan periyottan sapma %0,01'in altında.
 
-## 9. Ne yapılabilirdi
+## 10. Ne yapılabilirdi
 
 Ölçümün gösterdiği darboğaz mimariden kaynaklanıyor; ödev bu mimariyi şart koştuğu için değiştirilmedi. Yine de S5'teki çöküş şu üç değişiklikten biriyle engellenebilirdi:
 
