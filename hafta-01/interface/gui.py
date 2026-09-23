@@ -10,6 +10,7 @@ Arayüz ölçümü **göstermek** içindir, ölçüme karışmaz (UI-11):
 from __future__ import annotations
 
 import queue
+import random
 import time
 import tkinter as tk
 from collections import deque
@@ -59,6 +60,8 @@ class App(tk.Tk):
         # Döküm
         self.collector: Optional[DumpCollector] = None
         self.btn_flash_until = 0.0
+        self.last_btn_pc = 0.0          # yalnızca tempo göstergesi için (ölçüme girmez)
+        self.next_gap = 0.0
 
         self._build_ui()
         self._refresh_ports()
@@ -139,7 +142,14 @@ class App(tk.Tk):
         self.frame_lbl.pack(anchor="w", padx=8, pady=(6, 0))
 
         self.btn_lbl = tk.Label(right, text=" ", font=("Segoe UI", 15, "bold"), height=2, bg=self.cget("bg"))
-        self.btn_lbl.pack(fill="x", padx=8, pady=8)
+        self.btn_lbl.pack(fill="x", padx=8, pady=(8, 2))
+
+        # Basış temposu (MR-02): en az 500 ms ara, aralıklar rastgele.
+        # Sabit ritimle basmak, basışları telemetri periyodunun hep aynı fazına
+        # denk getirir ve t₃−t₂ dağılımının yalnızca bir dilimi ölçülür.
+        self.tempo_lbl = tk.Label(right, text="", font=("Segoe UI", 13, "bold"),
+                                  height=2, bg=self.cget("bg"))
+        self.tempo_lbl.pack(fill="x", padx=8, pady=(0, 8))
 
         # ---- alt bölüm: sekmeler
         self.tabs = ttk.Notebook(self)
@@ -411,6 +421,7 @@ class App(tk.Tk):
             self.btn_flash_until = 0.0
 
         self._update_telemetry()
+        self._update_tempo()
         self.after(POLL_MS, self._poll)
 
     def _handle(self, p: P.Parsed) -> None:
@@ -440,6 +451,8 @@ class App(tk.Tk):
         elif isinstance(m, P.Btn):
             self.btn_lbl.configure(text=f"Butona basıldı · Olay {m.event_id}", bg="#cfe3ff")
             self.btn_flash_until = time.monotonic() + 0.6
+            self.last_btn_pc = time.monotonic()
+            self.next_gap = random.uniform(0.8, 3.0)   # rastgele aralık → faz dağılır
         elif isinstance(m, P.Ack):
             if self.awaiting is not None and self.steps:
                 self.steps.popleft()
@@ -511,6 +524,26 @@ class App(tk.Tk):
             messagebox.showwarning("Döküm uyarısı", "\n".join(serious))
 
     # ================================================================ yardımcılar
+
+    def _update_tempo(self) -> None:
+        """Basış temposu göstergesi (MR-02). Yalnızca kullanıcıyı yönlendirir;
+        gösterilen süre PC saatinden gelir ve hiçbir ölçüme karışmaz (UI-11)."""
+        st = self.status.state if self.status else None
+        if st != "MEASURING":
+            self.tempo_lbl.configure(text="", bg=self.cget("bg"))
+            return
+        if self.last_btn_pc == 0.0:
+            self.tempo_lbl.configure(text="BAS", fg="#1c6b2e", bg="#d7f2dd")
+            return
+        elapsed = time.monotonic() - self.last_btn_pc
+        if elapsed < 0.5:
+            self.tempo_lbl.configure(text=f"BEKLE — {500 - elapsed * 1000:.0f} ms (en az 500 ms ara)",
+                                     fg="#8a2020", bg="#f7d9d9")
+        elif elapsed < self.next_gap:
+            self.tempo_lbl.configure(text=f"hazır ol — {self.next_gap - elapsed:.1f} s",
+                                     fg="#6b5a1c", bg="#f7eed2")
+        else:
+            self.tempo_lbl.configure(text="BAS", fg="#1c6b2e", bg="#d7f2dd")
 
     def _update_telemetry(self) -> None:
         ts = list(self.tel_times)
