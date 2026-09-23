@@ -29,7 +29,21 @@ Paz 20   Pzt 21   Sal 22   Çar 23   Per 24   Cum 25   Cmt 26   Paz 27
 
 **Değişmeyen tek kural:** Süre sıkışırsa grafik sadeleşir, video kısalır, GUI çirkin kalır — **ölçüm verisi asla kısılmaz.**
 
-**İlerleme:** 17 / 26 · Pazartesi ✅ · Salı ✅ · Çarşamba ✅ · Perşembe ✅ · Cumartesi arayüz + grafikler ✅ (öne çekildi)
+**İlerleme:** 24 / 26 · Kalan: **video** ve **teslim** (ikisi de kullanıcıya ait)
+
+> ⏩ **23.09.2026 Çarşamba:** T-16 kalibrasyon, T-18 resmî ölçüm, T-21 analiz, T-22 Doxygen,
+> T-23 rapor ve T-24 dokümantasyon tamamlandı. Plan Cuma'yı ölçüm günü olarak öngörüyordu;
+> iki gün önde bitti.
+>
+> | Görev | Sonuç |
+> |---|---|
+> | T-16 CPU kalibrasyonu | S4 = 2 001,6 µs · S5 = 5 008,4 µs (hedeften %0,2 sapma) |
+> | T-17 deneme koşusu | S0/S3 ön ölçüm + protokol dışı tam koşu (arşivde) |
+> | T-18 **resmî ölçüm** | 6 senaryo × 30 olay; basış aralıkları 0/29 ihlal |
+> | T-21 analiz | `analysis/ozet-tablo.md`, `summary.csv`, iki grafik |
+> | T-22 Doxygen | 0 uyarı, 121 sayfa HTML |
+> | T-23 rapor | `analysis/report.md` |
+> | T-24 dokümantasyon | README, setup, code-notes, ai-usage, ölçüm protokolü |
 
 > ⏩ **22.09.2026 Salı gecesi ek:** T-15 (minimal PC betiği) yerine doğrudan tam arayüz yazıldı (T-19); grafik modülü (T-20) de kullanıcının isteğiyle öne çekildi.
 > - `interface/`: `serial_link.py`, `protocol.py`, `recorder.py`, `plots.py`, `gui.py`, `make_plots.py`, `main.py`
