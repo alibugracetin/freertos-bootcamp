@@ -1,20 +1,4 @@
-"""Grafiklerin tek kaynağı (UI-20…28, AR-06…08).
-
-Her fonksiyon **yalnızca CSV'den** okur ve bir matplotlib ``Figure`` döndürür;
-dosya yazmaz, pencere açmaz. Tüketicileri:
-
-- ``gui.py``        — ``FigureCanvasTkAgg`` ile pencereye gömer
-- ``make_plots.py`` — PNG olarak ``analysis/plots/`` altına kaydeder
-
-Böylece ekranda görülen grafik ile teslim edilen PNG aynı koddan ve aynı ham
-veriden gelir (MR-08).
-
-Renk kuralı: renk yalnızca **aşamaları** kodlar (4 kategorik slot, sabit sıra).
-Senaryolar renkle değil konumla (x ekseni, panel başlığı) ayırt edilir.
-Palet: dataviz referans paletinin ilk dört slotu, belgelenmiş sırayla ve
-değiştirilmeden (yan yana çiftler doğrulanmış). Açık yüzeyde sarı < 3:1
-kontrast olduğu için lejant daima görünür ve değerler tablo olarak da verilir.
-"""
+"""Grafiklerin tek kaynağı (UI-20…28, AR-06…08).\n\nHer fonksiyon **yalnızca CSV'den** okur ve bir matplotlib ``Figure`` döndürür;\ndosya yazmaz, pencere açmaz. Tüketicileri:\n\n- ``gui.py``        — ``FigureCanvasTkAgg`` ile pencereye gömer\n- ``make_plots.py`` — PNG olarak ``analysis/plots/`` altına kaydeder\n\nBöylece ekranda görülen grafik ile teslim edilen PNG aynı koddan ve aynı ham\nveriden gelir (MR-08).\n\nRenk kuralı: renk yalnızca **aşamaları** kodlar (4 kategorik slot, sabit sıra).\nSenaryolar renkle değil konumla (x ekseni, panel başlığı) ayırt edilir.\nPalet: dataviz referans paletinin ilk dört slotu, belgelenmiş sırayla ve\ndeğiştirilmeden (yan yana çiftler doğrulanmış). Açık yüzeyde sarı < 3:1\nkontrast olduğu için lejant daima görünür ve değerler tablo olarak da verilir.\n"""
 from __future__ import annotations
 
 import statistics
@@ -41,6 +25,10 @@ SERIES = SLOTS[0]                                              # tek seri → sl
 # Böylece baskın hat süresi en yüksek kontrastlı slota (mavi), yükle değişen
 # kuyruk beklemesi dikkat çeken slota (turuncu) düşer; sarı en küçük aşamada kalır.
 STAGE_COLORS = [SLOTS[3], SLOTS[2], SLOTS[1], SLOTS[0]]
+
+#: x ekseni için kısa senaryo etiketleri (uzun açıklamalar üst üste biner)
+SHORT = {"S0": "telemetri\nkapalı", "S1": "10 Hz", "S2": "50 Hz",
+         "S3": "100 Hz", "S4": "100 Hz\n+2 ms CPU", "S5": "100 Hz\n+5 ms CPU"}
 
 STAGES = [
     ("t₁−t₀", "görev bekleme"),
@@ -112,21 +100,19 @@ def _empty(fig: Figure, text: str) -> Figure:
 # ------------------------------------------------------------ grafik 1 (AR-06a)
 
 def plot_response_times(csv_paths: list[Path], title_note: str = "") -> Figure:
-    """Olay numarası → R [ms], senaryo başına bir panel, 20 ms deadline çizgisi.
-
-    Paneller ortak y eksenini paylaşır; senaryolar arası karşılaştırma aynı ölçekte.
-    Her noktada ``_hover`` bilgisi vardır (gui.py fare üstü ipucu için okur).
-    """
+    """Olay numarası → R [ms], senaryo başına bir panel, 20 ms deadline çizgisi.\n\nPaneller ortak y eksenini paylaşır; senaryolar arası karşılaştırma aynı ölçekte.\nHer noktada ``_hover`` bilgisi vardır (gui.py fare üstü ipucu için okur).\n"""
     fig = Figure(figsize=(9, 5.2), dpi=100, facecolor=SURFACE)
     data = [load(p) for p in csv_paths]
     data = [d for d in data if d.n_ok or d.excluded]
     if not data:
         return _empty(fig, "Çizilecek ölçüm yok.\nBir senaryoyu tamamlayın (hedef olay sayısına ulaşın).")
 
-    y_top = max([DEADLINE_US / 1000 * 1.15] + [max(d.R_ms) * 1.1 for d in data if d.R_ms])
+    # Ortak y ekseni kullanılmaz: S5, S0–S4'ten ~20 kat büyüktür ve ortak ölçekte
+    # diğerlerinin dağılımı tamamen ezilir. Her panelin kendi ölçeği vardır; 20 ms
+    # deadline çizgisi her panelde göründüğü için karşılaştırma yine mümkündür.
     cols = min(3, len(data))
     rows = (len(data) + cols - 1) // cols
-    axes = fig.subplots(rows, cols, sharey=True, squeeze=False)
+    axes = fig.subplots(rows, cols, squeeze=False)
 
     for k, ax in enumerate(axes.flat):
         if k >= len(data):
@@ -140,19 +126,17 @@ def plot_response_times(csv_paths: list[Path], title_note: str = "") -> Figure:
         pts._hover = [f"{d.scenario} · olay {eid}\nR = {r:.3f} ms" for eid, r in zip(d.event_ids, d.R_ms)]
 
         ax.axhline(DEADLINE_US / 1000, color=INK_2, linestyle=(0, (4, 3)), linewidth=1.0, zorder=1)
-        if k % cols == cols - 1 or k == len(data) - 1:
-            ax.text(1.0, DEADLINE_US / 1000, " 20 ms deadline", transform=ax.get_yaxis_transform(),
-                    va="bottom", ha="right", fontsize=7.5, color=INK_2)
+        ax.text(0.02, DEADLINE_US / 1000, "20 ms deadline", transform=ax.get_yaxis_transform(),
+                va="bottom", ha="left", fontsize=7, color=INK_2)
 
         over = sum(1 for r in d.R_ms if r * 1000 > DEADLINE_US)
         ax.set_title(f"{d.scenario} · {SCENARIOS.get(d.scenario, '')}", fontsize=9.5, color=INK,
                      loc="left", pad=15)
         ax.text(0, 1.015, f"n = {d.n_ok} · {d.excluded_text()} · aşım: {over}",
                 transform=ax.transAxes, fontsize=7.5, color=MUTED, va="bottom")
-        ax.set_ylim(0, y_top)
+        ax.set_ylim(0, max(DEADLINE_US / 1000 * 1.15, (max(d.R_ms) if d.R_ms else 0) * 1.12))
         ax.set_xlim(0.3, max(d.n_ok, 1) + 0.7)
-        if k % cols == 0:
-            ax.set_ylabel("R = t₄ − t₀  [ms]", fontsize=8.5, color=INK_2)
+        ax.set_ylabel("R = t₄ − t₀  [ms]", fontsize=8.5, color=INK_2)
         if k // cols == rows - 1:
             ax.set_xlabel("olay sırası", fontsize=8.5, color=INK_2)
 
@@ -175,48 +159,51 @@ def stage_means(csv_paths: list[Path]) -> list[tuple[str, int, list[float]]]:
 
 
 def plot_stage_breakdown(csv_paths: list[Path], title_note: str = "") -> Figure:
-    """Senaryo → aşama ortalamaları [ms], yığılmış sütun. Tepede ortalama R.
-
-    Aşama renkleri sabit sıradadır; bir senaryo eksik olsa da renk değişmez.
-    """
-    fig = Figure(figsize=(9, 5.2), dpi=100, facecolor=SURFACE)
+    """Senaryo → aşama ortalamaları [ms], yığılmış sütun. Tepede ortalama R.\n\nAşama renkleri sabit sıradadır; bir senaryo eksik olsa da renk değişmez.\nBir senaryo diğerlerinden çok büyükse (aşırı yük rejimi) ikinci bir **yakın\nplan** paneli çizilir: sütunlar kırpılmaz, küçük senaryolar da okunur kalır.\n"""
+    fig = Figure(figsize=(9.6, 5.2), dpi=100, facecolor=SURFACE)
     rows = stage_means(csv_paths)
     if not rows:
         return _empty(fig, "Çizilecek ölçüm yok.\nBir senaryoyu tamamlayın (hedef olay sayısına ulaşın).")
 
-    ax = fig.add_subplot(111)
-    _style(ax)
-    x = list(range(len(rows)))
-    bottom = [0.0] * len(rows)
-    for s, ((sym, name), color) in enumerate(zip(STAGES, STAGE_COLORS)):
-        vals = [r[2][s] / 1000 for r in rows]
-        bars = ax.bar(x, vals, bottom=bottom, width=0.56, color=color,
-                      edgecolor=SURFACE, linewidth=1.5, label=f"{sym}  {name}", zorder=2)
-        for bar, (sc, n, means) in zip(bars, rows):
-            bar._hover = f"{sc} · {sym} {name}\nortalama {means[s]:,.0f} µs".replace(",", " ")
-        bottom = [b + v for b, v in zip(bottom, vals)]
+    totals = [sum(r[2]) / 1000 for r in rows]
+    zoom = [r for r, t in zip(rows, totals) if t < 0.25 * max(totals)] if max(totals) > 4 * min(totals) else []
+    axes = fig.subplots(1, 2, width_ratios=[1.35, 1]) if len(zoom) >= 2 else [fig.add_subplot(111)]
 
-    for xi, total in zip(x, bottom):
-        ax.text(xi, total, f"{total:.2f} ms", ha="center", va="bottom", fontsize=8.5, color=INK, zorder=3)
+    for ax, subset, note in zip(axes, [rows, zoom], ["tümü", "yakın plan"]):
+        _style(ax)
+        x = list(range(len(subset)))
+        bottom = [0.0] * len(subset)
+        for si, ((sym, name), color) in enumerate(zip(STAGES, STAGE_COLORS)):
+            vals = [r[2][si] / 1000 for r in subset]
+            bars = ax.bar(x, vals, bottom=bottom, width=0.56, color=color,
+                          edgecolor=SURFACE, linewidth=1.5, label=f"{sym}  {name}", zorder=2)
+            for bar, (sc, n, means) in zip(bars, subset):
+                bar._hover = f"{sc} · {sym} {name}\nortalama {means[si]:,.0f} µs".replace(",", " ")
+            bottom = [b + v for b, v in zip(bottom, vals)]
 
-    ax.axhline(DEADLINE_US / 1000, color=INK_2, linestyle=(0, (4, 3)), linewidth=1.0, zorder=1)
-    ax.text(1.0, DEADLINE_US / 1000, " 20 ms deadline", transform=ax.get_yaxis_transform(),
-            va="bottom", ha="right", fontsize=7.5, color=INK_2)
-    ax.set_xticks(x, [f"{sc}\n{SCENARIOS.get(sc, '').split(' — ')[0]}\nn = {n}" for sc, n, _ in rows],
-                  fontsize=8)
-    ax.set_ylabel("ortalama süre [ms]", fontsize=8.5, color=INK_2)
-    ax.set_ylim(0, max(DEADLINE_US / 1000 * 1.15, max(bottom) * 1.15))
-    # Lejant grafiğin dışında, sağda: deadline çizgisi ve sütun etiketleriyle çakışmaz.
-    # Sıra yığınla aynı olsun diye ters çevrilir (üstteki aşama üstte).
-    handles, labels = ax.get_legend_handles_labels()
-    leg = ax.legend(handles[::-1], labels[::-1], loc="upper left", bbox_to_anchor=(1.01, 1.0),
-                    fontsize=8, frameon=False, labelcolor=INK_2,
-                    title="aşama (yalnızca status = ok)", title_fontsize=8, alignment="left")
-    leg.get_title().set_color(MUTED)
+        for xi, total in zip(x, bottom):
+            ax.text(xi, total, f"{total:.2f}", ha="center", va="bottom", fontsize=8, color=INK, zorder=3)
 
-    fig.suptitle("Yanıt süresinin aşamalara dağılımı — senaryo ortalamaları"
+        top = max(bottom) * 1.18
+        if DEADLINE_US / 1000 < top:
+            ax.axhline(DEADLINE_US / 1000, color=INK_2, linestyle=(0, (4, 3)), linewidth=1.0, zorder=1)
+            ax.text(0.02, DEADLINE_US / 1000, "20 ms deadline", transform=ax.get_yaxis_transform(),
+                    va="bottom", ha="left", fontsize=7, color=INK_2)
+        ax.set_ylim(0, top)
+        ax.set_xticks(x, [f"{sc}\n{SHORT.get(sc, '')}\nn = {n}" for sc, n, _ in subset], fontsize=7.5)
+        ax.set_ylabel("ortalama süre [ms]", fontsize=8.5, color=INK_2)
+        if len(axes) > 1:
+            ax.set_title(note if note == "tümü" else f"{note} ({', '.join(r[0] for r in subset)})",
+                         fontsize=9, color=INK_2, loc="left")
+
+    handles, labels = axes[0].get_legend_handles_labels()
+    fig.legend(handles[::-1], labels[::-1], loc="upper right", bbox_to_anchor=(0.995, 0.93),
+               fontsize=8, frameon=False, labelcolor=INK_2, title="aşama (yalnızca status = ok)",
+               title_fontsize=8, alignment="left")
+
+    fig.suptitle("Yanıt süresinin aşamalara dağılımı — senaryo ortalamaları [ms]"
                  + (f"  ({title_note})" if title_note else ""), x=0.01, ha="left", fontsize=11.5, color=INK)
-    fig.tight_layout(rect=(0, 0, 1, 0.96))
+    fig.tight_layout(rect=(0, 0, 0.78, 0.94))
     return fig
 
 

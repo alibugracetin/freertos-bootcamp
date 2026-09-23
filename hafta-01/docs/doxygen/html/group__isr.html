@@ -1,0 +1,302 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="tr">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Hafta 1 - Yuk altinda buton yanit suresi: Kesme Servis Rutinleri</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Hafta 1 - Yuk altinda buton yanit suresi
+   </div>
+   <div id="projectbrief">STM32F407 + FreeRTOS olcum firmware&#39;i</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Oluşturan Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="application/json" id="doxygen-config">
+{
+  "relPath": "",
+  "generateTreeView": true,
+  "searchEngine": true,
+  "serverBasedSearch": false,
+  "disableIndex": false,
+  "dynamicMenus": true,
+  "fullSidebar": false
+}
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Ara" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded',() => { initNavTree('group__isr.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Yüklüyor...</div>
+<div class="SRStatus" id="Searching">Arıyor...</div>
+<div class="SRStatus" id="NoMatches">Eşleşme Yok</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">Kesme Servis Rutinleri </div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Kısa tutulan, beklemeyen, UART'a yazmayan kesmeler (FR-16).  
+<a href="#details">Ayrıntılar...</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-files" class="groupheader"><a id="files" name="files"></a>
+Dosyalar</h2></td></tr>
+<tr class="memitem:D_3A_2FRTOS_2FHafta_5F1_5FRTOS_5FBootcamp_2Fhafta-01_2Ffirmware_2FCore_2FInc_2Fbutton_5Fisr_2Eh" id="r_D_3A_2FRTOS_2FHafta_5F1_5FRTOS_5FBootcamp_2Fhafta-01_2Ffirmware_2FCore_2FInc_2Fbutton_5Fisr_2Eh"><td class="memItemLeft">dosya &#160;</td><td class="memItemRight"><a class="el" href="button__isr_8h.html">D:/RTOS/Hafta_1_RTOS_Bootcamp/hafta-01/firmware/Core/Inc/button_isr.h</a></td></tr>
+<tr class="memdesc:button__isr_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kullanıcı butonu kesmesi: t₀, tekrar-kenar filtresi, olay kuyruğu. <br /></td></tr>
+<tr class="memitem:D_3A_2FRTOS_2FHafta_5F1_5FRTOS_5FBootcamp_2Fhafta-01_2Ffirmware_2FCore_2FSrc_2Fbutton_5Fisr_2Ec" id="r_D_3A_2FRTOS_2FHafta_5F1_5FRTOS_5FBootcamp_2Fhafta-01_2Ffirmware_2FCore_2FSrc_2Fbutton_5Fisr_2Ec"><td class="memItemLeft">dosya &#160;</td><td class="memItemRight"><a class="el" href="button__isr_8c.html">D:/RTOS/Hafta_1_RTOS_Bootcamp/hafta-01/firmware/Core/Src/button_isr.c</a></td></tr>
+<tr class="memdesc:button__isr_8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kullanıcı butonu kesmesinin gerçekleştirimi (T-06). <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+Fonksiyonlar</h2></td></tr>
+<tr class="memitem:ga78ec907b9b09c7b74b83fc5367e42ff8" id="r_ga78ec907b9b09c7b74b83fc5367e42ff8"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ga78ec907b9b09c7b74b83fc5367e42ff8">button_irq_entry</a> (void)</td></tr>
+<tr class="memdesc:ga78ec907b9b09c7b74b83fc5367e42ff8"><td class="mdescLeft">&#160;</td><td class="mdescRight">EXTI0 kesmesinin <b>ilk</b> işi: t₀'ı yakalar.  <br /></td></tr>
+<tr class="memitem:ga096614a39a7122d18049dddaef96af20" id="r_ga096614a39a7122d18049dddaef96af20"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ga096614a39a7122d18049dddaef96af20">button_rearm_poll</a> (void)</td></tr>
+<tr class="memdesc:ga096614a39a7122d18049dddaef96af20"><td class="mdescLeft">&#160;</td><td class="mdescRight">Buton bırakılmış görünüyorsa filtreyi yeniden silahlandırır (FR-12b).  <br /></td></tr>
+<tr class="memitem:ga7994efa291616c571dca5756383b5061" id="r_ga7994efa291616c571dca5756383b5061"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ga7994efa291616c571dca5756383b5061">uart_irq_entry</a> (void)</td></tr>
+<tr class="memdesc:ga7994efa291616c571dca5756383b5061"><td class="mdescLeft">&#160;</td><td class="mdescRight">USART2 kesmesinin ilk işi: giriş zamanını yakalar.  <br /></td></tr>
+<tr class="memitem:gad90f94c93a38a193027c9d26997c0fe1" id="r_gad90f94c93a38a193027c9d26997c0fe1"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#gad90f94c93a38a193027c9d26997c0fe1">uart_dma_tx_irq_entry</a> (void)</td></tr>
+<tr class="memdesc:gad90f94c93a38a193027c9d26997c0fe1"><td class="mdescLeft">&#160;</td><td class="mdescRight">TX DMA kesmesinin ilk işi: giriş zamanını yakalar (R-2 doğrulaması).  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Ayrıntılı tanımlama</h2>
+<div class="textblock"><p>Kısa tutulan, beklemeyen, UART'a yazmayan kesmeler (FR-16). </p>
+<p>Tüm uygulama kesmeleri NVIC önceliği <b>5</b>'tedir: FreeRTOS'un <span class="tt">...FromISR()</span> API'lerini çağırabilen en yüksek seviye (<span class="tt">configLIBRARY_MAX_SYSCALL_INTERRUPT_PRIORITY</span>). Eşit öncelikteki kesmeler birbirini kesemez; bir buton basışı önceki olayın t₄ ölçümünü bölemez (tasarım §2.2). </p>
+</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Fonksiyon Dokümantasyonu</h2>
+<a id="ga78ec907b9b09c7b74b83fc5367e42ff8" name="ga78ec907b9b09c7b74b83fc5367e42ff8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga78ec907b9b09c7b74b83fc5367e42ff8">&#9670;&#160;</a></span>button_irq_entry()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void button_irq_entry </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>EXTI0 kesmesinin <b>ilk</b> işi: t₀'ı yakalar. </p>
+<p><span class="tt">stm32f4xx_it.c</span> içindeki <span class="tt">EXTI0_IRQHandler()</span>'ın, HAL'in bayrağı temizleyip geri çağrıyı çalıştırmasından <b>önceki</b> USER CODE bloğundan çağrılır.</p>
+<dl class="section note"><dt>Not</dt><dd><b>ISR bağlamı.</b> Yalnızca bir register okur ve bir değişkene yazar. </dd></dl>
+<dl class="section user"><dt>Zaman damgası</dt><dd><b>t₀</b> burada okunur (FR-11): EXTI bayrağı temizlenmeden önce, kenara mümkün olan en yakın anda. Filtre bu değeri daha sonra kullanır. </dd></dl>
+
+<p class="definition"><a class="el" href="button__isr_8c_source.html">button_isr.c</a> dosyasının <a class="el" href="button__isr_8c_source.html#l00060">60</a> numaralı satırında tanımlanmıştır.</p>
+<div class="dynheader">
+Bu fonksiyon için çağırılma şeması:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__isr_ga78ec907b9b09c7b74b83fc5367e42ff8_cgraph.png" border="0" usemap="#agroup__isr_ga78ec907b9b09c7b74b83fc5367e42ff8_cgraph" loading="lazy" alt=""/></div>
+<map name="agroup__isr_ga78ec907b9b09c7b74b83fc5367e42ff8_cgraph" id="agroup__isr_ga78ec907b9b09c7b74b83fc5367e42ff8_cgraph">
+<area shape="rect" title="EXTI0 kesmesinin ilk işi: t₀&#39;ı yakalar." alt="" coords="5,29,120,56"/>
+<area shape="poly" title=" " alt="" coords="37,29,33,21,36,11,46,5,63,3,80,5,90,14,85,14,78,10,62,8,48,10,41,14,39,20,43,29"/>
+<area shape="rect" href="group__timing.html#gae27f97606e13106e5536c7c41ee7cd69" title="Serbest çalışan 1 MHz sayacın anlık değeri." alt="" coords="168,29,239,56"/>
+<area shape="poly" title=" " alt="" coords="120,40,155,42,149,43,120,45"/>
+<area shape="poly" title=" " alt="" coords="179,28,174,21,177,11,187,5,203,3,221,5,231,15,226,14,219,10,203,8,189,10,181,14,180,20,183,30"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ga096614a39a7122d18049dddaef96af20" name="ga096614a39a7122d18049dddaef96af20"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga096614a39a7122d18049dddaef96af20">&#9670;&#160;</a></span>button_rearm_poll()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void button_rearm_poll </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Buton bırakılmış görünüyorsa filtreyi yeniden silahlandırır (FR-12b). </p>
+<p>Pin, ilk LOW gözleminden itibaren <a class="el" href="app__config_8h.html#a9e76448b60d115e8be8aee7adc2c0657" title="APP_REARM_LOW_US">APP_REARM_LOW_US</a> boyunca her çağrıda LOW okunduysa silah açılır. Arada HIGH okunursa süre baştan başlar.</p>
+<dl class="section note"><dt>Not</dt><dd><b>Görev bağlamı</b> — ButtonTask'tan en az <a class="el" href="app__config_8h.html#a74fe2208cc7318c1d0acca38d94dfe97" title="APP_BUTTON_POLL_MS">APP_BUTTON_POLL_MS</a> aralıklarla çağrılır. ISR'dan çağrılmamalıdır. </dd>
+<dd>
+Silahı açma kısa bir kritik bölüm içinde, pin yeniden okunarak yapılır; aynı anda gelen bir basış kenarı kaybolmaz (tasarım §4.1.1). </dd></dl>
+<dl class="section user"><dt>Paylaşılan durum</dt><dd>Silah bayrağını yazar: bu fonksiyon (açar) ve buton ISR'ı (kapatır). </dd></dl>
+
+<p class="definition"><a class="el" href="button__isr_8c_source.html">button_isr.c</a> dosyasının <a class="el" href="button__isr_8c_source.html#l00065">65</a> numaralı satırında tanımlanmıştır.</p>
+<div class="dynheader">
+Bu fonksiyon için çağırılma şeması:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__isr_ga096614a39a7122d18049dddaef96af20_cgraph.png" border="0" usemap="#agroup__isr_ga096614a39a7122d18049dddaef96af20_cgraph" loading="lazy" alt=""/></div>
+<map name="agroup__isr_ga096614a39a7122d18049dddaef96af20_cgraph" id="agroup__isr_ga096614a39a7122d18049dddaef96af20_cgraph">
+<area shape="rect" title="Buton bırakılmış görünüyorsa filtreyi yeniden silahlandırır (FR&#45;12b)." alt="" coords="5,29,130,56"/>
+<area shape="poly" title=" " alt="" coords="42,29,38,21,41,11,51,5,68,3,85,5,96,14,91,14,83,10,67,8,53,10,45,14,43,20,47,29"/>
+<area shape="rect" href="group__timing.html#gae27f97606e13106e5536c7c41ee7cd69" title="Serbest çalışan 1 MHz sayacın anlık değeri." alt="" coords="178,29,249,56"/>
+<area shape="poly" title=" " alt="" coords="130,40,165,42,159,43,130,45"/>
+<area shape="poly" title=" " alt="" coords="188,28,183,21,186,11,197,5,213,3,231,5,242,15,236,14,229,10,213,8,198,10,191,14,189,20,193,30"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="gad90f94c93a38a193027c9d26997c0fe1" name="gad90f94c93a38a193027c9d26997c0fe1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad90f94c93a38a193027c9d26997c0fe1">&#9670;&#160;</a></span>uart_dma_tx_irq_entry()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void uart_dma_tx_irq_entry </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>TX DMA kesmesinin ilk işi: giriş zamanını yakalar (R-2 doğrulaması). </p>
+<dl class="section note"><dt>Not</dt><dd><b>ISR bağlamı.</b> <span class="tt">DMA1_Stream6_IRQHandler()</span>'ın USER CODE 0 bloğundan çağrılır. Yarı-transfer ve tam-transfer kesmelerinde ayrı ayrı çalışır; son değer tam-transferin zamanıdır. t₄ ile farkı <span class="tt">g_diag.last_dma_to_tc_us</span>'e yazılır. </dd></dl>
+
+<p class="definition"><a class="el" href="uart__link_8c_source.html">uart_link.c</a> dosyasının <a class="el" href="uart__link_8c_source.html#l00067">67</a> numaralı satırında tanımlanmıştır.</p>
+<div class="dynheader">
+Bu fonksiyon için çağırılma şeması:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__isr_gad90f94c93a38a193027c9d26997c0fe1_cgraph.png" border="0" usemap="#agroup__isr_gad90f94c93a38a193027c9d26997c0fe1_cgraph" loading="lazy" alt=""/></div>
+<map name="agroup__isr_gad90f94c93a38a193027c9d26997c0fe1_cgraph" id="agroup__isr_gad90f94c93a38a193027c9d26997c0fe1_cgraph">
+<area shape="rect" title="TX DMA kesmesinin ilk işi: giriş zamanını yakalar (R&#45;2 doğrulaması)." alt="" coords="5,29,156,56"/>
+<area shape="poly" title=" " alt="" coords="53,29,48,21,51,11,63,5,81,3,100,5,111,14,106,14,98,10,80,8,64,10,56,15,53,20,58,29"/>
+<area shape="rect" href="group__timing.html#gae27f97606e13106e5536c7c41ee7cd69" title="Serbest çalışan 1 MHz sayacın anlık değeri." alt="" coords="204,29,275,56"/>
+<area shape="poly" title=" " alt="" coords="156,40,191,43,185,43,156,45"/>
+<area shape="poly" title=" " alt="" coords="212,28,207,21,210,11,221,5,239,3,259,5,270,15,265,14,257,10,239,8,223,10,214,15,212,20,217,30"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ga7994efa291616c571dca5756383b5061" name="ga7994efa291616c571dca5756383b5061"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7994efa291616c571dca5756383b5061">&#9670;&#160;</a></span>uart_irq_entry()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void uart_irq_entry </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>USART2 kesmesinin ilk işi: giriş zamanını yakalar. </p>
+<dl class="section note"><dt>Not</dt><dd><b>ISR bağlamı.</b> <span class="tt">USART2_IRQHandler()</span>'ın USER CODE 0 bloğundan çağrılır. </dd></dl>
+<dl class="section user"><dt>Zaman damgası</dt><dd><b>t₄</b> bu değerdir (FR-43): HAL'in TC dalını işlemesinden önce, TC'ye en yakın gözlem anı. RX kesmelerinde de alınır ama kullanılmaz. </dd></dl>
+
+<p class="definition"><a class="el" href="uart__link_8c_source.html">uart_link.c</a> dosyasının <a class="el" href="uart__link_8c_source.html#l00062">62</a> numaralı satırında tanımlanmıştır.</p>
+<div class="dynheader">
+Bu fonksiyon için çağırılma şeması:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__isr_ga7994efa291616c571dca5756383b5061_cgraph.png" border="0" usemap="#agroup__isr_ga7994efa291616c571dca5756383b5061_cgraph" loading="lazy" alt=""/></div>
+<map name="agroup__isr_ga7994efa291616c571dca5756383b5061_cgraph" id="agroup__isr_ga7994efa291616c571dca5756383b5061_cgraph">
+<area shape="rect" title="USART2 kesmesinin ilk işi: giriş zamanını yakalar." alt="" coords="5,29,106,56"/>
+<area shape="poly" title=" " alt="" coords="32,29,28,21,31,11,40,5,56,3,72,5,82,14,76,14,70,10,55,8,42,10,35,14,33,20,37,29"/>
+<area shape="rect" href="group__timing.html#gae27f97606e13106e5536c7c41ee7cd69" title="Serbest çalışan 1 MHz sayacın anlık değeri." alt="" coords="154,29,225,56"/>
+<area shape="poly" title=" " alt="" coords="106,40,141,42,135,43,106,45"/>
+<area shape="poly" title=" " alt="" coords="166,28,162,21,164,11,174,5,189,3,206,5,216,15,210,14,204,10,189,8,176,10,169,14,167,20,170,30"/>
+</map>
+</div>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Oluşturan <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.18.0 </li>
+  </ul>
+</div>
+</body>
+</html>

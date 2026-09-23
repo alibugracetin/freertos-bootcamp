@@ -1,0 +1,154 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="tr">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Hafta 1 - Yuk altinda buton yanit suresi: D:/RTOS/Hafta_1_RTOS_Bootcamp/hafta-01/firmware/Core/Inc/uart_link.h Kaynak Dosyası</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Hafta 1 - Yuk altinda buton yanit suresi
+   </div>
+   <div id="projectbrief">STM32F407 + FreeRTOS olcum firmware&#39;i</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Oluşturan Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="application/json" id="doxygen-config">
+{
+  "relPath": "",
+  "generateTreeView": true,
+  "searchEngine": true,
+  "serverBasedSearch": false,
+  "disableIndex": false,
+  "dynamicMenus": true,
+  "fullSidebar": false
+}
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Ara" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded',() => { initNavTree('uart__link_8h_source.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Yüklüyor...</div>
+<div class="SRStatus" id="Searching">Arıyor...</div>
+<div class="SRStatus" id="NoMatches">Eşleşme Yok</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">uart_link.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="uart__link_8h.html">Bu dosyanın dokümantasyonuna git.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#ifndef UART_LINK_H</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#define UART_LINK_H</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;stddef.h&gt;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="keywordtype">void</span> <a class="code hl_function" href="group__tasks.html#ga9166faecff6c1864e8d0fa18ed200e53">UartTxTask</a>(<span class="keywordtype">void</span> *arg);</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="keywordtype">void</span> <a class="code hl_function" href="group__isr.html#ga7994efa291616c571dca5756383b5061">uart_irq_entry</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="keywordtype">void</span> <a class="code hl_function" href="group__isr.html#gad90f94c93a38a193027c9d26997c0fe1">uart_dma_tx_irq_entry</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="keywordtype">void</span> <a class="code hl_function" href="group__proto.html#gadde9424854bbdb867dbbda9f7060d69b">uart_link_start_rx</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="keywordtype">bool</span> <a class="code hl_function" href="group__proto.html#gaa9b45aaa108ed04b62b8d3de9d5dc12d">uart_link_take_command</a>(<span class="keywordtype">char</span> *dst, <span class="keywordtype">size_t</span> n);</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="keywordtype">bool</span> <a class="code hl_function" href="group__proto.html#gab24c0e19415e7f4834f264fa3f9c4004">uart_link_busy</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="preprocessor">#endif </span><span class="comment">/* UART_LINK_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agroup__isr_html_ga7994efa291616c571dca5756383b5061"><div class="ttname"><a href="group__isr.html#ga7994efa291616c571dca5756383b5061">uart_irq_entry</a></div><div class="ttdeci">void uart_irq_entry(void)</div><div class="ttdoc">USART2 kesmesinin ilk işi: giriş zamanını yakalar.</div><div class="ttdef"><b>Definition</b> <a href="uart__link_8c_source.html#l00062">uart_link.c:62</a></div></div>
+<div class="ttc" id="agroup__isr_html_gad90f94c93a38a193027c9d26997c0fe1"><div class="ttname"><a href="group__isr.html#gad90f94c93a38a193027c9d26997c0fe1">uart_dma_tx_irq_entry</a></div><div class="ttdeci">void uart_dma_tx_irq_entry(void)</div><div class="ttdoc">TX DMA kesmesinin ilk işi: giriş zamanını yakalar (R-2 doğrulaması).</div><div class="ttdef"><b>Definition</b> <a href="uart__link_8c_source.html#l00067">uart_link.c:67</a></div></div>
+<div class="ttc" id="agroup__proto_html_gaa9b45aaa108ed04b62b8d3de9d5dc12d"><div class="ttname"><a href="group__proto.html#gaa9b45aaa108ed04b62b8d3de9d5dc12d">uart_link_take_command</a></div><div class="ttdeci">bool uart_link_take_command(char *dst, size_t n)</div><div class="ttdoc">Bekleyen tam bir komut satırı varsa kopyalar.</div><div class="ttdef"><b>Definition</b> <a href="uart__link_8c_source.html#l00249">uart_link.c:249</a></div></div>
+<div class="ttc" id="agroup__proto_html_gab24c0e19415e7f4834f264fa3f9c4004"><div class="ttname"><a href="group__proto.html#gab24c0e19415e7f4834f264fa3f9c4004">uart_link_busy</a></div><div class="ttdeci">bool uart_link_busy(void)</div><div class="ttdoc">Şu an hatta giden bir aktarım var mı.</div><div class="ttdef"><b>Definition</b> <a href="uart__link_8c_source.html#l00072">uart_link.c:72</a></div></div>
+<div class="ttc" id="agroup__proto_html_gadde9424854bbdb867dbbda9f7060d69b"><div class="ttname"><a href="group__proto.html#gadde9424854bbdb867dbbda9f7060d69b">uart_link_start_rx</a></div><div class="ttdeci">void uart_link_start_rx(void)</div><div class="ttdoc">Komut alımını başlatır (bayt bayt, kesmeyle, FR-80).</div><div class="ttdef"><b>Definition</b> <a href="uart__link_8c_source.html#l00195">uart_link.c:195</a></div></div>
+<div class="ttc" id="agroup__tasks_html_ga9166faecff6c1864e8d0fa18ed200e53"><div class="ttname"><a href="group__tasks.html#ga9166faecff6c1864e8d0fa18ed200e53">UartTxTask</a></div><div class="ttdeci">void UartTxTask(void *arg)</div><div class="ttdoc">UART gönderim görevi — düşük öncelik (1).</div><div class="ttdef"><b>Definition</b> <a href="uart__link_8c_source.html#l00077">uart_link.c:77</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><b>firmware</b></li><li class="navelem"><b>Core</b></li><li class="navelem"><b>Inc</b></li><li class="navelem"><a href="uart__link_8h.html">uart_link.h</a></li>
+    <li class="footer">Oluşturan <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.18.0 </li>
+  </ul>
+</div>
+</body>
+</html>

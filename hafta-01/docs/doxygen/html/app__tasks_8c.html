@@ -1,0 +1,434 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="tr">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Hafta 1 - Yuk altinda buton yanit suresi: D:/RTOS/Hafta_1_RTOS_Bootcamp/hafta-01/firmware/Core/Src/app_tasks.c Dosya Referansı</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Hafta 1 - Yuk altinda buton yanit suresi
+   </div>
+   <div id="projectbrief">STM32F407 + FreeRTOS olcum firmware&#39;i</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Oluşturan Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="application/json" id="doxygen-config">
+{
+  "relPath": "",
+  "generateTreeView": true,
+  "searchEngine": true,
+  "serverBasedSearch": false,
+  "disableIndex": false,
+  "dynamicMenus": true,
+  "fullSidebar": false
+}
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Ara" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded',() => { initNavTree('app__tasks_8c.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Yüklüyor...</div>
+<div class="SRStatus" id="Searching">Arıyor...</div>
+<div class="SRStatus" id="NoMatches">Eşleşme Yok</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">app_tasks.c Dosya Referansı<div class="ingroups"><a class="el" href="group__tasks.html">RTOS Görevleri</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Kuyruklar, görev oluşturma, açılış sırası ve ButtonTask.  
+<a href="#details">Ayrıntılar...</a></p>
+<div class="textblock"><code>#include &quot;<a class="el" href="app__tasks_8h_source.html">app_tasks.h</a>&quot;</code><br />
+<code>#include &quot;main.h&quot;</code><br />
+<code>#include &quot;task.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="app__config_8h_source.html">app_config.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="app__diag_8h_source.html">app_diag.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="app__types_8h_source.html">app_types.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="button__isr_8h_source.html">button_isr.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="experiment_8h_source.html">experiment.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="protocol_8h_source.html">protocol.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="record_8h_source.html">record.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="timing_8h_source.html">timing.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="uart__link_8h_source.html">uart_link.h</a>&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+app_tasks.c için içerme bağımlılık grafiği:</div>
+<div class="dyncontent">
+<div class="center"><img src="app__tasks_8c__incl.png" border="0" usemap="#a_d_1_2_r_t_o_s_2_hafta__1___r_t_o_s___bootcamp_2hafta-01_2firmware_2_core_2_src_2app__tasks_8c" loading="lazy" alt=""/></div>
+<map name="a_d_1_2_r_t_o_s_2_hafta__1___r_t_o_s___bootcamp_2hafta-01_2firmware_2_core_2_src_2app__tasks_8c" id="a_d_1_2_r_t_o_s_2_hafta__1___r_t_o_s___bootcamp_2hafta-01_2firmware_2_core_2_src_2app__tasks_8c">
+<area shape="rect" title="Kuyruklar, görev oluşturma, açılış sırası ve ButtonTask." alt="" coords="427,5,619,64"/>
+<area shape="rect" href="app__tasks_8h.html" title="Uygulama görevleri, kuyruklar ve açılış sırası." alt="" coords="45,112,137,139"/>
+<area shape="poly" title=" " alt="" coords="426,58,153,114,151,109,427,53"/>
+<area shape="rect" title=" " alt="" coords="161,112,221,139"/>
+<area shape="poly" title=" " alt="" coords="425,63,237,114,236,109,428,59"/>
+<area shape="rect" title=" " alt="" coords="245,112,302,139"/>
+<area shape="poly" title=" " alt="" coords="440,66,318,111,316,106,444,63"/>
+<area shape="rect" href="app__config_8h.html" title="Uygulama genelindeki sabit parametreler (ödev standardı)." alt="" coords="335,261,431,288"/>
+<area shape="poly" title=" " alt="" coords="468,63,435,88,406,114,386,138,373,159,367,183,368,213,376,248,371,245,363,214,362,182,368,157,381,135,402,110,432,84,464,66"/>
+<area shape="rect" href="app__diag_8h.html" title="Hata sayaçları ve SWD üzerinden okunabilen tanı yapısı." alt="" coords="1008,187,1092,213"/>
+<area shape="poly" title=" " alt="" coords="619,39,690,47,770,61,853,81,932,110,985,140,1028,177,1023,175,982,145,930,114,851,86,769,66,690,53,620,45"/>
+<area shape="rect" href="app__types_8h.html" title="Görevler ve kesmeler arasında kuyruklarla taşınan veri tipleri." alt="" coords="378,187,470,213"/>
+<area shape="poly" title=" " alt="" coords="465,63,438,87,419,113,414,127,413,142,417,173,412,170,407,142,409,126,414,111,435,83,461,66"/>
+<area shape="rect" href="button__isr_8h.html" title="Kullanıcı butonu kesmesi: t₀, tekrar&#45;kenar filtresi, olay kuyruğu." alt="" coords="1116,187,1205,213"/>
+<area shape="poly" title=" " alt="" coords="620,42,787,66,881,85,973,109,1057,142,1128,179,1122,179,1055,147,972,115,880,90,786,71,620,48"/>
+<area shape="rect" href="experiment_8h.html" title="Senaryolar (S0–S5), deney durum makinesi ve TelemetryTask." alt="" coords="531,112,627,139"/>
+<area shape="poly" title=" " alt="" coords="542,62,565,99,560,98,540,67"/>
+<area shape="rect" href="protocol_8h.html" title="UART protokolü: mesaj biçimlendirme ve komut ayrıştırma." alt="" coords="428,112,506,139"/>
+<area shape="poly" title=" " alt="" coords="507,63,485,101,481,97,503,66"/>
+<area shape="rect" href="record_8h.html" title="Ölçüm kayıt defteri: her buton olayının t₀…t₄ damgaları." alt="" coords="652,112,720,139"/>
+<area shape="poly" title=" " alt="" coords="576,62,652,104,647,104,575,67"/>
+<area shape="rect" href="timing_8h.html" title="Mikrosaniye zaman kaynağı (TIM2, 1 MHz, 32&#45;bit serbest sayaç)." alt="" coords="852,112,919,139"/>
+<area shape="poly" title=" " alt="" coords="620,57,839,111,834,112,620,62"/>
+<area shape="rect" href="uart__link_8h.html" title="USART2&#39;nin tek sahibi: DMA ile gönderim (t₃, t₄) ve komut alma." alt="" coords="744,112,825,139"/>
+<area shape="poly" title=" " alt="" coords="608,62,735,106,730,107,608,67"/>
+<area shape="rect" title=" " alt="" coords="97,187,192,213"/>
+<area shape="poly" title=" " alt="" coords="101,137,129,174,123,174,100,142"/>
+<area shape="rect" title=" " alt="" coords="5,187,73,213"/>
+<area shape="poly" title=" " alt="" coords="81,142,59,176,54,173,83,137"/>
+<area shape="rect" title=" " alt="" coords="676,261,740,288"/>
+<area shape="poly" title=" " alt="" coords="1010,210,756,266,755,261,1004,211"/>
+<area shape="poly" title=" " alt="" coords="419,213,399,250,396,246,415,215"/>
+<area shape="poly" title=" " alt="" coords="471,210,664,261,659,262,470,216"/>
+<area shape="poly" title=" " alt="" coords="1118,211,1105,216,912,248,756,270,756,264,911,242,1104,211,1113,212"/>
+<area shape="poly" title=" " alt="" coords="578,137,576,174,579,194,587,212,602,229,621,243,664,264,659,263,618,247,598,233,582,215,574,195,571,175,574,141"/>
+<area shape="rect" title=" " alt="" coords="596,187,671,213"/>
+<area shape="poly" title=" " alt="" coords="590,137,618,175,612,173,587,142"/>
+<area shape="poly" title=" " alt="" coords="480,137,520,173,571,211,617,236,664,257,659,257,615,240,568,216,516,177,479,142"/>
+<area shape="poly" title=" " alt="" coords="462,138,441,175,438,171,457,141"/>
+<area shape="poly" title=" " alt="" coords="496,137,593,180,588,180,496,142"/>
+<area shape="poly" title=" " alt="" coords="689,137,706,247,702,244,686,141"/>
+<area shape="poly" title=" " alt="" coords="679,138,653,176,650,172,674,141"/>
+<area shape="poly" title=" " alt="" coords="905,137,925,152,943,172,952,193,952,204,946,215,934,226,915,236,866,251,757,271,756,265,864,246,913,231,931,222,942,212,947,203,947,194,939,175,922,156,904,142"/>
+<area shape="rect" title=" " alt="" coords="839,187,932,213"/>
+<area shape="poly" title=" " alt="" coords="887,137,888,173,884,169,884,141"/>
+<area shape="poly" title=" " alt="" coords="761,138,675,182,673,177,756,140"/>
+<area shape="rect" title=" " alt="" coords="746,187,814,213"/>
+<area shape="poly" title=" " alt="" coords="785,137,784,173,780,169,782,141"/>
+</map>
+</div>
+</div>
+<p><a href="app__tasks_8c_source.html">Bu dosyanın kaynak koduna git.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+Fonksiyonlar</h2></td></tr>
+<tr class="memitem:a1c66cecb1deef26c922a995f26ba9513" id="r_a1c66cecb1deef26c922a995f26ba9513"><td class="memItemLeft">static void&#160;</td><td class="memItemRight"><a class="el" href="#a1c66cecb1deef26c922a995f26ba9513">ButtonTask</a> (void *arg)</td></tr>
+<tr class="memdesc:a1c66cecb1deef26c922a995f26ba9513"><td class="mdescLeft">&#160;</td><td class="mdescRight">Buton görevi — <b>orta öncelik (2)</b>.  <br /></td></tr>
+<tr class="memitem:ga088ad77f49f8d157c89d7eda1fd73baa" id="r_ga088ad77f49f8d157c89d7eda1fd73baa"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="group__tasks.html#ga088ad77f49f8d157c89d7eda1fd73baa">app_init_early</a> (void)</td></tr>
+<tr class="memdesc:ga088ad77f49f8d157c89d7eda1fd73baa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scheduler öncesi hazırlık: zaman kaynağı ve kayıt defteri öz-testi.  <br /></td></tr>
+<tr class="memitem:gaf06414daa508640682f4284ba299039c" id="r_gaf06414daa508640682f4284ba299039c"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="group__tasks.html#gaf06414daa508640682f4284ba299039c">app_create_rtos_objects</a> (void)</td></tr>
+<tr class="memdesc:gaf06414daa508640682f4284ba299039c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kuyrukları ve üç uygulama görevini oluşturur.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
+Değişkenler</h2></td></tr>
+<tr class="memitem:ga0c76ddcba3c1a9939dbb9440d4810804" id="r_ga0c76ddcba3c1a9939dbb9440d4810804"><td class="memItemLeft">QueueHandle_t&#160;</td><td class="memItemRight"><a class="el" href="group__tasks.html#ga0c76ddcba3c1a9939dbb9440d4810804">g_button_q</a> = NULL</td></tr>
+<tr class="memdesc:ga0c76ddcba3c1a9939dbb9440d4810804"><td class="mdescLeft">&#160;</td><td class="mdescRight">Buton ISR'ından <span class="tt">ButtonTask</span>'a olay kuyruğu (8 × <a class="el" href="struct_button_event.html" title="ButtonEvent">ButtonEvent</a>, FR-70).  <br /></td></tr>
+<tr class="memitem:ga62afb507947bf26d69418593eb43dce4" id="r_ga62afb507947bf26d69418593eb43dce4"><td class="memItemLeft">QueueHandle_t&#160;</td><td class="memItemRight"><a class="el" href="group__tasks.html#ga62afb507947bf26d69418593eb43dce4">g_tx_q</a> = NULL</td></tr>
+<tr class="memdesc:ga62afb507947bf26d69418593eb43dce4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ortak TX kuyruğu (16 × <a class="el" href="struct_tx_msg.html" title="TxMsg">TxMsg</a>, FIFO, FR-71).  <br /></td></tr>
+<tr class="memitem:adfb01d77f83da4e3c751aa50aee2e11f" id="r_adfb01d77f83da4e3c751aa50aee2e11f"><td class="memItemLeft">volatile <a class="el" href="struct_isr_counters.html">IsrCounters</a>&#160;</td><td class="memItemRight"><a class="el" href="#adfb01d77f83da4e3c751aa50aee2e11f">g_cnt_isr</a></td></tr>
+<tr class="memdesc:adfb01d77f83da4e3c751aa50aee2e11f"><td class="mdescLeft">&#160;</td><td class="mdescRight">ISR sayaçları.  <br /></td></tr>
+<tr class="memitem:a994b9ea3718f517b6196f673feddc766" id="r_a994b9ea3718f517b6196f673feddc766"><td class="memItemLeft">volatile <a class="el" href="struct_task_counters.html">TaskCounters</a>&#160;</td><td class="memItemRight"><a class="el" href="#a994b9ea3718f517b6196f673feddc766">g_cnt_task</a></td></tr>
+<tr class="memdesc:a994b9ea3718f517b6196f673feddc766"><td class="mdescLeft">&#160;</td><td class="mdescRight">Görev sayaçları.  <br /></td></tr>
+<tr class="memitem:a64309afc2f60d8e29d2321f44946cbd1" id="r_a64309afc2f60d8e29d2321f44946cbd1"><td class="memItemLeft">volatile <a class="el" href="struct_app_diag.html">AppDiag</a>&#160;</td><td class="memItemRight"><a class="el" href="#a64309afc2f60d8e29d2321f44946cbd1">g_diag</a></td></tr>
+<tr class="memdesc:a64309afc2f60d8e29d2321f44946cbd1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tanı özeti.  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Ayrıntılı tanımlama</h2>
+<div class="textblock"><p>Kuyruklar, görev oluşturma, açılış sırası ve ButtonTask. </p>
+<p>Görev gövdeleri sorumluluklarına göre dağıtılmıştır:</p><ul>
+<li><span class="tt"><a class="el" href="#a1c66cecb1deef26c922a995f26ba9513" title="Buton görevi — orta öncelik (2).">ButtonTask</a></span> — bu dosya (olay → yanıt, t₁ / t₂; bakım turu)</li>
+<li><span class="tt"><a class="el" href="group__tasks.html#gacd105c2bf0347f093d3e7dac39dfe261" title="Telemetri görevi — yüksek öncelik (3).">TelemetryTask</a></span> — <span class="tt"><a class="el" href="experiment_8c.html" title="Senaryolar, deney durum makinesi ve TelemetryTask (T-13).">experiment.c</a></span> (yük üreteci, senaryoya bağlı)</li>
+<li><span class="tt"><a class="el" href="group__tasks.html#ga9166faecff6c1864e8d0fa18ed200e53" title="UART gönderim görevi — düşük öncelik (1).">UartTxTask</a></span> — <span class="tt"><a class="el" href="uart__link_8c.html" title="USART2 gönderim görevi, TC/DMA/RX kesme geri çağrıları (T-08, T-12).">uart_link.c</a></span> (UART'ın tek sahibi, t₃ / t₄) </li>
+</ul>
+
+<p class="definition"><a class="el" href="app__tasks_8c_source.html">app_tasks.c</a> dosyasında tanımlanmıştır.</p>
+</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Fonksiyon Dokümantasyonu</h2>
+<a id="a1c66cecb1deef26c922a995f26ba9513" name="a1c66cecb1deef26c922a995f26ba9513"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c66cecb1deef26c922a995f26ba9513">&#9670;&#160;</a></span>ButtonTask()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ButtonTask </td>
+          <td>(</td>
+          <td class="paramtype">void *</td>          <td class="paramname"><span class="paramname"><em>arg</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Buton görevi — <b>orta öncelik (2)</b>. </p>
+<dl class="params"><dt>Parametreler</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">arg</td><td>Kullanılmıyor.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p><span class="tt">buttonQ</span>'da en fazla <a class="el" href="app__config_8h.html#a74fe2208cc7318c1d0acca38d94dfe97" title="APP_BUTTON_POLL_MS">APP_BUTTON_POLL_MS</a> bloklanır. Olay gelince: t₁ → 64 baytlık <span class="tt">BTN</span> yanıtı → t₂ → <span class="tt">txQ</span>'ya bloklamadan gönder (FR-30…35). Olay yokken (en geç 50 ms'de bir) bakım turu: filtre silahı (FR-12b), deney durum makinesi ve tanı alanları. Bakım olaydan hemen sonra yapılmaz; aksi halde süresi t₃ − t₂'ye eklenirdi.</p>
+<dl class="section user"><dt>Zaman damgası</dt><dd><b>t₁</b> — <span class="tt">xQueueReceive</span> döner dönmez (FR-31). <b>t₂</b> — <span class="tt">xQueueSend</span> çağrısından hemen önce (FR-32). Kayda gönderimden <em>sonra</em> yazılır; bu güvenlidir çünkü mesajı alacak <span class="tt"><a class="el" href="group__tasks.html#ga9166faecff6c1864e8d0fa18ed200e53" title="UART gönderim görevi — düşük öncelik (1).">UartTxTask</a></span> (öncelik 1) bu görev bloklanana kadar koşamaz, yani t₃ ve t₄ t₂'den önce yazılamaz. Böylece kayıt yazma süresi t₂ − t₁'e girer, t₃ − t₂'ye girmez. </dd></dl>
+<dl class="section user"><dt>Paylaşılan durum</dt><dd>Yazar: <span class="tt">g_cnt_task.rec_mismatch / txq_drop_btn / fmt_err_btn / cmd_err</span>, <span class="tt"><a class="el" href="#a64309afc2f60d8e29d2321f44946cbd1" title="Tanı özeti.">g_diag</a></span> btn_* / last_* / task_count / heap_* alanları. </dd></dl>
+
+<p class="definition"><a class="el" href="app__tasks_8c_source.html">app_tasks.c</a> dosyasının <a class="el" href="app__tasks_8c_source.html#l00054">54</a> numaralı satırında tanımlanmıştır.</p>
+<div class="dynheader">
+Bu fonksiyon için çağırılma şeması:</div>
+<div class="dyncontent">
+<div class="center"><img src="app__tasks_8c_a1c66cecb1deef26c922a995f26ba9513_cgraph.png" border="0" usemap="#aapp__tasks_8c_a1c66cecb1deef26c922a995f26ba9513_cgraph" loading="lazy" alt=""/></div>
+<map name="aapp__tasks_8c_a1c66cecb1deef26c922a995f26ba9513_cgraph" id="aapp__tasks_8c_a1c66cecb1deef26c922a995f26ba9513_cgraph">
+<area shape="rect" title="Buton görevi — orta öncelik (2)." alt="" coords="5,355,93,381"/>
+<area shape="poly" title=" " alt="" coords="21,355,16,346,20,336,31,330,49,328,68,331,80,338,75,341,67,336,49,333,33,335,24,340,22,345,26,354"/>
+<area shape="rect" href="group__isr.html#ga096614a39a7122d18049dddaef96af20" title="Buton bırakılmış görünüyorsa filtreyi yeniden silahlandırır (FR&#45;12b)." alt="" coords="147,155,272,181"/>
+<area shape="poly" title=" " alt="" coords="57,353,139,242,186,190,184,195,143,246,62,356"/>
+<area shape="rect" href="group__timing.html#gae27f97606e13106e5536c7c41ee7cd69" title="Serbest çalışan 1 MHz sayacın anlık değeri." alt="" coords="374,29,445,56"/>
+<area shape="poly" title=" " alt="" coords="48,354,54,309,68,245,79,210,95,176,114,145,139,117,163,97,190,82,249,59,307,47,360,42,356,45,308,52,250,64,193,86,166,102,143,121,119,148,99,179,84,212,73,246,59,310,54,355"/>
+<area shape="rect" href="group__expfsm.html#ga9b204851e5197b183aab2c0a46dfe485" title="Aktif senaryonun adı (&quot;S0&quot; … &quot;S5&quot;)." alt="" coords="141,280,278,307"/>
+<area shape="poly" title=" " alt="" coords="72,352,140,316,156,311,153,315,142,321,76,356"/>
+<area shape="rect" href="group__expfsm.html#ga00ae2ef3be10429aec51bc3a4dff5744" title="Durum makinesinin bir turu: komutları işler, zamanlı geçişleri yapar." alt="" coords="174,355,244,381"/>
+<area shape="poly" title=" " alt="" coords="92,366,160,366,157,370,94,370"/>
+<area shape="rect" href="group__record.html#ga7104bd8a124c89e746b0cdb821dd9b44" title="Açık bir kaydı verilen durumla kapatır." alt="" coords="570,728,647,755"/>
+<area shape="poly" title=" " alt="" coords="65,379,172,473,247,534,327,591,390,629,454,665,565,721,560,721,451,669,387,634,325,596,244,538,169,477,65,385"/>
+<area shape="rect" href="group__proto.html#gacfbf17ad6ca05c0fd8b31aa42dd72b73" title="Sabit 64 baytlık bir ölçüm mesajı üretir (TEL / BTN)." alt="" coords="154,755,265,781"/>
+<area shape="poly" title=" " alt="" coords="51,379,57,439,70,526,82,575,97,624,117,673,143,717,171,746,165,745,139,720,112,675,92,626,76,576,65,527,52,440,50,384"/>
+<area shape="rect" href="group__record.html#ga8671153e0e2c19907573a9bd01b730b5" title="Açık bir kayda bir zaman damgası yazar." alt="" coords="168,680,250,707"/>
+<area shape="poly" title=" " alt="" coords="52,379,63,426,79,492,105,566,123,602,143,636,158,653,176,671,171,671,154,657,139,639,118,605,100,568,74,493,58,427,52,384"/>
+<area shape="poly" title=" " alt="" coords="181,155,177,146,180,136,191,130,209,128,229,131,240,139,235,140,227,136,209,133,193,135,184,140,182,145,187,154"/>
+<area shape="poly" title=" " alt="" coords="221,153,264,110,293,86,325,66,360,52,357,56,327,70,296,91,268,114,225,156"/>
+<area shape="poly" title=" " alt="" coords="375,29,369,21,373,11,387,5,409,3,433,5,447,13,442,15,431,10,409,8,388,10,377,15,375,20,380,29"/>
+<area shape="poly" title=" " alt="" coords="181,280,177,271,180,262,191,256,209,253,229,256,240,264,235,266,227,261,209,259,193,261,184,265,182,271,187,279"/>
+<area shape="poly" title=" " alt="" coords="181,354,177,346,180,336,191,330,209,328,229,331,240,339,235,340,227,336,209,333,193,335,184,340,182,345,187,354"/>
+<area shape="rect" href="experiment_8c.html#ad1c9ef68c993f3ab8a8807391dd91769" title="Yeni duruma geçer: zaman damgasını ve LED&#39;leri günceller." alt="" coords="583,205,634,232"/>
+<area shape="poly" title=" " alt="" coords="240,352,325,316,408,287,491,259,571,232,567,235,493,264,410,292,327,321,243,356"/>
+<area shape="rect" href="experiment_8c.html#a4e0ed6f45886a30d504af8774181cc82" title="Bir komut satırını ayrıştırıp durum makinesine uygular." alt="" coords="348,429,471,456"/>
+<area shape="poly" title=" " alt="" coords="245,378,359,422,354,424,245,384"/>
+<area shape="rect" href="experiment_8c.html#a8da8aacdbdcc652a338ede470cbe5645" title="Güncel durumu STA satırı olarak gönderir." alt="" coords="562,653,655,680"/>
+<area shape="poly" title=" " alt="" coords="223,379,268,422,296,445,327,466,351,476,373,482,413,486,452,492,472,501,494,517,513,541,521,565,527,590,542,616,573,645,568,644,538,619,522,592,516,567,509,543,491,521,470,506,450,497,412,491,372,487,349,481,325,470,293,450,264,426,223,384"/>
+<area shape="rect" href="experiment_8c.html#ac6856919cff066de2cd9c7b3a0183e78" title="Telemetriyi durdurur; görev bir sonraki periyotta döngüden çıkar." alt="" coords="555,131,662,157"/>
+<area shape="poly" title=" " alt="" coords="229,352,276,317,299,291,309,280,325,268,370,248,409,241,447,234,491,215,505,204,514,192,524,180,539,167,551,163,547,166,542,172,528,183,519,195,509,207,494,220,448,240,410,247,371,254,327,273,313,284,303,295,280,321,233,356"/>
+<area shape="rect" href="group__record.html#gaa54c3517634ad1045e438f7b2c7a4f2a" title="Hâlâ açık (REC_OPEN) kayıt sayısı." alt="" coords="352,179,466,205"/>
+<area shape="poly" title=" " alt="" coords="233,353,255,337,276,317,291,292,298,269,306,246,324,222,344,211,340,215,328,226,310,248,303,271,296,294,280,320,259,341,237,356"/>
+<area shape="rect" href="group__record.html#ga821bf7e8311d9da3184eabe5d09e79bf" title="Açık kalan tüm kayıtları REC_TIMEOUT ile kapatır (MR&#45;06)." alt="" coords="347,555,471,581"/>
+<area shape="poly" title=" " alt="" coords="220,379,265,440,295,476,328,510,373,546,368,546,324,514,291,479,260,443,219,384"/>
+<area shape="rect" href="group__proto.html#gab24c0e19415e7f4834f264fa3f9c4004" title="Şu an hatta giden bir aktarım var mı." alt="" coords="356,355,462,381"/>
+<area shape="poly" title=" " alt="" coords="244,366,343,366,339,370,246,370"/>
+<area shape="rect" href="group__proto.html#gaa9b45aaa108ed04b62b8d3de9d5dc12d" title="Bekleyen tam bir komut satırı varsa kopyalar." alt="" coords="326,104,492,131"/>
+<area shape="poly" title=" " alt="" coords="235,352,257,337,276,317,288,293,294,271,295,227,299,185,307,163,324,141,331,138,327,142,328,144,312,166,304,186,301,228,300,272,293,295,280,320,261,341,239,356"/>
+<area shape="poly" title=" " alt="" coords="580,206,575,198,577,188,589,181,609,179,631,182,642,192,637,192,629,187,608,184,591,186,582,191,580,197,586,206"/>
+<area shape="rect" href="experiment_8c.html#a24a4cd75b94c0ec3648fe35c5c519c1c" title="Durum LED&#39;lerini günceller (FR&#45;90)." alt="" coords="741,168,812,195"/>
+<area shape="poly" title=" " alt="" coords="633,211,728,191,724,194,635,216"/>
+<area shape="poly" title=" " alt="" coords="747,167,742,159,746,150,757,144,776,141,797,144,809,153,803,153,795,149,776,147,759,149,750,153,748,159,752,168"/>
+<area shape="poly" title=" " alt="" coords="444,426,469,412,490,392,502,372,509,354,512,317,516,280,524,261,538,242,552,232,571,225,566,228,555,236,542,246,529,264,521,282,517,317,514,355,507,374,494,395,472,416,447,431"/>
+<area shape="poly" title=" " alt="" coords="375,429,369,421,373,411,387,405,409,403,433,405,447,414,442,414,431,410,409,408,388,410,377,415,375,420,380,429"/>
+<area shape="rect" href="experiment_8c.html#a9b7d6c3275e99a212ea2fe4ec35c2635" title="Kayıtları, telemetri istatistiğini ve sayaçları döker (FR&#45;66)." alt="" coords="557,355,660,381"/>
+<area shape="poly" title=" " alt="" coords="446,426,539,391,559,386,554,389,541,396,448,431"/>
+<area shape="rect" href="group__proto.html#ga0d5ea8be98d06154562f6f0761d00537" title="Bir komut satırını ayrıştırır." alt="" coords="548,504,669,531"/>
+<area shape="poly" title=" " alt="" coords="447,454,559,497,554,499,447,459"/>
+<area shape="rect" href="experiment_8c.html#a970521a9853c2624251141c42f2a810c" title="Komutu reddeder: ERR satırı gönderir ve sayacı artırır (FR&#45;83)." alt="" coords="582,579,635,605"/>
+<area shape="poly" title=" " alt="" coords="460,454,494,473,511,490,520,506,528,523,542,541,575,570,569,569,538,545,524,526,515,509,506,493,491,477,460,459"/>
+<area shape="rect" href="experiment_8c.html#a64b39230f5d52dc24dffb96d67e0b3f0" title="Senaryo değişiminde tüm sayaçları, kayıtları ve istatistikleri sıfırlar (FR&#45;86)." alt="" coords="540,280,677,307"/>
+<area shape="poly" title=" " alt="" coords="439,426,466,411,490,391,505,372,513,354,522,335,539,317,548,313,544,316,542,321,526,338,518,356,510,375,494,395,469,415,442,431"/>
+<area shape="poly" title=" " alt="" coords="466,454,494,473,508,491,516,509,522,544,525,578,531,597,542,616,571,645,566,644,538,619,526,599,520,580,516,544,511,511,504,494,491,477,466,459"/>
+<area shape="rect" href="experiment_8c.html#acecfcb7d9b54cb77a18ece094ed3e6ce" title="Aktif senaryonun telemetrisini başlatır (S0&#39;da hiçbir şey yapmaz)." alt="" coords="554,429,663,456"/>
+<area shape="poly" title=" " alt="" coords="470,440,541,442,536,444,472,445"/>
+<area shape="poly" title=" " alt="" coords="445,427,470,412,490,392,506,362,513,334,513,306,511,279,509,252,511,225,519,197,538,168,544,165,541,169,542,171,524,199,516,226,514,252,516,279,519,306,518,335,511,364,494,395,473,416,448,431"/>
+<area shape="poly" title=" " alt="" coords="579,354,574,346,578,336,590,330,609,328,629,331,641,339,635,340,627,336,608,333,591,335,582,340,580,345,584,355"/>
+<area shape="rect" href="group__proto.html#gaacdcd6a2dbf0426b5077f0ed128ad8fa" title="Değişken uzunlukta, LF ile biten bir kontrol satırı üretir." alt="" coords="725,392,828,419"/>
+<area shape="poly" title=" " alt="" coords="660,377,713,390,707,391,661,382"/>
+<area shape="rect" href="group__record.html#ga1940e3026d4070e20bb5b3d699078e3e" title="Bir slotun anlık kopyasını döndürür (dışa aktarım için)." alt="" coords="741,467,812,493"/>
+<area shape="poly" title=" " alt="" coords="653,379,678,391,712,418,753,456,747,456,709,422,675,396,653,385"/>
+<area shape="rect" href="experiment_8c.html#a100745978697e9aafaf6368750cf9319" title="Bir kontrol satırını txQ&#39;ya koyar (yalnızca ölçüm dışında çağrılır)." alt="" coords="739,541,814,568"/>
+<area shape="poly" title=" " alt="" coords="660,379,679,391,699,419,706,446,712,473,727,504,749,531,744,530,722,507,707,475,701,447,694,422,675,395,660,385"/>
+<area shape="rect" href="experiment_8c.html#af5d44216a9fdf0c40a32a49456aa00e2" title="Kayıt durumunun CSV&#39;de kullanılan metin karşılığı." alt="" coords="728,317,824,344"/>
+<area shape="poly" title=" " alt="" coords="660,354,716,344,711,346,662,359"/>
+<area shape="poly" title=" " alt="" coords="747,391,742,383,746,374,757,368,776,365,797,368,809,377,803,377,795,373,776,371,759,373,750,377,748,383,752,392"/>
+<area shape="poly" title=" " alt="" coords="747,465,742,458,746,448,757,442,776,440,797,443,809,452,803,451,795,448,776,445,759,447,750,452,748,457,752,467"/>
+<area shape="poly" title=" " alt="" coords="747,540,742,533,746,523,757,517,776,515,797,517,809,526,803,526,795,522,776,520,759,522,750,527,748,532,752,542"/>
+<area shape="poly" title=" " alt="" coords="747,316,742,309,746,299,757,293,776,291,797,293,809,302,803,302,795,298,776,296,759,298,750,303,748,308,752,318"/>
+<area shape="poly" title=" " alt="" coords="579,503,574,495,578,486,590,480,609,477,629,480,641,489,635,489,627,485,608,483,591,485,582,489,580,495,584,504"/>
+<area shape="poly" title=" " alt="" coords="579,577,574,570,578,560,590,554,609,552,629,555,641,564,636,563,627,560,608,557,591,559,582,564,580,569,584,579"/>
+<area shape="poly" title=" " alt="" coords="579,279,574,271,578,262,590,256,609,253,629,256,641,265,636,265,627,261,608,259,591,261,582,265,580,271,584,280"/>
+<area shape="rect" href="group__record.html#ga8e7d02fb46485aa025d6474d667a7151" title="Tüm slotları REC_FREE yapar." alt="" coords="739,243,814,269"/>
+<area shape="poly" title=" " alt="" coords="670,277,726,266,721,269,672,282"/>
+<area shape="poly" title=" " alt="" coords="747,242,742,234,746,224,757,218,776,216,797,219,809,227,803,228,795,224,776,221,759,223,750,228,748,233,752,243"/>
+<area shape="poly" title=" " alt="" coords="579,652,574,645,578,635,590,629,609,627,629,629,641,638,636,638,627,634,608,632,591,634,582,639,580,644,584,654"/>
+<area shape="poly" title=" " alt="" coords="579,428,574,421,578,411,590,405,609,403,629,405,641,414,635,414,627,410,608,408,591,410,582,415,580,420,584,430"/>
+<area shape="poly" title=" " alt="" coords="579,130,574,122,578,112,590,106,609,104,629,107,641,115,636,116,627,112,608,109,591,111,582,116,580,121,584,130"/>
+<area shape="poly" title=" " alt="" coords="375,178,369,170,373,160,387,154,409,152,433,155,447,163,442,164,431,160,409,157,388,159,377,164,375,169,380,178"/>
+<area shape="poly" title=" " alt="" coords="375,554,369,546,373,536,387,530,409,528,433,531,447,539,442,540,431,536,409,533,388,535,377,540,375,545,380,555"/>
+<area shape="poly" title=" " alt="" coords="463,579,494,598,512,621,520,644,527,666,542,690,573,720,568,718,538,694,523,668,515,645,508,624,491,602,462,585"/>
+<area shape="poly" title=" " alt="" coords="579,726,574,719,578,710,590,704,609,701,629,704,641,713,636,712,627,709,608,707,591,709,582,713,580,719,584,729"/>
+<area shape="rect" href="record_8c.html#a460f79265e2343a3cd311389e1d6799f" title="Kimliğin düştüğü slot." alt="" coords="746,753,806,780"/>
+<area shape="poly" title=" " alt="" coords="648,744,733,760,728,760,648,750"/>
+<area shape="poly" title=" " alt="" coords="747,752,742,745,746,735,757,729,776,727,797,729,809,739,803,737,795,734,776,732,759,734,750,739,748,744,752,754"/>
+<area shape="poly" title=" " alt="" coords="375,354,369,346,373,336,387,330,409,328,433,331,447,339,442,340,431,336,409,333,388,335,377,340,375,345,380,354"/>
+<area shape="poly" title=" " alt="" coords="375,104,369,95,373,86,387,79,409,77,433,80,447,88,442,89,431,85,409,83,388,85,377,89,375,95,380,103"/>
+<area shape="rect" href="uart__link_8c.html#a605ab950f0599cb300c1186661056bc5" title="Bir sonraki komut baytı için alımı yeniden başlatır." alt="" coords="578,56,639,83"/>
+<area shape="poly" title=" " alt="" coords="466,101,565,78,561,82,469,106"/>
+<area shape="poly" title=" " alt="" coords="579,55,574,47,578,38,590,32,609,29,629,32,641,40,636,41,627,37,608,35,591,37,582,41,580,47,584,56"/>
+<area shape="poly" title=" " alt="" coords="181,753,177,746,180,736,191,730,209,728,229,731,240,740,235,739,227,736,209,733,193,735,184,740,182,745,186,755"/>
+<area shape="poly" title=" " alt="" coords="251,703,379,736,459,752,541,764,643,769,728,770,733,769,643,774,540,769,459,757,378,741,250,708"/>
+<area shape="poly" title=" " alt="" coords="181,679,177,671,180,662,191,656,209,653,229,656,240,665,235,665,227,661,209,659,193,661,184,665,182,671,186,680"/>
+</map>
+</div>
+
+</div>
+</div>
+<a name="doc-var-members" id="doc-var-members"></a><h2 id="header-doc-var-members" class="groupheader">Değişken Dokümantasyonu</h2>
+<a id="adfb01d77f83da4e3c751aa50aee2e11f" name="adfb01d77f83da4e3c751aa50aee2e11f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adfb01d77f83da4e3c751aa50aee2e11f">&#9670;&#160;</a></span>g_cnt_isr</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">volatile <a class="el" href="struct_isr_counters.html">IsrCounters</a> g_cnt_isr</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>ISR sayaçları. </p>
+<dl class="section user"><dt>Paylaşılan durum Yazar: ISR'lar (alan başına tek). </dt><dd></dd></dl>
+
+<p class="definition"><a class="el" href="app__tasks_8c_source.html">app_tasks.c</a> dosyasının <a class="el" href="app__tasks_8c_source.html#l00030">30</a> numaralı satırında tanımlanmıştır.</p>
+
+</div>
+</div>
+<a id="a994b9ea3718f517b6196f673feddc766" name="a994b9ea3718f517b6196f673feddc766"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a994b9ea3718f517b6196f673feddc766">&#9670;&#160;</a></span>g_cnt_task</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">volatile <a class="el" href="struct_task_counters.html">TaskCounters</a> g_cnt_task</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Görev sayaçları. </p>
+<dl class="section user"><dt>Paylaşılan durum Yazar: alan başına tek görev. </dt><dd></dd></dl>
+
+<p class="definition"><a class="el" href="app__tasks_8c_source.html">app_tasks.c</a> dosyasının <a class="el" href="app__tasks_8c_source.html#l00031">31</a> numaralı satırında tanımlanmıştır.</p>
+
+</div>
+</div>
+<a id="a64309afc2f60d8e29d2321f44946cbd1" name="a64309afc2f60d8e29d2321f44946cbd1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a64309afc2f60d8e29d2321f44946cbd1">&#9670;&#160;</a></span>g_diag</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">volatile <a class="el" href="struct_app_diag.html">AppDiag</a> g_diag</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Tanı özeti. </p>
+<dl class="section user"><dt>Paylaşılan durum Alan açıklamalarında yazar belirtilmiştir. </dt><dd></dd></dl>
+
+<p class="definition"><a class="el" href="app__tasks_8c_source.html">app_tasks.c</a> dosyasının <a class="el" href="app__tasks_8c_source.html#l00032">32</a> numaralı satırında tanımlanmıştır.</p>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><b>firmware</b></li><li class="navelem"><b>Core</b></li><li class="navelem"><b>Src</b></li><li class="navelem"><a href="app__tasks_8c.html">app_tasks.c</a></li>
+    <li class="footer">Oluşturan <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.18.0 </li>
+  </ul>
+</div>
+</body>
+</html>

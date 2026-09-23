@@ -20,7 +20,11 @@
  */
 static volatile EventRecord s_pool[APP_REC_POOL_SIZE];
 
-/** @brief Kimliğin düştüğü slot. */
+/**
+ * @brief   Kimliğin düştüğü slot.
+ * @param   id  Olay kimliği.
+ * @return  Slot işaretçisi (`id % APP_REC_POOL_SIZE`).
+ */
 static inline volatile EventRecord *slot_of(uint32_t id)
 {
     return &s_pool[id % APP_REC_POOL_SIZE];

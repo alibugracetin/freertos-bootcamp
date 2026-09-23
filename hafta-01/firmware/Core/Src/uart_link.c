@@ -46,8 +46,8 @@ static uint8_t s_tx_buf[APP_TX_BUF_LEN];
  *      aktarım olduğu için ISR yalnızca kendi aktarımının değerlerini görür.
  */
 static volatile MsgKind  s_tx_kind;
-static volatile uint32_t s_tx_event;
-static volatile bool     s_tx_busy;
+static volatile uint32_t s_tx_event;   /**< @brief Hatta giden mesajın olay kimliği. */
+static volatile bool     s_tx_busy;   /**< @brief DMA başlatıldı, TC henüz gelmedi. */
 
 /** @brief UartTxTask'ın tutamacı; TC ISR'ı bununla görevi uyandırır. */
 static TaskHandle_t s_tx_task;
@@ -181,9 +181,10 @@ static bool          s_rx_discard;                 /**< Taşan satırın kalanı
  *      Bayrak iki tarafa sırayla sahiplik verir; kilit gerekmez.
  */
 static char          s_cmd_line[RX_LINE_MAX + 1u];
-static volatile bool s_cmd_ready;
+static volatile bool s_cmd_ready;                  /**< Tam bir komut satırı görevi bekliyor. */
 static volatile bool s_rx_restart;                 /**< Alım durdu; görev yeniden başlatsın. */
 
+/** @brief Bir sonraki komut baytı için alımı yeniden başlatır. */
 static void rx_arm(void)
 {
     if (HAL_UART_Receive_IT(&huart2, &s_rx_byte, 1u) != HAL_OK) {

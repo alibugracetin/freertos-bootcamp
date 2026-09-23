@@ -1,0 +1,258 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="tr">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Hafta 1 - Yuk altinda buton yanit suresi: Veri Alanları</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Hafta 1 - Yuk altinda buton yanit suresi
+   </div>
+   <div id="projectbrief">STM32F407 + FreeRTOS olcum firmware&#39;i</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Oluşturan Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="application/json" id="doxygen-config">
+{
+  "relPath": "",
+  "generateTreeView": true,
+  "searchEngine": true,
+  "serverBasedSearch": false,
+  "disableIndex": false,
+  "dynamicMenus": true,
+  "fullSidebar": false
+}
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Ara" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded',() => { initNavTree('functions.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Yüklüyor...</div>
+<div class="SRStatus" id="Searching">Arıyor...</div>
+<div class="SRStatus" id="NoMatches">Eşleşme Yok</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="contents">
+<div class="textblock">Bu liste tüm dokümante edilmiş yapı(struct) ve birleşim(union) yapılarını içerir ve her alanı yapı(struct)/birleşim(union) dokümantasyonuna bağlar:</div><br/>
+<div class="qindex"><a class="qindex" href="#index_a">A</a><div class="alphasepar"></div><a class="qindex" href="#index_b">B</a><div class="alphasepar"></div><a class="qindex" href="#index_c">C</a><div class="alphasepar"></div><a class="qindex" href="#index_d">D</a><div class="alphasepar"></div><a class="qindex" href="#index_e">E</a><div class="alphasepar"></div><a class="qindex" href="#index_f">F</a><div class="alphasepar"></div><a class="qindex" href="#index_h">H</a><div class="alphasepar"></div><a class="qindex" href="#index_i">I</a><div class="alphasepar"></div><a class="qindex" href="#index_k">K</a><div class="alphasepar"></div><a class="qindex" href="#index_l">L</a><div class="alphasepar"></div><a class="qindex" href="#index_m">M</a><div class="alphasepar"></div><a class="qindex" href="#index_n">N</a><div class="alphasepar"></div><a class="qindex" href="#index_p">P</a><div class="alphasepar"></div><a class="qindex" href="#index_r">R</a><div class="alphasepar"></div><a class="qindex" href="#index_s">S</a><div class="alphasepar"></div><a class="qindex" href="#index_t">T</a><div class="alphasepar"></div><a class="qindex" href="#index_u">U</a><div class="alphasepar"></div><a class="qindex" href="#index_w">W</a></div>
+
+
+<h3 class="doxsection"><a id="index_a" name="index_a"></a>- a -</h3><ul>
+<li>accepted&#160;:&#160;<a class="el" href="struct_isr_counters.html#a590b81033285780ab033ed1b58f0daf5">IsrCounters</a></li>
+</ul>
+
+
+<h3 class="doxsection"><a id="index_b" name="index_b"></a>- b -</h3><ul>
+<li>btn_stack_hwm&#160;:&#160;<a class="el" href="struct_app_diag.html#afaf860cc515a3a7f22fbc4af22c2082a">AppDiag</a></li>
+<li>btn_wakeups&#160;:&#160;<a class="el" href="struct_app_diag.html#a4f902b7117814d155c06c901db884283">AppDiag</a></li>
+<li>btnq_drop&#160;:&#160;<a class="el" href="struct_isr_counters.html#af5bbec2dbfd1fd2f20f678a330414202">IsrCounters</a></li>
+</ul>
+
+
+<h3 class="doxsection"><a id="index_c" name="index_c"></a>- c -</h3><ul>
+<li>cmd_busy&#160;:&#160;<a class="el" href="struct_isr_counters.html#a5e1ae5eb4d4d1616d1a688eae6a0843f">IsrCounters</a></li>
+<li>cmd_err&#160;:&#160;<a class="el" href="struct_task_counters.html#aec42afc75acf720e774b8f9926c9f559">TaskCounters</a></li>
+<li>count&#160;:&#160;<a class="el" href="struct_command.html#afde8b4f66f73b95535191193be620251">Command</a></li>
+</ul>
+
+
+<h3 class="doxsection"><a id="index_d" name="index_d"></a>- d -</h3><ul>
+<li>data&#160;:&#160;<a class="el" href="struct_tx_msg.html#a85a75fce3effe6485014aae30f924a55">TxMsg</a></li>
+<li>debounce_rej&#160;:&#160;<a class="el" href="struct_isr_counters.html#a7c5101bbf590b03f7e0d5278fc64bc1e">IsrCounters</a></li>
+</ul>
+
+
+<h3 class="doxsection"><a id="index_e" name="index_e"></a>- e -</h3><ul>
+<li>event_id&#160;:&#160;<a class="el" href="struct_button_event.html#a6156027ac8777caacf782dc151d8b247">ButtonEvent</a>, <a class="el" href="struct_event_record.html#af27d49cf03753ca857f76be401ff9499">EventRecord</a>, <a class="el" href="struct_tx_msg.html#aeff3d22d93cbae6aa982e61eca213d3b">TxMsg</a></li>
+<li>events&#160;:&#160;<a class="el" href="struct_isr_counters.html#a1b6b3b455db9f73e50760e5fe9cdcbd9">IsrCounters</a></li>
+</ul>
+
+
+<h3 class="doxsection"><a id="index_f" name="index_f"></a>- f -</h3><ul>
+<li>fault&#160;:&#160;<a class="el" href="struct_app_diag.html#a05d0455a141e65488c7e617a5ea8cefb">AppDiag</a></li>
+<li>fmt_err_btn&#160;:&#160;<a class="el" href="struct_task_counters.html#a6c02ef3a612203e583458e381cd7b0e3">TaskCounters</a></li>
+<li>fmt_err_tel&#160;:&#160;<a class="el" href="struct_task_counters.html#ab435377d1587f59a8cc541637bed8f1f">TaskCounters</a></li>
+</ul>
+
+
+<h3 class="doxsection"><a id="index_h" name="index_h"></a>- h -</h3><ul>
+<li>have&#160;:&#160;<a class="el" href="struct_event_record.html#aa27e5da3e68d11eb3a8d205e5f038492">EventRecord</a></li>
+<li>heap_free&#160;:&#160;<a class="el" href="struct_app_diag.html#a964c252519fee14bb292bc01a2d6ffaf">AppDiag</a></li>
+<li>heap_min_free&#160;:&#160;<a class="el" href="struct_app_diag.html#a45f6e7eb297b08291a603b12fe3b9b86">AppDiag</a></li>
+</ul>
+
+
+<h3 class="doxsection"><a id="index_i" name="index_i"></a>- i -</h3><ul>
+<li>idle_press&#160;:&#160;<a class="el" href="struct_isr_counters.html#a43576ed6ee68cb11eb551aae82d60195">IsrCounters</a></li>
+</ul>
+
+
+<h3 class="doxsection"><a id="index_k" name="index_k"></a>- k -</h3><ul>
+<li>kind&#160;:&#160;<a class="el" href="struct_tx_msg.html#a54ceb1d3fd508d7e7024dd8f030c217f">TxMsg</a></li>
+</ul>
+
+
+<h3 class="doxsection"><a id="index_l" name="index_l"></a>- l -</h3><ul>
+<li>last_dma_to_tc_us&#160;:&#160;<a class="el" href="struct_app_diag.html#a07dbcf062286aa0e85467355cb5926ab">AppDiag</a></li>
+<li>last_event_id&#160;:&#160;<a class="el" href="struct_app_diag.html#a4c81c71a5f966a612557dd8f129e4a1d">AppDiag</a></li>
+<li>last_t0&#160;:&#160;<a class="el" href="struct_app_diag.html#aa0c6a8ec31e9b26eb5b44c18458e257a">AppDiag</a></li>
+<li>last_t1&#160;:&#160;<a class="el" href="struct_app_diag.html#a763b1b34b798a2cd62ee990988bfcf14">AppDiag</a></li>
+<li>last_t1_minus_t0&#160;:&#160;<a class="el" href="struct_app_diag.html#a46765eba7af378e9815e534b704ed13c">AppDiag</a></li>
+<li>last_t4_minus_t3&#160;:&#160;<a class="el" href="struct_app_diag.html#a85f7eb4a6596462695f4ce90a902ac3a">AppDiag</a></li>
+<li>len&#160;:&#160;<a class="el" href="struct_tx_msg.html#ac79a293b901d6b4714aece8f625ffb02">TxMsg</a></li>
+</ul>
+
+
+<h3 class="doxsection"><a id="index_m" name="index_m"></a>- m -</h3><ul>
+<li>magic&#160;:&#160;<a class="el" href="struct_app_diag.html#aea111dd934d27dc10e595c61d68d4fad">AppDiag</a></li>
+<li>max_dma_to_tc_us&#160;:&#160;<a class="el" href="struct_app_diag.html#a0e336175415b5552ca1a671d3da9bb6a">AppDiag</a></li>
+<li>max_t1_minus_t0&#160;:&#160;<a class="el" href="struct_app_diag.html#a65d36a1c8841855b8b4040b1a8a73c27">AppDiag</a></li>
+</ul>
+
+
+<h3 class="doxsection"><a id="index_n" name="index_n"></a>- n -</h3><ul>
+<li>name&#160;:&#160;<a class="el" href="struct_scenario.html#a168aa28182075a2f8583026c07cdbd2b">Scenario</a></li>
+</ul>
+
+
+<h3 class="doxsection"><a id="index_p" name="index_p"></a>- p -</h3><ul>
+<li>per_max&#160;:&#160;<a class="el" href="struct_0fstruct_0e_8s__tel.html#ad6504d4ed5d73cf61006f9d63f9c7c17">[struct].s_tel</a></li>
+<li>per_min&#160;:&#160;<a class="el" href="struct_0fstruct_0e_8s__tel.html#a3e8eb63a6c509661a9f0f36327edd4da">[struct].s_tel</a></li>
+<li>per_n&#160;:&#160;<a class="el" href="struct_0fstruct_0e_8s__tel.html#a460366746ae41c554e3f2104a1200bb4">[struct].s_tel</a></li>
+<li>per_sum&#160;:&#160;<a class="el" href="struct_0fstruct_0e_8s__tel.html#ae479c1280b747ddfc2fac60ca7ef7dc9">[struct].s_tel</a></li>
+<li>period_ms&#160;:&#160;<a class="el" href="struct_scenario.html#a8e058a16af9721f86af6745502d9501a">Scenario</a></li>
+</ul>
+
+
+<h3 class="doxsection"><a id="index_r" name="index_r"></a>- r -</h3><ul>
+<li>rec_mismatch&#160;:&#160;<a class="el" href="struct_isr_counters.html#a778fb953f67585ce3f1f5de54ed7ae2d">IsrCounters</a>, <a class="el" href="struct_task_counters.html#a0a7135ff7aff17c18c19b9d81d44e885">TaskCounters</a></li>
+<li>rec_mismatch_tx&#160;:&#160;<a class="el" href="struct_task_counters.html#a64a45f8d264573c1029cd681e9983f12">TaskCounters</a></li>
+<li>rec_ovf&#160;:&#160;<a class="el" href="struct_isr_counters.html#a150c8c30fbcbe12210d05939a9308c48">IsrCounters</a></li>
+<li>rx_err&#160;:&#160;<a class="el" href="struct_isr_counters.html#a389531b5947cd7802a0fef83e938b93f">IsrCounters</a></li>
+<li>rx_overflow&#160;:&#160;<a class="el" href="struct_isr_counters.html#a672afe99158aa8fc014cd9b7bf18d0c6">IsrCounters</a></li>
+</ul>
+
+
+<h3 class="doxsection"><a id="index_s" name="index_s"></a>- s -</h3><ul>
+<li>scenario&#160;:&#160;<a class="el" href="struct_command.html#a93d82b23f72f7cfde48e49ba4fe14129">Command</a></li>
+<li>selfcheck&#160;:&#160;<a class="el" href="struct_app_diag.html#aaed03d26f23f5d1e9948e17b5fda30df">AppDiag</a></li>
+<li>selfcheck_opened&#160;:&#160;<a class="el" href="struct_app_diag.html#a9343229ccf2f63c9b79e9a0cfa9a782f">AppDiag</a></li>
+<li>selfcheck_rejected&#160;:&#160;<a class="el" href="struct_app_diag.html#ac16aef1aa03ce08caf33feec73fdc3a5">AppDiag</a></li>
+<li>sent&#160;:&#160;<a class="el" href="struct_0fstruct_0e_8s__tel.html#a3aac91eb03d0993ca3edf1fc2513c667">[struct].s_tel</a></li>
+<li>status&#160;:&#160;<a class="el" href="struct_event_record.html#a1a61cc06fc6c93a9bd950ee60143bc1f">EventRecord</a></li>
+</ul>
+
+
+<h3 class="doxsection"><a id="index_t" name="index_t"></a>- t -</h3><ul>
+<li>t&#160;:&#160;<a class="el" href="struct_event_record.html#a722ace3a2bf67a004179dcd8d32be924">EventRecord</a></li>
+<li>t0_us&#160;:&#160;<a class="el" href="struct_button_event.html#a18d209df74a8c02ab72e4f0a921cbcc0">ButtonEvent</a></li>
+<li>task_count&#160;:&#160;<a class="el" href="struct_app_diag.html#a6759564f5299a67364fc66be02038bd8">AppDiag</a></li>
+<li>txq_drop_btn&#160;:&#160;<a class="el" href="struct_task_counters.html#a21dfc5787dddc4d0fbafcdf92df9dea0">TaskCounters</a></li>
+<li>txq_drop_tel&#160;:&#160;<a class="el" href="struct_task_counters.html#a0c905c0624bb6933a5827b6c6d989159">TaskCounters</a></li>
+<li>txq_hwm&#160;:&#160;<a class="el" href="struct_task_counters.html#a8ce96e5cf125c007224842d4865e1097">TaskCounters</a></li>
+<li>type&#160;:&#160;<a class="el" href="struct_command.html#a3eae2ceec1cbf5b63426481b9fdfd33f">Command</a></li>
+</ul>
+
+
+<h3 class="doxsection"><a id="index_u" name="index_u"></a>- u -</h3><ul>
+<li>uart_err&#160;:&#160;<a class="el" href="struct_task_counters.html#a324ec3ba56fae82e1a1d751972d2ca0b">TaskCounters</a></li>
+<li>uart_timeout&#160;:&#160;<a class="el" href="struct_task_counters.html#af39498b090903840ac63dfb36e67ba7c">TaskCounters</a></li>
+<li>unarmed_rej&#160;:&#160;<a class="el" href="struct_isr_counters.html#ab20663a174bfe3b2b1170991ca1ea433">IsrCounters</a></li>
+</ul>
+
+
+<h3 class="doxsection"><a id="index_w" name="index_w"></a>- w -</h3><ul>
+<li>work_iters&#160;:&#160;<a class="el" href="struct_scenario.html#a75eac62452ea6a00b046bb9db477f5be">Scenario</a></li>
+<li>work_max&#160;:&#160;<a class="el" href="struct_0fstruct_0e_8s__tel.html#a8ef1c108974b3da2c8c699c0fb81673d">[struct].s_tel</a></li>
+<li>work_n&#160;:&#160;<a class="el" href="struct_0fstruct_0e_8s__tel.html#ae1432ff571d50fe080518e3fa89dfe41">[struct].s_tel</a></li>
+<li>work_sum&#160;:&#160;<a class="el" href="struct_0fstruct_0e_8s__tel.html#a7305e6bf3539749c0d03b45a87fcc273">[struct].s_tel</a></li>
+<li>work_us_per_100k&#160;:&#160;<a class="el" href="struct_app_diag.html#aa58fbe1ccbc29ed09c67e0af07874341">AppDiag</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Oluşturan <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.18.0 </li>
+  </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,854 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="tr">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Hafta 1 - Yuk altinda buton yanit suresi: D:/RTOS/Hafta_1_RTOS_Bootcamp/hafta-01/firmware/Core/Src/uart_link.c Dosya Referansı</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Hafta 1 - Yuk altinda buton yanit suresi
+   </div>
+   <div id="projectbrief">STM32F407 + FreeRTOS olcum firmware&#39;i</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Oluşturan Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="application/json" id="doxygen-config">
+{
+  "relPath": "",
+  "generateTreeView": true,
+  "searchEngine": true,
+  "serverBasedSearch": false,
+  "disableIndex": false,
+  "dynamicMenus": true,
+  "fullSidebar": false
+}
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Ara" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded',() => { initNavTree('uart__link_8c.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Yüklüyor...</div>
+<div class="SRStatus" id="Searching">Arıyor...</div>
+<div class="SRStatus" id="NoMatches">Eşleşme Yok</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">uart_link.c Dosya Referansı<div class="ingroups"><a class="el" href="group__proto.html">UART Protokolü</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>USART2 gönderim görevi, TC/DMA/RX kesme geri çağrıları (T-08, T-12).  
+<a href="#details">Ayrıntılar...</a></p>
+<div class="textblock"><code>#include &quot;<a class="el" href="uart__link_8h_source.html">uart_link.h</a>&quot;</code><br />
+<code>#include &quot;main.h&quot;</code><br />
+<code>#include &quot;usart.h&quot;</code><br />
+<code>#include &quot;FreeRTOS.h&quot;</code><br />
+<code>#include &quot;queue.h&quot;</code><br />
+<code>#include &quot;task.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="app__config_8h_source.html">app_config.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="app__diag_8h_source.html">app_diag.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="app__tasks_8h_source.html">app_tasks.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="app__types_8h_source.html">app_types.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="record_8h_source.html">record.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="timing_8h_source.html">timing.h</a>&quot;</code><br />
+<code>#include &lt;string.h&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+uart_link.c için içerme bağımlılık grafiği:</div>
+<div class="dyncontent">
+<div class="center"><img src="uart__link_8c__incl.png" border="0" usemap="#a_d_1_2_r_t_o_s_2_hafta__1___r_t_o_s___bootcamp_2hafta-01_2firmware_2_core_2_src_2uart__link_8c" loading="lazy" alt=""/></div>
+<map name="a_d_1_2_r_t_o_s_2_hafta__1___r_t_o_s___bootcamp_2hafta-01_2firmware_2_core_2_src_2uart__link_8c" id="a_d_1_2_r_t_o_s_2_hafta__1___r_t_o_s___bootcamp_2hafta-01_2firmware_2_core_2_src_2uart__link_8c">
+<area shape="rect" title="USART2 gönderim görevi, TC/DMA/RX kesme geri çağrıları (T&#45;08, T&#45;12)." alt="" coords="504,5,697,64"/>
+<area shape="rect" href="uart__link_8h.html" title="USART2&#39;nin tek sahibi: DMA ile gönderim (t₃, t₄) ve komut alma." alt="" coords="5,112,87,139"/>
+<area shape="poly" title=" " alt="" coords="501,49,322,77,102,114,101,109,321,72,506,47"/>
+<area shape="rect" title=" " alt="" coords="570,112,631,139"/>
+<area shape="poly" title=" " alt="" coords="602,62,603,98,599,95,599,66"/>
+<area shape="rect" title=" " alt="" coords="655,112,717,139"/>
+<area shape="poly" title=" " alt="" coords="629,62,666,101,661,100,627,67"/>
+<area shape="rect" title=" " alt="" coords="723,187,817,213"/>
+<area shape="poly" title=" " alt="" coords="666,62,700,84,731,110,751,140,764,173,759,170,746,143,727,114,697,88,665,67"/>
+<area shape="rect" title=" " alt="" coords="872,187,940,213"/>
+<area shape="poly" title=" " alt="" coords="697,46,758,57,817,71,866,89,885,99,899,110,907,124,912,140,913,173,908,170,907,141,902,127,895,114,882,103,864,94,815,76,756,62,697,51"/>
+<area shape="rect" title=" " alt="" coords="960,112,1017,139"/>
+<area shape="poly" title=" " alt="" coords="697,54,941,109,948,113,943,113,940,115,697,60"/>
+<area shape="rect" href="app__config_8h.html" title="Uygulama genelindeki sabit parametreler (ödev standardı)." alt="" coords="452,187,547,213"/>
+<area shape="poly" title=" " alt="" coords="585,63,517,176,513,171,581,65"/>
+<area shape="rect" href="app__diag_8h.html" title="Hata sayaçları ve SWD üzerinden okunabilen tanı yapısı." alt="" coords="202,112,287,139"/>
+<area shape="poly" title=" " alt="" coords="501,61,303,112,301,107,506,59"/>
+<area shape="rect" href="app__tasks_8h.html" title="Uygulama görevleri, kuyruklar ve açılış sırası." alt="" coords="792,112,884,139"/>
+<area shape="poly" title=" " alt="" coords="678,62,793,106,788,106,677,67"/>
+<area shape="rect" href="app__types_8h.html" title="Görevler ve kesmeler arasında kuyruklarla taşınan veri tipleri." alt="" coords="402,112,495,139"/>
+<area shape="poly" title=" " alt="" coords="554,64,484,106,482,102,549,65"/>
+<area shape="rect" href="record_8h.html" title="Ölçüm kayıt defteri: her buton olayının t₀…t₄ damgaları." alt="" coords="110,112,179,139"/>
+<area shape="poly" title=" " alt="" coords="501,53,362,80,195,114,193,109,361,75,507,51"/>
+<area shape="rect" href="timing_8h.html" title="Mikrosaniye zaman kaynağı (TIM2, 1 MHz, 32&#45;bit serbest sayaç)." alt="" coords="311,112,378,139"/>
+<area shape="poly" title=" " alt="" coords="520,64,394,110,392,105,515,65"/>
+<area shape="rect" title=" " alt="" coords="1042,112,1106,139"/>
+<area shape="poly" title=" " alt="" coords="697,48,849,73,1029,111,1024,112,848,79,697,53"/>
+<area shape="rect" title=" " alt="" coords="106,187,180,213"/>
+<area shape="poly" title=" " alt="" coords="64,137,117,176,112,179,62,142"/>
+<area shape="rect" title=" " alt="" coords="12,187,80,213"/>
+<area shape="poly" title=" " alt="" coords="48,137,49,172,43,171,44,141"/>
+<area shape="rect" title=" " alt="" coords="212,187,277,213"/>
+<area shape="poly" title=" " alt="" coords="247,137,247,172,242,170,243,141"/>
+<area shape="poly" title=" " alt="" coords="829,138,793,178,791,173,824,140"/>
+<area shape="poly" title=" " alt="" coords="851,137,886,176,881,174,849,142"/>
+<area shape="poly" title=" " alt="" coords="459,137,485,175,480,173,456,142"/>
+<area shape="poly" title=" " alt="" coords="416,139,293,185,291,179,410,140"/>
+<area shape="poly" title=" " alt="" coords="146,137,146,172,141,170,143,141"/>
+<area shape="poly" title=" " alt="" coords="163,137,218,177,212,177,161,142"/>
+<area shape="poly" title=" " alt="" coords="330,138,276,180,273,175,325,140"/>
+<area shape="rect" title=" " alt="" coords="301,187,394,213"/>
+<area shape="poly" title=" " alt="" coords="347,137,348,173,344,169,343,141"/>
+</map>
+</div>
+</div>
+<p><a href="uart__link_8c_source.html">Bu dosyanın kaynak koduna git.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-define-members" class="groupheader"><a id="define-members" name="define-members"></a>
+Makrolar</h2></td></tr>
+<tr class="memitem:af96b3438d6adaaeeccf1ef6147ef6bed" id="r_af96b3438d6adaaeeccf1ef6147ef6bed"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#af96b3438d6adaaeeccf1ef6147ef6bed">RX_LINE_MAX</a>&#160;&#160;&#160;31u</td></tr>
+<tr class="memdesc:af96b3438d6adaaeeccf1ef6147ef6bed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Komut satırının azami uzunluğu (LF hariç).  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+Fonksiyonlar</h2></td></tr>
+<tr class="memitem:ga7994efa291616c571dca5756383b5061" id="r_ga7994efa291616c571dca5756383b5061"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="group__isr.html#ga7994efa291616c571dca5756383b5061">uart_irq_entry</a> (void)</td></tr>
+<tr class="memdesc:ga7994efa291616c571dca5756383b5061"><td class="mdescLeft">&#160;</td><td class="mdescRight">USART2 kesmesinin ilk işi: giriş zamanını yakalar.  <br /></td></tr>
+<tr class="memitem:gad90f94c93a38a193027c9d26997c0fe1" id="r_gad90f94c93a38a193027c9d26997c0fe1"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="group__isr.html#gad90f94c93a38a193027c9d26997c0fe1">uart_dma_tx_irq_entry</a> (void)</td></tr>
+<tr class="memdesc:gad90f94c93a38a193027c9d26997c0fe1"><td class="mdescLeft">&#160;</td><td class="mdescRight">TX DMA kesmesinin ilk işi: giriş zamanını yakalar (R-2 doğrulaması).  <br /></td></tr>
+<tr class="memitem:gab24c0e19415e7f4834f264fa3f9c4004" id="r_gab24c0e19415e7f4834f264fa3f9c4004"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="group__proto.html#gab24c0e19415e7f4834f264fa3f9c4004">uart_link_busy</a> (void)</td></tr>
+<tr class="memdesc:gab24c0e19415e7f4834f264fa3f9c4004"><td class="mdescLeft">&#160;</td><td class="mdescRight">Şu an hatta giden bir aktarım var mı.  <br /></td></tr>
+<tr class="memitem:ga9166faecff6c1864e8d0fa18ed200e53" id="r_ga9166faecff6c1864e8d0fa18ed200e53"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="group__tasks.html#ga9166faecff6c1864e8d0fa18ed200e53">UartTxTask</a> (void *arg)</td></tr>
+<tr class="memdesc:ga9166faecff6c1864e8d0fa18ed200e53"><td class="mdescLeft">&#160;</td><td class="mdescRight">UART gönderim görevi — <b>düşük öncelik (1)</b>.  <br /></td></tr>
+<tr class="memitem:abcdf9b59049eccbc87d54042f9235b1a" id="r_abcdf9b59049eccbc87d54042f9235b1a"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#abcdf9b59049eccbc87d54042f9235b1a">HAL_UART_TxCpltCallback</a> (UART_HandleTypeDef *huart)</td></tr>
+<tr class="memdesc:abcdf9b59049eccbc87d54042f9235b1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">UART gönderim tamamlandı (TC) geri çağrısı.  <br /></td></tr>
+<tr class="memitem:a605ab950f0599cb300c1186661056bc5" id="r_a605ab950f0599cb300c1186661056bc5"><td class="memItemLeft">static void&#160;</td><td class="memItemRight"><a class="el" href="#a605ab950f0599cb300c1186661056bc5">rx_arm</a> (void)</td></tr>
+<tr class="memdesc:a605ab950f0599cb300c1186661056bc5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bir sonraki komut baytı için alımı yeniden başlatır.  <br /></td></tr>
+<tr class="memitem:gadde9424854bbdb867dbbda9f7060d69b" id="r_gadde9424854bbdb867dbbda9f7060d69b"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="group__proto.html#gadde9424854bbdb867dbbda9f7060d69b">uart_link_start_rx</a> (void)</td></tr>
+<tr class="memdesc:gadde9424854bbdb867dbbda9f7060d69b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Komut alımını başlatır (bayt bayt, kesmeyle, FR-80).  <br /></td></tr>
+<tr class="memitem:ae494a9643f29b87d6d81e5264e60e57b" id="r_ae494a9643f29b87d6d81e5264e60e57b"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ae494a9643f29b87d6d81e5264e60e57b">HAL_UART_RxCpltCallback</a> (UART_HandleTypeDef *huart)</td></tr>
+<tr class="memdesc:ae494a9643f29b87d6d81e5264e60e57b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bir bayt alındı: satırı topla, LF'de devret.  <br /></td></tr>
+<tr class="memitem:a0e0456ea96d55db31de947fb3e954f18" id="r_a0e0456ea96d55db31de947fb3e954f18"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a0e0456ea96d55db31de947fb3e954f18">HAL_UART_ErrorCallback</a> (UART_HandleTypeDef *huart)</td></tr>
+<tr class="memdesc:a0e0456ea96d55db31de947fb3e954f18"><td class="mdescLeft">&#160;</td><td class="mdescRight">UART hata geri çağrısı (gürültü, çerçeve, taşma, DMA hatası).  <br /></td></tr>
+<tr class="memitem:gaa9b45aaa108ed04b62b8d3de9d5dc12d" id="r_gaa9b45aaa108ed04b62b8d3de9d5dc12d"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="group__proto.html#gaa9b45aaa108ed04b62b8d3de9d5dc12d">uart_link_take_command</a> (char *dst, size_t n)</td></tr>
+<tr class="memdesc:gaa9b45aaa108ed04b62b8d3de9d5dc12d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bekleyen tam bir komut satırı varsa kopyalar.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
+Değişkenler</h2></td></tr>
+<tr class="memitem:a0d148e0a2ab97eab25018cfa43bc30cf" id="r_a0d148e0a2ab97eab25018cfa43bc30cf"><td class="memItemLeft">static uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#a0d148e0a2ab97eab25018cfa43bc30cf">s_tx_buf</a> [<a class="el" href="app__config_8h.html#abb2d0329752cc81ae3a14caa741b7abb">APP_TX_BUF_LEN</a>]</td></tr>
+<tr class="memdesc:a0d148e0a2ab97eab25018cfa43bc30cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">DMA'nın okuduğu kalıcı gönderim tamponu (FR-45, HW-05).  <br /></td></tr>
+<tr class="memitem:abfc3307c65fdb8551d95921c7ad28791" id="r_abfc3307c65fdb8551d95921c7ad28791"><td class="memItemLeft">static volatile <a class="el" href="group__tasks.html#gae23dc602fcc5835f96131c7acf975fcf">MsgKind</a>&#160;</td><td class="memItemRight"><a class="el" href="#abfc3307c65fdb8551d95921c7ad28791">s_tx_kind</a></td></tr>
+<tr class="memdesc:abfc3307c65fdb8551d95921c7ad28791"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hatta giden mesajın türü ve olay kimliği.  <br /></td></tr>
+<tr class="memitem:a33684c206209bd316e672073c7cecf64" id="r_a33684c206209bd316e672073c7cecf64"><td class="memItemLeft">static volatile uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#a33684c206209bd316e672073c7cecf64">s_tx_event</a></td></tr>
+<tr class="memdesc:a33684c206209bd316e672073c7cecf64"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hatta giden mesajın olay kimliği.  <br /></td></tr>
+<tr class="memitem:ad3a48abf2ea7f76193c997ab016a3d3a" id="r_ad3a48abf2ea7f76193c997ab016a3d3a"><td class="memItemLeft">static volatile bool&#160;</td><td class="memItemRight"><a class="el" href="#ad3a48abf2ea7f76193c997ab016a3d3a">s_tx_busy</a></td></tr>
+<tr class="memdesc:ad3a48abf2ea7f76193c997ab016a3d3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">DMA başlatıldı, TC henüz gelmedi.  <br /></td></tr>
+<tr class="memitem:abddfc923e93f74b1b393139d81be4653" id="r_abddfc923e93f74b1b393139d81be4653"><td class="memItemLeft">static TaskHandle_t&#160;</td><td class="memItemRight"><a class="el" href="#abddfc923e93f74b1b393139d81be4653">s_tx_task</a></td></tr>
+<tr class="memdesc:abddfc923e93f74b1b393139d81be4653"><td class="mdescLeft">&#160;</td><td class="mdescRight">UartTxTask'ın tutamacı; TC ISR'ı bununla görevi uyandırır.  <br /></td></tr>
+<tr class="memitem:ac1f6e5c43eb9da937716ab6e2855f3a7" id="r_ac1f6e5c43eb9da937716ab6e2855f3a7"><td class="memItemLeft">static volatile uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#ac1f6e5c43eb9da937716ab6e2855f3a7">s_uart_entry_us</a></td></tr>
+<tr class="memdesc:ac1f6e5c43eb9da937716ab6e2855f3a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Son USART2 kesmesinin giriş zamanı [µs] (t₄ kaynağı).  <br /></td></tr>
+<tr class="memitem:af8593900b43985d7064207ba42f13828" id="r_af8593900b43985d7064207ba42f13828"><td class="memItemLeft">static volatile uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#af8593900b43985d7064207ba42f13828">s_dma_entry_us</a></td></tr>
+<tr class="memdesc:af8593900b43985d7064207ba42f13828"><td class="mdescLeft">&#160;</td><td class="mdescRight">Son TX DMA kesmesinin giriş zamanı [µs].  <br /></td></tr>
+<tr class="memitem:aeda1a60b1f8a35a98afa332e8658516e" id="r_aeda1a60b1f8a35a98afa332e8658516e"><td class="memItemLeft">static volatile uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#aeda1a60b1f8a35a98afa332e8658516e">s_tx_t3</a></td></tr>
+<tr class="memdesc:aeda1a60b1f8a35a98afa332e8658516e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Son BTN mesajının t₃'ü; TC ISR'ı t₄ − t₃'ü tanıya yazar.  <br /></td></tr>
+<tr class="memitem:afd855432ca208431a28bfdbfaf9aa55c" id="r_afd855432ca208431a28bfdbfaf9aa55c"><td class="memItemLeft">static uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#afd855432ca208431a28bfdbfaf9aa55c">s_rx_byte</a></td></tr>
+<tr class="memdesc:afd855432ca208431a28bfdbfaf9aa55c"><td class="mdescLeft">&#160;</td><td class="mdescRight">HAL'in tek baytlık alım tamponu.  <br /></td></tr>
+<tr class="memitem:af8980ff409b62aef2a8d4f557c3e0e3a" id="r_af8980ff409b62aef2a8d4f557c3e0e3a"><td class="memItemLeft">static char&#160;</td><td class="memItemRight"><a class="el" href="#af8980ff409b62aef2a8d4f557c3e0e3a">s_rx_line</a> [<a class="el" href="#af96b3438d6adaaeeccf1ef6147ef6bed">RX_LINE_MAX</a>+1u]</td></tr>
+<tr class="memdesc:af8980ff409b62aef2a8d4f557c3e0e3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Toplanan satır.  <br /></td></tr>
+<tr class="memitem:a94961f277bd4dfe873ce195b17ed75b2" id="r_a94961f277bd4dfe873ce195b17ed75b2"><td class="memItemLeft">static uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#a94961f277bd4dfe873ce195b17ed75b2">s_rx_len</a></td></tr>
+<tr class="memdesc:a94961f277bd4dfe873ce195b17ed75b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Yalnızca RX ISR.  <br /></td></tr>
+<tr class="memitem:a7d875b771166bf2663bb0fdc58a3eec2" id="r_a7d875b771166bf2663bb0fdc58a3eec2"><td class="memItemLeft">static bool&#160;</td><td class="memItemRight"><a class="el" href="#a7d875b771166bf2663bb0fdc58a3eec2">s_rx_discard</a></td></tr>
+<tr class="memdesc:a7d875b771166bf2663bb0fdc58a3eec2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Taşan satırın kalanı atılıyor.  <br /></td></tr>
+<tr class="memitem:a7207bb35d48cb9d2459caf2e913b0e11" id="r_a7207bb35d48cb9d2459caf2e913b0e11"><td class="memItemLeft">static char&#160;</td><td class="memItemRight"><a class="el" href="#a7207bb35d48cb9d2459caf2e913b0e11">s_cmd_line</a> [<a class="el" href="#af96b3438d6adaaeeccf1ef6147ef6bed">RX_LINE_MAX</a>+1u]</td></tr>
+<tr class="memdesc:a7207bb35d48cb9d2459caf2e913b0e11"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tamamlanmış komut satırı ve hazır bayrağı.  <br /></td></tr>
+<tr class="memitem:aa2da629959d51939a574a4c5f856a024" id="r_aa2da629959d51939a574a4c5f856a024"><td class="memItemLeft">static volatile bool&#160;</td><td class="memItemRight"><a class="el" href="#aa2da629959d51939a574a4c5f856a024">s_cmd_ready</a></td></tr>
+<tr class="memdesc:aa2da629959d51939a574a4c5f856a024"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tam bir komut satırı görevi bekliyor.  <br /></td></tr>
+<tr class="memitem:ae08b4045dd96239454d4e19963087f34" id="r_ae08b4045dd96239454d4e19963087f34"><td class="memItemLeft">static volatile bool&#160;</td><td class="memItemRight"><a class="el" href="#ae08b4045dd96239454d4e19963087f34">s_rx_restart</a></td></tr>
+<tr class="memdesc:ae08b4045dd96239454d4e19963087f34"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alım durdu; görev yeniden başlatsın.  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Ayrıntılı tanımlama</h2>
+<div class="textblock"><p>USART2 gönderim görevi, TC/DMA/RX kesme geri çağrıları (T-08, T-12). </p>
+<p><b>TC yolu doğrulaması (R-2, tasarım §4.2):</b> HAL 1.8.5'te normal modlu DMA gönderiminde <span class="tt">UART_DMATransmitCplt()</span> geri çağrıyı <b>çağırmaz</b>; yalnızca USART <span class="tt">TCIE</span> kesmesini açar. <span class="tt"><a class="el" href="#abcdf9b59049eccbc87d54042f9235b1a" title="UART gönderim tamamlandı (TC) geri çağrısı.">HAL_UART_TxCpltCallback()</a></span>, <span class="tt">HAL_UART_IRQHandler()</span> USART_SR_TC bayrağını gördüğünde <span class="tt">UART_EndTransmit_IT()</span> içinden çağrılır — yani son stop biti hattan çıktıktan sonra. Bu modül ayrıca DMA bitişi ile TC arasındaki süreyi ölçerek bunu çalışma zamanında da kanıtlar. </p>
+
+<p class="definition"><a class="el" href="uart__link_8c_source.html">uart_link.c</a> dosyasında tanımlanmıştır.</p>
+</div><a name="doc-define-members" id="doc-define-members"></a><h2 id="header-doc-define-members" class="groupheader">Makro Dokümantasyonu</h2>
+<a id="af96b3438d6adaaeeccf1ef6147ef6bed" name="af96b3438d6adaaeeccf1ef6147ef6bed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af96b3438d6adaaeeccf1ef6147ef6bed">&#9670;&#160;</a></span>RX_LINE_MAX</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RX_LINE_MAX&#160;&#160;&#160;31u</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Komut satırının azami uzunluğu (LF hariç). </p>
+
+<p class="definition"><a class="el" href="uart__link_8c_source.html">uart_link.c</a> dosyasının <a class="el" href="uart__link_8c_source.html#l00169">169</a> numaralı satırında tanımlanmıştır.</p>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Fonksiyon Dokümantasyonu</h2>
+<a id="a0e0456ea96d55db31de947fb3e954f18" name="a0e0456ea96d55db31de947fb3e954f18"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e0456ea96d55db31de947fb3e954f18">&#9670;&#160;</a></span>HAL_UART_ErrorCallback()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void HAL_UART_ErrorCallback </td>
+          <td>(</td>
+          <td class="paramtype">UART_HandleTypeDef *</td>          <td class="paramname"><span class="paramname"><em>huart</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>UART hata geri çağrısı (gürültü, çerçeve, taşma, DMA hatası). </p>
+<dl class="params"><dt>Parametreler</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">huart</td><td>Kesmeyi üreten UART. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Not</dt><dd><b>ISR bağlamı.</b> Taşma (ORE) alımı durdurur; burada yeniden başlatılır. </dd></dl>
+
+<p class="definition"><a class="el" href="uart__link_8c_source.html">uart_link.c</a> dosyasının <a class="el" href="uart__link_8c_source.html#l00240">240</a> numaralı satırında tanımlanmıştır.</p>
+<div class="dynheader">
+Bu fonksiyon için çağırılma şeması:</div>
+<div class="dyncontent">
+<div class="center"><img src="uart__link_8c_a0e0456ea96d55db31de947fb3e954f18_cgraph.png" border="0" usemap="#auart__link_8c_a0e0456ea96d55db31de947fb3e954f18_cgraph" loading="lazy" alt=""/></div>
+<map name="auart__link_8c_a0e0456ea96d55db31de947fb3e954f18_cgraph" id="auart__link_8c_a0e0456ea96d55db31de947fb3e954f18_cgraph">
+<area shape="rect" title="UART hata geri çağrısı (gürültü, çerçeve, taşma, DMA hatası)." alt="" coords="5,29,182,56"/>
+<area shape="poly" title=" " alt="" coords="64,28,60,21,63,11,75,5,94,3,114,5,126,14,120,14,112,10,93,8,76,10,67,15,65,20,70,29"/>
+<area shape="rect" href="uart__link_8c.html#a605ab950f0599cb300c1186661056bc5" title="Bir sonraki komut baytı için alımı yeniden başlatır." alt="" coords="230,29,291,56"/>
+<area shape="poly" title=" " alt="" coords="182,40,217,43,211,43,182,45"/>
+<area shape="poly" title=" " alt="" coords="231,28,226,21,230,11,242,5,260,3,280,5,292,15,287,14,279,10,260,8,243,10,234,15,232,20,236,30"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ae494a9643f29b87d6d81e5264e60e57b" name="ae494a9643f29b87d6d81e5264e60e57b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae494a9643f29b87d6d81e5264e60e57b">&#9670;&#160;</a></span>HAL_UART_RxCpltCallback()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void HAL_UART_RxCpltCallback </td>
+          <td>(</td>
+          <td class="paramtype">UART_HandleTypeDef *</td>          <td class="paramname"><span class="paramname"><em>huart</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Bir bayt alındı: satırı topla, LF'de devret. </p>
+<dl class="params"><dt>Parametreler</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">huart</td><td>Kesmeyi üreten UART. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Not</dt><dd><b>ISR bağlamı.</b> Yalnızca bayt biriktirir; ayrıştırma görevde yapılır (FR-81). </dd></dl>
+
+<p class="definition"><a class="el" href="uart__link_8c_source.html">uart_link.c</a> dosyasının <a class="el" href="uart__link_8c_source.html#l00205">205</a> numaralı satırında tanımlanmıştır.</p>
+<div class="dynheader">
+Bu fonksiyon için çağırılma şeması:</div>
+<div class="dyncontent">
+<div class="center"><img src="uart__link_8c_ae494a9643f29b87d6d81e5264e60e57b_cgraph.png" border="0" usemap="#auart__link_8c_ae494a9643f29b87d6d81e5264e60e57b_cgraph" loading="lazy" alt=""/></div>
+<map name="auart__link_8c_ae494a9643f29b87d6d81e5264e60e57b_cgraph" id="auart__link_8c_ae494a9643f29b87d6d81e5264e60e57b_cgraph">
+<area shape="rect" title="Bir bayt alındı: satırı topla, LF&#39;de devret." alt="" coords="5,29,195,56"/>
+<area shape="poly" title=" " alt="" coords="70,28,65,21,69,11,81,5,100,3,121,5,133,14,128,14,119,10,100,8,82,10,72,15,70,20,75,29"/>
+<area shape="rect" href="uart__link_8c.html#a605ab950f0599cb300c1186661056bc5" title="Bir sonraki komut baytı için alımı yeniden başlatır." alt="" coords="243,29,304,56"/>
+<area shape="poly" title=" " alt="" coords="195,40,230,43,224,43,195,45"/>
+<area shape="poly" title=" " alt="" coords="243,28,238,21,242,11,254,5,273,3,294,5,307,15,301,14,292,10,273,8,255,10,246,15,244,20,248,30"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="abcdf9b59049eccbc87d54042f9235b1a" name="abcdf9b59049eccbc87d54042f9235b1a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abcdf9b59049eccbc87d54042f9235b1a">&#9670;&#160;</a></span>HAL_UART_TxCpltCallback()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void HAL_UART_TxCpltCallback </td>
+          <td>(</td>
+          <td class="paramtype">UART_HandleTypeDef *</td>          <td class="paramname"><span class="paramname"><em>huart</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>UART gönderim tamamlandı (TC) geri çağrısı. </p>
+<dl class="params"><dt>Parametreler</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">huart</td><td>Kesmeyi üreten UART.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Not</dt><dd><b>ISR bağlamı</b> (USART2, öncelik 5). </dd></dl>
+<dl class="section user"><dt>Zaman damgası</dt><dd><b>t₄</b> = <a class="el" href="group__isr.html#ga7994efa291616c571dca5756383b5061" title="uart_irq_entry">uart_irq_entry</a>'nin yakaladığı giriş zamanı (FR-43). </dd></dl>
+<dl class="section user"><dt>Paylaşılan durum</dt><dd>Yazar: <span class="tt">g_cnt_isr.rec_mismatch</span>, <span class="tt">g_diag.last_dma_to_tc_us / max_dma_to_tc_us /
+     last_t4_minus_t3</span> (yalnızca bu ISR). </dd></dl>
+
+<p class="definition"><a class="el" href="uart__link_8c_source.html">uart_link.c</a> dosyasının <a class="el" href="uart__link_8c_source.html#l00139">139</a> numaralı satırında tanımlanmıştır.</p>
+<div class="dynheader">
+Bu fonksiyon için çağırılma şeması:</div>
+<div class="dyncontent">
+<div class="center"><img src="uart__link_8c_abcdf9b59049eccbc87d54042f9235b1a_cgraph.png" border="0" usemap="#auart__link_8c_abcdf9b59049eccbc87d54042f9235b1a_cgraph" loading="lazy" alt=""/></div>
+<map name="auart__link_8c_abcdf9b59049eccbc87d54042f9235b1a_cgraph" id="auart__link_8c_abcdf9b59049eccbc87d54042f9235b1a_cgraph">
+<area shape="rect" title="UART gönderim tamamlandı (TC) geri çağrısı." alt="" coords="5,67,193,93"/>
+<area shape="poly" title=" " alt="" coords="67,66,62,58,66,48,79,42,99,40,121,43,134,51,129,52,119,48,99,45,80,47,70,52,67,57,73,66"/>
+<area shape="rect" href="group__record.html#ga7104bd8a124c89e746b0cdb821dd9b44" title="Açık bir kaydı verilen durumla kapatır." alt="" coords="243,29,320,56"/>
+<area shape="poly" title=" " alt="" coords="167,64,231,53,226,54,168,69"/>
+<area shape="rect" href="group__record.html#ga8671153e0e2c19907573a9bd01b730b5" title="Açık bir kayda bir zaman damgası yazar." alt="" coords="241,104,323,131"/>
+<area shape="poly" title=" " alt="" coords="168,91,228,106,223,106,167,97"/>
+<area shape="poly" title=" " alt="" coords="260,28,257,20,259,11,268,5,282,3,297,5,306,14,300,14,294,10,282,8,270,10,264,14,262,20,265,30"/>
+<area shape="rect" href="record_8c.html#a460f79265e2343a3cd311389e1d6799f" title="Kimliğin düştüğü slot." alt="" coords="371,67,431,93"/>
+<area shape="poly" title=" " alt="" coords="321,52,359,66,353,66,320,57"/>
+<area shape="poly" title=" " alt="" coords="380,65,376,58,379,49,387,42,401,40,416,43,425,52,420,51,414,48,401,45,389,47,383,52,381,58,385,67"/>
+<area shape="poly" title=" " alt="" coords="323,102,353,94,359,94,324,107"/>
+<area shape="poly" title=" " alt="" coords="261,102,257,95,259,86,268,80,282,77,297,80,306,89,300,88,294,85,282,83,270,85,264,89,262,95,265,105"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a605ab950f0599cb300c1186661056bc5" name="a605ab950f0599cb300c1186661056bc5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a605ab950f0599cb300c1186661056bc5">&#9670;&#160;</a></span>rx_arm()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void rx_arm </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Bir sonraki komut baytı için alımı yeniden başlatır. </p>
+
+<p class="definition"><a class="el" href="uart__link_8c_source.html">uart_link.c</a> dosyasının <a class="el" href="uart__link_8c_source.html#l00188">188</a> numaralı satırında tanımlanmıştır.</p>
+<div class="dynheader">
+Bu fonksiyon için çağırılma şeması:</div>
+<div class="dyncontent">
+<div class="center"><img src="uart__link_8c_a605ab950f0599cb300c1186661056bc5_cgraph.png" border="0" usemap="#auart__link_8c_a605ab950f0599cb300c1186661056bc5_cgraph" loading="lazy" alt=""/></div>
+<map name="auart__link_8c_a605ab950f0599cb300c1186661056bc5_cgraph" id="auart__link_8c_a605ab950f0599cb300c1186661056bc5_cgraph">
+<area shape="rect" title="Bir sonraki komut baytı için alımı yeniden başlatır." alt="" coords="5,29,67,56"/>
+<area shape="poly" title=" " alt="" coords="24,29,23,12,28,5,36,3,45,6,49,14,44,14,41,10,36,8,31,10,28,14,29,29"/>
+</map>
+</div>
+
+</div>
+</div>
+<a name="doc-var-members" id="doc-var-members"></a><h2 id="header-doc-var-members" class="groupheader">Değişken Dokümantasyonu</h2>
+<a id="a7207bb35d48cb9d2459caf2e913b0e11" name="a7207bb35d48cb9d2459caf2e913b0e11"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7207bb35d48cb9d2459caf2e913b0e11">&#9670;&#160;</a></span>s_cmd_line</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">char s_cmd_line[<a class="el" href="#af96b3438d6adaaeeccf1ef6147ef6bed">RX_LINE_MAX</a>+1u]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Tamamlanmış komut satırı ve hazır bayrağı. </p>
+<dl class="section user"><dt>Paylaşılan durum</dt><dd>Tek yönlü devir: ISR yalnızca <span class="tt"><a class="el" href="#aa2da629959d51939a574a4c5f856a024" title="Tam bir komut satırı görevi bekliyor.">s_cmd_ready</a> == false</span> iken <span class="tt"><a class="el" href="#a7207bb35d48cb9d2459caf2e913b0e11" title="Tamamlanmış komut satırı ve hazır bayrağı.">s_cmd_line</a></span>'a yazar ve bayrağı <span class="tt">true</span> yapar; görev yalnızca <span class="tt">true</span> iken okur ve <span class="tt">false</span> yapar. Bayrak iki tarafa sırayla sahiplik verir; kilit gerekmez. </dd></dl>
+
+<p class="definition"><a class="el" href="uart__link_8c_source.html">uart_link.c</a> dosyasının <a class="el" href="uart__link_8c_source.html#l00183">183</a> numaralı satırında tanımlanmıştır.</p>
+
+</div>
+</div>
+<a id="aa2da629959d51939a574a4c5f856a024" name="aa2da629959d51939a574a4c5f856a024"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa2da629959d51939a574a4c5f856a024">&#9670;&#160;</a></span>s_cmd_ready</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">volatile bool s_cmd_ready</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Tam bir komut satırı görevi bekliyor. </p>
+
+<p class="definition"><a class="el" href="uart__link_8c_source.html">uart_link.c</a> dosyasının <a class="el" href="uart__link_8c_source.html#l00184">184</a> numaralı satırında tanımlanmıştır.</p>
+
+</div>
+</div>
+<a id="af8593900b43985d7064207ba42f13828" name="af8593900b43985d7064207ba42f13828"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af8593900b43985d7064207ba42f13828">&#9670;&#160;</a></span>s_dma_entry_us</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">volatile uint32_t s_dma_entry_us</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Son TX DMA kesmesinin giriş zamanı [µs]. </p>
+<p>Yazar: DMA ISR; okur: USART2 ISR. </p>
+
+<p class="definition"><a class="el" href="uart__link_8c_source.html">uart_link.c</a> dosyasının <a class="el" href="uart__link_8c_source.html#l00058">58</a> numaralı satırında tanımlanmıştır.</p>
+
+</div>
+</div>
+<a id="afd855432ca208431a28bfdbfaf9aa55c" name="afd855432ca208431a28bfdbfaf9aa55c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd855432ca208431a28bfdbfaf9aa55c">&#9670;&#160;</a></span>s_rx_byte</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t s_rx_byte</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>HAL'in tek baytlık alım tamponu. </p>
+
+<p class="definition"><a class="el" href="uart__link_8c_source.html">uart_link.c</a> dosyasının <a class="el" href="uart__link_8c_source.html#l00171">171</a> numaralı satırında tanımlanmıştır.</p>
+
+</div>
+</div>
+<a id="a7d875b771166bf2663bb0fdc58a3eec2" name="a7d875b771166bf2663bb0fdc58a3eec2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d875b771166bf2663bb0fdc58a3eec2">&#9670;&#160;</a></span>s_rx_discard</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool s_rx_discard</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Taşan satırın kalanı atılıyor. </p>
+<p>Yalnızca RX ISR. </p>
+
+<p class="definition"><a class="el" href="uart__link_8c_source.html">uart_link.c</a> dosyasının <a class="el" href="uart__link_8c_source.html#l00174">174</a> numaralı satırında tanımlanmıştır.</p>
+
+</div>
+</div>
+<a id="a94961f277bd4dfe873ce195b17ed75b2" name="a94961f277bd4dfe873ce195b17ed75b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a94961f277bd4dfe873ce195b17ed75b2">&#9670;&#160;</a></span>s_rx_len</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t s_rx_len</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Yalnızca RX ISR. </p>
+
+<p class="definition"><a class="el" href="uart__link_8c_source.html">uart_link.c</a> dosyasının <a class="el" href="uart__link_8c_source.html#l00173">173</a> numaralı satırında tanımlanmıştır.</p>
+
+</div>
+</div>
+<a id="af8980ff409b62aef2a8d4f557c3e0e3a" name="af8980ff409b62aef2a8d4f557c3e0e3a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af8980ff409b62aef2a8d4f557c3e0e3a">&#9670;&#160;</a></span>s_rx_line</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">char s_rx_line[<a class="el" href="#af96b3438d6adaaeeccf1ef6147ef6bed">RX_LINE_MAX</a>+1u]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Toplanan satır. </p>
+<p>Yalnızca RX ISR. </p>
+
+<p class="definition"><a class="el" href="uart__link_8c_source.html">uart_link.c</a> dosyasının <a class="el" href="uart__link_8c_source.html#l00172">172</a> numaralı satırında tanımlanmıştır.</p>
+
+</div>
+</div>
+<a id="ae08b4045dd96239454d4e19963087f34" name="ae08b4045dd96239454d4e19963087f34"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae08b4045dd96239454d4e19963087f34">&#9670;&#160;</a></span>s_rx_restart</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">volatile bool s_rx_restart</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Alım durdu; görev yeniden başlatsın. </p>
+
+<p class="definition"><a class="el" href="uart__link_8c_source.html">uart_link.c</a> dosyasının <a class="el" href="uart__link_8c_source.html#l00185">185</a> numaralı satırında tanımlanmıştır.</p>
+
+</div>
+</div>
+<a id="a0d148e0a2ab97eab25018cfa43bc30cf" name="a0d148e0a2ab97eab25018cfa43bc30cf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d148e0a2ab97eab25018cfa43bc30cf">&#9670;&#160;</a></span>s_tx_buf</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t s_tx_buf[<a class="el" href="app__config_8h.html#abb2d0329752cc81ae3a14caa741b7abb">APP_TX_BUF_LEN</a>]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>DMA'nın okuduğu kalıcı gönderim tamponu (FR-45, HW-05). </p>
+<p>Görev stack'indeki bir yerel değişken DMA sürerken geçersizleşebilirdi. <span class="tt">static</span> olduğu için <span class="tt">.bss</span>'te, yani normal SRAM'dedir; CCM RAM'e düşmez (linker raporu: CCMRAM 0 B). </p>
+
+<p class="definition"><a class="el" href="uart__link_8c_source.html">uart_link.c</a> dosyasının <a class="el" href="uart__link_8c_source.html#l00040">40</a> numaralı satırında tanımlanmıştır.</p>
+
+</div>
+</div>
+<a id="ad3a48abf2ea7f76193c997ab016a3d3a" name="ad3a48abf2ea7f76193c997ab016a3d3a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad3a48abf2ea7f76193c997ab016a3d3a">&#9670;&#160;</a></span>s_tx_busy</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">volatile bool s_tx_busy</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>DMA başlatıldı, TC henüz gelmedi. </p>
+
+<p class="definition"><a class="el" href="uart__link_8c_source.html">uart_link.c</a> dosyasının <a class="el" href="uart__link_8c_source.html#l00050">50</a> numaralı satırında tanımlanmıştır.</p>
+
+</div>
+</div>
+<a id="a33684c206209bd316e672073c7cecf64" name="a33684c206209bd316e672073c7cecf64"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a33684c206209bd316e672073c7cecf64">&#9670;&#160;</a></span>s_tx_event</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">volatile uint32_t s_tx_event</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Hatta giden mesajın olay kimliği. </p>
+
+<p class="definition"><a class="el" href="uart__link_8c_source.html">uart_link.c</a> dosyasının <a class="el" href="uart__link_8c_source.html#l00049">49</a> numaralı satırında tanımlanmıştır.</p>
+
+</div>
+</div>
+<a id="abfc3307c65fdb8551d95921c7ad28791" name="abfc3307c65fdb8551d95921c7ad28791"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abfc3307c65fdb8551d95921c7ad28791">&#9670;&#160;</a></span>s_tx_kind</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">volatile <a class="el" href="group__tasks.html#gae23dc602fcc5835f96131c7acf975fcf">MsgKind</a> s_tx_kind</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Hatta giden mesajın türü ve olay kimliği. </p>
+<dl class="section user"><dt>Paylaşılan durum</dt><dd>Yazar: UartTxTask (DMA başlatılmadan önce). Okur: TC ISR'ı. Aynı anda tek aktarım olduğu için ISR yalnızca kendi aktarımının değerlerini görür. </dd></dl>
+
+<p class="definition"><a class="el" href="uart__link_8c_source.html">uart_link.c</a> dosyasının <a class="el" href="uart__link_8c_source.html#l00048">48</a> numaralı satırında tanımlanmıştır.</p>
+
+</div>
+</div>
+<a id="aeda1a60b1f8a35a98afa332e8658516e" name="aeda1a60b1f8a35a98afa332e8658516e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeda1a60b1f8a35a98afa332e8658516e">&#9670;&#160;</a></span>s_tx_t3</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">volatile uint32_t s_tx_t3</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Son BTN mesajının t₃'ü; TC ISR'ı t₄ − t₃'ü tanıya yazar. </p>
+
+<p class="definition"><a class="el" href="uart__link_8c_source.html">uart_link.c</a> dosyasının <a class="el" href="uart__link_8c_source.html#l00060">60</a> numaralı satırında tanımlanmıştır.</p>
+
+</div>
+</div>
+<a id="abddfc923e93f74b1b393139d81be4653" name="abddfc923e93f74b1b393139d81be4653"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abddfc923e93f74b1b393139d81be4653">&#9670;&#160;</a></span>s_tx_task</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TaskHandle_t s_tx_task</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>UartTxTask'ın tutamacı; TC ISR'ı bununla görevi uyandırır. </p>
+
+<p class="definition"><a class="el" href="uart__link_8c_source.html">uart_link.c</a> dosyasının <a class="el" href="uart__link_8c_source.html#l00053">53</a> numaralı satırında tanımlanmıştır.</p>
+
+</div>
+</div>
+<a id="ac1f6e5c43eb9da937716ab6e2855f3a7" name="ac1f6e5c43eb9da937716ab6e2855f3a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac1f6e5c43eb9da937716ab6e2855f3a7">&#9670;&#160;</a></span>s_uart_entry_us</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">volatile uint32_t s_uart_entry_us</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Son USART2 kesmesinin giriş zamanı [µs] (t₄ kaynağı). </p>
+<p>Yazar/okur: USART2 ISR. </p>
+
+<p class="definition"><a class="el" href="uart__link_8c_source.html">uart_link.c</a> dosyasının <a class="el" href="uart__link_8c_source.html#l00056">56</a> numaralı satırında tanımlanmıştır.</p>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><b>firmware</b></li><li class="navelem"><b>Core</b></li><li class="navelem"><b>Src</b></li><li class="navelem"><a href="uart__link_8c.html">uart_link.c</a></li>
+    <li class="footer">Oluşturan <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.18.0 </li>
+  </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="tr">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Hafta 1 - Yuk altinda buton yanit suresi: D:/RTOS/Hafta_1_RTOS_Bootcamp/hafta-01/firmware/Core/Inc/experiment.h Kaynak Dosyası</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Hafta 1 - Yuk altinda buton yanit suresi
+   </div>
+   <div id="projectbrief">STM32F407 + FreeRTOS olcum firmware&#39;i</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Oluşturan Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="application/json" id="doxygen-config">
+{
+  "relPath": "",
+  "generateTreeView": true,
+  "searchEngine": true,
+  "serverBasedSearch": false,
+  "disableIndex": false,
+  "dynamicMenus": true,
+  "fullSidebar": false
+}
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Ara" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded',() => { initNavTree('experiment_8h_source.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Yüklüyor...</div>
+<div class="SRStatus" id="Searching">Arıyor...</div>
+<div class="SRStatus" id="NoMatches">Eşleşme Yok</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">experiment.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="experiment_8h.html">Bu dosyanın dokümantasyonuna git.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#ifndef EXPERIMENT_H</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#define EXPERIMENT_H</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="keywordtype">void</span> <a class="code hl_function" href="group__tasks.html#gacd105c2bf0347f093d3e7dac39dfe261">TelemetryTask</a>(<span class="keywordtype">void</span> *arg);</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="keywordtype">void</span> <a class="code hl_function" href="group__expfsm.html#gab7a2216305ceb4f8aed8be62c9b7cc26">calibrated_work</a>(uint32_t iters);</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="keywordtype">void</span> <a class="code hl_function" href="group__expfsm.html#ga00ae2ef3be10429aec51bc3a4dff5744">exp_tick</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="keywordtype">bool</span> <a class="code hl_function" href="group__expfsm.html#ga1b5cb2e555087b3439bd3af0447af57b">exp_is_measuring</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span><span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code hl_function" href="group__expfsm.html#ga9b204851e5197b183aab2c0a46dfe485">exp_scenario_name</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="preprocessor">#endif </span><span class="comment">/* EXPERIMENT_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agroup__expfsm_html_ga00ae2ef3be10429aec51bc3a4dff5744"><div class="ttname"><a href="group__expfsm.html#ga00ae2ef3be10429aec51bc3a4dff5744">exp_tick</a></div><div class="ttdeci">void exp_tick(void)</div><div class="ttdoc">Durum makinesinin bir turu: komutları işler, zamanlı geçişleri yapar.</div><div class="ttdef"><b>Definition</b> <a href="experiment_8c_source.html#l00383">experiment.c:383</a></div></div>
+<div class="ttc" id="agroup__expfsm_html_ga1b5cb2e555087b3439bd3af0447af57b"><div class="ttname"><a href="group__expfsm.html#ga1b5cb2e555087b3439bd3af0447af57b">exp_is_measuring</a></div><div class="ttdeci">bool exp_is_measuring(void)</div><div class="ttdoc">Ölçüm durumunda mı (buton olayları kayda alınır mı).</div><div class="ttdef"><b>Definition</b> <a href="experiment_8c_source.html#l00120">experiment.c:120</a></div></div>
+<div class="ttc" id="agroup__expfsm_html_ga9b204851e5197b183aab2c0a46dfe485"><div class="ttname"><a href="group__expfsm.html#ga9b204851e5197b183aab2c0a46dfe485">exp_scenario_name</a></div><div class="ttdeci">const char * exp_scenario_name(void)</div><div class="ttdoc">Aktif senaryonun adı (&quot;S0&quot; … &quot;S5&quot;).</div><div class="ttdef"><b>Definition</b> <a href="experiment_8c_source.html#l00125">experiment.c:125</a></div></div>
+<div class="ttc" id="agroup__expfsm_html_gab7a2216305ceb4f8aed8be62c9b7cc26"><div class="ttname"><a href="group__expfsm.html#gab7a2216305ceb4f8aed8be62c9b7cc26">calibrated_work</a></div><div class="ttdeci">void calibrated_work(uint32_t iters)</div><div class="ttdoc">Ek CPU işi: sonucu kullanılan, optimize edilemeyen sabit iterasyonlu hesap (FR-23).</div><div class="ttdef"><b>Definition</b> <a href="experiment_8c_source.html#l00111">experiment.c:111</a></div></div>
+<div class="ttc" id="agroup__tasks_html_gacd105c2bf0347f093d3e7dac39dfe261"><div class="ttname"><a href="group__tasks.html#gacd105c2bf0347f093d3e7dac39dfe261">TelemetryTask</a></div><div class="ttdeci">void TelemetryTask(void *arg)</div><div class="ttdoc">Telemetri görevi — yüksek öncelik (3).</div><div class="ttdef"><b>Definition</b> <a href="experiment_8c_source.html#l00437">experiment.c:437</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><b>firmware</b></li><li class="navelem"><b>Core</b></li><li class="navelem"><b>Inc</b></li><li class="navelem"><a href="experiment_8h.html">experiment.h</a></li>
+    <li class="footer">Oluşturan <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.18.0 </li>
+  </ul>
+</div>
+</body>
+</html>

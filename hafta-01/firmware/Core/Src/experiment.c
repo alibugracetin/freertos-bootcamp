@@ -41,11 +41,13 @@ static const Scenario k_scen[] = {
     { "S4",  10u, APP_WORK_ITERS_S4  },   /* 100 Hz + ≈2 ms iş */
     { "S5",  10u, APP_WORK_ITERS_S5  },   /* 100 Hz + ≈5 ms iş */
 };
+/** @brief Senaryo tablosundaki kayıt sayısı. */
 #define SCEN_COUNT  (sizeof k_scen / sizeof k_scen[0])
 
 /** @brief Deney durumları. */
 typedef enum { EXP_IDLE = 0, EXP_ARMED, EXP_WARMUP, EXP_MEASURING, EXP_DRAINING, EXP_DONE } ExpState;
 
+/** @brief Durum adlarının protokoldeki karşılıkları (STA satırı). */
 static const char *const k_state_name[] = { "IDLE", "ARMED", "WARMUP", "MEASURING", "DRAINING", "DONE" };
 
 /* ------------------------------------------------------ paylaşılan durum */
@@ -56,9 +58,13 @@ static const char *const k_state_name[] = { "IDLE", "ARMED", "WARMUP", "MEASURIN
  *      Yalnızca ButtonTask (@ref exp_tick) yazar ve okur; aşağıdaki iki bayrak hariç.
  */
 static ExpState   s_state = EXP_IDLE;
+/** @brief Aktif senaryonun senaryo tablosundaki indeksi (0…5). */
 static uint8_t    s_scen;
+/** @brief Bu koşuda ulaşılması gereken olay sayısı (`CMD,START,n`). */
 static uint32_t   s_target = APP_DEFAULT_TARGET;
+/** @brief İçinde bulunulan duruma girildiği an [tick]; zamanlı geçişler için. */
 static TickType_t s_state_since;
+/** @brief Açılış duyurusu (BOOT + STA) gönderildi mi. */
 static bool       s_announced;
 
 /** @brief Buton ISR'ının okuduğu ölçüm bayrağı. Yazar: ButtonTask. */
@@ -67,6 +73,7 @@ static volatile bool s_measuring;
 static volatile bool s_tel_run;
 /** @brief TelemetryTask periyodik döngüde mi. Yazar: TelemetryTask. */
 static volatile bool s_tel_active;
+/** @brief TelemetryTask tutamacı; durum makinesi telemetriyi bununla uyandırır. */
 static TaskHandle_t  s_tel_task;
 
 /**
@@ -86,10 +93,15 @@ static uint32_t s_txq_hwm_meas;
  *      Sıfırlama: senaryo seçiminde, telemetri dururken.
  */
 static struct {
-    uint32_t sent;                       /**< Üretilen TEL sayısı. */
-    uint32_t per_n, per_sum, per_min, per_max;   /**< Ardışık üretim başlangıçları arası [µs]. */
-    uint32_t work_n, work_sum, work_max;         /**< calibrated_work duvar saati [µs]. */
-} s_tel;
+    uint32_t sent;       /**< Üretilen TEL sayısı. */
+    uint32_t per_n;      /**< Ölçülen periyot aralığı sayısı. */
+    uint32_t per_sum;    /**< Periyot aralıklarının toplamı [µs]. */
+    uint32_t per_min;    /**< En kısa gerçekleşen periyot [µs]. */
+    uint32_t per_max;    /**< En uzun gerçekleşen periyot [µs]. */
+    uint32_t work_n;     /**< Ölçülen ek CPU işi sayısı. */
+    uint32_t work_sum;   /**< İş sürelerinin toplamı [µs], duvar saati. */
+    uint32_t work_max;   /**< En uzun iş süresi [µs]. */
+} s_tel;   /**< @brief Telemetri istatistikleri. */
 
 /** @brief `calibrated_work` sonucunun yazıldığı yer; derleyicinin döngüyü silmesini engeller. */
 static volatile uint32_t s_work_sink;
@@ -115,18 +127,26 @@ const char *exp_scenario_name(void)
     return k_scen[s_scen].name;
 }
 
-/** @brief Bir kontrol satırını `txQ`'ya koyar (yalnızca ölçüm dışında çağrılır). */
+/**
+ * @brief   Bir kontrol satırını `txQ`'ya koyar (yalnızca ölçüm dışında çağrılır).
+ * @param   m  Gönderilecek mesaj.
+ */
 static void send_ctrl(const TxMsg *m)
 {
     (void)xQueueSend(g_tx_q, m, pdMS_TO_TICKS(500));
 }
 
+/** @brief Biçimli bir kontrol satırını üretip `send_ctrl()` ile TX kuyruğuna koyar. */
 #define SEND_LINE(...)                                                   \
     do {                                                                 \
         TxMsg m_;                                                        \
         if (proto_fmt_line(&m_, MSG_CTRL, __VA_ARGS__)) { send_ctrl(&m_); } \
     } while (0)
 
+/**
+ * @brief   Durum LED'lerini günceller (FR-90).
+ * @param   st  Gösterilecek durum.
+ */
 static void set_leds(ExpState st)
 {
     HAL_GPIO_WritePin(GPIOD, LED_GREEN_Pin | LED_ORANGE_Pin | LED_RED_Pin | LED_BLUE_Pin, GPIO_PIN_RESET);
@@ -141,6 +161,7 @@ static void set_leds(ExpState st)
     HAL_GPIO_WritePin(GPIOD, pin, GPIO_PIN_SET);
 }
 
+/** @brief Güncel durumu `STA` satırı olarak gönderir. */
 static void send_status(void)
 {
     SEND_LINE("STA,%s,%s,%lu,%lu,%u", k_state_name[s_state], k_scen[s_scen].name,
@@ -148,6 +169,10 @@ static void send_status(void)
               (unsigned)k_scen[s_scen].period_ms);
 }
 
+/**
+ * @brief   Yeni duruma geçer: zaman damgasını ve LED'leri günceller.
+ * @param   st  Geçilecek durum.
+ */
 static void enter(ExpState st)
 {
     s_state       = st;
@@ -191,6 +216,11 @@ static void reset_measurement(void)
 
 /* ------------------------------------------------------------------- döküm */
 
+/**
+ * @brief   Kayıt durumunun CSV'de kullanılan metin karşılığı.
+ * @param   st  @ref RecStatus değeri.
+ * @return  Sabit dizge ("ok", "tx_drop", …).
+ */
 static const char *status_name(uint8_t st)
 {
     switch (st) {
@@ -261,12 +291,22 @@ static void dump_records(void)
 
 /* ------------------------------------------------------------------ komutlar */
 
+/**
+ * @brief   Komutu reddeder: `ERR` satırı gönderir ve sayacı artırır (FR-83).
+ * @param   why   Ret nedeni ("unknown", "state", "busy").
+ * @param   line  Reddedilen komut satırı.
+ */
 static void reject(const char *why, const char *line)
 {
     g_cnt_task.cmd_err++;
     SEND_LINE("ERR,%s,%s", why, line);
 }
 
+/**
+ * @brief   Bir komut satırını ayrıştırıp durum makinesine uygular.
+ * @param   line  LF'siz komut satırı.
+ * @note    Görev bağlamı (ButtonTask bakım turu).
+ */
 static void handle_command(const char *line)
 {
     Command c;

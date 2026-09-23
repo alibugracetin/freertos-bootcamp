@@ -1,0 +1,243 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="tr">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Hafta 1 - Yuk altinda buton yanit suresi: D:/RTOS/Hafta_1_RTOS_Bootcamp/hafta-01/firmware/Core/Inc/app_diag.h Kaynak Dosyası</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Hafta 1 - Yuk altinda buton yanit suresi
+   </div>
+   <div id="projectbrief">STM32F407 + FreeRTOS olcum firmware&#39;i</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Oluşturan Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="application/json" id="doxygen-config">
+{
+  "relPath": "",
+  "generateTreeView": true,
+  "searchEngine": true,
+  "serverBasedSearch": false,
+  "disableIndex": false,
+  "dynamicMenus": true,
+  "fullSidebar": false
+}
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Ara" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded',() => { initNavTree('app__diag_8h_source.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Yüklüyor...</div>
+<div class="SRStatus" id="Searching">Arıyor...</div>
+<div class="SRStatus" id="NoMatches">Eşleşme Yok</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">app_diag.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="app__diag_8h.html">Bu dosyanın dokümantasyonuna git.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#ifndef APP_DIAG_H</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#define APP_DIAG_H</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span></div>
+<div class="foldopen" id="foldopen00034" data-start="{" data-end="};">
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="struct_isr_counters.html">   34</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="struct_isr_counters.html#a590b81033285780ab033ed1b58f0daf5">   35</a></span>    uint32_t <a class="code hl_variable" href="struct_isr_counters.html#a590b81033285780ab033ed1b58f0daf5">accepted</a>;       </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="struct_isr_counters.html#a7c5101bbf590b03f7e0d5278fc64bc1e">   36</a></span>    uint32_t <a class="code hl_variable" href="struct_isr_counters.html#a7c5101bbf590b03f7e0d5278fc64bc1e">debounce_rej</a>;   </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="struct_isr_counters.html#af5bbec2dbfd1fd2f20f678a330414202">   37</a></span>    uint32_t <a class="code hl_variable" href="struct_isr_counters.html#af5bbec2dbfd1fd2f20f678a330414202">btnq_drop</a>;      </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="struct_isr_counters.html#a150c8c30fbcbe12210d05939a9308c48">   38</a></span>    uint32_t <a class="code hl_variable" href="struct_isr_counters.html#a150c8c30fbcbe12210d05939a9308c48">rec_ovf</a>;        </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="struct_isr_counters.html#a778fb953f67585ce3f1f5de54ed7ae2d">   39</a></span>    uint32_t <a class="code hl_variable" href="struct_isr_counters.html#a778fb953f67585ce3f1f5de54ed7ae2d">rec_mismatch</a>;   </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="struct_isr_counters.html#ab20663a174bfe3b2b1170991ca1ea433">   40</a></span>    uint32_t <a class="code hl_variable" href="struct_isr_counters.html#ab20663a174bfe3b2b1170991ca1ea433">unarmed_rej</a>;    </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="struct_isr_counters.html#a1b6b3b455db9f73e50760e5fe9cdcbd9">   41</a></span>    uint32_t <a class="code hl_variable" href="struct_isr_counters.html#a1b6b3b455db9f73e50760e5fe9cdcbd9">events</a>;         </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="struct_isr_counters.html#a43576ed6ee68cb11eb551aae82d60195">   42</a></span>    uint32_t <a class="code hl_variable" href="struct_isr_counters.html#a43576ed6ee68cb11eb551aae82d60195">idle_press</a>;     </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="struct_isr_counters.html#a672afe99158aa8fc014cd9b7bf18d0c6">   43</a></span>    uint32_t <a class="code hl_variable" href="struct_isr_counters.html#a672afe99158aa8fc014cd9b7bf18d0c6">rx_overflow</a>;    </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="struct_isr_counters.html#a389531b5947cd7802a0fef83e938b93f">   44</a></span>    uint32_t <a class="code hl_variable" href="struct_isr_counters.html#a389531b5947cd7802a0fef83e938b93f">rx_err</a>;         </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="struct_isr_counters.html#a5e1ae5eb4d4d1616d1a688eae6a0843f">   45</a></span>    uint32_t <a class="code hl_variable" href="struct_isr_counters.html#a5e1ae5eb4d4d1616d1a688eae6a0843f">cmd_busy</a>;       </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>} <a class="code hl_struct" href="struct_isr_counters.html">IsrCounters</a>;</div>
+</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span></div>
+<div class="foldopen" id="foldopen00052" data-start="{" data-end="};">
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="struct_task_counters.html">   52</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="struct_task_counters.html#a0c905c0624bb6933a5827b6c6d989159">   53</a></span>    uint32_t <a class="code hl_variable" href="struct_task_counters.html#a0c905c0624bb6933a5827b6c6d989159">txq_drop_tel</a>;   </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="struct_task_counters.html#a21dfc5787dddc4d0fbafcdf92df9dea0">   54</a></span>    uint32_t <a class="code hl_variable" href="struct_task_counters.html#a21dfc5787dddc4d0fbafcdf92df9dea0">txq_drop_btn</a>;   </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="struct_task_counters.html#a0a7135ff7aff17c18c19b9d81d44e885">   55</a></span>    uint32_t <a class="code hl_variable" href="struct_task_counters.html#a0a7135ff7aff17c18c19b9d81d44e885">rec_mismatch</a>;   </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="struct_task_counters.html#a324ec3ba56fae82e1a1d751972d2ca0b">   56</a></span>    uint32_t <a class="code hl_variable" href="struct_task_counters.html#a324ec3ba56fae82e1a1d751972d2ca0b">uart_err</a>;       </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="struct_task_counters.html#af39498b090903840ac63dfb36e67ba7c">   57</a></span>    uint32_t <a class="code hl_variable" href="struct_task_counters.html#af39498b090903840ac63dfb36e67ba7c">uart_timeout</a>;   </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="struct_task_counters.html#a64a45f8d264573c1029cd681e9983f12">   58</a></span>    uint32_t <a class="code hl_variable" href="struct_task_counters.html#a64a45f8d264573c1029cd681e9983f12">rec_mismatch_tx</a>;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="struct_task_counters.html#ab435377d1587f59a8cc541637bed8f1f">   59</a></span>    uint32_t <a class="code hl_variable" href="struct_task_counters.html#ab435377d1587f59a8cc541637bed8f1f">fmt_err_tel</a>;    </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="struct_task_counters.html#a6c02ef3a612203e583458e381cd7b0e3">   60</a></span>    uint32_t <a class="code hl_variable" href="struct_task_counters.html#a6c02ef3a612203e583458e381cd7b0e3">fmt_err_btn</a>;    </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="struct_task_counters.html#a8ce96e5cf125c007224842d4865e1097">   61</a></span>    uint32_t <a class="code hl_variable" href="struct_task_counters.html#a8ce96e5cf125c007224842d4865e1097">txq_hwm</a>;        </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="struct_task_counters.html#aec42afc75acf720e774b8f9926c9f559">   62</a></span>    uint32_t <a class="code hl_variable" href="struct_task_counters.html#aec42afc75acf720e774b8f9926c9f559">cmd_err</a>;        </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>} <a class="code hl_struct" href="struct_task_counters.html">TaskCounters</a>;</div>
+</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span></div>
+<div class="foldopen" id="foldopen00069" data-start="{" data-end="};">
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="struct_app_diag.html">   69</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="struct_app_diag.html#aea111dd934d27dc10e595c61d68d4fad">   70</a></span>    uint32_t <a class="code hl_variable" href="struct_app_diag.html#aea111dd934d27dc10e595c61d68d4fad">magic</a>;              </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="struct_app_diag.html#aaed03d26f23f5d1e9948e17b5fda30df">   71</a></span>    uint32_t <a class="code hl_variable" href="struct_app_diag.html#aaed03d26f23f5d1e9948e17b5fda30df">selfcheck</a>;          </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="struct_app_diag.html#a9343229ccf2f63c9b79e9a0cfa9a782f">   72</a></span>    uint32_t <a class="code hl_variable" href="struct_app_diag.html#a9343229ccf2f63c9b79e9a0cfa9a782f">selfcheck_opened</a>;   </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="struct_app_diag.html#ac16aef1aa03ce08caf33feec73fdc3a5">   73</a></span>    uint32_t <a class="code hl_variable" href="struct_app_diag.html#ac16aef1aa03ce08caf33feec73fdc3a5">selfcheck_rejected</a>; </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="struct_app_diag.html#a6759564f5299a67364fc66be02038bd8">   74</a></span>    uint32_t <a class="code hl_variable" href="struct_app_diag.html#a6759564f5299a67364fc66be02038bd8">task_count</a>;         </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="struct_app_diag.html#a964c252519fee14bb292bc01a2d6ffaf">   75</a></span>    uint32_t <a class="code hl_variable" href="struct_app_diag.html#a964c252519fee14bb292bc01a2d6ffaf">heap_free</a>;          </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="struct_app_diag.html#a45f6e7eb297b08291a603b12fe3b9b86">   76</a></span>    uint32_t <a class="code hl_variable" href="struct_app_diag.html#a45f6e7eb297b08291a603b12fe3b9b86">heap_min_free</a>;      </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="struct_app_diag.html#a4f902b7117814d155c06c901db884283">   77</a></span>    uint32_t <a class="code hl_variable" href="struct_app_diag.html#a4f902b7117814d155c06c901db884283">btn_wakeups</a>;        </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="struct_app_diag.html#a4c81c71a5f966a612557dd8f129e4a1d">   78</a></span>    uint32_t <a class="code hl_variable" href="struct_app_diag.html#a4c81c71a5f966a612557dd8f129e4a1d">last_event_id</a>;      </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="struct_app_diag.html#aa0c6a8ec31e9b26eb5b44c18458e257a">   79</a></span>    uint32_t <a class="code hl_variable" href="struct_app_diag.html#aa0c6a8ec31e9b26eb5b44c18458e257a">last_t0</a>;            </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="struct_app_diag.html#a763b1b34b798a2cd62ee990988bfcf14">   80</a></span>    uint32_t <a class="code hl_variable" href="struct_app_diag.html#a763b1b34b798a2cd62ee990988bfcf14">last_t1</a>;            </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="struct_app_diag.html#a46765eba7af378e9815e534b704ed13c">   81</a></span>    uint32_t <a class="code hl_variable" href="struct_app_diag.html#a46765eba7af378e9815e534b704ed13c">last_t1_minus_t0</a>;   </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="struct_app_diag.html#a65d36a1c8841855b8b4040b1a8a73c27">   82</a></span>    uint32_t <a class="code hl_variable" href="struct_app_diag.html#a65d36a1c8841855b8b4040b1a8a73c27">max_t1_minus_t0</a>;    </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="struct_app_diag.html#a05d0455a141e65488c7e617a5ea8cefb">   83</a></span>    uint32_t <a class="code hl_variable" href="struct_app_diag.html#a05d0455a141e65488c7e617a5ea8cefb">fault</a>;              </div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="struct_app_diag.html#afaf860cc515a3a7f22fbc4af22c2082a">   84</a></span>    uint32_t <a class="code hl_variable" href="struct_app_diag.html#afaf860cc515a3a7f22fbc4af22c2082a">btn_stack_hwm</a>;      </div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="struct_app_diag.html#aa58fbe1ccbc29ed09c67e0af07874341">   85</a></span>    uint32_t <a class="code hl_variable" href="struct_app_diag.html#aa58fbe1ccbc29ed09c67e0af07874341">work_us_per_100k</a>;   </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno"><a class="line" href="struct_app_diag.html#a07dbcf062286aa0e85467355cb5926ab">   86</a></span>    uint32_t <a class="code hl_variable" href="struct_app_diag.html#a07dbcf062286aa0e85467355cb5926ab">last_dma_to_tc_us</a>;  </div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno"><a class="line" href="struct_app_diag.html#a0e336175415b5552ca1a671d3da9bb6a">   87</a></span>    uint32_t <a class="code hl_variable" href="struct_app_diag.html#a0e336175415b5552ca1a671d3da9bb6a">max_dma_to_tc_us</a>;   </div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno"><a class="line" href="struct_app_diag.html#a85f7eb4a6596462695f4ce90a902ac3a">   88</a></span>    uint32_t <a class="code hl_variable" href="struct_app_diag.html#a85f7eb4a6596462695f4ce90a902ac3a">last_t4_minus_t3</a>;   </div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>} <a class="code hl_struct" href="struct_app_diag.html">AppDiag</a>;</div>
+</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span></div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno"><a class="line" href="app__diag_8h.html#ab7cbe1a75a0cc2e67c25cbdb0a5ecfaf">   92</a></span><span class="preprocessor">#define APP_DIAG_MAGIC  0xD1A60002u</span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span><span class="keyword">extern</span> <span class="keyword">volatile</span> <a class="code hl_struct" href="struct_isr_counters.html">IsrCounters</a> <a class="code hl_variable" href="app__diag_8h.html#adfb01d77f83da4e3c751aa50aee2e11f">g_cnt_isr</a>;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span><span class="keyword">extern</span> <span class="keyword">volatile</span> <a class="code hl_struct" href="struct_task_counters.html">TaskCounters</a> <a class="code hl_variable" href="app__diag_8h.html#a994b9ea3718f517b6196f673feddc766">g_cnt_task</a>;</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span><span class="keyword">extern</span> <span class="keyword">volatile</span> <a class="code hl_struct" href="struct_app_diag.html">AppDiag</a> <a class="code hl_variable" href="app__diag_8h.html#a64309afc2f60d8e29d2321f44946cbd1">g_diag</a>;</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span><span class="preprocessor">#endif </span><span class="comment">/* APP_DIAG_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="aapp__diag_8h_html_a64309afc2f60d8e29d2321f44946cbd1"><div class="ttname"><a href="app__diag_8h.html#a64309afc2f60d8e29d2321f44946cbd1">g_diag</a></div><div class="ttdeci">volatile AppDiag g_diag</div><div class="ttdoc">Tanı özeti.</div><div class="ttdef"><b>Definition</b> <a href="app__tasks_8c_source.html#l00032">app_tasks.c:32</a></div></div>
+<div class="ttc" id="aapp__diag_8h_html_a994b9ea3718f517b6196f673feddc766"><div class="ttname"><a href="app__diag_8h.html#a994b9ea3718f517b6196f673feddc766">g_cnt_task</a></div><div class="ttdeci">volatile TaskCounters g_cnt_task</div><div class="ttdoc">Görev sayaçları.</div><div class="ttdef"><b>Definition</b> <a href="app__tasks_8c_source.html#l00031">app_tasks.c:31</a></div></div>
+<div class="ttc" id="aapp__diag_8h_html_adfb01d77f83da4e3c751aa50aee2e11f"><div class="ttname"><a href="app__diag_8h.html#adfb01d77f83da4e3c751aa50aee2e11f">g_cnt_isr</a></div><div class="ttdeci">volatile IsrCounters g_cnt_isr</div><div class="ttdoc">ISR sayaçları.</div><div class="ttdef"><b>Definition</b> <a href="app__tasks_8c_source.html#l00030">app_tasks.c:30</a></div></div>
+<div class="ttc" id="astruct_app_diag_html"><div class="ttname"><a href="struct_app_diag.html">AppDiag</a></div><div class="ttdoc">Karta dokunmadan okunabilen durum özeti.</div><div class="ttdef"><b>Definition</b> <a href="#l00069">app_diag.h:69</a></div></div>
+<div class="ttc" id="astruct_app_diag_html_a05d0455a141e65488c7e617a5ea8cefb"><div class="ttname"><a href="struct_app_diag.html#a05d0455a141e65488c7e617a5ea8cefb">AppDiag::fault</a></div><div class="ttdeci">uint32_t fault</div><div class="ttdoc">[13] 0 = yok, 1 = stack taşması, 2 = heap tükendi.</div><div class="ttdef"><b>Definition</b> <a href="#l00083">app_diag.h:83</a></div></div>
+<div class="ttc" id="astruct_app_diag_html_a07dbcf062286aa0e85467355cb5926ab"><div class="ttname"><a href="struct_app_diag.html#a07dbcf062286aa0e85467355cb5926ab">AppDiag::last_dma_to_tc_us</a></div><div class="ttdeci">uint32_t last_dma_to_tc_us</div><div class="ttdoc">[16] Son BTN&#39;de DMA bitişi → UART TC [µs] (R-2 kanıtı; yazar: TC ISR).</div><div class="ttdef"><b>Definition</b> <a href="#l00086">app_diag.h:86</a></div></div>
+<div class="ttc" id="astruct_app_diag_html_a0e336175415b5552ca1a671d3da9bb6a"><div class="ttname"><a href="struct_app_diag.html#a0e336175415b5552ca1a671d3da9bb6a">AppDiag::max_dma_to_tc_us</a></div><div class="ttdeci">uint32_t max_dma_to_tc_us</div><div class="ttdoc">[17] En büyük DMA → TC [µs] (yazar: TC ISR).</div><div class="ttdef"><b>Definition</b> <a href="#l00087">app_diag.h:87</a></div></div>
+<div class="ttc" id="astruct_app_diag_html_a45f6e7eb297b08291a603b12fe3b9b86"><div class="ttname"><a href="struct_app_diag.html#a45f6e7eb297b08291a603b12fe3b9b86">AppDiag::heap_min_free</a></div><div class="ttdeci">uint32_t heap_min_free</div><div class="ttdoc">[6] Açılıştan beri en düşük boş heap [bayt].</div><div class="ttdef"><b>Definition</b> <a href="#l00076">app_diag.h:76</a></div></div>
+<div class="ttc" id="astruct_app_diag_html_a46765eba7af378e9815e534b704ed13c"><div class="ttname"><a href="struct_app_diag.html#a46765eba7af378e9815e534b704ed13c">AppDiag::last_t1_minus_t0</a></div><div class="ttdeci">uint32_t last_t1_minus_t0</div><div class="ttdoc">[11] Son olayda ISR → görev [µs].</div><div class="ttdef"><b>Definition</b> <a href="#l00081">app_diag.h:81</a></div></div>
+<div class="ttc" id="astruct_app_diag_html_a4c81c71a5f966a612557dd8f129e4a1d"><div class="ttname"><a href="struct_app_diag.html#a4c81c71a5f966a612557dd8f129e4a1d">AppDiag::last_event_id</a></div><div class="ttdeci">uint32_t last_event_id</div><div class="ttdoc">[8] Son olay kimliği.</div><div class="ttdef"><b>Definition</b> <a href="#l00078">app_diag.h:78</a></div></div>
+<div class="ttc" id="astruct_app_diag_html_a4f902b7117814d155c06c901db884283"><div class="ttname"><a href="struct_app_diag.html#a4f902b7117814d155c06c901db884283">AppDiag::btn_wakeups</a></div><div class="ttdeci">uint32_t btn_wakeups</div><div class="ttdoc">[7] ButtonTask&#39;ın olay aldığı sayı.</div><div class="ttdef"><b>Definition</b> <a href="#l00077">app_diag.h:77</a></div></div>
+<div class="ttc" id="astruct_app_diag_html_a65d36a1c8841855b8b4040b1a8a73c27"><div class="ttname"><a href="struct_app_diag.html#a65d36a1c8841855b8b4040b1a8a73c27">AppDiag::max_t1_minus_t0</a></div><div class="ttdeci">uint32_t max_t1_minus_t0</div><div class="ttdoc">[12] En büyük ISR → görev [µs].</div><div class="ttdef"><b>Definition</b> <a href="#l00082">app_diag.h:82</a></div></div>
+<div class="ttc" id="astruct_app_diag_html_a6759564f5299a67364fc66be02038bd8"><div class="ttname"><a href="struct_app_diag.html#a6759564f5299a67364fc66be02038bd8">AppDiag::task_count</a></div><div class="ttdeci">uint32_t task_count</div><div class="ttdoc">[4] Beklenen: 4 = 3 + Idle.</div><div class="ttdef"><b>Definition</b> <a href="#l00074">app_diag.h:74</a></div></div>
+<div class="ttc" id="astruct_app_diag_html_a763b1b34b798a2cd62ee990988bfcf14"><div class="ttname"><a href="struct_app_diag.html#a763b1b34b798a2cd62ee990988bfcf14">AppDiag::last_t1</a></div><div class="ttdeci">uint32_t last_t1</div><div class="ttdoc">[10] Son olayın t₁&#39;i [µs].</div><div class="ttdef"><b>Definition</b> <a href="#l00080">app_diag.h:80</a></div></div>
+<div class="ttc" id="astruct_app_diag_html_a85f7eb4a6596462695f4ce90a902ac3a"><div class="ttname"><a href="struct_app_diag.html#a85f7eb4a6596462695f4ce90a902ac3a">AppDiag::last_t4_minus_t3</a></div><div class="ttdeci">uint32_t last_t4_minus_t3</div><div class="ttdoc">[18] Son BTN&#39;de UART başlatma → TC [µs] (yazar: TC ISR).</div><div class="ttdef"><b>Definition</b> <a href="#l00088">app_diag.h:88</a></div></div>
+<div class="ttc" id="astruct_app_diag_html_a9343229ccf2f63c9b79e9a0cfa9a782f"><div class="ttname"><a href="struct_app_diag.html#a9343229ccf2f63c9b79e9a0cfa9a782f">AppDiag::selfcheck_opened</a></div><div class="ttdeci">uint32_t selfcheck_opened</div><div class="ttdoc">[2] 100 sahte olaydan açılan (beklenen: 64).</div><div class="ttdef"><b>Definition</b> <a href="#l00072">app_diag.h:72</a></div></div>
+<div class="ttc" id="astruct_app_diag_html_a964c252519fee14bb292bc01a2d6ffaf"><div class="ttname"><a href="struct_app_diag.html#a964c252519fee14bb292bc01a2d6ffaf">AppDiag::heap_free</a></div><div class="ttdeci">uint32_t heap_free</div><div class="ttdoc">[5] Boş heap [bayt].</div><div class="ttdef"><b>Definition</b> <a href="#l00075">app_diag.h:75</a></div></div>
+<div class="ttc" id="astruct_app_diag_html_aa0c6a8ec31e9b26eb5b44c18458e257a"><div class="ttname"><a href="struct_app_diag.html#aa0c6a8ec31e9b26eb5b44c18458e257a">AppDiag::last_t0</a></div><div class="ttdeci">uint32_t last_t0</div><div class="ttdoc">[9] Son olayın t₀&#39;ı [µs].</div><div class="ttdef"><b>Definition</b> <a href="#l00079">app_diag.h:79</a></div></div>
+<div class="ttc" id="astruct_app_diag_html_aa58fbe1ccbc29ed09c67e0af07874341"><div class="ttname"><a href="struct_app_diag.html#aa58fbe1ccbc29ed09c67e0af07874341">AppDiag::work_us_per_100k</a></div><div class="ttdeci">uint32_t work_us_per_100k</div><div class="ttdoc">[15] calibrated_work(100 000) süresi [µs], açılışta ölçülür.</div><div class="ttdef"><b>Definition</b> <a href="#l00085">app_diag.h:85</a></div></div>
+<div class="ttc" id="astruct_app_diag_html_aaed03d26f23f5d1e9948e17b5fda30df"><div class="ttname"><a href="struct_app_diag.html#aaed03d26f23f5d1e9948e17b5fda30df">AppDiag::selfcheck</a></div><div class="ttdeci">uint32_t selfcheck</div><div class="ttdoc">[1] 0 = koşmadı, 1 = geçti, 2 = kaldı (T-05).</div><div class="ttdef"><b>Definition</b> <a href="#l00071">app_diag.h:71</a></div></div>
+<div class="ttc" id="astruct_app_diag_html_ac16aef1aa03ce08caf33feec73fdc3a5"><div class="ttname"><a href="struct_app_diag.html#ac16aef1aa03ce08caf33feec73fdc3a5">AppDiag::selfcheck_rejected</a></div><div class="ttdeci">uint32_t selfcheck_rejected</div><div class="ttdoc">[3] Taşma nedeniyle reddedilen (beklenen: 36).</div><div class="ttdef"><b>Definition</b> <a href="#l00073">app_diag.h:73</a></div></div>
+<div class="ttc" id="astruct_app_diag_html_aea111dd934d27dc10e595c61d68d4fad"><div class="ttname"><a href="struct_app_diag.html#aea111dd934d27dc10e595c61d68d4fad">AppDiag::magic</a></div><div class="ttdeci">uint32_t magic</div><div class="ttdoc">[0] APP_DIAG_MAGIC.</div><div class="ttdef"><b>Definition</b> <a href="#l00070">app_diag.h:70</a></div></div>
+<div class="ttc" id="astruct_app_diag_html_afaf860cc515a3a7f22fbc4af22c2082a"><div class="ttname"><a href="struct_app_diag.html#afaf860cc515a3a7f22fbc4af22c2082a">AppDiag::btn_stack_hwm</a></div><div class="ttdeci">uint32_t btn_stack_hwm</div><div class="ttdoc">[14] ButtonTask stack&#39;inde en az boş alan [word].</div><div class="ttdef"><b>Definition</b> <a href="#l00084">app_diag.h:84</a></div></div>
+<div class="ttc" id="astruct_isr_counters_html"><div class="ttname"><a href="struct_isr_counters.html">IsrCounters</a></div><div class="ttdoc">Yalnızca ISR&#39;ların yazdığı sayaçlar.</div><div class="ttdef"><b>Definition</b> <a href="#l00034">app_diag.h:34</a></div></div>
+<div class="ttc" id="astruct_isr_counters_html_a150c8c30fbcbe12210d05939a9308c48"><div class="ttname"><a href="struct_isr_counters.html#a150c8c30fbcbe12210d05939a9308c48">IsrCounters::rec_ovf</a></div><div class="ttdeci">uint32_t rec_ovf</div><div class="ttdoc">Kayıt açılamadı: slot dolu (buton ISR, FR-61).</div><div class="ttdef"><b>Definition</b> <a href="#l00038">app_diag.h:38</a></div></div>
+<div class="ttc" id="astruct_isr_counters_html_a1b6b3b455db9f73e50760e5fe9cdcbd9"><div class="ttname"><a href="struct_isr_counters.html#a1b6b3b455db9f73e50760e5fe9cdcbd9">IsrCounters::events</a></div><div class="ttdeci">uint32_t events</div><div class="ttdoc">Ölçümde kimlik atanan olay = accepted + btnq_drop + rec_ovf (buton ISR).</div><div class="ttdef"><b>Definition</b> <a href="#l00041">app_diag.h:41</a></div></div>
+<div class="ttc" id="astruct_isr_counters_html_a389531b5947cd7802a0fef83e938b93f"><div class="ttname"><a href="struct_isr_counters.html#a389531b5947cd7802a0fef83e938b93f">IsrCounters::rx_err</a></div><div class="ttdeci">uint32_t rx_err</div><div class="ttdoc">UART hata geri çağrısı: gürültü, çerçeve, taşma (UART ISR).</div><div class="ttdef"><b>Definition</b> <a href="#l00044">app_diag.h:44</a></div></div>
+<div class="ttc" id="astruct_isr_counters_html_a43576ed6ee68cb11eb551aae82d60195"><div class="ttname"><a href="struct_isr_counters.html#a43576ed6ee68cb11eb551aae82d60195">IsrCounters::idle_press</a></div><div class="ttdeci">uint32_t idle_press</div><div class="ttdoc">Ölçüm dışında (IDLE/WARMUP…) filtreden geçen basış (buton ISR).</div><div class="ttdef"><b>Definition</b> <a href="#l00042">app_diag.h:42</a></div></div>
+<div class="ttc" id="astruct_isr_counters_html_a590b81033285780ab033ed1b58f0daf5"><div class="ttname"><a href="struct_isr_counters.html#a590b81033285780ab033ed1b58f0daf5">IsrCounters::accepted</a></div><div class="ttdeci">uint32_t accepted</div><div class="ttdoc">Ölçümde kabul edilip buttonQ&#39;ya yazılan olay (buton ISR).</div><div class="ttdef"><b>Definition</b> <a href="#l00035">app_diag.h:35</a></div></div>
+<div class="ttc" id="astruct_isr_counters_html_a5e1ae5eb4d4d1616d1a688eae6a0843f"><div class="ttname"><a href="struct_isr_counters.html#a5e1ae5eb4d4d1616d1a688eae6a0843f">IsrCounters::cmd_busy</a></div><div class="ttdeci">uint32_t cmd_busy</div><div class="ttdoc">Önceki komut işlenmeden yenisi geldi, yenisi atıldı (UART RX ISR).</div><div class="ttdef"><b>Definition</b> <a href="#l00045">app_diag.h:45</a></div></div>
+<div class="ttc" id="astruct_isr_counters_html_a672afe99158aa8fc014cd9b7bf18d0c6"><div class="ttname"><a href="struct_isr_counters.html#a672afe99158aa8fc014cd9b7bf18d0c6">IsrCounters::rx_overflow</a></div><div class="ttdeci">uint32_t rx_overflow</div><div class="ttdoc">Komut satırı tampona sığmadı (UART RX ISR, FR-83).</div><div class="ttdef"><b>Definition</b> <a href="#l00043">app_diag.h:43</a></div></div>
+<div class="ttc" id="astruct_isr_counters_html_a778fb953f67585ce3f1f5de54ed7ae2d"><div class="ttname"><a href="struct_isr_counters.html#a778fb953f67585ce3f1f5de54ed7ae2d">IsrCounters::rec_mismatch</a></div><div class="ttdeci">uint32_t rec_mismatch</div><div class="ttdoc">TC ISR&#39;ı t₄&#39;ü kayda yazamadı (UART TC ISR).</div><div class="ttdef"><b>Definition</b> <a href="#l00039">app_diag.h:39</a></div></div>
+<div class="ttc" id="astruct_isr_counters_html_a7c5101bbf590b03f7e0d5278fc64bc1e"><div class="ttname"><a href="struct_isr_counters.html#a7c5101bbf590b03f7e0d5278fc64bc1e">IsrCounters::debounce_rej</a></div><div class="ttdeci">uint32_t debounce_rej</div><div class="ttdoc">30 ms içindeki tekrar kenar (buton ISR, FR-12).</div><div class="ttdef"><b>Definition</b> <a href="#l00036">app_diag.h:36</a></div></div>
+<div class="ttc" id="astruct_isr_counters_html_ab20663a174bfe3b2b1170991ca1ea433"><div class="ttname"><a href="struct_isr_counters.html#ab20663a174bfe3b2b1170991ca1ea433">IsrCounters::unarmed_rej</a></div><div class="ttdeci">uint32_t unarmed_rej</div><div class="ttdoc">Silah kapalıyken gelen kenar (buton ISR, FR-12b).</div><div class="ttdef"><b>Definition</b> <a href="#l00040">app_diag.h:40</a></div></div>
+<div class="ttc" id="astruct_isr_counters_html_af5bbec2dbfd1fd2f20f678a330414202"><div class="ttname"><a href="struct_isr_counters.html#af5bbec2dbfd1fd2f20f678a330414202">IsrCounters::btnq_drop</a></div><div class="ttdeci">uint32_t btnq_drop</div><div class="ttdoc">buttonQ dolu (buton ISR, FR-15).</div><div class="ttdef"><b>Definition</b> <a href="#l00037">app_diag.h:37</a></div></div>
+<div class="ttc" id="astruct_task_counters_html"><div class="ttname"><a href="struct_task_counters.html">TaskCounters</a></div><div class="ttdoc">Yalnızca görevlerin yazdığı sayaçlar.</div><div class="ttdef"><b>Definition</b> <a href="#l00052">app_diag.h:52</a></div></div>
+<div class="ttc" id="astruct_task_counters_html_a0a7135ff7aff17c18c19b9d81d44e885"><div class="ttname"><a href="struct_task_counters.html#a0a7135ff7aff17c18c19b9d81d44e885">TaskCounters::rec_mismatch</a></div><div class="ttdeci">uint32_t rec_mismatch</div><div class="ttdoc">t₁/t₂ kayda yazılamadı (ButtonTask).</div><div class="ttdef"><b>Definition</b> <a href="#l00055">app_diag.h:55</a></div></div>
+<div class="ttc" id="astruct_task_counters_html_a0c905c0624bb6933a5827b6c6d989159"><div class="ttname"><a href="struct_task_counters.html#a0c905c0624bb6933a5827b6c6d989159">TaskCounters::txq_drop_tel</a></div><div class="ttdeci">uint32_t txq_drop_tel</div><div class="ttdoc">txQ dolu, telemetri düştü (TelemetryTask).</div><div class="ttdef"><b>Definition</b> <a href="#l00053">app_diag.h:53</a></div></div>
+<div class="ttc" id="astruct_task_counters_html_a21dfc5787dddc4d0fbafcdf92df9dea0"><div class="ttname"><a href="struct_task_counters.html#a21dfc5787dddc4d0fbafcdf92df9dea0">TaskCounters::txq_drop_btn</a></div><div class="ttdeci">uint32_t txq_drop_btn</div><div class="ttdoc">txQ dolu, yanıt düştü (ButtonTask, FR-34).</div><div class="ttdef"><b>Definition</b> <a href="#l00054">app_diag.h:54</a></div></div>
+<div class="ttc" id="astruct_task_counters_html_a324ec3ba56fae82e1a1d751972d2ca0b"><div class="ttname"><a href="struct_task_counters.html#a324ec3ba56fae82e1a1d751972d2ca0b">TaskCounters::uart_err</a></div><div class="ttdeci">uint32_t uart_err</div><div class="ttdoc">Gönderim başlatılamadı (UartTxTask, FR-44).</div><div class="ttdef"><b>Definition</b> <a href="#l00056">app_diag.h:56</a></div></div>
+<div class="ttc" id="astruct_task_counters_html_a64a45f8d264573c1029cd681e9983f12"><div class="ttname"><a href="struct_task_counters.html#a64a45f8d264573c1029cd681e9983f12">TaskCounters::rec_mismatch_tx</a></div><div class="ttdeci">uint32_t rec_mismatch_tx</div><div class="ttdoc">t₃ kayda yazılamadı (UartTxTask).</div><div class="ttdef"><b>Definition</b> <a href="#l00058">app_diag.h:58</a></div></div>
+<div class="ttc" id="astruct_task_counters_html_a6c02ef3a612203e583458e381cd7b0e3"><div class="ttname"><a href="struct_task_counters.html#a6c02ef3a612203e583458e381cd7b0e3">TaskCounters::fmt_err_btn</a></div><div class="ttdeci">uint32_t fmt_err_btn</div><div class="ttdoc">BTN içeriği 63 baytı aştı (ButtonTask, FR-52).</div><div class="ttdef"><b>Definition</b> <a href="#l00060">app_diag.h:60</a></div></div>
+<div class="ttc" id="astruct_task_counters_html_a8ce96e5cf125c007224842d4865e1097"><div class="ttname"><a href="struct_task_counters.html#a8ce96e5cf125c007224842d4865e1097">TaskCounters::txq_hwm</a></div><div class="ttdeci">uint32_t txq_hwm</div><div class="ttdoc">txQ yüksek su seviyesi, ±1 (UartTxTask, FR-65).</div><div class="ttdef"><b>Definition</b> <a href="#l00061">app_diag.h:61</a></div></div>
+<div class="ttc" id="astruct_task_counters_html_ab435377d1587f59a8cc541637bed8f1f"><div class="ttname"><a href="struct_task_counters.html#ab435377d1587f59a8cc541637bed8f1f">TaskCounters::fmt_err_tel</a></div><div class="ttdeci">uint32_t fmt_err_tel</div><div class="ttdoc">TEL içeriği 63 baytı aştı (TelemetryTask, FR-52).</div><div class="ttdef"><b>Definition</b> <a href="#l00059">app_diag.h:59</a></div></div>
+<div class="ttc" id="astruct_task_counters_html_aec42afc75acf720e774b8f9926c9f559"><div class="ttname"><a href="struct_task_counters.html#aec42afc75acf720e774b8f9926c9f559">TaskCounters::cmd_err</a></div><div class="ttdeci">uint32_t cmd_err</div><div class="ttdoc">Geçersiz veya yanlış durumda gelen komut (ButtonTask, FR-83).</div><div class="ttdef"><b>Definition</b> <a href="#l00062">app_diag.h:62</a></div></div>
+<div class="ttc" id="astruct_task_counters_html_af39498b090903840ac63dfb36e67ba7c"><div class="ttname"><a href="struct_task_counters.html#af39498b090903840ac63dfb36e67ba7c">TaskCounters::uart_timeout</a></div><div class="ttdeci">uint32_t uart_timeout</div><div class="ttdoc">TC 1 s içinde gelmedi (UartTxTask, MR-06).</div><div class="ttdef"><b>Definition</b> <a href="#l00057">app_diag.h:57</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><b>firmware</b></li><li class="navelem"><b>Core</b></li><li class="navelem"><b>Inc</b></li><li class="navelem"><a href="app__diag_8h.html">app_diag.h</a></li>
+    <li class="footer">Oluşturan <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.18.0 </li>
+  </ul>
+</div>
+</body>
+</html>

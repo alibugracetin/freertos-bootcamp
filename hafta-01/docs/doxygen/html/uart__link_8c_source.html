@@ -1,0 +1,415 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="tr">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Hafta 1 - Yuk altinda buton yanit suresi: D:/RTOS/Hafta_1_RTOS_Bootcamp/hafta-01/firmware/Core/Src/uart_link.c Kaynak Dosyası</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Hafta 1 - Yuk altinda buton yanit suresi
+   </div>
+   <div id="projectbrief">STM32F407 + FreeRTOS olcum firmware&#39;i</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Oluşturan Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="application/json" id="doxygen-config">
+{
+  "relPath": "",
+  "generateTreeView": true,
+  "searchEngine": true,
+  "serverBasedSearch": false,
+  "disableIndex": false,
+  "dynamicMenus": true,
+  "fullSidebar": false
+}
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Ara" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded',() => { initNavTree('uart__link_8c_source.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Yüklüyor...</div>
+<div class="SRStatus" id="Searching">Arıyor...</div>
+<div class="SRStatus" id="NoMatches">Eşleşme Yok</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">uart_link.c</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="uart__link_8c.html">Bu dosyanın dokümantasyonuna git.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &quot;<a class="code" href="uart__link_8h.html">uart_link.h</a>&quot;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &quot;main.h&quot;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &quot;usart.h&quot;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &quot;FreeRTOS.h&quot;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &quot;queue.h&quot;</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#include &quot;task.h&quot;</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &quot;<a class="code" href="app__config_8h.html">app_config.h</a>&quot;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &quot;<a class="code" href="app__diag_8h.html">app_diag.h</a>&quot;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &quot;<a class="code" href="app__tasks_8h.html">app_tasks.h</a>&quot;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &quot;<a class="code" href="app__types_8h.html">app_types.h</a>&quot;</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &quot;<a class="code" href="record_8h.html">record.h</a>&quot;</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#include &quot;<a class="code" href="timing_8h.html">timing.h</a>&quot;</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#include &lt;string.h&gt;</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="comment">/* ---------------------------------------------------------------- gönderim */</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="uart__link_8c.html#a0d148e0a2ab97eab25018cfa43bc30cf">   40</a></span><span class="keyword">static</span> uint8_t <a class="code hl_variable" href="uart__link_8c.html#a0d148e0a2ab97eab25018cfa43bc30cf">s_tx_buf</a>[<a class="code hl_define" href="app__config_8h.html#abb2d0329752cc81ae3a14caa741b7abb">APP_TX_BUF_LEN</a>];</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="uart__link_8c.html#abfc3307c65fdb8551d95921c7ad28791">   48</a></span><span class="keyword">static</span> <span class="keyword">volatile</span> <a class="code hl_enumeration" href="group__tasks.html#gae23dc602fcc5835f96131c7acf975fcf">MsgKind</a>  <a class="code hl_variable" href="uart__link_8c.html#abfc3307c65fdb8551d95921c7ad28791">s_tx_kind</a>;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="uart__link_8c.html#a33684c206209bd316e672073c7cecf64">   49</a></span><span class="keyword">static</span> <span class="keyword">volatile</span> uint32_t <a class="code hl_variable" href="uart__link_8c.html#a33684c206209bd316e672073c7cecf64">s_tx_event</a>;   </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="uart__link_8c.html#ad3a48abf2ea7f76193c997ab016a3d3a">   50</a></span><span class="keyword">static</span> <span class="keyword">volatile</span> <span class="keywordtype">bool</span>     <a class="code hl_variable" href="uart__link_8c.html#ad3a48abf2ea7f76193c997ab016a3d3a">s_tx_busy</a>;   </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="uart__link_8c.html#abddfc923e93f74b1b393139d81be4653">   53</a></span><span class="keyword">static</span> TaskHandle_t <a class="code hl_variable" href="uart__link_8c.html#abddfc923e93f74b1b393139d81be4653">s_tx_task</a>;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="uart__link_8c.html#ac1f6e5c43eb9da937716ab6e2855f3a7">   56</a></span><span class="keyword">static</span> <span class="keyword">volatile</span> uint32_t <a class="code hl_variable" href="uart__link_8c.html#ac1f6e5c43eb9da937716ab6e2855f3a7">s_uart_entry_us</a>;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="uart__link_8c.html#af8593900b43985d7064207ba42f13828">   58</a></span><span class="keyword">static</span> <span class="keyword">volatile</span> uint32_t <a class="code hl_variable" href="uart__link_8c.html#af8593900b43985d7064207ba42f13828">s_dma_entry_us</a>;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="uart__link_8c.html#aeda1a60b1f8a35a98afa332e8658516e">   60</a></span><span class="keyword">static</span> <span class="keyword">volatile</span> uint32_t <a class="code hl_variable" href="uart__link_8c.html#aeda1a60b1f8a35a98afa332e8658516e">s_tx_t3</a>;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="foldopen" id="foldopen00062" data-start="{" data-end="}">
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="group__isr.html#ga7994efa291616c571dca5756383b5061">   62</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__isr.html#ga7994efa291616c571dca5756383b5061">uart_irq_entry</a>(<span class="keywordtype">void</span>)</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>{</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <a class="code hl_variable" href="uart__link_8c.html#ac1f6e5c43eb9da937716ab6e2855f3a7">s_uart_entry_us</a> = <a class="code hl_function" href="group__timing.html#gae27f97606e13106e5536c7c41ee7cd69">timer_us</a>();</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>}</div>
+</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
+<div class="foldopen" id="foldopen00067" data-start="{" data-end="}">
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="group__isr.html#gad90f94c93a38a193027c9d26997c0fe1">   67</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__isr.html#gad90f94c93a38a193027c9d26997c0fe1">uart_dma_tx_irq_entry</a>(<span class="keywordtype">void</span>)</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>{</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <a class="code hl_variable" href="uart__link_8c.html#af8593900b43985d7064207ba42f13828">s_dma_entry_us</a> = <a class="code hl_function" href="group__timing.html#gae27f97606e13106e5536c7c41ee7cd69">timer_us</a>();</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>}</div>
+</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="foldopen" id="foldopen00072" data-start="{" data-end="}">
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="group__proto.html#gab24c0e19415e7f4834f264fa3f9c4004">   72</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="group__proto.html#gab24c0e19415e7f4834f264fa3f9c4004">uart_link_busy</a>(<span class="keywordtype">void</span>)</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>{</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <span class="keywordflow">return</span> <a class="code hl_variable" href="uart__link_8c.html#ad3a48abf2ea7f76193c997ab016a3d3a">s_tx_busy</a>;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>}</div>
+</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
+<div class="foldopen" id="foldopen00077" data-start="{" data-end="}">
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="group__tasks.html#ga9166faecff6c1864e8d0fa18ed200e53">   77</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__tasks.html#ga9166faecff6c1864e8d0fa18ed200e53">UartTxTask</a>(<span class="keywordtype">void</span> *arg)</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>{</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    (void)arg;</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <a class="code hl_variable" href="uart__link_8c.html#abddfc923e93f74b1b393139d81be4653">s_tx_task</a> = xTaskGetCurrentTaskHandle();</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <span class="keywordflow">for</span> (;;) {</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>        <a class="code hl_struct" href="struct_tx_msg.html">TxMsg</a> m;</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>        <span class="comment">/* Kuyruk derinliği yalnızca bu görev tarafından azaltılır; alımdan hemen</span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span><span class="comment">         * önceki derinlik, önceki alımdan beri görülen en yüksek değerdir (±1). */</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>        <span class="keyword">const</span> UBaseType_t depth = uxQueueMessagesWaiting(<a class="code hl_variable" href="group__tasks.html#ga62afb507947bf26d69418593eb43dce4">g_tx_q</a>);</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>        <span class="keywordflow">if</span> (depth &gt; <a class="code hl_variable" href="app__diag_8h.html#a994b9ea3718f517b6196f673feddc766">g_cnt_task</a>.<a class="code hl_variable" href="struct_task_counters.html#a8ce96e5cf125c007224842d4865e1097">txq_hwm</a>) {</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>            <a class="code hl_variable" href="app__diag_8h.html#a994b9ea3718f517b6196f673feddc766">g_cnt_task</a>.<a class="code hl_variable" href="struct_task_counters.html#a8ce96e5cf125c007224842d4865e1097">txq_hwm</a> = depth;</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>        }</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>        (void)xQueueReceive(<a class="code hl_variable" href="group__tasks.html#ga62afb507947bf26d69418593eb43dce4">g_tx_q</a>, &amp;m, portMAX_DELAY);     <span class="comment">/* FR-40: FIFO */</span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>        memcpy(<a class="code hl_variable" href="uart__link_8c.html#a0d148e0a2ab97eab25018cfa43bc30cf">s_tx_buf</a>, m.<a class="code hl_variable" href="struct_tx_msg.html#a85a75fce3effe6485014aae30f924a55">data</a>, m.<a class="code hl_variable" href="struct_tx_msg.html#ac79a293b901d6b4714aece8f625ffb02">len</a>);</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>        <a class="code hl_variable" href="uart__link_8c.html#abfc3307c65fdb8551d95921c7ad28791">s_tx_kind</a>  = m.<a class="code hl_variable" href="struct_tx_msg.html#a54ceb1d3fd508d7e7024dd8f030c217f">kind</a>;</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>        <a class="code hl_variable" href="uart__link_8c.html#a33684c206209bd316e672073c7cecf64">s_tx_event</a> = m.<a class="code hl_variable" href="struct_tx_msg.html#aeff3d22d93cbae6aa982e61eca213d3b">event_id</a>;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>        <a class="code hl_variable" href="uart__link_8c.html#ad3a48abf2ea7f76193c997ab016a3d3a">s_tx_busy</a>  = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        (void)ulTaskNotifyTake(pdTRUE, 0);                   <span class="comment">/* bayat bildirim kalmasın */</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>        <span class="keyword">const</span> uint32_t t3 = <a class="code hl_function" href="group__timing.html#gae27f97606e13106e5536c7c41ee7cd69">timer_us</a>();                      <span class="comment">/* t₃ — FR-42 */</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>        <span class="keywordflow">if</span> (m.<a class="code hl_variable" href="struct_tx_msg.html#a54ceb1d3fd508d7e7024dd8f030c217f">kind</a> == <a class="code hl_enumvalue" href="group__tasks.html#ggae23dc602fcc5835f96131c7acf975fcfabc2f438f46fce0447ca63267f6d29908">MSG_BTN</a>) {</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>            <a class="code hl_variable" href="uart__link_8c.html#aeda1a60b1f8a35a98afa332e8658516e">s_tx_t3</a> = t3;</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>            <span class="keywordflow">if</span> (!<a class="code hl_function" href="group__record.html#ga8671153e0e2c19907573a9bd01b730b5">rec_stamp</a>(m.<a class="code hl_variable" href="struct_tx_msg.html#aeff3d22d93cbae6aa982e61eca213d3b">event_id</a>, <a class="code hl_enumvalue" href="group__record.html#gga23dad729077e6b7b2582ed30e5074b70aab28729e1e1153830ca885ffb48fc045">TS_T3</a>, t3)) {</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>                <a class="code hl_variable" href="app__diag_8h.html#a994b9ea3718f517b6196f673feddc766">g_cnt_task</a>.<a class="code hl_variable" href="struct_task_counters.html#a64a45f8d264573c1029cd681e9983f12">rec_mismatch_tx</a>++;</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>            }</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>        }</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>        <span class="keywordflow">if</span> (HAL_UART_Transmit_DMA(&amp;huart2, <a class="code hl_variable" href="uart__link_8c.html#a0d148e0a2ab97eab25018cfa43bc30cf">s_tx_buf</a>, m.<a class="code hl_variable" href="struct_tx_msg.html#ac79a293b901d6b4714aece8f625ffb02">len</a>) != HAL_OK) {</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>            <a class="code hl_variable" href="app__diag_8h.html#a994b9ea3718f517b6196f673feddc766">g_cnt_task</a>.<a class="code hl_variable" href="struct_task_counters.html#a324ec3ba56fae82e1a1d751972d2ca0b">uart_err</a>++;                           <span class="comment">/* FR-44 */</span></div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>            <span class="keywordflow">if</span> (m.<a class="code hl_variable" href="struct_tx_msg.html#a54ceb1d3fd508d7e7024dd8f030c217f">kind</a> == <a class="code hl_enumvalue" href="group__tasks.html#ggae23dc602fcc5835f96131c7acf975fcfabc2f438f46fce0447ca63267f6d29908">MSG_BTN</a>) {</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>                (void)<a class="code hl_function" href="group__record.html#ga7104bd8a124c89e746b0cdb821dd9b44">rec_close</a>(m.<a class="code hl_variable" href="struct_tx_msg.html#aeff3d22d93cbae6aa982e61eca213d3b">event_id</a>, <a class="code hl_enumvalue" href="group__record.html#gga17c31f95ff37e1dc2265d38639148099ae263c011b43db333470c271b71f369bf">REC_TX_ERROR</a>);</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>            }</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>            <a class="code hl_variable" href="uart__link_8c.html#ad3a48abf2ea7f76193c997ab016a3d3a">s_tx_busy</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>            <span class="keywordflow">continue</span>;</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>        }</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span> </div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>        <span class="keywordflow">if</span> (ulTaskNotifyTake(pdTRUE, pdMS_TO_TICKS(1000)) == 0u) {</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>            <a class="code hl_variable" href="app__diag_8h.html#a994b9ea3718f517b6196f673feddc766">g_cnt_task</a>.<a class="code hl_variable" href="struct_task_counters.html#af39498b090903840ac63dfb36e67ba7c">uart_timeout</a>++;                       <span class="comment">/* MR-06: sonsuz bekleme yok */</span></div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>            (void)HAL_UART_AbortTransmit(&amp;huart2);</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>            <span class="keywordflow">if</span> (m.<a class="code hl_variable" href="struct_tx_msg.html#a54ceb1d3fd508d7e7024dd8f030c217f">kind</a> == <a class="code hl_enumvalue" href="group__tasks.html#ggae23dc602fcc5835f96131c7acf975fcfabc2f438f46fce0447ca63267f6d29908">MSG_BTN</a>) {</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>                (void)<a class="code hl_function" href="group__record.html#ga7104bd8a124c89e746b0cdb821dd9b44">rec_close</a>(m.<a class="code hl_variable" href="struct_tx_msg.html#aeff3d22d93cbae6aa982e61eca213d3b">event_id</a>, <a class="code hl_enumvalue" href="group__record.html#gga17c31f95ff37e1dc2265d38639148099ac97d9290fbd3816e2feb7514c4f141a4">REC_TIMEOUT</a>);</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>            }</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>        }</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>        <a class="code hl_variable" href="uart__link_8c.html#ad3a48abf2ea7f76193c997ab016a3d3a">s_tx_busy</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    }</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>}</div>
+</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span></div>
+<div class="foldopen" id="foldopen00139" data-start="{" data-end="}">
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno"><a class="line" href="uart__link_8c.html#abcdf9b59049eccbc87d54042f9235b1a">  139</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="uart__link_8c.html#abcdf9b59049eccbc87d54042f9235b1a">HAL_UART_TxCpltCallback</a>(UART_HandleTypeDef *huart)</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>{</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    <span class="keywordflow">if</span> (huart-&gt;Instance != USART2) {</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    }</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>    <span class="keyword">const</span> uint32_t t4 = <a class="code hl_variable" href="uart__link_8c.html#ac1f6e5c43eb9da937716ab6e2855f3a7">s_uart_entry_us</a>;</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span> </div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="uart__link_8c.html#abfc3307c65fdb8551d95921c7ad28791">s_tx_kind</a> == <a class="code hl_enumvalue" href="group__tasks.html#ggae23dc602fcc5835f96131c7acf975fcfabc2f438f46fce0447ca63267f6d29908">MSG_BTN</a>) {</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>        <span class="keyword">const</span> uint32_t <span class="keywordtype">id</span> = <a class="code hl_variable" href="uart__link_8c.html#a33684c206209bd316e672073c7cecf64">s_tx_event</a>;</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>        <span class="keywordflow">if</span> (!(<a class="code hl_function" href="group__record.html#ga8671153e0e2c19907573a9bd01b730b5">rec_stamp</a>(<span class="keywordtype">id</span>, <a class="code hl_enumvalue" href="group__record.html#gga23dad729077e6b7b2582ed30e5074b70aa898dbbc7520c48f8187da0c366da9b2">TS_T4</a>, t4) &amp;&amp; <a class="code hl_function" href="group__record.html#ga7104bd8a124c89e746b0cdb821dd9b44">rec_close</a>(<span class="keywordtype">id</span>, <a class="code hl_enumvalue" href="group__record.html#gga17c31f95ff37e1dc2265d38639148099abe69d407d602b42dd137f1e1d26dcdb9">REC_OK</a>))) {</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>            <a class="code hl_variable" href="app__diag_8h.html#adfb01d77f83da4e3c751aa50aee2e11f">g_cnt_isr</a>.<a class="code hl_variable" href="struct_isr_counters.html#a778fb953f67585ce3f1f5de54ed7ae2d">rec_mismatch</a>++;</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>        }</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>        <span class="keyword">const</span> uint32_t dma_to_tc = t4 - <a class="code hl_variable" href="uart__link_8c.html#af8593900b43985d7064207ba42f13828">s_dma_entry_us</a>;</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>        <a class="code hl_variable" href="app__diag_8h.html#a64309afc2f60d8e29d2321f44946cbd1">g_diag</a>.<a class="code hl_variable" href="struct_app_diag.html#a07dbcf062286aa0e85467355cb5926ab">last_dma_to_tc_us</a> = dma_to_tc;</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>        <span class="keywordflow">if</span> (dma_to_tc &gt; <a class="code hl_variable" href="app__diag_8h.html#a64309afc2f60d8e29d2321f44946cbd1">g_diag</a>.<a class="code hl_variable" href="struct_app_diag.html#a0e336175415b5552ca1a671d3da9bb6a">max_dma_to_tc_us</a>) {</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>            <a class="code hl_variable" href="app__diag_8h.html#a64309afc2f60d8e29d2321f44946cbd1">g_diag</a>.<a class="code hl_variable" href="struct_app_diag.html#a0e336175415b5552ca1a671d3da9bb6a">max_dma_to_tc_us</a> = dma_to_tc;</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>        }</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>        <a class="code hl_variable" href="app__diag_8h.html#a64309afc2f60d8e29d2321f44946cbd1">g_diag</a>.<a class="code hl_variable" href="struct_app_diag.html#a85f7eb4a6596462695f4ce90a902ac3a">last_t4_minus_t3</a> = t4 - <a class="code hl_variable" href="uart__link_8c.html#aeda1a60b1f8a35a98afa332e8658516e">s_tx_t3</a>;</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    }</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span> </div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="uart__link_8c.html#abddfc923e93f74b1b393139d81be4653">s_tx_task</a> != NULL) {</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>        BaseType_t woken = pdFALSE;</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>        vTaskNotifyGiveFromISR(<a class="code hl_variable" href="uart__link_8c.html#abddfc923e93f74b1b393139d81be4653">s_tx_task</a>, &amp;woken);</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>        portYIELD_FROM_ISR(woken);</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    }</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>}</div>
+</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span> </div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span><span class="comment">/* ------------------------------------------------------------------- alım */</span></div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span></div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno"><a class="line" href="uart__link_8c.html#af96b3438d6adaaeeccf1ef6147ef6bed">  169</a></span><span class="preprocessor">#define RX_LINE_MAX  31u</span></div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span> </div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno"><a class="line" href="uart__link_8c.html#afd855432ca208431a28bfdbfaf9aa55c">  171</a></span><span class="keyword">static</span> uint8_t       <a class="code hl_variable" href="uart__link_8c.html#afd855432ca208431a28bfdbfaf9aa55c">s_rx_byte</a>;                    </div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno"><a class="line" href="uart__link_8c.html#af8980ff409b62aef2a8d4f557c3e0e3a">  172</a></span><span class="keyword">static</span> <span class="keywordtype">char</span>          <a class="code hl_variable" href="uart__link_8c.html#af8980ff409b62aef2a8d4f557c3e0e3a">s_rx_line</a>[<a class="code hl_define" href="uart__link_8c.html#af96b3438d6adaaeeccf1ef6147ef6bed">RX_LINE_MAX</a> + 1u];  </div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno"><a class="line" href="uart__link_8c.html#a94961f277bd4dfe873ce195b17ed75b2">  173</a></span><span class="keyword">static</span> uint32_t      <a class="code hl_variable" href="uart__link_8c.html#a94961f277bd4dfe873ce195b17ed75b2">s_rx_len</a>;                     </div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno"><a class="line" href="uart__link_8c.html#a7d875b771166bf2663bb0fdc58a3eec2">  174</a></span><span class="keyword">static</span> <span class="keywordtype">bool</span>          <a class="code hl_variable" href="uart__link_8c.html#a7d875b771166bf2663bb0fdc58a3eec2">s_rx_discard</a>;                 </div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span></div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno"><a class="line" href="uart__link_8c.html#a7207bb35d48cb9d2459caf2e913b0e11">  183</a></span><span class="keyword">static</span> <span class="keywordtype">char</span>          <a class="code hl_variable" href="uart__link_8c.html#a7207bb35d48cb9d2459caf2e913b0e11">s_cmd_line</a>[<a class="code hl_define" href="uart__link_8c.html#af96b3438d6adaaeeccf1ef6147ef6bed">RX_LINE_MAX</a> + 1u];</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno"><a class="line" href="uart__link_8c.html#aa2da629959d51939a574a4c5f856a024">  184</a></span><span class="keyword">static</span> <span class="keyword">volatile</span> <span class="keywordtype">bool</span> <a class="code hl_variable" href="uart__link_8c.html#aa2da629959d51939a574a4c5f856a024">s_cmd_ready</a>;                  </div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno"><a class="line" href="uart__link_8c.html#ae08b4045dd96239454d4e19963087f34">  185</a></span><span class="keyword">static</span> <span class="keyword">volatile</span> <span class="keywordtype">bool</span> <a class="code hl_variable" href="uart__link_8c.html#ae08b4045dd96239454d4e19963087f34">s_rx_restart</a>;                 </div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span></div>
+<div class="foldopen" id="foldopen00188" data-start="{" data-end="}">
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno"><a class="line" href="uart__link_8c.html#a605ab950f0599cb300c1186661056bc5">  188</a></span><span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="uart__link_8c.html#a605ab950f0599cb300c1186661056bc5">rx_arm</a>(<span class="keywordtype">void</span>)</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>{</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    <span class="keywordflow">if</span> (HAL_UART_Receive_IT(&amp;huart2, &amp;<a class="code hl_variable" href="uart__link_8c.html#afd855432ca208431a28bfdbfaf9aa55c">s_rx_byte</a>, 1u) != HAL_OK) {</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>        <a class="code hl_variable" href="uart__link_8c.html#ae08b4045dd96239454d4e19963087f34">s_rx_restart</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>    }</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>}</div>
+</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span> </div>
+<div class="foldopen" id="foldopen00195" data-start="{" data-end="}">
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno"><a class="line" href="group__proto.html#gadde9424854bbdb867dbbda9f7060d69b">  195</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__proto.html#gadde9424854bbdb867dbbda9f7060d69b">uart_link_start_rx</a>(<span class="keywordtype">void</span>)</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>{</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>    <a class="code hl_function" href="uart__link_8c.html#a605ab950f0599cb300c1186661056bc5">rx_arm</a>();</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>}</div>
+</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span></div>
+<div class="foldopen" id="foldopen00205" data-start="{" data-end="}">
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno"><a class="line" href="uart__link_8c.html#ae494a9643f29b87d6d81e5264e60e57b">  205</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="uart__link_8c.html#ae494a9643f29b87d6d81e5264e60e57b">HAL_UART_RxCpltCallback</a>(UART_HandleTypeDef *huart)</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>{</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>    <span class="keywordflow">if</span> (huart-&gt;Instance != USART2) {</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>    }</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>    <span class="keyword">const</span> <span class="keywordtype">char</span> c = (char)<a class="code hl_variable" href="uart__link_8c.html#afd855432ca208431a28bfdbfaf9aa55c">s_rx_byte</a>;</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span> </div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>    <span class="keywordflow">if</span> (c == <span class="charliteral">&#39;\n&#39;</span>) {</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>        <span class="keywordflow">if</span> (!<a class="code hl_variable" href="uart__link_8c.html#a7d875b771166bf2663bb0fdc58a3eec2">s_rx_discard</a>) {</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>            <span class="keywordflow">if</span> (<a class="code hl_variable" href="uart__link_8c.html#aa2da629959d51939a574a4c5f856a024">s_cmd_ready</a>) {</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>                <a class="code hl_variable" href="app__diag_8h.html#adfb01d77f83da4e3c751aa50aee2e11f">g_cnt_isr</a>.<a class="code hl_variable" href="struct_isr_counters.html#a5e1ae5eb4d4d1616d1a688eae6a0843f">cmd_busy</a>++;</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>            } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>                memcpy(<a class="code hl_variable" href="uart__link_8c.html#a7207bb35d48cb9d2459caf2e913b0e11">s_cmd_line</a>, <a class="code hl_variable" href="uart__link_8c.html#af8980ff409b62aef2a8d4f557c3e0e3a">s_rx_line</a>, <a class="code hl_variable" href="uart__link_8c.html#a94961f277bd4dfe873ce195b17ed75b2">s_rx_len</a>);</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>                <a class="code hl_variable" href="uart__link_8c.html#a7207bb35d48cb9d2459caf2e913b0e11">s_cmd_line</a>[<a class="code hl_variable" href="uart__link_8c.html#a94961f277bd4dfe873ce195b17ed75b2">s_rx_len</a>] = <span class="charliteral">&#39;\0&#39;</span>;</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>                <a class="code hl_variable" href="uart__link_8c.html#aa2da629959d51939a574a4c5f856a024">s_cmd_ready</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>            }</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>        }</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>        <a class="code hl_variable" href="uart__link_8c.html#a94961f277bd4dfe873ce195b17ed75b2">s_rx_len</a> = 0u;</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>        <a class="code hl_variable" href="uart__link_8c.html#a7d875b771166bf2663bb0fdc58a3eec2">s_rx_discard</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (c != <span class="charliteral">&#39;\r&#39;</span> &amp;&amp; !<a class="code hl_variable" href="uart__link_8c.html#a7d875b771166bf2663bb0fdc58a3eec2">s_rx_discard</a>) {</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="uart__link_8c.html#a94961f277bd4dfe873ce195b17ed75b2">s_rx_len</a> &lt; <a class="code hl_define" href="uart__link_8c.html#af96b3438d6adaaeeccf1ef6147ef6bed">RX_LINE_MAX</a>) {</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>            <a class="code hl_variable" href="uart__link_8c.html#af8980ff409b62aef2a8d4f557c3e0e3a">s_rx_line</a>[<a class="code hl_variable" href="uart__link_8c.html#a94961f277bd4dfe873ce195b17ed75b2">s_rx_len</a>++] = c;</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>            <a class="code hl_variable" href="app__diag_8h.html#adfb01d77f83da4e3c751aa50aee2e11f">g_cnt_isr</a>.<a class="code hl_variable" href="struct_isr_counters.html#a672afe99158aa8fc014cd9b7bf18d0c6">rx_overflow</a>++;                     <span class="comment">/* FR-83: sessiz yutma yok */</span></div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>            <a class="code hl_variable" href="uart__link_8c.html#a7d875b771166bf2663bb0fdc58a3eec2">s_rx_discard</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>        }</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>    }</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>    <a class="code hl_function" href="uart__link_8c.html#a605ab950f0599cb300c1186661056bc5">rx_arm</a>();</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>}</div>
+</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span></div>
+<div class="foldopen" id="foldopen00240" data-start="{" data-end="}">
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno"><a class="line" href="uart__link_8c.html#a0e0456ea96d55db31de947fb3e954f18">  240</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="uart__link_8c.html#a0e0456ea96d55db31de947fb3e954f18">HAL_UART_ErrorCallback</a>(UART_HandleTypeDef *huart)</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>{</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>    <span class="keywordflow">if</span> (huart-&gt;Instance != USART2) {</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>    }</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>    <a class="code hl_variable" href="app__diag_8h.html#adfb01d77f83da4e3c751aa50aee2e11f">g_cnt_isr</a>.<a class="code hl_variable" href="struct_isr_counters.html#a389531b5947cd7802a0fef83e938b93f">rx_err</a>++;</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>    <a class="code hl_function" href="uart__link_8c.html#a605ab950f0599cb300c1186661056bc5">rx_arm</a>();</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>}</div>
+</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span> </div>
+<div class="foldopen" id="foldopen00249" data-start="{" data-end="}">
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno"><a class="line" href="group__proto.html#gaa9b45aaa108ed04b62b8d3de9d5dc12d">  249</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="group__proto.html#gaa9b45aaa108ed04b62b8d3de9d5dc12d">uart_link_take_command</a>(<span class="keywordtype">char</span> *dst, <span class="keywordtype">size_t</span> n)</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>{</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="uart__link_8c.html#ae08b4045dd96239454d4e19963087f34">s_rx_restart</a>) {</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>        <a class="code hl_variable" href="uart__link_8c.html#ae08b4045dd96239454d4e19963087f34">s_rx_restart</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>        <a class="code hl_function" href="uart__link_8c.html#a605ab950f0599cb300c1186661056bc5">rx_arm</a>();</div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>    }</div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>    <span class="keywordflow">if</span> (!<a class="code hl_variable" href="uart__link_8c.html#aa2da629959d51939a574a4c5f856a024">s_cmd_ready</a>) {</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>    }</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>    strncpy(dst, <a class="code hl_variable" href="uart__link_8c.html#a7207bb35d48cb9d2459caf2e913b0e11">s_cmd_line</a>, n - 1u);</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>    dst[n - 1u] = <span class="charliteral">&#39;\0&#39;</span>;</div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>    <a class="code hl_variable" href="uart__link_8c.html#aa2da629959d51939a574a4c5f856a024">s_cmd_ready</a> = <span class="keyword">false</span>;                                 <span class="comment">/* sahipliği ISR&#39;a geri ver */</span></div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>}</div>
+</div>
+<div class="ttc" id="aapp__config_8h_html"><div class="ttname"><a href="app__config_8h.html">app_config.h</a></div><div class="ttdoc">Uygulama genelindeki sabit parametreler (ödev standardı).</div></div>
+<div class="ttc" id="aapp__config_8h_html_abb2d0329752cc81ae3a14caa741b7abb"><div class="ttname"><a href="app__config_8h.html#abb2d0329752cc81ae3a14caa741b7abb">APP_TX_BUF_LEN</a></div><div class="ttdeci">#define APP_TX_BUF_LEN</div><div class="ttdoc">TX mesaj tamponu [bayt].</div><div class="ttdef"><b>Definition</b> <a href="app__config_8h_source.html#l00030">app_config.h:30</a></div></div>
+<div class="ttc" id="aapp__diag_8h_html"><div class="ttname"><a href="app__diag_8h.html">app_diag.h</a></div><div class="ttdoc">Hata sayaçları ve SWD üzerinden okunabilen tanı yapısı.</div></div>
+<div class="ttc" id="aapp__diag_8h_html_a64309afc2f60d8e29d2321f44946cbd1"><div class="ttname"><a href="app__diag_8h.html#a64309afc2f60d8e29d2321f44946cbd1">g_diag</a></div><div class="ttdeci">volatile AppDiag g_diag</div><div class="ttdoc">Tanı özeti.</div><div class="ttdef"><b>Definition</b> <a href="app__tasks_8c_source.html#l00032">app_tasks.c:32</a></div></div>
+<div class="ttc" id="aapp__diag_8h_html_a994b9ea3718f517b6196f673feddc766"><div class="ttname"><a href="app__diag_8h.html#a994b9ea3718f517b6196f673feddc766">g_cnt_task</a></div><div class="ttdeci">volatile TaskCounters g_cnt_task</div><div class="ttdoc">Görev sayaçları.</div><div class="ttdef"><b>Definition</b> <a href="app__tasks_8c_source.html#l00031">app_tasks.c:31</a></div></div>
+<div class="ttc" id="aapp__diag_8h_html_adfb01d77f83da4e3c751aa50aee2e11f"><div class="ttname"><a href="app__diag_8h.html#adfb01d77f83da4e3c751aa50aee2e11f">g_cnt_isr</a></div><div class="ttdeci">volatile IsrCounters g_cnt_isr</div><div class="ttdoc">ISR sayaçları.</div><div class="ttdef"><b>Definition</b> <a href="app__tasks_8c_source.html#l00030">app_tasks.c:30</a></div></div>
+<div class="ttc" id="aapp__tasks_8h_html"><div class="ttname"><a href="app__tasks_8h.html">app_tasks.h</a></div><div class="ttdoc">Uygulama görevleri, kuyruklar ve açılış sırası.</div></div>
+<div class="ttc" id="aapp__types_8h_html"><div class="ttname"><a href="app__types_8h.html">app_types.h</a></div><div class="ttdoc">Görevler ve kesmeler arasında kuyruklarla taşınan veri tipleri.</div></div>
+<div class="ttc" id="agroup__isr_html_ga7994efa291616c571dca5756383b5061"><div class="ttname"><a href="group__isr.html#ga7994efa291616c571dca5756383b5061">uart_irq_entry</a></div><div class="ttdeci">void uart_irq_entry(void)</div><div class="ttdoc">USART2 kesmesinin ilk işi: giriş zamanını yakalar.</div><div class="ttdef"><b>Definition</b> <a href="#l00062">uart_link.c:62</a></div></div>
+<div class="ttc" id="agroup__isr_html_gad90f94c93a38a193027c9d26997c0fe1"><div class="ttname"><a href="group__isr.html#gad90f94c93a38a193027c9d26997c0fe1">uart_dma_tx_irq_entry</a></div><div class="ttdeci">void uart_dma_tx_irq_entry(void)</div><div class="ttdoc">TX DMA kesmesinin ilk işi: giriş zamanını yakalar (R-2 doğrulaması).</div><div class="ttdef"><b>Definition</b> <a href="#l00067">uart_link.c:67</a></div></div>
+<div class="ttc" id="agroup__proto_html_gaa9b45aaa108ed04b62b8d3de9d5dc12d"><div class="ttname"><a href="group__proto.html#gaa9b45aaa108ed04b62b8d3de9d5dc12d">uart_link_take_command</a></div><div class="ttdeci">bool uart_link_take_command(char *dst, size_t n)</div><div class="ttdoc">Bekleyen tam bir komut satırı varsa kopyalar.</div><div class="ttdef"><b>Definition</b> <a href="#l00249">uart_link.c:249</a></div></div>
+<div class="ttc" id="agroup__proto_html_gab24c0e19415e7f4834f264fa3f9c4004"><div class="ttname"><a href="group__proto.html#gab24c0e19415e7f4834f264fa3f9c4004">uart_link_busy</a></div><div class="ttdeci">bool uart_link_busy(void)</div><div class="ttdoc">Şu an hatta giden bir aktarım var mı.</div><div class="ttdef"><b>Definition</b> <a href="#l00072">uart_link.c:72</a></div></div>
+<div class="ttc" id="agroup__proto_html_gadde9424854bbdb867dbbda9f7060d69b"><div class="ttname"><a href="group__proto.html#gadde9424854bbdb867dbbda9f7060d69b">uart_link_start_rx</a></div><div class="ttdeci">void uart_link_start_rx(void)</div><div class="ttdoc">Komut alımını başlatır (bayt bayt, kesmeyle, FR-80).</div><div class="ttdef"><b>Definition</b> <a href="#l00195">uart_link.c:195</a></div></div>
+<div class="ttc" id="agroup__record_html_ga7104bd8a124c89e746b0cdb821dd9b44"><div class="ttname"><a href="group__record.html#ga7104bd8a124c89e746b0cdb821dd9b44">rec_close</a></div><div class="ttdeci">bool rec_close(uint32_t id, RecStatus status)</div><div class="ttdoc">Açık bir kaydı verilen durumla kapatır.</div><div class="ttdef"><b>Definition</b> <a href="record_8c_source.html#l00059">record.c:59</a></div></div>
+<div class="ttc" id="agroup__record_html_ga8671153e0e2c19907573a9bd01b730b5"><div class="ttname"><a href="group__record.html#ga8671153e0e2c19907573a9bd01b730b5">rec_stamp</a></div><div class="ttdeci">bool rec_stamp(uint32_t id, TsIndex idx, uint32_t t_us)</div><div class="ttdoc">Açık bir kayda bir zaman damgası yazar.</div><div class="ttdef"><b>Definition</b> <a href="record_8c_source.html#l00047">record.c:47</a></div></div>
+<div class="ttc" id="agroup__record_html_gga17c31f95ff37e1dc2265d38639148099abe69d407d602b42dd137f1e1d26dcdb9"><div class="ttname"><a href="group__record.html#gga17c31f95ff37e1dc2265d38639148099abe69d407d602b42dd137f1e1d26dcdb9">REC_OK</a></div><div class="ttdeci">@ REC_OK</div><div class="ttdoc">t₄ alındı; ölçüm tamam.</div><div class="ttdef"><b>Definition</b> <a href="record_8h_source.html#l00041">record.h:41</a></div></div>
+<div class="ttc" id="agroup__record_html_gga17c31f95ff37e1dc2265d38639148099ac97d9290fbd3816e2feb7514c4f141a4"><div class="ttname"><a href="group__record.html#gga17c31f95ff37e1dc2265d38639148099ac97d9290fbd3816e2feb7514c4f141a4">REC_TIMEOUT</a></div><div class="ttdeci">@ REC_TIMEOUT</div><div class="ttdoc">Gözetim süresi (1 s) içinde tamamlanmadı (MR-06).</div><div class="ttdef"><b>Definition</b> <a href="record_8h_source.html#l00045">record.h:45</a></div></div>
+<div class="ttc" id="agroup__record_html_gga17c31f95ff37e1dc2265d38639148099ae263c011b43db333470c271b71f369bf"><div class="ttname"><a href="group__record.html#gga17c31f95ff37e1dc2265d38639148099ae263c011b43db333470c271b71f369bf">REC_TX_ERROR</a></div><div class="ttdeci">@ REC_TX_ERROR</div><div class="ttdoc">UART gönderimi başlatılamadı (FR-44).</div><div class="ttdef"><b>Definition</b> <a href="record_8h_source.html#l00044">record.h:44</a></div></div>
+<div class="ttc" id="agroup__record_html_gga23dad729077e6b7b2582ed30e5074b70aa898dbbc7520c48f8187da0c366da9b2"><div class="ttname"><a href="group__record.html#gga23dad729077e6b7b2582ed30e5074b70aa898dbbc7520c48f8187da0c366da9b2">TS_T4</a></div><div class="ttdeci">@ TS_T4</div><div class="ttdoc">UART TC olayı işlenirken (FR-43).</div><div class="ttdef"><b>Definition</b> <a href="record_8h_source.html#l00057">record.h:57</a></div></div>
+<div class="ttc" id="agroup__record_html_gga23dad729077e6b7b2582ed30e5074b70aab28729e1e1153830ca885ffb48fc045"><div class="ttname"><a href="group__record.html#gga23dad729077e6b7b2582ed30e5074b70aab28729e1e1153830ca885ffb48fc045">TS_T3</a></div><div class="ttdeci">@ TS_T3</div><div class="ttdoc">UART başlatma çağrısından hemen önce (FR-42).</div><div class="ttdef"><b>Definition</b> <a href="record_8h_source.html#l00056">record.h:56</a></div></div>
+<div class="ttc" id="agroup__tasks_html_ga62afb507947bf26d69418593eb43dce4"><div class="ttname"><a href="group__tasks.html#ga62afb507947bf26d69418593eb43dce4">g_tx_q</a></div><div class="ttdeci">QueueHandle_t g_tx_q</div><div class="ttdoc">Ortak TX kuyruğu (16 × TxMsg, FIFO, FR-71).</div><div class="ttdef"><b>Definition</b> <a href="app__tasks_8c_source.html#l00028">app_tasks.c:28</a></div></div>
+<div class="ttc" id="agroup__tasks_html_ga9166faecff6c1864e8d0fa18ed200e53"><div class="ttname"><a href="group__tasks.html#ga9166faecff6c1864e8d0fa18ed200e53">UartTxTask</a></div><div class="ttdeci">void UartTxTask(void *arg)</div><div class="ttdoc">UART gönderim görevi — düşük öncelik (1).</div><div class="ttdef"><b>Definition</b> <a href="#l00077">uart_link.c:77</a></div></div>
+<div class="ttc" id="agroup__tasks_html_gae23dc602fcc5835f96131c7acf975fcf"><div class="ttname"><a href="group__tasks.html#gae23dc602fcc5835f96131c7acf975fcf">MsgKind</a></div><div class="ttdeci">MsgKind</div><div class="ttdoc">TX kuyruğundaki mesajın türü.</div><div class="ttdef"><b>Definition</b> <a href="app__types_8h_source.html#l00029">app_types.h:29</a></div></div>
+<div class="ttc" id="agroup__tasks_html_ggae23dc602fcc5835f96131c7acf975fcfabc2f438f46fce0447ca63267f6d29908"><div class="ttname"><a href="group__tasks.html#ggae23dc602fcc5835f96131c7acf975fcfabc2f438f46fce0447ca63267f6d29908">MSG_BTN</a></div><div class="ttdeci">@ MSG_BTN</div><div class="ttdoc">Buton yanıtı, tam 64 bayt; t₃/t₄ bu olayın kaydına yazılır.</div><div class="ttdef"><b>Definition</b> <a href="app__types_8h_source.html#l00031">app_types.h:31</a></div></div>
+<div class="ttc" id="agroup__timing_html_gae27f97606e13106e5536c7c41ee7cd69"><div class="ttname"><a href="group__timing.html#gae27f97606e13106e5536c7c41ee7cd69">timer_us</a></div><div class="ttdeci">static uint32_t timer_us(void)</div><div class="ttdoc">Serbest çalışan 1 MHz sayacın anlık değeri.</div><div class="ttdef"><b>Definition</b> <a href="timing_8h_source.html#l00034">timing.h:34</a></div></div>
+<div class="ttc" id="arecord_8h_html"><div class="ttname"><a href="record_8h.html">record.h</a></div><div class="ttdoc">Ölçüm kayıt defteri: her buton olayının t₀…t₄ damgaları.</div></div>
+<div class="ttc" id="astruct_app_diag_html_a07dbcf062286aa0e85467355cb5926ab"><div class="ttname"><a href="struct_app_diag.html#a07dbcf062286aa0e85467355cb5926ab">AppDiag::last_dma_to_tc_us</a></div><div class="ttdeci">uint32_t last_dma_to_tc_us</div><div class="ttdoc">[16] Son BTN&#39;de DMA bitişi → UART TC [µs] (R-2 kanıtı; yazar: TC ISR).</div><div class="ttdef"><b>Definition</b> <a href="app__diag_8h_source.html#l00086">app_diag.h:86</a></div></div>
+<div class="ttc" id="astruct_app_diag_html_a0e336175415b5552ca1a671d3da9bb6a"><div class="ttname"><a href="struct_app_diag.html#a0e336175415b5552ca1a671d3da9bb6a">AppDiag::max_dma_to_tc_us</a></div><div class="ttdeci">uint32_t max_dma_to_tc_us</div><div class="ttdoc">[17] En büyük DMA → TC [µs] (yazar: TC ISR).</div><div class="ttdef"><b>Definition</b> <a href="app__diag_8h_source.html#l00087">app_diag.h:87</a></div></div>
+<div class="ttc" id="astruct_app_diag_html_a85f7eb4a6596462695f4ce90a902ac3a"><div class="ttname"><a href="struct_app_diag.html#a85f7eb4a6596462695f4ce90a902ac3a">AppDiag::last_t4_minus_t3</a></div><div class="ttdeci">uint32_t last_t4_minus_t3</div><div class="ttdoc">[18] Son BTN&#39;de UART başlatma → TC [µs] (yazar: TC ISR).</div><div class="ttdef"><b>Definition</b> <a href="app__diag_8h_source.html#l00088">app_diag.h:88</a></div></div>
+<div class="ttc" id="astruct_isr_counters_html_a389531b5947cd7802a0fef83e938b93f"><div class="ttname"><a href="struct_isr_counters.html#a389531b5947cd7802a0fef83e938b93f">IsrCounters::rx_err</a></div><div class="ttdeci">uint32_t rx_err</div><div class="ttdoc">UART hata geri çağrısı: gürültü, çerçeve, taşma (UART ISR).</div><div class="ttdef"><b>Definition</b> <a href="app__diag_8h_source.html#l00044">app_diag.h:44</a></div></div>
+<div class="ttc" id="astruct_isr_counters_html_a5e1ae5eb4d4d1616d1a688eae6a0843f"><div class="ttname"><a href="struct_isr_counters.html#a5e1ae5eb4d4d1616d1a688eae6a0843f">IsrCounters::cmd_busy</a></div><div class="ttdeci">uint32_t cmd_busy</div><div class="ttdoc">Önceki komut işlenmeden yenisi geldi, yenisi atıldı (UART RX ISR).</div><div class="ttdef"><b>Definition</b> <a href="app__diag_8h_source.html#l00045">app_diag.h:45</a></div></div>
+<div class="ttc" id="astruct_isr_counters_html_a672afe99158aa8fc014cd9b7bf18d0c6"><div class="ttname"><a href="struct_isr_counters.html#a672afe99158aa8fc014cd9b7bf18d0c6">IsrCounters::rx_overflow</a></div><div class="ttdeci">uint32_t rx_overflow</div><div class="ttdoc">Komut satırı tampona sığmadı (UART RX ISR, FR-83).</div><div class="ttdef"><b>Definition</b> <a href="app__diag_8h_source.html#l00043">app_diag.h:43</a></div></div>
+<div class="ttc" id="astruct_isr_counters_html_a778fb953f67585ce3f1f5de54ed7ae2d"><div class="ttname"><a href="struct_isr_counters.html#a778fb953f67585ce3f1f5de54ed7ae2d">IsrCounters::rec_mismatch</a></div><div class="ttdeci">uint32_t rec_mismatch</div><div class="ttdoc">TC ISR&#39;ı t₄&#39;ü kayda yazamadı (UART TC ISR).</div><div class="ttdef"><b>Definition</b> <a href="app__diag_8h_source.html#l00039">app_diag.h:39</a></div></div>
+<div class="ttc" id="astruct_task_counters_html_a324ec3ba56fae82e1a1d751972d2ca0b"><div class="ttname"><a href="struct_task_counters.html#a324ec3ba56fae82e1a1d751972d2ca0b">TaskCounters::uart_err</a></div><div class="ttdeci">uint32_t uart_err</div><div class="ttdoc">Gönderim başlatılamadı (UartTxTask, FR-44).</div><div class="ttdef"><b>Definition</b> <a href="app__diag_8h_source.html#l00056">app_diag.h:56</a></div></div>
+<div class="ttc" id="astruct_task_counters_html_a64a45f8d264573c1029cd681e9983f12"><div class="ttname"><a href="struct_task_counters.html#a64a45f8d264573c1029cd681e9983f12">TaskCounters::rec_mismatch_tx</a></div><div class="ttdeci">uint32_t rec_mismatch_tx</div><div class="ttdoc">t₃ kayda yazılamadı (UartTxTask).</div><div class="ttdef"><b>Definition</b> <a href="app__diag_8h_source.html#l00058">app_diag.h:58</a></div></div>
+<div class="ttc" id="astruct_task_counters_html_a8ce96e5cf125c007224842d4865e1097"><div class="ttname"><a href="struct_task_counters.html#a8ce96e5cf125c007224842d4865e1097">TaskCounters::txq_hwm</a></div><div class="ttdeci">uint32_t txq_hwm</div><div class="ttdoc">txQ yüksek su seviyesi, ±1 (UartTxTask, FR-65).</div><div class="ttdef"><b>Definition</b> <a href="app__diag_8h_source.html#l00061">app_diag.h:61</a></div></div>
+<div class="ttc" id="astruct_task_counters_html_af39498b090903840ac63dfb36e67ba7c"><div class="ttname"><a href="struct_task_counters.html#af39498b090903840ac63dfb36e67ba7c">TaskCounters::uart_timeout</a></div><div class="ttdeci">uint32_t uart_timeout</div><div class="ttdoc">TC 1 s içinde gelmedi (UartTxTask, MR-06).</div><div class="ttdef"><b>Definition</b> <a href="app__diag_8h_source.html#l00057">app_diag.h:57</a></div></div>
+<div class="ttc" id="astruct_tx_msg_html"><div class="ttname"><a href="struct_tx_msg.html">TxMsg</a></div><div class="ttdoc">txQ elemanı: UART&#39;tan gönderilecek bir mesaj.</div><div class="ttdef"><b>Definition</b> <a href="app__types_8h_source.html#l00040">app_types.h:40</a></div></div>
+<div class="ttc" id="astruct_tx_msg_html_a54ceb1d3fd508d7e7024dd8f030c217f"><div class="ttname"><a href="struct_tx_msg.html#a54ceb1d3fd508d7e7024dd8f030c217f">TxMsg::kind</a></div><div class="ttdeci">MsgKind kind</div><div class="ttdoc">Mesaj türü.</div><div class="ttdef"><b>Definition</b> <a href="app__types_8h_source.html#l00041">app_types.h:41</a></div></div>
+<div class="ttc" id="astruct_tx_msg_html_a85a75fce3effe6485014aae30f924a55"><div class="ttname"><a href="struct_tx_msg.html#a85a75fce3effe6485014aae30f924a55">TxMsg::data</a></div><div class="ttdeci">char data[APP_TX_BUF_LEN]</div><div class="ttdoc">ASCII içerik, LF ile biter.</div><div class="ttdef"><b>Definition</b> <a href="app__types_8h_source.html#l00044">app_types.h:44</a></div></div>
+<div class="ttc" id="astruct_tx_msg_html_ac79a293b901d6b4714aece8f625ffb02"><div class="ttname"><a href="struct_tx_msg.html#ac79a293b901d6b4714aece8f625ffb02">TxMsg::len</a></div><div class="ttdeci">uint16_t len</div><div class="ttdoc">Gönderilecek bayt sayısı.</div><div class="ttdef"><b>Definition</b> <a href="app__types_8h_source.html#l00043">app_types.h:43</a></div></div>
+<div class="ttc" id="astruct_tx_msg_html_aeff3d22d93cbae6aa982e61eca213d3b"><div class="ttname"><a href="struct_tx_msg.html#aeff3d22d93cbae6aa982e61eca213d3b">TxMsg::event_id</a></div><div class="ttdeci">uint32_t event_id</div><div class="ttdoc">MSG_BTN için kapatılacak kaydın kimliği; diğerlerinde 0.</div><div class="ttdef"><b>Definition</b> <a href="app__types_8h_source.html#l00042">app_types.h:42</a></div></div>
+<div class="ttc" id="atiming_8h_html"><div class="ttname"><a href="timing_8h.html">timing.h</a></div><div class="ttdoc">Mikrosaniye zaman kaynağı (TIM2, 1 MHz, 32-bit serbest sayaç).</div></div>
+<div class="ttc" id="auart__link_8c_html_a0d148e0a2ab97eab25018cfa43bc30cf"><div class="ttname"><a href="uart__link_8c.html#a0d148e0a2ab97eab25018cfa43bc30cf">s_tx_buf</a></div><div class="ttdeci">static uint8_t s_tx_buf[APP_TX_BUF_LEN]</div><div class="ttdoc">DMA&#39;nın okuduğu kalıcı gönderim tamponu (FR-45, HW-05).</div><div class="ttdef"><b>Definition</b> <a href="#l00040">uart_link.c:40</a></div></div>
+<div class="ttc" id="auart__link_8c_html_a0e0456ea96d55db31de947fb3e954f18"><div class="ttname"><a href="uart__link_8c.html#a0e0456ea96d55db31de947fb3e954f18">HAL_UART_ErrorCallback</a></div><div class="ttdeci">void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart)</div><div class="ttdoc">UART hata geri çağrısı (gürültü, çerçeve, taşma, DMA hatası).</div><div class="ttdef"><b>Definition</b> <a href="#l00240">uart_link.c:240</a></div></div>
+<div class="ttc" id="auart__link_8c_html_a33684c206209bd316e672073c7cecf64"><div class="ttname"><a href="uart__link_8c.html#a33684c206209bd316e672073c7cecf64">s_tx_event</a></div><div class="ttdeci">static volatile uint32_t s_tx_event</div><div class="ttdoc">Hatta giden mesajın olay kimliği.</div><div class="ttdef"><b>Definition</b> <a href="#l00049">uart_link.c:49</a></div></div>
+<div class="ttc" id="auart__link_8c_html_a605ab950f0599cb300c1186661056bc5"><div class="ttname"><a href="uart__link_8c.html#a605ab950f0599cb300c1186661056bc5">rx_arm</a></div><div class="ttdeci">static void rx_arm(void)</div><div class="ttdoc">Bir sonraki komut baytı için alımı yeniden başlatır.</div><div class="ttdef"><b>Definition</b> <a href="#l00188">uart_link.c:188</a></div></div>
+<div class="ttc" id="auart__link_8c_html_a7207bb35d48cb9d2459caf2e913b0e11"><div class="ttname"><a href="uart__link_8c.html#a7207bb35d48cb9d2459caf2e913b0e11">s_cmd_line</a></div><div class="ttdeci">static char s_cmd_line[RX_LINE_MAX+1u]</div><div class="ttdoc">Tamamlanmış komut satırı ve hazır bayrağı.</div><div class="ttdef"><b>Definition</b> <a href="#l00183">uart_link.c:183</a></div></div>
+<div class="ttc" id="auart__link_8c_html_a7d875b771166bf2663bb0fdc58a3eec2"><div class="ttname"><a href="uart__link_8c.html#a7d875b771166bf2663bb0fdc58a3eec2">s_rx_discard</a></div><div class="ttdeci">static bool s_rx_discard</div><div class="ttdoc">Taşan satırın kalanı atılıyor.</div><div class="ttdef"><b>Definition</b> <a href="#l00174">uart_link.c:174</a></div></div>
+<div class="ttc" id="auart__link_8c_html_a94961f277bd4dfe873ce195b17ed75b2"><div class="ttname"><a href="uart__link_8c.html#a94961f277bd4dfe873ce195b17ed75b2">s_rx_len</a></div><div class="ttdeci">static uint32_t s_rx_len</div><div class="ttdoc">Yalnızca RX ISR.</div><div class="ttdef"><b>Definition</b> <a href="#l00173">uart_link.c:173</a></div></div>
+<div class="ttc" id="auart__link_8c_html_aa2da629959d51939a574a4c5f856a024"><div class="ttname"><a href="uart__link_8c.html#aa2da629959d51939a574a4c5f856a024">s_cmd_ready</a></div><div class="ttdeci">static volatile bool s_cmd_ready</div><div class="ttdoc">Tam bir komut satırı görevi bekliyor.</div><div class="ttdef"><b>Definition</b> <a href="#l00184">uart_link.c:184</a></div></div>
+<div class="ttc" id="auart__link_8c_html_abcdf9b59049eccbc87d54042f9235b1a"><div class="ttname"><a href="uart__link_8c.html#abcdf9b59049eccbc87d54042f9235b1a">HAL_UART_TxCpltCallback</a></div><div class="ttdeci">void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart)</div><div class="ttdoc">UART gönderim tamamlandı (TC) geri çağrısı.</div><div class="ttdef"><b>Definition</b> <a href="#l00139">uart_link.c:139</a></div></div>
+<div class="ttc" id="auart__link_8c_html_abddfc923e93f74b1b393139d81be4653"><div class="ttname"><a href="uart__link_8c.html#abddfc923e93f74b1b393139d81be4653">s_tx_task</a></div><div class="ttdeci">static TaskHandle_t s_tx_task</div><div class="ttdoc">UartTxTask&#39;ın tutamacı; TC ISR&#39;ı bununla görevi uyandırır.</div><div class="ttdef"><b>Definition</b> <a href="#l00053">uart_link.c:53</a></div></div>
+<div class="ttc" id="auart__link_8c_html_abfc3307c65fdb8551d95921c7ad28791"><div class="ttname"><a href="uart__link_8c.html#abfc3307c65fdb8551d95921c7ad28791">s_tx_kind</a></div><div class="ttdeci">static volatile MsgKind s_tx_kind</div><div class="ttdoc">Hatta giden mesajın türü ve olay kimliği.</div><div class="ttdef"><b>Definition</b> <a href="#l00048">uart_link.c:48</a></div></div>
+<div class="ttc" id="auart__link_8c_html_ac1f6e5c43eb9da937716ab6e2855f3a7"><div class="ttname"><a href="uart__link_8c.html#ac1f6e5c43eb9da937716ab6e2855f3a7">s_uart_entry_us</a></div><div class="ttdeci">static volatile uint32_t s_uart_entry_us</div><div class="ttdoc">Son USART2 kesmesinin giriş zamanı [µs] (t₄ kaynağı).</div><div class="ttdef"><b>Definition</b> <a href="#l00056">uart_link.c:56</a></div></div>
+<div class="ttc" id="auart__link_8c_html_ad3a48abf2ea7f76193c997ab016a3d3a"><div class="ttname"><a href="uart__link_8c.html#ad3a48abf2ea7f76193c997ab016a3d3a">s_tx_busy</a></div><div class="ttdeci">static volatile bool s_tx_busy</div><div class="ttdoc">DMA başlatıldı, TC henüz gelmedi.</div><div class="ttdef"><b>Definition</b> <a href="#l00050">uart_link.c:50</a></div></div>
+<div class="ttc" id="auart__link_8c_html_ae08b4045dd96239454d4e19963087f34"><div class="ttname"><a href="uart__link_8c.html#ae08b4045dd96239454d4e19963087f34">s_rx_restart</a></div><div class="ttdeci">static volatile bool s_rx_restart</div><div class="ttdoc">Alım durdu; görev yeniden başlatsın.</div><div class="ttdef"><b>Definition</b> <a href="#l00185">uart_link.c:185</a></div></div>
+<div class="ttc" id="auart__link_8c_html_ae494a9643f29b87d6d81e5264e60e57b"><div class="ttname"><a href="uart__link_8c.html#ae494a9643f29b87d6d81e5264e60e57b">HAL_UART_RxCpltCallback</a></div><div class="ttdeci">void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)</div><div class="ttdoc">Bir bayt alındı: satırı topla, LF&#39;de devret.</div><div class="ttdef"><b>Definition</b> <a href="#l00205">uart_link.c:205</a></div></div>
+<div class="ttc" id="auart__link_8c_html_aeda1a60b1f8a35a98afa332e8658516e"><div class="ttname"><a href="uart__link_8c.html#aeda1a60b1f8a35a98afa332e8658516e">s_tx_t3</a></div><div class="ttdeci">static volatile uint32_t s_tx_t3</div><div class="ttdoc">Son BTN mesajının t₃&#39;ü; TC ISR&#39;ı t₄ − t₃&#39;ü tanıya yazar.</div><div class="ttdef"><b>Definition</b> <a href="#l00060">uart_link.c:60</a></div></div>
+<div class="ttc" id="auart__link_8c_html_af8593900b43985d7064207ba42f13828"><div class="ttname"><a href="uart__link_8c.html#af8593900b43985d7064207ba42f13828">s_dma_entry_us</a></div><div class="ttdeci">static volatile uint32_t s_dma_entry_us</div><div class="ttdoc">Son TX DMA kesmesinin giriş zamanı [µs].</div><div class="ttdef"><b>Definition</b> <a href="#l00058">uart_link.c:58</a></div></div>
+<div class="ttc" id="auart__link_8c_html_af8980ff409b62aef2a8d4f557c3e0e3a"><div class="ttname"><a href="uart__link_8c.html#af8980ff409b62aef2a8d4f557c3e0e3a">s_rx_line</a></div><div class="ttdeci">static char s_rx_line[RX_LINE_MAX+1u]</div><div class="ttdoc">Toplanan satır.</div><div class="ttdef"><b>Definition</b> <a href="#l00172">uart_link.c:172</a></div></div>
+<div class="ttc" id="auart__link_8c_html_af96b3438d6adaaeeccf1ef6147ef6bed"><div class="ttname"><a href="uart__link_8c.html#af96b3438d6adaaeeccf1ef6147ef6bed">RX_LINE_MAX</a></div><div class="ttdeci">#define RX_LINE_MAX</div><div class="ttdoc">Komut satırının azami uzunluğu (LF hariç).</div><div class="ttdef"><b>Definition</b> <a href="#l00169">uart_link.c:169</a></div></div>
+<div class="ttc" id="auart__link_8c_html_afd855432ca208431a28bfdbfaf9aa55c"><div class="ttname"><a href="uart__link_8c.html#afd855432ca208431a28bfdbfaf9aa55c">s_rx_byte</a></div><div class="ttdeci">static uint8_t s_rx_byte</div><div class="ttdoc">HAL&#39;in tek baytlık alım tamponu.</div><div class="ttdef"><b>Definition</b> <a href="#l00171">uart_link.c:171</a></div></div>
+<div class="ttc" id="auart__link_8h_html"><div class="ttname"><a href="uart__link_8h.html">uart_link.h</a></div><div class="ttdoc">USART2&#39;nin tek sahibi: DMA ile gönderim (t₃, t₄) ve komut alma.</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><b>firmware</b></li><li class="navelem"><b>Core</b></li><li class="navelem"><b>Src</b></li><li class="navelem"><a href="uart__link_8c.html">uart_link.c</a></li>
+    <li class="footer">Oluşturan <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.18.0 </li>
+  </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,213 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="tr">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Hafta 1 - Yuk altinda buton yanit suresi: D:/RTOS/Hafta_1_RTOS_Bootcamp/hafta-01/firmware/Core/Inc/record.h Kaynak Dosyası</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Hafta 1 - Yuk altinda buton yanit suresi
+   </div>
+   <div id="projectbrief">STM32F407 + FreeRTOS olcum firmware&#39;i</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Oluşturan Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="application/json" id="doxygen-config">
+{
+  "relPath": "",
+  "generateTreeView": true,
+  "searchEngine": true,
+  "serverBasedSearch": false,
+  "disableIndex": false,
+  "dynamicMenus": true,
+  "fullSidebar": false
+}
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Ara" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded',() => { initNavTree('record_8h_source.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Yüklüyor...</div>
+<div class="SRStatus" id="Searching">Arıyor...</div>
+<div class="SRStatus" id="NoMatches">Eşleşme Yok</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">record.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="record_8h.html">Bu dosyanın dokümantasyonuna git.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#ifndef RECORD_H</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#define RECORD_H</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span></div>
+<div class="foldopen" id="foldopen00038" data-start="{" data-end="};">
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="group__record.html#ga17c31f95ff37e1dc2265d38639148099">   38</a></span><span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="group__record.html#gga17c31f95ff37e1dc2265d38639148099ad74ae5db08f7e3a4be02304bf6818bfd">   39</a></span>    <a class="code hl_enumvalue" href="group__record.html#gga17c31f95ff37e1dc2265d38639148099ad74ae5db08f7e3a4be02304bf6818bfd">REC_FREE</a> = 0,    </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="group__record.html#gga17c31f95ff37e1dc2265d38639148099ad2644e3cc0effea15da5a0d21590033c">   40</a></span>    <a class="code hl_enumvalue" href="group__record.html#gga17c31f95ff37e1dc2265d38639148099ad2644e3cc0effea15da5a0d21590033c">REC_OPEN</a>,        </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="group__record.html#gga17c31f95ff37e1dc2265d38639148099abe69d407d602b42dd137f1e1d26dcdb9">   41</a></span>    <a class="code hl_enumvalue" href="group__record.html#gga17c31f95ff37e1dc2265d38639148099abe69d407d602b42dd137f1e1d26dcdb9">REC_OK</a>,          </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="group__record.html#gga17c31f95ff37e1dc2265d38639148099af4b76b99432b27174152777a1d680963">   42</a></span>    <a class="code hl_enumvalue" href="group__record.html#gga17c31f95ff37e1dc2265d38639148099af4b76b99432b27174152777a1d680963">REC_BTNQ_DROP</a>,   </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="group__record.html#gga17c31f95ff37e1dc2265d38639148099a46aaefeacc04d9520f1bc0b1dd81e869">   43</a></span>    <a class="code hl_enumvalue" href="group__record.html#gga17c31f95ff37e1dc2265d38639148099a46aaefeacc04d9520f1bc0b1dd81e869">REC_TXQ_DROP</a>,    </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="group__record.html#gga17c31f95ff37e1dc2265d38639148099ae263c011b43db333470c271b71f369bf">   44</a></span>    <a class="code hl_enumvalue" href="group__record.html#gga17c31f95ff37e1dc2265d38639148099ae263c011b43db333470c271b71f369bf">REC_TX_ERROR</a>,    </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="group__record.html#gga17c31f95ff37e1dc2265d38639148099ac97d9290fbd3816e2feb7514c4f141a4">   45</a></span>    <a class="code hl_enumvalue" href="group__record.html#gga17c31f95ff37e1dc2265d38639148099ac97d9290fbd3816e2feb7514c4f141a4">REC_TIMEOUT</a>      </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>} <a class="code hl_enumeration" href="group__record.html#ga17c31f95ff37e1dc2265d38639148099">RecStatus</a>;</div>
+</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span></div>
+<div class="foldopen" id="foldopen00052" data-start="{" data-end="};">
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="group__record.html#ga23dad729077e6b7b2582ed30e5074b70">   52</a></span><span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="group__record.html#gga23dad729077e6b7b2582ed30e5074b70a4a5ce008e24614684e3ea1393a60fa14">   53</a></span>    <a class="code hl_enumvalue" href="group__record.html#gga23dad729077e6b7b2582ed30e5074b70a4a5ce008e24614684e3ea1393a60fa14">TS_T0</a> = 0,   </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="group__record.html#gga23dad729077e6b7b2582ed30e5074b70aeae49b6ff9a10a68907b8b665d1e05f1">   54</a></span>    <a class="code hl_enumvalue" href="group__record.html#gga23dad729077e6b7b2582ed30e5074b70aeae49b6ff9a10a68907b8b665d1e05f1">TS_T1</a>,       </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="group__record.html#gga23dad729077e6b7b2582ed30e5074b70a471f8856fbad3777ba6528910ba1cce9">   55</a></span>    <a class="code hl_enumvalue" href="group__record.html#gga23dad729077e6b7b2582ed30e5074b70a471f8856fbad3777ba6528910ba1cce9">TS_T2</a>,       </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="group__record.html#gga23dad729077e6b7b2582ed30e5074b70aab28729e1e1153830ca885ffb48fc045">   56</a></span>    <a class="code hl_enumvalue" href="group__record.html#gga23dad729077e6b7b2582ed30e5074b70aab28729e1e1153830ca885ffb48fc045">TS_T3</a>,       </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="group__record.html#gga23dad729077e6b7b2582ed30e5074b70aa898dbbc7520c48f8187da0c366da9b2">   57</a></span>    <a class="code hl_enumvalue" href="group__record.html#gga23dad729077e6b7b2582ed30e5074b70aa898dbbc7520c48f8187da0c366da9b2">TS_T4</a>,       </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="group__record.html#gga23dad729077e6b7b2582ed30e5074b70a0dab48aca7275d07f41630f4346c98a5">   58</a></span>    <a class="code hl_enumvalue" href="group__record.html#gga23dad729077e6b7b2582ed30e5074b70a0dab48aca7275d07f41630f4346c98a5">TS_COUNT</a>     </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>} <a class="code hl_enumeration" href="group__record.html#ga23dad729077e6b7b2582ed30e5074b70">TsIndex</a>;</div>
+</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span></div>
+<div class="foldopen" id="foldopen00065" data-start="{" data-end="};">
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="struct_event_record.html">   65</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="struct_event_record.html#af27d49cf03753ca857f76be401ff9499">   66</a></span>    uint32_t <a class="code hl_variable" href="struct_event_record.html#af27d49cf03753ca857f76be401ff9499">event_id</a>;       </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="struct_event_record.html#a722ace3a2bf67a004179dcd8d32be924">   67</a></span>    uint32_t <a class="code hl_variable" href="struct_event_record.html#a722ace3a2bf67a004179dcd8d32be924">t</a>[<a class="code hl_enumvalue" href="group__record.html#gga23dad729077e6b7b2582ed30e5074b70a0dab48aca7275d07f41630f4346c98a5">TS_COUNT</a>];    </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="struct_event_record.html#aa27e5da3e68d11eb3a8d205e5f038492">   68</a></span>    uint8_t  <a class="code hl_variable" href="struct_event_record.html#aa27e5da3e68d11eb3a8d205e5f038492">have</a>;           </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="struct_event_record.html#a1a61cc06fc6c93a9bd950ee60143bc1f">   69</a></span>    uint8_t  <a class="code hl_variable" href="struct_event_record.html#a1a61cc06fc6c93a9bd950ee60143bc1f">status</a>;         </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>} <a class="code hl_struct" href="struct_event_record.html">EventRecord</a>;</div>
+</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><span class="keywordtype">bool</span> <a class="code hl_function" href="group__record.html#gadee602977a5c86f75f10d48f9561c805">rec_open</a>(uint32_t <span class="keywordtype">id</span>, uint32_t t0_us);</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span></div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span><span class="keywordtype">bool</span> <a class="code hl_function" href="group__record.html#ga8671153e0e2c19907573a9bd01b730b5">rec_stamp</a>(uint32_t <span class="keywordtype">id</span>, <a class="code hl_enumeration" href="group__record.html#ga23dad729077e6b7b2582ed30e5074b70">TsIndex</a> idx, uint32_t t_us);</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span><span class="keywordtype">bool</span> <a class="code hl_function" href="group__record.html#ga7104bd8a124c89e746b0cdb821dd9b44">rec_close</a>(uint32_t <span class="keywordtype">id</span>, <a class="code hl_enumeration" href="group__record.html#ga17c31f95ff37e1dc2265d38639148099">RecStatus</a> status);</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span></div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span><span class="keywordtype">bool</span> <a class="code hl_function" href="group__record.html#ga1940e3026d4070e20bb5b3d699078e3e">rec_read</a>(uint32_t slot, <a class="code hl_struct" href="struct_event_record.html">EventRecord</a> *out);</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span></div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>uint32_t <a class="code hl_function" href="group__record.html#gaa54c3517634ad1045e438f7b2c7a4f2a">rec_count_open</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span></div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>uint32_t <a class="code hl_function" href="group__record.html#ga821bf7e8311d9da3184eabe5d09e79bf">rec_timeout_open</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span></div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span><span class="keywordtype">void</span> <a class="code hl_function" href="group__record.html#ga8e7d02fb46485aa025d6474d667a7151">rec_reset</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span></div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span><span class="keywordtype">bool</span> <a class="code hl_function" href="group__record.html#ga82af82de2ec547c0db8da9e9124d41d1">rec_selfcheck</a>(uint32_t *opened, uint32_t *rejected);</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span> </div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span><span class="preprocessor">#endif </span><span class="comment">/* RECORD_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agroup__record_html_ga17c31f95ff37e1dc2265d38639148099"><div class="ttname"><a href="group__record.html#ga17c31f95ff37e1dc2265d38639148099">RecStatus</a></div><div class="ttdeci">RecStatus</div><div class="ttdoc">Bir kaydın yaşam döngüsündeki durumu.</div><div class="ttdef"><b>Definition</b> <a href="#l00038">record.h:38</a></div></div>
+<div class="ttc" id="agroup__record_html_ga1940e3026d4070e20bb5b3d699078e3e"><div class="ttname"><a href="group__record.html#ga1940e3026d4070e20bb5b3d699078e3e">rec_read</a></div><div class="ttdeci">bool rec_read(uint32_t slot, EventRecord *out)</div><div class="ttdoc">Bir slotun anlık kopyasını döndürür (dışa aktarım için).</div><div class="ttdef"><b>Definition</b> <a href="record_8c_source.html#l00070">record.c:70</a></div></div>
+<div class="ttc" id="agroup__record_html_ga23dad729077e6b7b2582ed30e5074b70"><div class="ttname"><a href="group__record.html#ga23dad729077e6b7b2582ed30e5074b70">TsIndex</a></div><div class="ttdeci">TsIndex</div><div class="ttdoc">Zaman damgası indeksi.</div><div class="ttdef"><b>Definition</b> <a href="#l00052">record.h:52</a></div></div>
+<div class="ttc" id="agroup__record_html_ga7104bd8a124c89e746b0cdb821dd9b44"><div class="ttname"><a href="group__record.html#ga7104bd8a124c89e746b0cdb821dd9b44">rec_close</a></div><div class="ttdeci">bool rec_close(uint32_t id, RecStatus status)</div><div class="ttdoc">Açık bir kaydı verilen durumla kapatır.</div><div class="ttdef"><b>Definition</b> <a href="record_8c_source.html#l00059">record.c:59</a></div></div>
+<div class="ttc" id="agroup__record_html_ga821bf7e8311d9da3184eabe5d09e79bf"><div class="ttname"><a href="group__record.html#ga821bf7e8311d9da3184eabe5d09e79bf">rec_timeout_open</a></div><div class="ttdeci">uint32_t rec_timeout_open(void)</div><div class="ttdoc">Açık kalan tüm kayıtları REC_TIMEOUT ile kapatır (MR-06).</div><div class="ttdef"><b>Definition</b> <a href="record_8c_source.html#l00096">record.c:96</a></div></div>
+<div class="ttc" id="agroup__record_html_ga82af82de2ec547c0db8da9e9124d41d1"><div class="ttname"><a href="group__record.html#ga82af82de2ec547c0db8da9e9124d41d1">rec_selfcheck</a></div><div class="ttdeci">bool rec_selfcheck(uint32_t *opened, uint32_t *rejected)</div><div class="ttdoc">Kayıt defterinin kurallarını karta özgü koşullarda sınar (açılış öz-testi).</div><div class="ttdef"><b>Definition</b> <a href="record_8c_source.html#l00119">record.c:119</a></div></div>
+<div class="ttc" id="agroup__record_html_ga8671153e0e2c19907573a9bd01b730b5"><div class="ttname"><a href="group__record.html#ga8671153e0e2c19907573a9bd01b730b5">rec_stamp</a></div><div class="ttdeci">bool rec_stamp(uint32_t id, TsIndex idx, uint32_t t_us)</div><div class="ttdoc">Açık bir kayda bir zaman damgası yazar.</div><div class="ttdef"><b>Definition</b> <a href="record_8c_source.html#l00047">record.c:47</a></div></div>
+<div class="ttc" id="agroup__record_html_ga8e7d02fb46485aa025d6474d667a7151"><div class="ttname"><a href="group__record.html#ga8e7d02fb46485aa025d6474d667a7151">rec_reset</a></div><div class="ttdeci">void rec_reset(void)</div><div class="ttdoc">Tüm slotları REC_FREE yapar.</div><div class="ttdef"><b>Definition</b> <a href="record_8c_source.html#l00107">record.c:107</a></div></div>
+<div class="ttc" id="agroup__record_html_gaa54c3517634ad1045e438f7b2c7a4f2a"><div class="ttname"><a href="group__record.html#gaa54c3517634ad1045e438f7b2c7a4f2a">rec_count_open</a></div><div class="ttdeci">uint32_t rec_count_open(void)</div><div class="ttdoc">Hâlâ açık (REC_OPEN) kayıt sayısı.</div><div class="ttdef"><b>Definition</b> <a href="record_8c_source.html#l00085">record.c:85</a></div></div>
+<div class="ttc" id="agroup__record_html_gadee602977a5c86f75f10d48f9561c805"><div class="ttname"><a href="group__record.html#gadee602977a5c86f75f10d48f9561c805">rec_open</a></div><div class="ttdeci">bool rec_open(uint32_t id, uint32_t t0_us)</div><div class="ttdoc">Yeni bir olay için kayıt açar ve t₀&#39;ı yazar.</div><div class="ttdef"><b>Definition</b> <a href="record_8c_source.html#l00033">record.c:33</a></div></div>
+<div class="ttc" id="agroup__record_html_gga17c31f95ff37e1dc2265d38639148099a46aaefeacc04d9520f1bc0b1dd81e869"><div class="ttname"><a href="group__record.html#gga17c31f95ff37e1dc2265d38639148099a46aaefeacc04d9520f1bc0b1dd81e869">REC_TXQ_DROP</a></div><div class="ttdeci">@ REC_TXQ_DROP</div><div class="ttdoc">txQ doluydu; yanıt gönderilemedi (FR-34).</div><div class="ttdef"><b>Definition</b> <a href="#l00043">record.h:43</a></div></div>
+<div class="ttc" id="agroup__record_html_gga17c31f95ff37e1dc2265d38639148099abe69d407d602b42dd137f1e1d26dcdb9"><div class="ttname"><a href="group__record.html#gga17c31f95ff37e1dc2265d38639148099abe69d407d602b42dd137f1e1d26dcdb9">REC_OK</a></div><div class="ttdeci">@ REC_OK</div><div class="ttdoc">t₄ alındı; ölçüm tamam.</div><div class="ttdef"><b>Definition</b> <a href="#l00041">record.h:41</a></div></div>
+<div class="ttc" id="agroup__record_html_gga17c31f95ff37e1dc2265d38639148099ac97d9290fbd3816e2feb7514c4f141a4"><div class="ttname"><a href="group__record.html#gga17c31f95ff37e1dc2265d38639148099ac97d9290fbd3816e2feb7514c4f141a4">REC_TIMEOUT</a></div><div class="ttdeci">@ REC_TIMEOUT</div><div class="ttdoc">Gözetim süresi (1 s) içinde tamamlanmadı (MR-06).</div><div class="ttdef"><b>Definition</b> <a href="#l00045">record.h:45</a></div></div>
+<div class="ttc" id="agroup__record_html_gga17c31f95ff37e1dc2265d38639148099ad2644e3cc0effea15da5a0d21590033c"><div class="ttname"><a href="group__record.html#gga17c31f95ff37e1dc2265d38639148099ad2644e3cc0effea15da5a0d21590033c">REC_OPEN</a></div><div class="ttdeci">@ REC_OPEN</div><div class="ttdoc">Olay sistemde ilerliyor; damgalar dolduruluyor.</div><div class="ttdef"><b>Definition</b> <a href="#l00040">record.h:40</a></div></div>
+<div class="ttc" id="agroup__record_html_gga17c31f95ff37e1dc2265d38639148099ad74ae5db08f7e3a4be02304bf6818bfd"><div class="ttname"><a href="group__record.html#gga17c31f95ff37e1dc2265d38639148099ad74ae5db08f7e3a4be02304bf6818bfd">REC_FREE</a></div><div class="ttdeci">@ REC_FREE</div><div class="ttdoc">Slot boş; açılabilir.</div><div class="ttdef"><b>Definition</b> <a href="#l00039">record.h:39</a></div></div>
+<div class="ttc" id="agroup__record_html_gga17c31f95ff37e1dc2265d38639148099ae263c011b43db333470c271b71f369bf"><div class="ttname"><a href="group__record.html#gga17c31f95ff37e1dc2265d38639148099ae263c011b43db333470c271b71f369bf">REC_TX_ERROR</a></div><div class="ttdeci">@ REC_TX_ERROR</div><div class="ttdoc">UART gönderimi başlatılamadı (FR-44).</div><div class="ttdef"><b>Definition</b> <a href="#l00044">record.h:44</a></div></div>
+<div class="ttc" id="agroup__record_html_gga17c31f95ff37e1dc2265d38639148099af4b76b99432b27174152777a1d680963"><div class="ttname"><a href="group__record.html#gga17c31f95ff37e1dc2265d38639148099af4b76b99432b27174152777a1d680963">REC_BTNQ_DROP</a></div><div class="ttdeci">@ REC_BTNQ_DROP</div><div class="ttdoc">buttonQ doluydu; olay göreve ulaşamadı.</div><div class="ttdef"><b>Definition</b> <a href="#l00042">record.h:42</a></div></div>
+<div class="ttc" id="agroup__record_html_gga23dad729077e6b7b2582ed30e5074b70a0dab48aca7275d07f41630f4346c98a5"><div class="ttname"><a href="group__record.html#gga23dad729077e6b7b2582ed30e5074b70a0dab48aca7275d07f41630f4346c98a5">TS_COUNT</a></div><div class="ttdeci">@ TS_COUNT</div><div class="ttdoc">Damga sayısı.</div><div class="ttdef"><b>Definition</b> <a href="#l00058">record.h:58</a></div></div>
+<div class="ttc" id="agroup__record_html_gga23dad729077e6b7b2582ed30e5074b70a471f8856fbad3777ba6528910ba1cce9"><div class="ttname"><a href="group__record.html#gga23dad729077e6b7b2582ed30e5074b70a471f8856fbad3777ba6528910ba1cce9">TS_T2</a></div><div class="ttdeci">@ TS_T2</div><div class="ttdoc">Yanıt xQueueSend&#39;den hemen önce (FR-32).</div><div class="ttdef"><b>Definition</b> <a href="#l00055">record.h:55</a></div></div>
+<div class="ttc" id="agroup__record_html_gga23dad729077e6b7b2582ed30e5074b70a4a5ce008e24614684e3ea1393a60fa14"><div class="ttname"><a href="group__record.html#gga23dad729077e6b7b2582ed30e5074b70a4a5ce008e24614684e3ea1393a60fa14">TS_T0</a></div><div class="ttdeci">@ TS_T0</div><div class="ttdoc">Buton ISR girişi (FR-11).</div><div class="ttdef"><b>Definition</b> <a href="#l00053">record.h:53</a></div></div>
+<div class="ttc" id="agroup__record_html_gga23dad729077e6b7b2582ed30e5074b70aa898dbbc7520c48f8187da0c366da9b2"><div class="ttname"><a href="group__record.html#gga23dad729077e6b7b2582ed30e5074b70aa898dbbc7520c48f8187da0c366da9b2">TS_T4</a></div><div class="ttdeci">@ TS_T4</div><div class="ttdoc">UART TC olayı işlenirken (FR-43).</div><div class="ttdef"><b>Definition</b> <a href="#l00057">record.h:57</a></div></div>
+<div class="ttc" id="agroup__record_html_gga23dad729077e6b7b2582ed30e5074b70aab28729e1e1153830ca885ffb48fc045"><div class="ttname"><a href="group__record.html#gga23dad729077e6b7b2582ed30e5074b70aab28729e1e1153830ca885ffb48fc045">TS_T3</a></div><div class="ttdeci">@ TS_T3</div><div class="ttdoc">UART başlatma çağrısından hemen önce (FR-42).</div><div class="ttdef"><b>Definition</b> <a href="#l00056">record.h:56</a></div></div>
+<div class="ttc" id="agroup__record_html_gga23dad729077e6b7b2582ed30e5074b70aeae49b6ff9a10a68907b8b665d1e05f1"><div class="ttname"><a href="group__record.html#gga23dad729077e6b7b2582ed30e5074b70aeae49b6ff9a10a68907b8b665d1e05f1">TS_T1</a></div><div class="ttdeci">@ TS_T1</div><div class="ttdoc">ButtonTask olayı aldıktan hemen sonra (FR-31).</div><div class="ttdef"><b>Definition</b> <a href="#l00054">record.h:54</a></div></div>
+<div class="ttc" id="astruct_event_record_html"><div class="ttname"><a href="struct_event_record.html">EventRecord</a></div><div class="ttdoc">Tek bir buton olayının ölçüm kaydı.</div><div class="ttdef"><b>Definition</b> <a href="#l00065">record.h:65</a></div></div>
+<div class="ttc" id="astruct_event_record_html_a1a61cc06fc6c93a9bd950ee60143bc1f"><div class="ttname"><a href="struct_event_record.html#a1a61cc06fc6c93a9bd950ee60143bc1f">EventRecord::status</a></div><div class="ttdeci">uint8_t status</div><div class="ttdoc">RecStatus değeri.</div><div class="ttdef"><b>Definition</b> <a href="#l00069">record.h:69</a></div></div>
+<div class="ttc" id="astruct_event_record_html_a722ace3a2bf67a004179dcd8d32be924"><div class="ttname"><a href="struct_event_record.html#a722ace3a2bf67a004179dcd8d32be924">EventRecord::t</a></div><div class="ttdeci">uint32_t t[TS_COUNT]</div><div class="ttdoc">Damgalar [µs]; yalnızca have bitleri set olanlar geçerlidir.</div><div class="ttdef"><b>Definition</b> <a href="#l00067">record.h:67</a></div></div>
+<div class="ttc" id="astruct_event_record_html_aa27e5da3e68d11eb3a8d205e5f038492"><div class="ttname"><a href="struct_event_record.html#aa27e5da3e68d11eb3a8d205e5f038492">EventRecord::have</a></div><div class="ttdeci">uint8_t have</div><div class="ttdoc">Bit i set ⇒ t[i] alındı.</div><div class="ttdef"><b>Definition</b> <a href="#l00068">record.h:68</a></div></div>
+<div class="ttc" id="astruct_event_record_html_af27d49cf03753ca857f76be401ff9499"><div class="ttname"><a href="struct_event_record.html#af27d49cf03753ca857f76be401ff9499">EventRecord::event_id</a></div><div class="ttdeci">uint32_t event_id</div><div class="ttdoc">Kaydın sahibi olan olay kimliği.</div><div class="ttdef"><b>Definition</b> <a href="#l00066">record.h:66</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><b>firmware</b></li><li class="navelem"><b>Core</b></li><li class="navelem"><b>Inc</b></li><li class="navelem"><a href="record_8h.html">record.h</a></li>
+    <li class="footer">Oluşturan <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.18.0 </li>
+  </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,620 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="tr">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Hafta 1 - Yuk altinda buton yanit suresi: Ölçüm Kayıt Defteri</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Hafta 1 - Yuk altinda buton yanit suresi
+   </div>
+   <div id="projectbrief">STM32F407 + FreeRTOS olcum firmware&#39;i</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Oluşturan Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="application/json" id="doxygen-config">
+{
+  "relPath": "",
+  "generateTreeView": true,
+  "searchEngine": true,
+  "serverBasedSearch": false,
+  "disableIndex": false,
+  "dynamicMenus": true,
+  "fullSidebar": false
+}
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Ara" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded',() => { initNavTree('group__record.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Yüklüyor...</div>
+<div class="SRStatus" id="Searching">Arıyor...</div>
+<div class="SRStatus" id="NoMatches">Eşleşme Yok</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">Ölçüm Kayıt Defteri </div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Beş farklı bağlamın parça parça doldurduğu olay kayıtları.  
+<a href="#details">Ayrıntılar...</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-files" class="groupheader"><a id="files" name="files"></a>
+Dosyalar</h2></td></tr>
+<tr class="memitem:D_3A_2FRTOS_2FHafta_5F1_5FRTOS_5FBootcamp_2Fhafta-01_2Ffirmware_2FCore_2FInc_2Frecord_2Eh" id="r_D_3A_2FRTOS_2FHafta_5F1_5FRTOS_5FBootcamp_2Fhafta-01_2Ffirmware_2FCore_2FInc_2Frecord_2Eh"><td class="memItemLeft">dosya &#160;</td><td class="memItemRight"><a class="el" href="record_8h.html">D:/RTOS/Hafta_1_RTOS_Bootcamp/hafta-01/firmware/Core/Inc/record.h</a></td></tr>
+<tr class="memdesc:record_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ölçüm kayıt defteri: her buton olayının t₀…t₄ damgaları. <br /></td></tr>
+<tr class="memitem:D_3A_2FRTOS_2FHafta_5F1_5FRTOS_5FBootcamp_2Fhafta-01_2Ffirmware_2FCore_2FSrc_2Frecord_2Ec" id="r_D_3A_2FRTOS_2FHafta_5F1_5FRTOS_5FBootcamp_2Fhafta-01_2Ffirmware_2FCore_2FSrc_2Frecord_2Ec"><td class="memItemLeft">dosya &#160;</td><td class="memItemRight"><a class="el" href="record_8c.html">D:/RTOS/Hafta_1_RTOS_Bootcamp/hafta-01/firmware/Core/Src/record.c</a></td></tr>
+<tr class="memdesc:record_8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ölçüm kayıt defterinin gerçekleştirimi. <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Veri Yapıları</h2></td></tr>
+<tr class="memitem:EventRecord" id="r_EventRecord"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_event_record.html">EventRecord</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tek bir buton olayının ölçüm kaydı.  <a href="struct_event_record.html#details">Ayrıntılar...</a><br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-enum-members" class="groupheader"><a id="enum-members" name="enum-members"></a>
+Enümerasyonlar</h2></td></tr>
+<tr class="memitem:ga17c31f95ff37e1dc2265d38639148099" id="r_ga17c31f95ff37e1dc2265d38639148099"><td class="memItemLeft">enum &#160;</td><td class="memItemRight"><a class="el" href="#ga17c31f95ff37e1dc2265d38639148099">RecStatus</a> { <br />
+&#160;&#160;<a class="el" href="#gga17c31f95ff37e1dc2265d38639148099ad74ae5db08f7e3a4be02304bf6818bfd">REC_FREE</a> = 0
+, <a class="el" href="#gga17c31f95ff37e1dc2265d38639148099ad2644e3cc0effea15da5a0d21590033c">REC_OPEN</a>
+, <a class="el" href="#gga17c31f95ff37e1dc2265d38639148099abe69d407d602b42dd137f1e1d26dcdb9">REC_OK</a>
+, <a class="el" href="#gga17c31f95ff37e1dc2265d38639148099af4b76b99432b27174152777a1d680963">REC_BTNQ_DROP</a>
+, <br />
+&#160;&#160;<a class="el" href="#gga17c31f95ff37e1dc2265d38639148099a46aaefeacc04d9520f1bc0b1dd81e869">REC_TXQ_DROP</a>
+, <a class="el" href="#gga17c31f95ff37e1dc2265d38639148099ae263c011b43db333470c271b71f369bf">REC_TX_ERROR</a>
+, <a class="el" href="#gga17c31f95ff37e1dc2265d38639148099ac97d9290fbd3816e2feb7514c4f141a4">REC_TIMEOUT</a>
+<br />
+ }</td></tr>
+<tr class="memdesc:ga17c31f95ff37e1dc2265d38639148099"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bir kaydın yaşam döngüsündeki durumu.  <a href="#ga17c31f95ff37e1dc2265d38639148099">Ayrıntılar...</a><br /></td></tr>
+<tr class="memitem:ga23dad729077e6b7b2582ed30e5074b70" id="r_ga23dad729077e6b7b2582ed30e5074b70"><td class="memItemLeft">enum &#160;</td><td class="memItemRight"><a class="el" href="#ga23dad729077e6b7b2582ed30e5074b70">TsIndex</a> { <br />
+&#160;&#160;<a class="el" href="#gga23dad729077e6b7b2582ed30e5074b70a4a5ce008e24614684e3ea1393a60fa14">TS_T0</a> = 0
+, <a class="el" href="#gga23dad729077e6b7b2582ed30e5074b70aeae49b6ff9a10a68907b8b665d1e05f1">TS_T1</a>
+, <a class="el" href="#gga23dad729077e6b7b2582ed30e5074b70a471f8856fbad3777ba6528910ba1cce9">TS_T2</a>
+, <a class="el" href="#gga23dad729077e6b7b2582ed30e5074b70aab28729e1e1153830ca885ffb48fc045">TS_T3</a>
+, <br />
+&#160;&#160;<a class="el" href="#gga23dad729077e6b7b2582ed30e5074b70aa898dbbc7520c48f8187da0c366da9b2">TS_T4</a>
+, <a class="el" href="#gga23dad729077e6b7b2582ed30e5074b70a0dab48aca7275d07f41630f4346c98a5">TS_COUNT</a>
+<br />
+ }</td></tr>
+<tr class="memdesc:ga23dad729077e6b7b2582ed30e5074b70"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zaman damgası indeksi.  <a href="#ga23dad729077e6b7b2582ed30e5074b70">Ayrıntılar...</a><br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+Fonksiyonlar</h2></td></tr>
+<tr class="memitem:gadee602977a5c86f75f10d48f9561c805" id="r_gadee602977a5c86f75f10d48f9561c805"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#gadee602977a5c86f75f10d48f9561c805">rec_open</a> (uint32_t id, uint32_t t0_us)</td></tr>
+<tr class="memdesc:gadee602977a5c86f75f10d48f9561c805"><td class="mdescLeft">&#160;</td><td class="mdescRight">Yeni bir olay için kayıt açar ve t₀'ı yazar.  <br /></td></tr>
+<tr class="memitem:ga8671153e0e2c19907573a9bd01b730b5" id="r_ga8671153e0e2c19907573a9bd01b730b5"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ga8671153e0e2c19907573a9bd01b730b5">rec_stamp</a> (uint32_t id, <a class="el" href="#ga23dad729077e6b7b2582ed30e5074b70">TsIndex</a> idx, uint32_t t_us)</td></tr>
+<tr class="memdesc:ga8671153e0e2c19907573a9bd01b730b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Açık bir kayda bir zaman damgası yazar.  <br /></td></tr>
+<tr class="memitem:ga7104bd8a124c89e746b0cdb821dd9b44" id="r_ga7104bd8a124c89e746b0cdb821dd9b44"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ga7104bd8a124c89e746b0cdb821dd9b44">rec_close</a> (uint32_t id, <a class="el" href="#ga17c31f95ff37e1dc2265d38639148099">RecStatus</a> status)</td></tr>
+<tr class="memdesc:ga7104bd8a124c89e746b0cdb821dd9b44"><td class="mdescLeft">&#160;</td><td class="mdescRight">Açık bir kaydı verilen durumla kapatır.  <br /></td></tr>
+<tr class="memitem:ga1940e3026d4070e20bb5b3d699078e3e" id="r_ga1940e3026d4070e20bb5b3d699078e3e"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ga1940e3026d4070e20bb5b3d699078e3e">rec_read</a> (uint32_t slot, <a class="el" href="struct_event_record.html">EventRecord</a> *out)</td></tr>
+<tr class="memdesc:ga1940e3026d4070e20bb5b3d699078e3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bir slotun anlık kopyasını döndürür (dışa aktarım için).  <br /></td></tr>
+<tr class="memitem:gaa54c3517634ad1045e438f7b2c7a4f2a" id="r_gaa54c3517634ad1045e438f7b2c7a4f2a"><td class="memItemLeft">uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#gaa54c3517634ad1045e438f7b2c7a4f2a">rec_count_open</a> (void)</td></tr>
+<tr class="memdesc:gaa54c3517634ad1045e438f7b2c7a4f2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hâlâ açık (<span class="tt"><a class="el" href="#gga17c31f95ff37e1dc2265d38639148099ad2644e3cc0effea15da5a0d21590033c" title="Olay sistemde ilerliyor; damgalar dolduruluyor.">REC_OPEN</a></span>) kayıt sayısı.  <br /></td></tr>
+<tr class="memitem:ga821bf7e8311d9da3184eabe5d09e79bf" id="r_ga821bf7e8311d9da3184eabe5d09e79bf"><td class="memItemLeft">uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#ga821bf7e8311d9da3184eabe5d09e79bf">rec_timeout_open</a> (void)</td></tr>
+<tr class="memdesc:ga821bf7e8311d9da3184eabe5d09e79bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Açık kalan tüm kayıtları <span class="tt"><a class="el" href="#gga17c31f95ff37e1dc2265d38639148099ac97d9290fbd3816e2feb7514c4f141a4" title="Gözetim süresi (1 s) içinde tamamlanmadı (MR-06).">REC_TIMEOUT</a></span> ile kapatır (MR-06).  <br /></td></tr>
+<tr class="memitem:ga8e7d02fb46485aa025d6474d667a7151" id="r_ga8e7d02fb46485aa025d6474d667a7151"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ga8e7d02fb46485aa025d6474d667a7151">rec_reset</a> (void)</td></tr>
+<tr class="memdesc:ga8e7d02fb46485aa025d6474d667a7151"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tüm slotları <span class="tt"><a class="el" href="#gga17c31f95ff37e1dc2265d38639148099ad74ae5db08f7e3a4be02304bf6818bfd" title="Slot boş; açılabilir.">REC_FREE</a></span> yapar.  <br /></td></tr>
+<tr class="memitem:ga82af82de2ec547c0db8da9e9124d41d1" id="r_ga82af82de2ec547c0db8da9e9124d41d1"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ga82af82de2ec547c0db8da9e9124d41d1">rec_selfcheck</a> (uint32_t *opened, uint32_t *rejected)</td></tr>
+<tr class="memdesc:ga82af82de2ec547c0db8da9e9124d41d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kayıt defterinin kurallarını karta özgü koşullarda sınar (açılış öz-testi).  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Ayrıntılı tanımlama</h2>
+<div class="textblock"><p>Beş farklı bağlamın parça parça doldurduğu olay kayıtları. </p>
+<p>Bir olayın damgaları beş ayrı yerde alınır: t₀ buton ISR'ında, t₁ ve t₂ <span class="tt">ButtonTask</span>'ta, t₃ <span class="tt"><a class="el" href="group__tasks.html#ga9166faecff6c1864e8d0fa18ed200e53" title="UART gönderim görevi — düşük öncelik (1).">UartTxTask</a></span>'ta, t₄ UART TC kesmesinde. Hiçbiri diğerini beklemez; her biri olayın kimliğiyle ilgili kaydı bulup kendi alanını yazar. Kayıtlar deney bittikten sonra toplu olarak dışa aktarılır, çünkü t₄ yanıt gönderildikten <em>sonra</em> oluşur ve yanıtın içine konamaz (FR-67).</p>
+<p><b>Eşzamanlılık (tasarım §3.1, FR-62):</b> Aynı kaydın alanları kesin bir sırayla yazılır (t₀ → t₁,t₂ → t₃ → t₄); bir aşama ancak öncekinin sonucu kuyruktan alındıktan sonra çalışabilir. Bu yüzden aynı kayda iki bağlam aynı anda yazmaz ve kilit gerekmez. Farklı olaylar farklı slotlara düşer.</p>
+<p><b>Slot kuralı:</b> Olay kimliği <span class="tt">id</span>, <span class="tt">id % <a class="el" href="app__config_8h.html#a25ffa59634a2161b36fbcbd8a71eead3" title="Ölçüm kayıt havuzu kapasitesi [olay] (FR-60).">APP_REC_POOL_SIZE</a></span> slotuna düşer. Slot yalnızca boşken (<span class="tt"><a class="el" href="#gga17c31f95ff37e1dc2265d38639148099ad74ae5db08f7e3a4be02304bf6818bfd" title="Slot boş; açılabilir.">REC_FREE</a></span>) açılabilir; eski bir kaydın üzerine asla yazılmaz (FR-61). Her yazma, slotun gerçekten o kimliğe ait olduğunu doğrular; geç gelen bir damga başka bir olayın kaydını bozamaz (FR-46). </p>
+</div><a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">Enümerasyon Tipi Dokümantasyonu</h2>
+<a id="ga17c31f95ff37e1dc2265d38639148099" name="ga17c31f95ff37e1dc2265d38639148099"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga17c31f95ff37e1dc2265d38639148099">&#9670;&#160;</a></span>RecStatus</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#ga17c31f95ff37e1dc2265d38639148099">RecStatus</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Bir kaydın yaşam döngüsündeki durumu. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enümeratör</th></tr><tr><td class="fieldname"><a id="gga17c31f95ff37e1dc2265d38639148099ad74ae5db08f7e3a4be02304bf6818bfd" name="gga17c31f95ff37e1dc2265d38639148099ad74ae5db08f7e3a4be02304bf6818bfd"></a>REC_FREE&#160;</td><td class="fielddoc"><p>Slot boş; açılabilir. </p>
+<p>Sıfırlanmış havuzun varsayılanı. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga17c31f95ff37e1dc2265d38639148099ad2644e3cc0effea15da5a0d21590033c" name="gga17c31f95ff37e1dc2265d38639148099ad2644e3cc0effea15da5a0d21590033c"></a>REC_OPEN&#160;</td><td class="fielddoc"><p>Olay sistemde ilerliyor; damgalar dolduruluyor. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga17c31f95ff37e1dc2265d38639148099abe69d407d602b42dd137f1e1d26dcdb9" name="gga17c31f95ff37e1dc2265d38639148099abe69d407d602b42dd137f1e1d26dcdb9"></a>REC_OK&#160;</td><td class="fielddoc"><p>t₄ alındı; ölçüm tamam. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga17c31f95ff37e1dc2265d38639148099af4b76b99432b27174152777a1d680963" name="gga17c31f95ff37e1dc2265d38639148099af4b76b99432b27174152777a1d680963"></a>REC_BTNQ_DROP&#160;</td><td class="fielddoc"><p><span class="tt">buttonQ</span> doluydu; olay göreve ulaşamadı. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga17c31f95ff37e1dc2265d38639148099a46aaefeacc04d9520f1bc0b1dd81e869" name="gga17c31f95ff37e1dc2265d38639148099a46aaefeacc04d9520f1bc0b1dd81e869"></a>REC_TXQ_DROP&#160;</td><td class="fielddoc"><p><span class="tt">txQ</span> doluydu; yanıt gönderilemedi (FR-34). </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga17c31f95ff37e1dc2265d38639148099ae263c011b43db333470c271b71f369bf" name="gga17c31f95ff37e1dc2265d38639148099ae263c011b43db333470c271b71f369bf"></a>REC_TX_ERROR&#160;</td><td class="fielddoc"><p>UART gönderimi başlatılamadı (FR-44). </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga17c31f95ff37e1dc2265d38639148099ac97d9290fbd3816e2feb7514c4f141a4" name="gga17c31f95ff37e1dc2265d38639148099ac97d9290fbd3816e2feb7514c4f141a4"></a>REC_TIMEOUT&#160;</td><td class="fielddoc"><p>Gözetim süresi (1 s) içinde tamamlanmadı (MR-06). </p>
+</td></tr>
+</table>
+
+<p class="definition"><a class="el" href="record_8h_source.html">record.h</a> dosyasının <a class="el" href="record_8h_source.html#l00038">38</a> numaralı satırında tanımlanmıştır.</p>
+
+</div>
+</div>
+<a id="ga23dad729077e6b7b2582ed30e5074b70" name="ga23dad729077e6b7b2582ed30e5074b70"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga23dad729077e6b7b2582ed30e5074b70">&#9670;&#160;</a></span>TsIndex</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#ga23dad729077e6b7b2582ed30e5074b70">TsIndex</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Zaman damgası indeksi. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enümeratör</th></tr><tr><td class="fieldname"><a id="gga23dad729077e6b7b2582ed30e5074b70a4a5ce008e24614684e3ea1393a60fa14" name="gga23dad729077e6b7b2582ed30e5074b70a4a5ce008e24614684e3ea1393a60fa14"></a>TS_T0&#160;</td><td class="fielddoc"><p>Buton ISR girişi (FR-11). </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga23dad729077e6b7b2582ed30e5074b70aeae49b6ff9a10a68907b8b665d1e05f1" name="gga23dad729077e6b7b2582ed30e5074b70aeae49b6ff9a10a68907b8b665d1e05f1"></a>TS_T1&#160;</td><td class="fielddoc"><p><span class="tt">ButtonTask</span> olayı aldıktan hemen sonra (FR-31). </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga23dad729077e6b7b2582ed30e5074b70a471f8856fbad3777ba6528910ba1cce9" name="gga23dad729077e6b7b2582ed30e5074b70a471f8856fbad3777ba6528910ba1cce9"></a>TS_T2&#160;</td><td class="fielddoc"><p>Yanıt <span class="tt">xQueueSend</span>'den hemen önce (FR-32). </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga23dad729077e6b7b2582ed30e5074b70aab28729e1e1153830ca885ffb48fc045" name="gga23dad729077e6b7b2582ed30e5074b70aab28729e1e1153830ca885ffb48fc045"></a>TS_T3&#160;</td><td class="fielddoc"><p>UART başlatma çağrısından hemen önce (FR-42). </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga23dad729077e6b7b2582ed30e5074b70aa898dbbc7520c48f8187da0c366da9b2" name="gga23dad729077e6b7b2582ed30e5074b70aa898dbbc7520c48f8187da0c366da9b2"></a>TS_T4&#160;</td><td class="fielddoc"><p>UART TC olayı işlenirken (FR-43). </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga23dad729077e6b7b2582ed30e5074b70a0dab48aca7275d07f41630f4346c98a5" name="gga23dad729077e6b7b2582ed30e5074b70a0dab48aca7275d07f41630f4346c98a5"></a>TS_COUNT&#160;</td><td class="fielddoc"><p>Damga sayısı. </p>
+</td></tr>
+</table>
+
+<p class="definition"><a class="el" href="record_8h_source.html">record.h</a> dosyasının <a class="el" href="record_8h_source.html#l00052">52</a> numaralı satırında tanımlanmıştır.</p>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Fonksiyon Dokümantasyonu</h2>
+<a id="ga7104bd8a124c89e746b0cdb821dd9b44" name="ga7104bd8a124c89e746b0cdb821dd9b44"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7104bd8a124c89e746b0cdb821dd9b44">&#9670;&#160;</a></span>rec_close()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool rec_close </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#ga17c31f95ff37e1dc2265d38639148099">RecStatus</a></td>          <td class="paramname"><span class="paramname"><em>status</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Açık bir kaydı verilen durumla kapatır. </p>
+<dl class="params"><dt>Parametreler</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>Olay kimliği. </td></tr>
+    <tr><td class="paramname">status</td><td>Son durum (<span class="tt"><a class="el" href="#gga17c31f95ff37e1dc2265d38639148099abe69d407d602b42dd137f1e1d26dcdb9" title="t₄ alındı; ölçüm tamam.">REC_OK</a></span> veya bir hata durumu). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Döndürdüğü değer</dt><dd><span class="tt">true</span>: kapatıldı. <span class="tt">false</span>: slot bu kimliğe ait değil veya kayıt zaten kapalı.</dd></dl>
+<dl class="section note"><dt>Not</dt><dd>Görev ve ISR bağlamında çağrılabilir. </dd></dl>
+
+<p class="definition"><a class="el" href="record_8c_source.html">record.c</a> dosyasının <a class="el" href="record_8c_source.html#l00059">59</a> numaralı satırında tanımlanmıştır.</p>
+<div class="dynheader">
+Bu fonksiyon için çağırılma şeması:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__record_ga7104bd8a124c89e746b0cdb821dd9b44_cgraph.png" border="0" usemap="#agroup__record_ga7104bd8a124c89e746b0cdb821dd9b44_cgraph" loading="lazy" alt=""/></div>
+<map name="agroup__record_ga7104bd8a124c89e746b0cdb821dd9b44_cgraph" id="agroup__record_ga7104bd8a124c89e746b0cdb821dd9b44_cgraph">
+<area shape="rect" title="Açık bir kaydı verilen durumla kapatır." alt="" coords="5,29,83,56"/>
+<area shape="poly" title=" " alt="" coords="23,29,19,20,22,11,30,5,44,3,59,5,67,14,62,14,56,10,44,8,32,10,26,14,25,20,28,29"/>
+<area shape="rect" href="record_8c.html#a460f79265e2343a3cd311389e1d6799f" title="Kimliğin düştüğü slot." alt="" coords="131,29,191,56"/>
+<area shape="poly" title=" " alt="" coords="83,40,118,42,113,43,83,45"/>
+<area shape="poly" title=" " alt="" coords="140,28,136,20,139,11,147,5,161,3,175,5,184,15,179,14,173,10,161,8,149,10,143,14,142,20,145,30"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="gaa54c3517634ad1045e438f7b2c7a4f2a" name="gaa54c3517634ad1045e438f7b2c7a4f2a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa54c3517634ad1045e438f7b2c7a4f2a">&#9670;&#160;</a></span>rec_count_open()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t rec_count_open </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Hâlâ açık (<span class="tt"><a class="el" href="#gga17c31f95ff37e1dc2265d38639148099ad2644e3cc0effea15da5a0d21590033c" title="Olay sistemde ilerliyor; damgalar dolduruluyor.">REC_OPEN</a></span>) kayıt sayısı. </p>
+<dl class="section return"><dt>Döndürdüğü değer</dt><dd>Açık kayıt sayısı. DRAINING durumunda ölçümün bitip bitmediğini anlamak için. </dd></dl>
+
+<p class="definition"><a class="el" href="record_8c_source.html">record.c</a> dosyasının <a class="el" href="record_8c_source.html#l00085">85</a> numaralı satırında tanımlanmıştır.</p>
+<div class="dynheader">
+Bu fonksiyon için çağırılma şeması:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__record_gaa54c3517634ad1045e438f7b2c7a4f2a_cgraph.png" border="0" usemap="#agroup__record_gaa54c3517634ad1045e438f7b2c7a4f2a_cgraph" loading="lazy" alt=""/></div>
+<map name="agroup__record_gaa54c3517634ad1045e438f7b2c7a4f2a_cgraph" id="agroup__record_gaa54c3517634ad1045e438f7b2c7a4f2a_cgraph">
+<area shape="rect" title="Hâlâ açık (REC_OPEN) kayıt sayısı." alt="" coords="5,29,119,56"/>
+<area shape="poly" title=" " alt="" coords="41,29,38,20,40,11,49,5,62,3,76,5,84,14,79,14,74,10,62,8,51,10,45,14,43,20,47,29"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="gadee602977a5c86f75f10d48f9561c805" name="gadee602977a5c86f75f10d48f9561c805"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gadee602977a5c86f75f10d48f9561c805">&#9670;&#160;</a></span>rec_open()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool rec_open </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>t0_us</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Yeni bir olay için kayıt açar ve t₀'ı yazar. </p>
+<dl class="params"><dt>Parametreler</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>Olay kimliği (&gt; 0). </td></tr>
+    <tr><td class="paramname">t0_us</td><td>ISR girişinde alınan zaman [µs]. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Döndürdüğü değer</dt><dd><span class="tt">true</span>: kayıt açıldı. <span class="tt">false</span>: slot boş değil (taşma, FR-61) veya <span class="tt">id</span> 0.</dd></dl>
+<dl class="section note"><dt>Not</dt><dd><b>Yalnızca buton ISR'ından</b> çağrılır. </dd></dl>
+<dl class="section user"><dt>Zaman damgası</dt><dd><b>t₀</b> kaydedilir. </dd></dl>
+
+<p class="definition"><a class="el" href="record_8c_source.html">record.c</a> dosyasının <a class="el" href="record_8c_source.html#l00033">33</a> numaralı satırında tanımlanmıştır.</p>
+<div class="dynheader">
+Bu fonksiyon için çağırılma şeması:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__record_gadee602977a5c86f75f10d48f9561c805_cgraph.png" border="0" usemap="#agroup__record_gadee602977a5c86f75f10d48f9561c805_cgraph" loading="lazy" alt=""/></div>
+<map name="agroup__record_gadee602977a5c86f75f10d48f9561c805_cgraph" id="agroup__record_gadee602977a5c86f75f10d48f9561c805_cgraph">
+<area shape="rect" title="Yeni bir olay için kayıt açar ve t₀&#39;ı yazar." alt="" coords="5,29,80,56"/>
+<area shape="poly" title=" " alt="" coords="22,29,18,20,21,11,29,5,43,3,57,5,65,13,60,14,54,10,42,8,31,10,25,14,24,20,27,29"/>
+<area shape="rect" href="record_8c.html#a460f79265e2343a3cd311389e1d6799f" title="Kimliğin düştüğü slot." alt="" coords="128,29,188,56"/>
+<area shape="poly" title=" " alt="" coords="80,40,114,42,109,43,80,45"/>
+<area shape="poly" title=" " alt="" coords="137,28,134,20,136,11,144,5,158,3,172,5,181,14,175,13,170,10,158,8,146,10,140,14,139,20,142,30"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ga1940e3026d4070e20bb5b3d699078e3e" name="ga1940e3026d4070e20bb5b3d699078e3e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga1940e3026d4070e20bb5b3d699078e3e">&#9670;&#160;</a></span>rec_read()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool rec_read </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>slot</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_event_record.html">EventRecord</a> *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Bir slotun anlık kopyasını döndürür (dışa aktarım için). </p>
+<dl class="params"><dt>Parametreler</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">slot</td><td>Slot indeksi, <span class="tt">0 … APP_REC_POOL_SIZE-1</span>. </td></tr>
+    <tr><td class="paramname">out</td><td>Kopyanın yazılacağı yer. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Döndürdüğü değer</dt><dd><span class="tt">false</span>: slot indeksi geçersiz.</dd></dl>
+<dl class="section note"><dt>Not</dt><dd>Yalnızca ölçüm durmuşken (hiçbir ISR/görev kayda yazmıyorken) çağrılmalıdır. </dd></dl>
+
+<p class="definition"><a class="el" href="record_8c_source.html">record.c</a> dosyasının <a class="el" href="record_8c_source.html#l00070">70</a> numaralı satırında tanımlanmıştır.</p>
+<div class="dynheader">
+Bu fonksiyon için çağırılma şeması:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__record_ga1940e3026d4070e20bb5b3d699078e3e_cgraph.png" border="0" usemap="#agroup__record_ga1940e3026d4070e20bb5b3d699078e3e_cgraph" loading="lazy" alt=""/></div>
+<map name="agroup__record_ga1940e3026d4070e20bb5b3d699078e3e_cgraph" id="agroup__record_ga1940e3026d4070e20bb5b3d699078e3e_cgraph">
+<area shape="rect" title="Bir slotun anlık kopyasını döndürür (dışa aktarım için)." alt="" coords="5,29,77,56"/>
+<area shape="poly" title=" " alt="" coords="27,28,26,12,32,5,41,3,51,5,56,14,51,14,48,10,41,8,35,10,31,14,32,29"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ga8e7d02fb46485aa025d6474d667a7151" name="ga8e7d02fb46485aa025d6474d667a7151"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga8e7d02fb46485aa025d6474d667a7151">&#9670;&#160;</a></span>rec_reset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void rec_reset </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Tüm slotları <span class="tt"><a class="el" href="#gga17c31f95ff37e1dc2265d38639148099ad74ae5db08f7e3a4be02304bf6818bfd" title="Slot boş; açılabilir.">REC_FREE</a></span> yapar. </p>
+<dl class="section note"><dt>Not</dt><dd>Yalnızca ölçüm durmuşken çağrılmalıdır (açılış veya senaryo değişimi, FR-86). </dd></dl>
+
+<p class="definition"><a class="el" href="record_8c_source.html">record.c</a> dosyasının <a class="el" href="record_8c_source.html#l00107">107</a> numaralı satırında tanımlanmıştır.</p>
+<div class="dynheader">
+Bu fonksiyon için çağırılma şeması:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__record_ga8e7d02fb46485aa025d6474d667a7151_cgraph.png" border="0" usemap="#agroup__record_ga8e7d02fb46485aa025d6474d667a7151_cgraph" loading="lazy" alt=""/></div>
+<map name="agroup__record_ga8e7d02fb46485aa025d6474d667a7151_cgraph" id="agroup__record_ga8e7d02fb46485aa025d6474d667a7151_cgraph">
+<area shape="rect" title="Tüm slotları REC_FREE yapar." alt="" coords="5,29,81,56"/>
+<area shape="poly" title=" " alt="" coords="28,28,28,12,33,5,43,3,53,5,59,14,53,14,50,10,43,8,36,10,33,14,34,29"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ga82af82de2ec547c0db8da9e9124d41d1" name="ga82af82de2ec547c0db8da9e9124d41d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga82af82de2ec547c0db8da9e9124d41d1">&#9670;&#160;</a></span>rec_selfcheck()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool rec_selfcheck </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t *</td>          <td class="paramname"><span class="paramname"><em>opened</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t *</td>          <td class="paramname"><span class="paramname"><em>rejected</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Kayıt defterinin kurallarını karta özgü koşullarda sınar (açılış öz-testi). </p>
+<dl class="params"><dt>Parametreler</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">opened</td><td>Çıktı: 100 sahte olaydan açılabilen kayıt sayısı (beklenen: havuz boyutu). </td></tr>
+    <tr><td class="paramname">rejected</td><td>Çıktı: taşma nedeniyle reddedilen sayı (beklenen: 100 − havuz boyutu). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Döndürdüğü değer</dt><dd><span class="tt">true</span>: tüm kontroller geçti.</dd></dl>
+<p>Sınanan kurallar: havuz dolunca yeni kayıt reddedilir; başka kimliğe ait slota damga yazılamaz; kayıt iki kez kapatılamaz; kapanmış ama dökülmemiş kaydın üzerine yazılamaz; damga ve <span class="tt">have</span> bitleri doğru tutulur. Çıkışta havuz sıfırlanır.</p>
+<dl class="section note"><dt>Not</dt><dd>Scheduler başlamadan önce çağrılmalıdır (T-05 kanıtı). </dd></dl>
+
+<p class="definition"><a class="el" href="record_8c_source.html">record.c</a> dosyasının <a class="el" href="record_8c_source.html#l00119">119</a> numaralı satırında tanımlanmıştır.</p>
+<div class="dynheader">
+Bu fonksiyon için çağırılma şeması:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__record_ga82af82de2ec547c0db8da9e9124d41d1_cgraph.png" border="0" usemap="#agroup__record_ga82af82de2ec547c0db8da9e9124d41d1_cgraph" loading="lazy" alt=""/></div>
+<map name="agroup__record_ga82af82de2ec547c0db8da9e9124d41d1_cgraph" id="agroup__record_ga82af82de2ec547c0db8da9e9124d41d1_cgraph">
+<area shape="rect" title="Kayıt defterinin kurallarını karta özgü koşullarda sınar (açılış öz&#45;testi)." alt="" coords="5,179,108,205"/>
+<area shape="poly" title=" " alt="" coords="32,179,28,170,31,160,40,154,57,152,74,155,84,163,79,164,72,160,56,157,42,159,35,164,33,170,37,178"/>
+<area shape="rect" href="group__record.html#ga7104bd8a124c89e746b0cdb821dd9b44" title="Açık bir kaydı verilen durumla kapatır." alt="" coords="158,29,236,56"/>
+<area shape="poly" title=" " alt="" coords="64,177,100,125,154,66,160,63,157,67,158,70,105,129,69,179"/>
+<area shape="rect" href="group__record.html#gadee602977a5c86f75f10d48f9561c805" title="Yeni bir olay için kayıt açar ve t₀&#39;ı yazar." alt="" coords="160,104,234,131"/>
+<area shape="poly" title=" " alt="" coords="81,176,158,136,155,141,85,180"/>
+<area shape="rect" href="group__record.html#ga1940e3026d4070e20bb5b3d699078e3e" title="Bir slotun anlık kopyasını döndürür (dışa aktarım için)." alt="" coords="161,179,232,205"/>
+<area shape="poly" title=" " alt="" coords="107,190,148,191,143,193,109,194"/>
+<area shape="rect" href="group__record.html#ga8e7d02fb46485aa025d6474d667a7151" title="Tüm slotları REC_FREE yapar." alt="" coords="159,253,234,280"/>
+<area shape="poly" title=" " alt="" coords="83,203,159,244,155,247,83,208"/>
+<area shape="rect" href="group__record.html#ga8671153e0e2c19907573a9bd01b730b5" title="Açık bir kayda bir zaman damgası yazar." alt="" coords="156,328,238,355"/>
+<area shape="poly" title=" " alt="" coords="72,204,175,315,170,318,69,208"/>
+<area shape="poly" title=" " alt="" coords="175,29,172,20,174,11,183,5,197,3,212,5,221,14,215,15,209,10,197,8,185,10,179,14,177,20,181,29"/>
+<area shape="rect" href="record_8c.html#a460f79265e2343a3cd311389e1d6799f" title="Kimliğin düştüğü slot." alt="" coords="286,104,346,131"/>
+<area shape="poly" title=" " alt="" coords="220,54,239,66,283,95,278,96,237,70,220,59"/>
+<area shape="poly" title=" " alt="" coords="295,103,291,95,294,86,302,80,316,77,331,80,340,89,335,89,329,85,316,83,304,85,298,89,296,95,300,104"/>
+<area shape="poly" title=" " alt="" coords="234,115,273,116,268,118,235,120"/>
+<area shape="poly" title=" " alt="" coords="175,103,172,95,174,86,183,80,197,77,212,80,221,88,215,89,209,85,197,83,185,85,179,89,177,95,181,104"/>
+<area shape="poly" title=" " alt="" coords="175,178,172,170,174,161,183,154,197,152,212,155,221,163,215,164,209,160,197,157,185,159,179,164,177,170,181,179"/>
+<area shape="poly" title=" " alt="" coords="175,252,172,244,174,235,183,229,197,227,212,229,221,238,215,238,209,234,197,232,185,234,179,238,177,244,180,254"/>
+<area shape="poly" title=" " alt="" coords="209,325,236,291,275,213,303,147,307,144,280,215,240,293,213,330"/>
+<area shape="poly" title=" " alt="" coords="175,326,172,319,174,310,183,304,197,301,212,304,221,313,215,312,209,309,197,307,185,309,179,313,177,319,180,329"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ga8671153e0e2c19907573a9bd01b730b5" name="ga8671153e0e2c19907573a9bd01b730b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga8671153e0e2c19907573a9bd01b730b5">&#9670;&#160;</a></span>rec_stamp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool rec_stamp </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#ga23dad729077e6b7b2582ed30e5074b70">TsIndex</a></td>          <td class="paramname"><span class="paramname"><em>idx</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>t_us</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Açık bir kayda bir zaman damgası yazar. </p>
+<dl class="params"><dt>Parametreler</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>Olay kimliği. </td></tr>
+    <tr><td class="paramname">idx</td><td>Damga indeksi (<a class="el" href="#gga23dad729077e6b7b2582ed30e5074b70aeae49b6ff9a10a68907b8b665d1e05f1" title="TS_T1">TS_T1</a> … <a class="el" href="#gga23dad729077e6b7b2582ed30e5074b70aa898dbbc7520c48f8187da0c366da9b2" title="TS_T4">TS_T4</a>). </td></tr>
+    <tr><td class="paramname">t_us</td><td>Zaman [µs]. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Döndürdüğü değer</dt><dd><span class="tt">true</span>: yazıldı. <span class="tt">false</span>: slot bu kimliğe ait değil veya kayıt açık değil.</dd></dl>
+<dl class="section note"><dt>Not</dt><dd>Görev ve ISR bağlamında çağrılabilir. Başarısızlık çağıranın kendi bağlamındaki sayaçta sayılmalıdır (tasarım §3.1). </dd></dl>
+
+<p class="definition"><a class="el" href="record_8c_source.html">record.c</a> dosyasının <a class="el" href="record_8c_source.html#l00047">47</a> numaralı satırında tanımlanmıştır.</p>
+<div class="dynheader">
+Bu fonksiyon için çağırılma şeması:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__record_ga8671153e0e2c19907573a9bd01b730b5_cgraph.png" border="0" usemap="#agroup__record_ga8671153e0e2c19907573a9bd01b730b5_cgraph" loading="lazy" alt=""/></div>
+<map name="agroup__record_ga8671153e0e2c19907573a9bd01b730b5_cgraph" id="agroup__record_ga8671153e0e2c19907573a9bd01b730b5_cgraph">
+<area shape="rect" title="Açık bir kayda bir zaman damgası yazar." alt="" coords="5,29,88,56"/>
+<area shape="poly" title=" " alt="" coords="25,29,22,20,24,11,33,5,47,3,61,5,70,14,65,14,59,10,46,8,35,10,28,14,27,20,30,29"/>
+<area shape="rect" href="record_8c.html#a460f79265e2343a3cd311389e1d6799f" title="Kimliğin düştüğü slot." alt="" coords="136,29,196,56"/>
+<area shape="poly" title=" " alt="" coords="88,40,123,42,117,43,88,45"/>
+<area shape="poly" title=" " alt="" coords="144,28,141,20,143,11,152,5,166,3,181,5,190,15,184,14,178,10,166,8,154,10,148,14,146,20,149,30"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ga821bf7e8311d9da3184eabe5d09e79bf" name="ga821bf7e8311d9da3184eabe5d09e79bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga821bf7e8311d9da3184eabe5d09e79bf">&#9670;&#160;</a></span>rec_timeout_open()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t rec_timeout_open </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Açık kalan tüm kayıtları <span class="tt"><a class="el" href="#gga17c31f95ff37e1dc2265d38639148099ac97d9290fbd3816e2feb7514c4f141a4" title="Gözetim süresi (1 s) içinde tamamlanmadı (MR-06).">REC_TIMEOUT</a></span> ile kapatır (MR-06). </p>
+<dl class="section return"><dt>Döndürdüğü değer</dt><dd>Kapatılan kayıt sayısı. </dd></dl>
+<dl class="section note"><dt>Not</dt><dd>Yalnızca yeni olay açılmıyorken (ölçüm durmuşken) çağrılmalıdır. </dd></dl>
+
+<p class="definition"><a class="el" href="record_8c_source.html">record.c</a> dosyasının <a class="el" href="record_8c_source.html#l00096">96</a> numaralı satırında tanımlanmıştır.</p>
+<div class="dynheader">
+Bu fonksiyon için çağırılma şeması:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__record_ga821bf7e8311d9da3184eabe5d09e79bf_cgraph.png" border="0" usemap="#agroup__record_ga821bf7e8311d9da3184eabe5d09e79bf_cgraph" loading="lazy" alt=""/></div>
+<map name="agroup__record_ga821bf7e8311d9da3184eabe5d09e79bf_cgraph" id="agroup__record_ga821bf7e8311d9da3184eabe5d09e79bf_cgraph">
+<area shape="rect" title="Açık kalan tüm kayıtları REC_TIMEOUT ile kapatır (MR&#45;06)." alt="" coords="5,29,130,56"/>
+<area shape="poly" title=" " alt="" coords="41,29,37,21,40,11,51,5,68,3,86,5,96,14,91,14,84,10,67,8,52,10,44,14,42,20,47,29"/>
+<area shape="rect" href="group__record.html#ga7104bd8a124c89e746b0cdb821dd9b44" title="Açık bir kaydı verilen durumla kapatır." alt="" coords="178,29,255,56"/>
+<area shape="poly" title=" " alt="" coords="130,40,165,42,159,43,130,45"/>
+<area shape="poly" title=" " alt="" coords="195,28,192,20,194,11,203,5,216,3,231,5,240,15,234,13,229,10,216,8,205,10,199,14,197,20,200,30"/>
+<area shape="rect" href="record_8c.html#a460f79265e2343a3cd311389e1d6799f" title="Kimliğin düştüğü slot." alt="" coords="303,29,363,56"/>
+<area shape="poly" title=" " alt="" coords="255,40,290,43,285,43,255,45"/>
+<area shape="poly" title=" " alt="" coords="312,28,309,20,311,11,320,5,333,3,348,5,356,15,351,13,345,10,333,8,322,10,316,14,314,20,317,30"/>
+</map>
+</div>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Oluşturan <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.18.0 </li>
+  </ul>
+</div>
+</body>
+</html>

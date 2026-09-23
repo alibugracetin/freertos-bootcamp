@@ -12,6 +12,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+/** @copydoc proto_fmt_fixed */
 bool proto_fmt_fixed(TxMsg *m, MsgKind kind, uint32_t event_id, const char *fmt, ...)
 {
     va_list ap;
@@ -31,6 +32,7 @@ bool proto_fmt_fixed(TxMsg *m, MsgKind kind, uint32_t event_id, const char *fmt,
     return true;
 }
 
+/** @copydoc proto_fmt_line */
 bool proto_fmt_line(TxMsg *m, MsgKind kind, const char *fmt, ...)
 {
     va_list ap;

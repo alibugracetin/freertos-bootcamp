@@ -1,0 +1,1256 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="tr">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Hafta 1 - Yuk altinda buton yanit suresi: D:/RTOS/Hafta_1_RTOS_Bootcamp/hafta-01/firmware/Core/Src/experiment.c Dosya Referansı</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Hafta 1 - Yuk altinda buton yanit suresi
+   </div>
+   <div id="projectbrief">STM32F407 + FreeRTOS olcum firmware&#39;i</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Oluşturan Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="application/json" id="doxygen-config">
+{
+  "relPath": "",
+  "generateTreeView": true,
+  "searchEngine": true,
+  "serverBasedSearch": false,
+  "disableIndex": false,
+  "dynamicMenus": true,
+  "fullSidebar": false
+}
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Ara" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded',() => { initNavTree('experiment_8c.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Yüklüyor...</div>
+<div class="SRStatus" id="Searching">Arıyor...</div>
+<div class="SRStatus" id="NoMatches">Eşleşme Yok</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">experiment.c Dosya Referansı<div class="ingroups"><a class="el" href="group__expfsm.html">Deney Durum Makinesi</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Senaryolar, deney durum makinesi ve TelemetryTask (T-13).  
+<a href="#details">Ayrıntılar...</a></p>
+<div class="textblock"><code>#include &quot;<a class="el" href="experiment_8h_source.html">experiment.h</a>&quot;</code><br />
+<code>#include &quot;main.h&quot;</code><br />
+<code>#include &quot;FreeRTOS.h&quot;</code><br />
+<code>#include &quot;queue.h&quot;</code><br />
+<code>#include &quot;task.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="app__config_8h_source.html">app_config.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="app__diag_8h_source.html">app_diag.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="app__tasks_8h_source.html">app_tasks.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="app__types_8h_source.html">app_types.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="protocol_8h_source.html">protocol.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="record_8h_source.html">record.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="timing_8h_source.html">timing.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="uart__link_8h_source.html">uart_link.h</a>&quot;</code><br />
+<code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;string.h&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+experiment.c için içerme bağımlılık grafiği:</div>
+<div class="dyncontent">
+<div class="center"><img src="experiment_8c__incl.png" border="0" usemap="#a_d_1_2_r_t_o_s_2_hafta__1___r_t_o_s___bootcamp_2hafta-01_2firmware_2_core_2_src_2experiment_8c" loading="lazy" alt=""/></div>
+<map name="a_d_1_2_r_t_o_s_2_hafta__1___r_t_o_s___bootcamp_2hafta-01_2firmware_2_core_2_src_2experiment_8c" id="a_d_1_2_r_t_o_s_2_hafta__1___r_t_o_s___bootcamp_2hafta-01_2firmware_2_core_2_src_2experiment_8c">
+<area shape="rect" title="Senaryolar, deney durum makinesi ve TelemetryTask (T&#45;13)." alt="" coords="409,5,601,64"/>
+<area shape="rect" href="experiment_8h.html" title="Senaryolar (S0–S5), deney durum makinesi ve TelemetryTask." alt="" coords="661,112,757,139"/>
+<area shape="poly" title=" " alt="" coords="572,62,669,105,664,106,571,67"/>
+<area shape="rect" title=" " alt="" coords="31,112,91,139"/>
+<area shape="poly" title=" " alt="" coords="408,56,111,115,108,115,105,111,110,109,409,51"/>
+<area shape="rect" title=" " alt="" coords="125,187,219,213"/>
+<area shape="poly" title=" " alt="" coords="406,45,335,55,259,69,196,89,172,100,157,114,150,127,150,142,160,174,154,173,145,142,145,126,153,110,169,96,194,84,258,64,334,50,411,42"/>
+<area shape="rect" title=" " alt="" coords="288,187,355,213"/>
+<area shape="poly" title=" " alt="" coords="476,63,348,178,345,174,471,65"/>
+<area shape="rect" title=" " alt="" coords="283,112,341,139"/>
+<area shape="poly" title=" " alt="" coords="440,66,354,108,352,103,445,63"/>
+<area shape="rect" href="app__config_8h.html" title="Uygulama genelindeki sabit parametreler (ödev standardı)." alt="" coords="163,261,258,288"/>
+<area shape="poly" title=" " alt="" coords="407,38,301,45,185,57,131,66,83,79,46,95,21,114,9,135,11,155,23,175,43,194,100,228,161,255,156,257,97,232,40,198,19,178,6,157,4,134,17,110,43,90,82,74,130,61,184,51,301,39,411,36"/>
+<area shape="rect" href="app__diag_8h.html" title="Hata sayaçları ve SWD üzerinden okunabilen tanı yapısı." alt="" coords="1010,187,1094,213"/>
+<area shape="poly" title=" " alt="" coords="602,42,805,68,900,87,939,98,968,110,1007,139,1037,175,1032,173,1004,143,965,114,937,103,899,92,804,73,602,47"/>
+<area shape="rect" href="app__tasks_8h.html" title="Uygulama görevleri, kuyruklar ve açılış sırası." alt="" coords="167,112,259,139"/>
+<area shape="poly" title=" " alt="" coords="408,66,271,110,269,105,413,63"/>
+<area shape="rect" href="app__types_8h.html" title="Görevler ve kesmeler arasında kuyruklarla taşınan veri tipleri." alt="" coords="380,187,473,213"/>
+<area shape="poly" title=" " alt="" coords="486,63,457,113,435,173,431,170,452,111,481,66"/>
+<area shape="rect" href="protocol_8h.html" title="UART protokolü: mesaj biçimlendirme ve komut ayrıştırma." alt="" coords="466,112,544,139"/>
+<area shape="poly" title=" " alt="" coords="507,62,508,97,503,95,504,66"/>
+<area shape="rect" href="record_8h.html" title="Ölçüm kayıt defteri: her buton olayının t₀…t₄ damgaları." alt="" coords="568,112,637,139"/>
+<area shape="poly" title=" " alt="" coords="537,62,580,101,575,101,536,67"/>
+<area shape="rect" href="timing_8h.html" title="Mikrosaniye zaman kaynağı (TIM2, 1 MHz, 32&#45;bit serbest sayaç)." alt="" coords="888,112,955,139"/>
+<area shape="poly" title=" " alt="" coords="602,52,875,111,870,112,602,57"/>
+<area shape="rect" href="uart__link_8h.html" title="USART2&#39;nin tek sahibi: DMA ile gönderim (t₃, t₄) ve komut alma." alt="" coords="782,112,863,139"/>
+<area shape="poly" title=" " alt="" coords="602,60,770,108,764,109,602,65"/>
+<area shape="rect" title=" " alt="" coords="1030,112,1090,139"/>
+<area shape="poly" title=" " alt="" coords="602,45,792,72,1011,109,1017,113,1012,113,1010,115,791,77,602,51"/>
+<area shape="rect" title=" " alt="" coords="1114,112,1179,139"/>
+<area shape="poly" title=" " alt="" coords="602,41,826,66,961,85,1102,112,1097,112,960,90,825,71,602,47"/>
+<area shape="rect" title=" " alt="" coords="599,187,673,213"/>
+<area shape="poly" title=" " alt="" coords="699,138,661,178,658,173,694,140"/>
+<area shape="rect" title=" " alt="" coords="604,261,668,288"/>
+<area shape="poly" title=" " alt="" coords="710,137,703,174,688,215,661,252,658,247,683,212,698,173,706,141"/>
+<area shape="poly" title=" " alt="" coords="1012,210,998,216,684,269,683,264,997,211,1007,211"/>
+<area shape="poly" title=" " alt="" coords="208,137,189,175,184,172,204,141"/>
+<area shape="poly" title=" " alt="" coords="233,137,292,177,287,178,232,142"/>
+<area shape="poly" title=" " alt="" coords="464,211,592,257,586,257,463,217"/>
+<area shape="poly" title=" " alt="" coords="392,214,263,259,262,253,386,214"/>
+<area shape="poly" title=" " alt="" coords="529,137,602,179,597,179,528,142"/>
+<area shape="poly" title=" " alt="" coords="516,137,579,212,615,251,610,249,575,215,514,142"/>
+<area shape="poly" title=" " alt="" coords="494,138,453,178,450,174,489,140"/>
+<area shape="poly" title=" " alt="" coords="610,137,626,174,621,171,607,142"/>
+<area shape="poly" title=" " alt="" coords="599,137,588,173,586,193,589,212,599,232,613,251,608,249,595,234,584,214,581,193,583,172,594,140"/>
+<area shape="poly" title=" " alt="" coords="914,138,879,178,856,198,831,216,794,234,755,249,684,268,683,262,753,243,792,229,828,211,853,194,876,174,909,140"/>
+<area shape="rect" title=" " alt="" coords="892,187,985,213"/>
+<area shape="poly" title=" " alt="" coords="926,137,934,173,930,170,923,141"/>
+<area shape="poly" title=" " alt="" coords="793,139,684,183,682,178,788,140"/>
+<area shape="rect" title=" " alt="" coords="748,187,817,213"/>
+<area shape="poly" title=" " alt="" coords="818,138,799,175,795,171,813,141"/>
+</map>
+</div>
+</div>
+<p><a href="experiment_8c_source.html">Bu dosyanın kaynak koduna git.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Veri Yapıları</h2></td></tr>
+<tr class="memitem:Scenario" id="r_Scenario"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_scenario.html">Scenario</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bir senaryonun sabit parametreleri.  <a href="struct_scenario.html#details">Ayrıntılar...</a><br /></td></tr>
+<tr class="memitem:_5Bstruct_5D_2Es_5Ftel" id="r__5Bstruct_5D_2Es_5Ftel"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_0fstruct_0e_8s__tel.html">[struct].s_tel</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gerçekleşen telemetri istatistikleri (AR-11).  <a href="struct_0fstruct_0e_8s__tel.html#details">Ayrıntılar...</a><br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-define-members" class="groupheader"><a id="define-members" name="define-members"></a>
+Makrolar</h2></td></tr>
+<tr class="memitem:aa36bdfe5de7a1ed291a5a652679adc2f" id="r_aa36bdfe5de7a1ed291a5a652679adc2f"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#aa36bdfe5de7a1ed291a5a652679adc2f">SCEN_COUNT</a>&#160;&#160;&#160;(sizeof <a class="el" href="#a2a79deec69839765c61c958fb3120ac6">k_scen</a> / sizeof <a class="el" href="#a2a79deec69839765c61c958fb3120ac6">k_scen</a>[0])</td></tr>
+<tr class="memdesc:aa36bdfe5de7a1ed291a5a652679adc2f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Senaryo tablosundaki kayıt sayısı.  <br /></td></tr>
+<tr class="memitem:a7dd31f68bddcd99c95c4cff237c8e261" id="r_a7dd31f68bddcd99c95c4cff237c8e261"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a7dd31f68bddcd99c95c4cff237c8e261">SEND_LINE</a>(...)</td></tr>
+<tr class="memdesc:a7dd31f68bddcd99c95c4cff237c8e261"><td class="mdescLeft">&#160;</td><td class="mdescRight">Biçimli bir kontrol satırını üretip <span class="tt"><a class="el" href="#a100745978697e9aafaf6368750cf9319" title="Bir kontrol satırını txQ&#39;ya koyar (yalnızca ölçüm dışında çağrılır).">send_ctrl()</a></span> ile TX kuyruğuna koyar.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-enum-members" class="groupheader"><a id="enum-members" name="enum-members"></a>
+Enümerasyonlar</h2></td></tr>
+<tr class="memitem:a75f78b78e8b0504cfcbe2ef3f2ab4ecf" id="r_a75f78b78e8b0504cfcbe2ef3f2ab4ecf"><td class="memItemLeft">enum &#160;</td><td class="memItemRight"><a class="el" href="#a75f78b78e8b0504cfcbe2ef3f2ab4ecf">ExpState</a> { <br />
+&#160;&#160;<b>EXP_IDLE</b> = 0
+, <b>EXP_ARMED</b>
+, <b>EXP_WARMUP</b>
+, <b>EXP_MEASURING</b>
+, <br />
+&#160;&#160;<b>EXP_DRAINING</b>
+, <b>EXP_DONE</b>
+<br />
+ }</td></tr>
+<tr class="memdesc:a75f78b78e8b0504cfcbe2ef3f2ab4ecf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deney durumları.  <a href="#a75f78b78e8b0504cfcbe2ef3f2ab4ecf">Ayrıntılar...</a><br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+Fonksiyonlar</h2></td></tr>
+<tr class="memitem:gab7a2216305ceb4f8aed8be62c9b7cc26" id="r_gab7a2216305ceb4f8aed8be62c9b7cc26"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="group__expfsm.html#gab7a2216305ceb4f8aed8be62c9b7cc26">calibrated_work</a> (uint32_t iters)</td></tr>
+<tr class="memdesc:gab7a2216305ceb4f8aed8be62c9b7cc26"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ek CPU işi: sonucu kullanılan, optimize edilemeyen sabit iterasyonlu hesap (FR-23).  <br /></td></tr>
+<tr class="memitem:ga1b5cb2e555087b3439bd3af0447af57b" id="r_ga1b5cb2e555087b3439bd3af0447af57b"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="group__expfsm.html#ga1b5cb2e555087b3439bd3af0447af57b">exp_is_measuring</a> (void)</td></tr>
+<tr class="memdesc:ga1b5cb2e555087b3439bd3af0447af57b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ölçüm durumunda mı (buton olayları kayda alınır mı).  <br /></td></tr>
+<tr class="memitem:ga9b204851e5197b183aab2c0a46dfe485" id="r_ga9b204851e5197b183aab2c0a46dfe485"><td class="memItemLeft">const char *&#160;</td><td class="memItemRight"><a class="el" href="group__expfsm.html#ga9b204851e5197b183aab2c0a46dfe485">exp_scenario_name</a> (void)</td></tr>
+<tr class="memdesc:ga9b204851e5197b183aab2c0a46dfe485"><td class="mdescLeft">&#160;</td><td class="mdescRight">Aktif senaryonun adı ("S0" … "S5").  <br /></td></tr>
+<tr class="memitem:a100745978697e9aafaf6368750cf9319" id="r_a100745978697e9aafaf6368750cf9319"><td class="memItemLeft">static void&#160;</td><td class="memItemRight"><a class="el" href="#a100745978697e9aafaf6368750cf9319">send_ctrl</a> (const <a class="el" href="struct_tx_msg.html">TxMsg</a> *m)</td></tr>
+<tr class="memdesc:a100745978697e9aafaf6368750cf9319"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bir kontrol satırını <span class="tt">txQ</span>'ya koyar (yalnızca ölçüm dışında çağrılır).  <br /></td></tr>
+<tr class="memitem:a24a4cd75b94c0ec3648fe35c5c519c1c" id="r_a24a4cd75b94c0ec3648fe35c5c519c1c"><td class="memItemLeft">static void&#160;</td><td class="memItemRight"><a class="el" href="#a24a4cd75b94c0ec3648fe35c5c519c1c">set_leds</a> (<a class="el" href="#a75f78b78e8b0504cfcbe2ef3f2ab4ecf">ExpState</a> st)</td></tr>
+<tr class="memdesc:a24a4cd75b94c0ec3648fe35c5c519c1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Durum LED'lerini günceller (FR-90).  <br /></td></tr>
+<tr class="memitem:a8da8aacdbdcc652a338ede470cbe5645" id="r_a8da8aacdbdcc652a338ede470cbe5645"><td class="memItemLeft">static void&#160;</td><td class="memItemRight"><a class="el" href="#a8da8aacdbdcc652a338ede470cbe5645">send_status</a> (void)</td></tr>
+<tr class="memdesc:a8da8aacdbdcc652a338ede470cbe5645"><td class="mdescLeft">&#160;</td><td class="mdescRight">Güncel durumu <span class="tt">STA</span> satırı olarak gönderir.  <br /></td></tr>
+<tr class="memitem:ad1c9ef68c993f3ab8a8807391dd91769" id="r_ad1c9ef68c993f3ab8a8807391dd91769"><td class="memItemLeft">static void&#160;</td><td class="memItemRight"><a class="el" href="#ad1c9ef68c993f3ab8a8807391dd91769">enter</a> (<a class="el" href="#a75f78b78e8b0504cfcbe2ef3f2ab4ecf">ExpState</a> st)</td></tr>
+<tr class="memdesc:ad1c9ef68c993f3ab8a8807391dd91769"><td class="mdescLeft">&#160;</td><td class="mdescRight">Yeni duruma geçer: zaman damgasını ve LED'leri günceller.  <br /></td></tr>
+<tr class="memitem:ac6856919cff066de2cd9c7b3a0183e78" id="r_ac6856919cff066de2cd9c7b3a0183e78"><td class="memItemLeft">static void&#160;</td><td class="memItemRight"><a class="el" href="#ac6856919cff066de2cd9c7b3a0183e78">telemetry_stop</a> (void)</td></tr>
+<tr class="memdesc:ac6856919cff066de2cd9c7b3a0183e78"><td class="mdescLeft">&#160;</td><td class="mdescRight">Telemetriyi durdurur; görev bir sonraki periyotta döngüden çıkar.  <br /></td></tr>
+<tr class="memitem:acecfcb7d9b54cb77a18ece094ed3e6ce" id="r_acecfcb7d9b54cb77a18ece094ed3e6ce"><td class="memItemLeft">static void&#160;</td><td class="memItemRight"><a class="el" href="#acecfcb7d9b54cb77a18ece094ed3e6ce">telemetry_start</a> (void)</td></tr>
+<tr class="memdesc:acecfcb7d9b54cb77a18ece094ed3e6ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Aktif senaryonun telemetrisini başlatır (S0'da hiçbir şey yapmaz).  <br /></td></tr>
+<tr class="memitem:a64b39230f5d52dc24dffb96d67e0b3f0" id="r_a64b39230f5d52dc24dffb96d67e0b3f0"><td class="memItemLeft">static void&#160;</td><td class="memItemRight"><a class="el" href="#a64b39230f5d52dc24dffb96d67e0b3f0">reset_measurement</a> (void)</td></tr>
+<tr class="memdesc:a64b39230f5d52dc24dffb96d67e0b3f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Senaryo değişiminde tüm sayaçları, kayıtları ve istatistikleri sıfırlar (FR-86).  <br /></td></tr>
+<tr class="memitem:af5d44216a9fdf0c40a32a49456aa00e2" id="r_af5d44216a9fdf0c40a32a49456aa00e2"><td class="memItemLeft">static const char *&#160;</td><td class="memItemRight"><a class="el" href="#af5d44216a9fdf0c40a32a49456aa00e2">status_name</a> (uint8_t st)</td></tr>
+<tr class="memdesc:af5d44216a9fdf0c40a32a49456aa00e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kayıt durumunun CSV'de kullanılan metin karşılığı.  <br /></td></tr>
+<tr class="memitem:a9b7d6c3275e99a212ea2fe4ec35c2635" id="r_a9b7d6c3275e99a212ea2fe4ec35c2635"><td class="memItemLeft">static void&#160;</td><td class="memItemRight"><a class="el" href="#a9b7d6c3275e99a212ea2fe4ec35c2635">dump_records</a> (void)</td></tr>
+<tr class="memdesc:a9b7d6c3275e99a212ea2fe4ec35c2635"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kayıtları, telemetri istatistiğini ve sayaçları döker (FR-66).  <br /></td></tr>
+<tr class="memitem:a970521a9853c2624251141c42f2a810c" id="r_a970521a9853c2624251141c42f2a810c"><td class="memItemLeft">static void&#160;</td><td class="memItemRight"><a class="el" href="#a970521a9853c2624251141c42f2a810c">reject</a> (const char *why, const char *line)</td></tr>
+<tr class="memdesc:a970521a9853c2624251141c42f2a810c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Komutu reddeder: <span class="tt">ERR</span> satırı gönderir ve sayacı artırır (FR-83).  <br /></td></tr>
+<tr class="memitem:a4e0ed6f45886a30d504af8774181cc82" id="r_a4e0ed6f45886a30d504af8774181cc82"><td class="memItemLeft">static void&#160;</td><td class="memItemRight"><a class="el" href="#a4e0ed6f45886a30d504af8774181cc82">handle_command</a> (const char *line)</td></tr>
+<tr class="memdesc:a4e0ed6f45886a30d504af8774181cc82"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bir komut satırını ayrıştırıp durum makinesine uygular.  <br /></td></tr>
+<tr class="memitem:ga00ae2ef3be10429aec51bc3a4dff5744" id="r_ga00ae2ef3be10429aec51bc3a4dff5744"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="group__expfsm.html#ga00ae2ef3be10429aec51bc3a4dff5744">exp_tick</a> (void)</td></tr>
+<tr class="memdesc:ga00ae2ef3be10429aec51bc3a4dff5744"><td class="mdescLeft">&#160;</td><td class="mdescRight">Durum makinesinin bir turu: komutları işler, zamanlı geçişleri yapar.  <br /></td></tr>
+<tr class="memitem:gacd105c2bf0347f093d3e7dac39dfe261" id="r_gacd105c2bf0347f093d3e7dac39dfe261"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="group__tasks.html#gacd105c2bf0347f093d3e7dac39dfe261">TelemetryTask</a> (void *arg)</td></tr>
+<tr class="memdesc:gacd105c2bf0347f093d3e7dac39dfe261"><td class="mdescLeft">&#160;</td><td class="mdescRight">Telemetri görevi — <b>yüksek öncelik (3)</b>.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
+Değişkenler</h2></td></tr>
+<tr class="memitem:a2a79deec69839765c61c958fb3120ac6" id="r_a2a79deec69839765c61c958fb3120ac6"><td class="memItemLeft">static const <a class="el" href="struct_scenario.html">Scenario</a>&#160;</td><td class="memItemRight"><a class="el" href="#a2a79deec69839765c61c958fb3120ac6">k_scen</a> []</td></tr>
+<tr class="memdesc:a2a79deec69839765c61c958fb3120ac6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ödevin altı zorunlu senaryosu (MR, §6.1).  <br /></td></tr>
+<tr class="memitem:a398151c73899b321caa6150bfdd317a0" id="r_a398151c73899b321caa6150bfdd317a0"><td class="memItemLeft">static const char *const&#160;</td><td class="memItemRight"><a class="el" href="#a398151c73899b321caa6150bfdd317a0">k_state_name</a> [] = { &quot;IDLE&quot;, &quot;ARMED&quot;, &quot;WARMUP&quot;, &quot;MEASURING&quot;, &quot;DRAINING&quot;, &quot;DONE&quot; }</td></tr>
+<tr class="memdesc:a398151c73899b321caa6150bfdd317a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Durum adlarının protokoldeki karşılıkları (STA satırı).  <br /></td></tr>
+<tr class="memitem:a559ab9839337bb5e80263c49981941c2" id="r_a559ab9839337bb5e80263c49981941c2"><td class="memItemLeft">static <a class="el" href="#a75f78b78e8b0504cfcbe2ef3f2ab4ecf">ExpState</a>&#160;</td><td class="memItemRight"><a class="el" href="#a559ab9839337bb5e80263c49981941c2">s_state</a> = EXP_IDLE</td></tr>
+<tr class="memdesc:a559ab9839337bb5e80263c49981941c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Durum makinesinin iç durumu.  <br /></td></tr>
+<tr class="memitem:a55760ad245fc711d01e8fb826f9cc52f" id="r_a55760ad245fc711d01e8fb826f9cc52f"><td class="memItemLeft">static uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#a55760ad245fc711d01e8fb826f9cc52f">s_scen</a></td></tr>
+<tr class="memdesc:a55760ad245fc711d01e8fb826f9cc52f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Aktif senaryonun senaryo tablosundaki indeksi (0…5).  <br /></td></tr>
+<tr class="memitem:a54f31cc65639d951ae70154cd9684027" id="r_a54f31cc65639d951ae70154cd9684027"><td class="memItemLeft">static uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#a54f31cc65639d951ae70154cd9684027">s_target</a> = <a class="el" href="app__config_8h.html#a5c5bcb9a362ae368d9748df92dad6610">APP_DEFAULT_TARGET</a></td></tr>
+<tr class="memdesc:a54f31cc65639d951ae70154cd9684027"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bu koşuda ulaşılması gereken olay sayısı (<span class="tt">CMD,START,n</span>).  <br /></td></tr>
+<tr class="memitem:a43b5e5cf9b8c9c1db8d8c4898f3755ca" id="r_a43b5e5cf9b8c9c1db8d8c4898f3755ca"><td class="memItemLeft">static TickType_t&#160;</td><td class="memItemRight"><a class="el" href="#a43b5e5cf9b8c9c1db8d8c4898f3755ca">s_state_since</a></td></tr>
+<tr class="memdesc:a43b5e5cf9b8c9c1db8d8c4898f3755ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">İçinde bulunulan duruma girildiği an [tick]; zamanlı geçişler için.  <br /></td></tr>
+<tr class="memitem:a2b0031cc0316e3d8300c8fe5477dc37a" id="r_a2b0031cc0316e3d8300c8fe5477dc37a"><td class="memItemLeft">static bool&#160;</td><td class="memItemRight"><a class="el" href="#a2b0031cc0316e3d8300c8fe5477dc37a">s_announced</a></td></tr>
+<tr class="memdesc:a2b0031cc0316e3d8300c8fe5477dc37a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Açılış duyurusu (BOOT + STA) gönderildi mi.  <br /></td></tr>
+<tr class="memitem:ad8934369958d041ba0042b064e87498c" id="r_ad8934369958d041ba0042b064e87498c"><td class="memItemLeft">static volatile bool&#160;</td><td class="memItemRight"><a class="el" href="#ad8934369958d041ba0042b064e87498c">s_measuring</a></td></tr>
+<tr class="memdesc:ad8934369958d041ba0042b064e87498c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Buton ISR'ının okuduğu ölçüm bayrağı.  <br /></td></tr>
+<tr class="memitem:aaebd20a48a7ff16c4ca6bfbb1d4b3130" id="r_aaebd20a48a7ff16c4ca6bfbb1d4b3130"><td class="memItemLeft">static volatile bool&#160;</td><td class="memItemRight"><a class="el" href="#aaebd20a48a7ff16c4ca6bfbb1d4b3130">s_tel_run</a></td></tr>
+<tr class="memdesc:aaebd20a48a7ff16c4ca6bfbb1d4b3130"><td class="mdescLeft">&#160;</td><td class="mdescRight">TelemetryTask'ın döngü koşulu.  <br /></td></tr>
+<tr class="memitem:aad4c2719201b52822a6935913146597a" id="r_aad4c2719201b52822a6935913146597a"><td class="memItemLeft">static volatile bool&#160;</td><td class="memItemRight"><a class="el" href="#aad4c2719201b52822a6935913146597a">s_tel_active</a></td></tr>
+<tr class="memdesc:aad4c2719201b52822a6935913146597a"><td class="mdescLeft">&#160;</td><td class="mdescRight">TelemetryTask periyodik döngüde mi.  <br /></td></tr>
+<tr class="memitem:a4c9899cbae225958e0c82d2f6c9c23e5" id="r_a4c9899cbae225958e0c82d2f6c9c23e5"><td class="memItemLeft">static TaskHandle_t&#160;</td><td class="memItemRight"><a class="el" href="#a4c9899cbae225958e0c82d2f6c9c23e5">s_tel_task</a></td></tr>
+<tr class="memdesc:a4c9899cbae225958e0c82d2f6c9c23e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">TelemetryTask tutamacı; durum makinesi telemetriyi bununla uyandırır.  <br /></td></tr>
+<tr class="memitem:a8030a230f5923624fc5f3712097a438e" id="r_a8030a230f5923624fc5f3712097a438e"><td class="memItemLeft">static uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#a8030a230f5923624fc5f3712097a438e">s_txq_hwm_meas</a></td></tr>
+<tr class="memdesc:a8030a230f5923624fc5f3712097a438e"><td class="mdescLeft">&#160;</td><td class="mdescRight"><span class="tt">txQ</span> yüksek su seviyesinin <b>ölçüm fazı sonundaki</b> değeri (FR-65).  <br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft"><a id="a63f001e3dcb3a55de32163a3b5e3ca09" name="a63f001e3dcb3a55de32163a3b5e3ca09"></a>
+<a class="el" href="struct_0fstruct_0e_8s__tel.html">static struct </a>&#160;</td><td class="memItemRight"><b>s_tel</b></td></tr>
+<tr class="memdesc:a63f001e3dcb3a55de32163a3b5e3ca09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Telemetri istatistikleri. <br /></td></tr>
+<tr class="memitem:ad1d77b309e0230b091f455e7aa951a05" id="r_ad1d77b309e0230b091f455e7aa951a05"><td class="memItemLeft">static volatile uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#ad1d77b309e0230b091f455e7aa951a05">s_work_sink</a></td></tr>
+<tr class="memdesc:ad1d77b309e0230b091f455e7aa951a05"><td class="mdescLeft">&#160;</td><td class="mdescRight"><span class="tt"><a class="el" href="group__expfsm.html#gab7a2216305ceb4f8aed8be62c9b7cc26" title="Ek CPU işi: sonucu kullanılan, optimize edilemeyen sabit iterasyonlu hesap (FR-23).">calibrated_work</a></span> sonucunun yazıldığı yer; derleyicinin döngüyü silmesini engeller.  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Ayrıntılı tanımlama</h2>
+<div class="textblock"><p>Senaryolar, deney durum makinesi ve TelemetryTask (T-13). </p>
+
+<p class="definition"><a class="el" href="experiment_8c_source.html">experiment.c</a> dosyasında tanımlanmıştır.</p>
+</div><a name="doc-define-members" id="doc-define-members"></a><h2 id="header-doc-define-members" class="groupheader">Makro Dokümantasyonu</h2>
+<a id="aa36bdfe5de7a1ed291a5a652679adc2f" name="aa36bdfe5de7a1ed291a5a652679adc2f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa36bdfe5de7a1ed291a5a652679adc2f">&#9670;&#160;</a></span>SCEN_COUNT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SCEN_COUNT&#160;&#160;&#160;(sizeof <a class="el" href="#a2a79deec69839765c61c958fb3120ac6">k_scen</a> / sizeof <a class="el" href="#a2a79deec69839765c61c958fb3120ac6">k_scen</a>[0])</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Senaryo tablosundaki kayıt sayısı. </p>
+
+<p class="definition"><a class="el" href="experiment_8c_source.html">experiment.c</a> dosyasının <a class="el" href="experiment_8c_source.html#l00045">45</a> numaralı satırında tanımlanmıştır.</p>
+
+</div>
+</div>
+<a id="a7dd31f68bddcd99c95c4cff237c8e261" name="a7dd31f68bddcd99c95c4cff237c8e261"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7dd31f68bddcd99c95c4cff237c8e261">&#9670;&#160;</a></span>SEND_LINE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SEND_LINE</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em></em></span>...</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Değer:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> {                                                                 \</div>
+<div class="line">    <a class="code hl_struct" href="struct_tx_msg.html">TxMsg</a> m_;                                                        \</div>
+<div class="line">    if (<a class="code hl_function" href="group__proto.html#gaacdcd6a2dbf0426b5077f0ed128ad8fa">proto_fmt_line</a>(&amp;m_, <a class="code hl_enumvalue" href="group__tasks.html#ggae23dc602fcc5835f96131c7acf975fcfa32bc903cc7cd9b86fc411d4ff2160fd0">MSG_CTRL</a>, __VA_ARGS__)) { <a class="code hl_function" href="#a100745978697e9aafaf6368750cf9319">send_ctrl</a>(&amp;m_); } \</div>
+<div class="line">} <span class="keywordflow">while</span> (0)</div>
+<div class="ttc" id="aexperiment_8c_html_a100745978697e9aafaf6368750cf9319"><div class="ttname"><a href="#a100745978697e9aafaf6368750cf9319">send_ctrl</a></div><div class="ttdeci">static void send_ctrl(const TxMsg *m)</div><div class="ttdoc">Bir kontrol satırını txQ&#39;ya koyar (yalnızca ölçüm dışında çağrılır).</div><div class="ttdef"><b>Definition</b> <a href="experiment_8c_source.html#l00134">experiment.c:134</a></div></div>
+<div class="ttc" id="agroup__proto_html_gaacdcd6a2dbf0426b5077f0ed128ad8fa"><div class="ttname"><a href="group__proto.html#gaacdcd6a2dbf0426b5077f0ed128ad8fa">proto_fmt_line</a></div><div class="ttdeci">bool bool proto_fmt_line(TxMsg *m, MsgKind kind, const char *fmt,...) __attribute__((format(printf</div><div class="ttdoc">Değişken uzunlukta, LF ile biten bir kontrol satırı üretir.</div></div>
+<div class="ttc" id="agroup__tasks_html_ggae23dc602fcc5835f96131c7acf975fcfa32bc903cc7cd9b86fc411d4ff2160fd0"><div class="ttname"><a href="group__tasks.html#ggae23dc602fcc5835f96131c7acf975fcfa32bc903cc7cd9b86fc411d4ff2160fd0">MSG_CTRL</a></div><div class="ttdeci">@ MSG_CTRL</div><div class="ttdoc">Komut yanıtı / durum / sayaç satırı, değişken uzunluk.</div><div class="ttdef"><b>Definition</b> <a href="app__types_8h_source.html#l00033">app_types.h:33</a></div></div>
+<div class="ttc" id="astruct_tx_msg_html"><div class="ttname"><a href="struct_tx_msg.html">TxMsg</a></div><div class="ttdoc">txQ elemanı: UART&#39;tan gönderilecek bir mesaj.</div><div class="ttdef"><b>Definition</b> <a href="app__types_8h_source.html#l00040">app_types.h:40</a></div></div>
+</div><!-- fragment -->
+<p>Biçimli bir kontrol satırını üretip <span class="tt"><a class="el" href="#a100745978697e9aafaf6368750cf9319" title="Bir kontrol satırını txQ&#39;ya koyar (yalnızca ölçüm dışında çağrılır).">send_ctrl()</a></span> ile TX kuyruğuna koyar. </p>
+
+<p class="definition"><a class="el" href="experiment_8c_source.html">experiment.c</a> dosyasının <a class="el" href="experiment_8c_source.html#l00140">140</a> numaralı satırında tanımlanmıştır.</p>
+
+</div>
+</div>
+<a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">Enümerasyon Tipi Dokümantasyonu</h2>
+<a id="a75f78b78e8b0504cfcbe2ef3f2ab4ecf" name="a75f78b78e8b0504cfcbe2ef3f2ab4ecf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a75f78b78e8b0504cfcbe2ef3f2ab4ecf">&#9670;&#160;</a></span>ExpState</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#a75f78b78e8b0504cfcbe2ef3f2ab4ecf">ExpState</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Deney durumları. </p>
+
+<p class="definition"><a class="el" href="experiment_8c_source.html">experiment.c</a> dosyasının <a class="el" href="experiment_8c_source.html#l00048">48</a> numaralı satırında tanımlanmıştır.</p>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Fonksiyon Dokümantasyonu</h2>
+<a id="a9b7d6c3275e99a212ea2fe4ec35c2635" name="a9b7d6c3275e99a212ea2fe4ec35c2635"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b7d6c3275e99a212ea2fe4ec35c2635">&#9670;&#160;</a></span>dump_records()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void dump_records </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Kayıtları, telemetri istatistiğini ve sayaçları döker (FR-66). </p>
+<p>Satırlar: <span class="tt">REC,&lt;scen&gt;,&lt;id&gt;,&lt;t0&gt;,&lt;t1&gt;,&lt;t2&gt;,&lt;t3&gt;,&lt;t4&gt;,&lt;status&gt;</span> (alınmamış damga <b>boş</b>, MR-21), <span class="tt">TST,...</span>, <span class="tt">CNI,...</span>, <span class="tt">CNT,...</span>, <span class="tt">END,&lt;scen&gt;,&lt;kayıt sayısı&gt;</span>. </p>
+
+<p class="definition"><a class="el" href="experiment_8c_source.html">experiment.c</a> dosyasının <a class="el" href="experiment_8c_source.html#l00243">243</a> numaralı satırında tanımlanmıştır.</p>
+<div class="dynheader">
+Bu fonksiyon için çağırılma şeması:</div>
+<div class="dyncontent">
+<div class="center"><img src="experiment_8c_a9b7d6c3275e99a212ea2fe4ec35c2635_cgraph.png" border="0" usemap="#aexperiment_8c_a9b7d6c3275e99a212ea2fe4ec35c2635_cgraph" loading="lazy" alt=""/></div>
+<map name="aexperiment_8c_a9b7d6c3275e99a212ea2fe4ec35c2635_cgraph" id="aexperiment_8c_a9b7d6c3275e99a212ea2fe4ec35c2635_cgraph">
+<area shape="rect" title="Kayıtları, telemetri istatistiğini ve sayaçları döker (FR&#45;66)." alt="" coords="5,141,109,168"/>
+<area shape="poly" title=" " alt="" coords="30,141,26,133,29,123,40,117,57,115,75,117,86,125,81,127,74,122,57,120,42,122,33,126,31,132,36,140"/>
+<area shape="rect" href="group__proto.html#gaacdcd6a2dbf0426b5077f0ed128ad8fa" title="Değişken uzunlukta, LF ile biten bir kontrol satırı üretir." alt="" coords="157,29,260,56"/>
+<area shape="poly" title=" " alt="" coords="69,139,107,104,155,66,165,62,161,66,158,70,110,108,73,143"/>
+<area shape="rect" href="group__record.html#ga1940e3026d4070e20bb5b3d699078e3e" title="Bir slotun anlık kopyasını döndürür (dışa aktarım için)." alt="" coords="173,104,244,131"/>
+<area shape="poly" title=" " alt="" coords="108,140,160,128,156,131,110,144"/>
+<area shape="rect" href="experiment_8c.html#a100745978697e9aafaf6368750cf9319" title="Bir kontrol satırını txQ&#39;ya koyar (yalnızca ölçüm dışında çağrılır)." alt="" coords="171,179,246,205"/>
+<area shape="poly" title=" " alt="" coords="109,165,158,178,154,180,109,170"/>
+<area shape="rect" href="experiment_8c.html#af5d44216a9fdf0c40a32a49456aa00e2" title="Kayıt durumunun CSV&#39;de kullanılan metin karşılığı." alt="" coords="160,253,256,280"/>
+<area shape="poly" title=" " alt="" coords="78,166,179,243,174,245,76,171"/>
+<area shape="poly" title=" " alt="" coords="182,29,177,21,181,11,191,5,208,3,227,5,238,14,232,15,225,10,208,8,193,10,185,14,183,20,187,29"/>
+<area shape="poly" title=" " alt="" coords="182,103,177,95,181,86,191,80,208,77,227,80,238,89,232,89,225,85,208,83,193,85,185,89,183,95,187,104"/>
+<area shape="poly" title=" " alt="" coords="182,178,177,170,181,160,191,154,208,152,227,155,238,163,232,163,225,160,208,157,193,159,185,164,183,169,187,179"/>
+<area shape="poly" title=" " alt="" coords="182,252,177,245,181,235,191,229,208,227,227,229,238,239,232,238,225,234,208,232,193,234,185,238,183,244,187,254"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ad1c9ef68c993f3ab8a8807391dd91769" name="ad1c9ef68c993f3ab8a8807391dd91769"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad1c9ef68c993f3ab8a8807391dd91769">&#9670;&#160;</a></span>enter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void enter </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#a75f78b78e8b0504cfcbe2ef3f2ab4ecf">ExpState</a></td>          <td class="paramname"><span class="paramname"><em>st</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Yeni duruma geçer: zaman damgasını ve LED'leri günceller. </p>
+<dl class="params"><dt>Parametreler</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">st</td><td>Geçilecek durum. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition"><a class="el" href="experiment_8c_source.html">experiment.c</a> dosyasının <a class="el" href="experiment_8c_source.html#l00176">176</a> numaralı satırında tanımlanmıştır.</p>
+<div class="dynheader">
+Bu fonksiyon için çağırılma şeması:</div>
+<div class="dyncontent">
+<div class="center"><img src="experiment_8c_ad1c9ef68c993f3ab8a8807391dd91769_cgraph.png" border="0" usemap="#aexperiment_8c_ad1c9ef68c993f3ab8a8807391dd91769_cgraph" loading="lazy" alt=""/></div>
+<map name="aexperiment_8c_ad1c9ef68c993f3ab8a8807391dd91769_cgraph" id="aexperiment_8c_ad1c9ef68c993f3ab8a8807391dd91769_cgraph">
+<area shape="rect" title="Yeni duruma geçer: zaman damgasını ve LED&#39;leri günceller." alt="" coords="5,29,56,56"/>
+<area shape="poly" title=" " alt="" coords="11,29,8,20,10,11,18,5,31,3,44,5,52,13,47,14,42,10,30,8,20,10,14,14,13,20,16,28"/>
+<area shape="rect" href="experiment_8c.html#a24a4cd75b94c0ec3648fe35c5c519c1c" title="Durum LED&#39;lerini günceller (FR&#45;90)." alt="" coords="104,29,174,56"/>
+<area shape="poly" title=" " alt="" coords="56,40,91,42,86,43,56,45"/>
+<area shape="poly" title=" " alt="" coords="119,28,116,20,118,11,126,5,139,3,152,5,160,14,155,13,150,10,139,8,128,10,123,14,121,20,124,30"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a4e0ed6f45886a30d504af8774181cc82" name="a4e0ed6f45886a30d504af8774181cc82"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e0ed6f45886a30d504af8774181cc82">&#9670;&#160;</a></span>handle_command()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void handle_command </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>line</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Bir komut satırını ayrıştırıp durum makinesine uygular. </p>
+<dl class="params"><dt>Parametreler</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">line</td><td>LF'siz komut satırı. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Not</dt><dd>Görev bağlamı (ButtonTask bakım turu). </dd></dl>
+
+<p class="definition"><a class="el" href="experiment_8c_source.html">experiment.c</a> dosyasının <a class="el" href="experiment_8c_source.html#l00310">310</a> numaralı satırında tanımlanmıştır.</p>
+<div class="dynheader">
+Bu fonksiyon için çağırılma şeması:</div>
+<div class="dyncontent">
+<div class="center"><img src="experiment_8c_a4e0ed6f45886a30d504af8774181cc82_cgraph.png" border="0" usemap="#aexperiment_8c_a4e0ed6f45886a30d504af8774181cc82_cgraph" loading="lazy" alt=""/></div>
+<map name="aexperiment_8c_a4e0ed6f45886a30d504af8774181cc82_cgraph" id="aexperiment_8c_a4e0ed6f45886a30d504af8774181cc82_cgraph">
+<area shape="rect" title="Bir komut satırını ayrıştırıp durum makinesine uygular." alt="" coords="5,477,129,504"/>
+<area shape="poly" title=" " alt="" coords="36,477,31,469,35,459,47,453,67,451,88,453,101,461,96,463,87,458,67,456,49,458,39,463,36,468,41,476"/>
+<area shape="rect" href="experiment_8c.html#a9b7d6c3275e99a212ea2fe4ec35c2635" title="Kayıtları, telemetri istatistiğini ve sayaçları döker (FR&#45;66)." alt="" coords="193,179,296,205"/>
+<area shape="poly" title=" " alt="" coords="70,476,106,379,137,315,175,253,215,213,212,218,179,256,141,317,111,381,75,478"/>
+<area shape="rect" href="experiment_8c.html#ad1c9ef68c993f3ab8a8807391dd91769" title="Yeni duruma geçer: zaman damgasını ve LED&#39;leri günceller." alt="" coords="220,291,270,317"/>
+<area shape="poly" title=" " alt="" coords="72,476,108,406,138,364,175,327,207,312,203,316,178,331,142,367,113,409,76,478"/>
+<area shape="rect" href="group__proto.html#ga0d5ea8be98d06154562f6f0761d00537" title="Bir komut satırını ayrıştırır." alt="" coords="184,365,306,392"/>
+<area shape="poly" title=" " alt="" coords="81,475,122,439,175,402,189,397,185,401,178,406,125,443,85,478"/>
+<area shape="rect" href="experiment_8c.html#a970521a9853c2624251141c42f2a810c" title="Komutu reddeder: ERR satırı gönderir ve sayacı artırır (FR&#45;83)." alt="" coords="218,440,272,467"/>
+<area shape="poly" title=" " alt="" coords="128,475,205,460,201,464,130,480"/>
+<area shape="rect" href="experiment_8c.html#a64b39230f5d52dc24dffb96d67e0b3f0" title="Senaryo değişiminde tüm sayaçları, kayıtları ve istatistikleri sıfırlar (FR&#45;86)." alt="" coords="177,515,313,541"/>
+<area shape="poly" title=" " alt="" coords="128,501,165,510,161,512,130,506"/>
+<area shape="rect" href="experiment_8c.html#a8da8aacdbdcc652a338ede470cbe5645" title="Güncel durumu STA satırı olarak gönderir." alt="" coords="199,589,291,616"/>
+<area shape="poly" title=" " alt="" coords="90,502,212,579,207,582,90,507"/>
+<area shape="rect" href="experiment_8c.html#acecfcb7d9b54cb77a18ece094ed3e6ce" title="Aktif senaryonun telemetrisini başlatır (S0&#39;da hiçbir şey yapmaz)." alt="" coords="191,664,299,691"/>
+<area shape="poly" title=" " alt="" coords="78,502,120,559,179,626,212,655,207,655,175,630,116,562,77,507"/>
+<area shape="rect" href="experiment_8c.html#ac6856919cff066de2cd9c7b3a0183e78" title="Telemetriyi durdurur; görev bir sonraki periyotta döngüden çıkar." alt="" coords="191,739,298,765"/>
+<area shape="poly" title=" " alt="" coords="74,502,111,591,141,648,179,701,210,730,204,730,175,704,137,651,106,594,72,507"/>
+<area shape="poly" title=" " alt="" coords="216,178,211,170,214,160,226,154,245,152,265,155,277,163,272,164,263,160,245,157,228,159,218,164,216,169,221,178"/>
+<area shape="rect" href="group__proto.html#gaacdcd6a2dbf0426b5077f0ed128ad8fa" title="Değişken uzunlukta, LF ile biten bir kontrol satırı üretir." alt="" coords="361,29,464,56"/>
+<area shape="poly" title=" " alt="" coords="254,177,297,125,327,94,359,66,368,62,365,66,363,70,330,98,301,128,258,180"/>
+<area shape="rect" href="group__record.html#ga1940e3026d4070e20bb5b3d699078e3e" title="Bir slotun anlık kopyasını döndürür (dışa aktarım için)." alt="" coords="377,104,448,131"/>
+<area shape="poly" title=" " alt="" coords="275,176,369,135,365,139,279,180"/>
+<area shape="rect" href="experiment_8c.html#a100745978697e9aafaf6368750cf9319" title="Bir kontrol satırını txQ&#39;ya koyar (yalnızca ölçüm dışında çağrılır)." alt="" coords="376,179,450,205"/>
+<area shape="poly" title=" " alt="" coords="296,190,362,191,358,193,298,194"/>
+<area shape="rect" href="experiment_8c.html#af5d44216a9fdf0c40a32a49456aa00e2" title="Kayıt durumunun CSV&#39;de kullanılan metin karşılığı." alt="" coords="364,253,461,280"/>
+<area shape="poly" title=" " alt="" coords="276,203,370,246,365,248,277,208"/>
+<area shape="poly" title=" " alt="" coords="383,29,379,21,382,11,394,5,413,3,433,5,445,13,440,15,431,10,413,8,395,10,386,15,384,20,389,29"/>
+<area shape="poly" title=" " alt="" coords="383,104,379,95,382,86,394,80,413,77,433,80,445,88,440,89,431,85,413,83,395,85,386,89,384,95,389,104"/>
+<area shape="poly" title=" " alt="" coords="383,178,379,170,382,160,394,154,413,152,433,155,445,163,440,164,431,160,413,157,395,159,386,164,384,169,389,178"/>
+<area shape="poly" title=" " alt="" coords="383,253,379,245,382,235,394,229,413,227,433,229,445,238,440,239,431,234,413,232,395,234,386,239,384,244,389,253"/>
+<area shape="poly" title=" " alt="" coords="217,292,211,283,214,273,225,266,245,264,267,267,278,277,273,278,265,272,245,269,227,271,218,276,216,282,222,291"/>
+<area shape="rect" href="experiment_8c.html#a24a4cd75b94c0ec3648fe35c5c519c1c" title="Durum LED&#39;lerini günceller (FR&#45;90)." alt="" coords="378,328,448,355"/>
+<area shape="poly" title=" " alt="" coords="270,307,365,329,360,332,271,312"/>
+<area shape="poly" title=" " alt="" coords="383,327,379,319,382,310,394,304,413,301,433,304,445,312,440,313,431,309,413,307,395,309,386,313,384,319,389,328"/>
+<area shape="poly" title=" " alt="" coords="216,365,211,357,214,347,226,341,245,339,265,341,277,349,272,351,263,346,245,344,228,346,218,351,216,356,221,365"/>
+<area shape="poly" title=" " alt="" coords="215,440,211,431,214,422,226,416,245,413,265,416,277,424,272,425,263,421,245,419,228,421,218,425,216,431,221,440"/>
+<area shape="poly" title=" " alt="" coords="216,514,211,506,214,496,226,490,245,488,265,491,277,499,272,500,263,496,245,493,228,495,218,500,216,505,221,514"/>
+<area shape="rect" href="group__record.html#ga8e7d02fb46485aa025d6474d667a7151" title="Tüm slotları REC_FREE yapar." alt="" coords="375,515,450,541"/>
+<area shape="poly" title=" " alt="" coords="313,525,362,527,357,529,314,531"/>
+<area shape="poly" title=" " alt="" coords="383,514,379,506,382,496,394,490,413,488,433,491,445,499,440,499,431,496,413,493,395,495,386,500,384,505,389,515"/>
+<area shape="poly" title=" " alt="" coords="216,588,211,581,214,571,226,565,245,563,265,565,277,574,272,574,263,570,245,568,228,570,218,575,216,580,221,589"/>
+<area shape="poly" title=" " alt="" coords="216,663,211,655,214,646,226,640,245,637,265,640,277,649,272,649,263,645,245,643,228,645,218,649,216,655,221,664"/>
+<area shape="poly" title=" " alt="" coords="216,737,211,730,214,720,226,714,245,712,265,715,277,724,272,723,263,720,245,717,228,719,218,724,216,729,221,739"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a970521a9853c2624251141c42f2a810c" name="a970521a9853c2624251141c42f2a810c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a970521a9853c2624251141c42f2a810c">&#9670;&#160;</a></span>reject()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void reject </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>why</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>line</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Komutu reddeder: <span class="tt">ERR</span> satırı gönderir ve sayacı artırır (FR-83). </p>
+<dl class="params"><dt>Parametreler</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">why</td><td>Ret nedeni ("unknown", "state", "busy"). </td></tr>
+    <tr><td class="paramname">line</td><td>Reddedilen komut satırı. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition"><a class="el" href="experiment_8c_source.html">experiment.c</a> dosyasının <a class="el" href="experiment_8c_source.html#l00299">299</a> numaralı satırında tanımlanmıştır.</p>
+<div class="dynheader">
+Bu fonksiyon için çağırılma şeması:</div>
+<div class="dyncontent">
+<div class="center"><img src="experiment_8c_a970521a9853c2624251141c42f2a810c_cgraph.png" border="0" usemap="#aexperiment_8c_a970521a9853c2624251141c42f2a810c_cgraph" loading="lazy" alt=""/></div>
+<map name="aexperiment_8c_a970521a9853c2624251141c42f2a810c_cgraph" id="aexperiment_8c_a970521a9853c2624251141c42f2a810c_cgraph">
+<area shape="rect" title="Komutu reddeder: ERR satırı gönderir ve sayacı artırır (FR&#45;83)." alt="" coords="5,29,59,56"/>
+<area shape="poly" title=" " alt="" coords="21,29,20,12,25,5,32,3,40,6,44,14,39,14,36,10,32,8,28,9,26,13,26,29"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a64b39230f5d52dc24dffb96d67e0b3f0" name="a64b39230f5d52dc24dffb96d67e0b3f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a64b39230f5d52dc24dffb96d67e0b3f0">&#9670;&#160;</a></span>reset_measurement()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void reset_measurement </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Senaryo değişiminde tüm sayaçları, kayıtları ve istatistikleri sıfırlar (FR-86). </p>
+
+<p class="definition"><a class="el" href="experiment_8c_source.html">experiment.c</a> dosyasının <a class="el" href="experiment_8c_source.html#l00200">200</a> numaralı satırında tanımlanmıştır.</p>
+<div class="dynheader">
+Bu fonksiyon için çağırılma şeması:</div>
+<div class="dyncontent">
+<div class="center"><img src="experiment_8c_a64b39230f5d52dc24dffb96d67e0b3f0_cgraph.png" border="0" usemap="#aexperiment_8c_a64b39230f5d52dc24dffb96d67e0b3f0_cgraph" loading="lazy" alt=""/></div>
+<map name="aexperiment_8c_a64b39230f5d52dc24dffb96d67e0b3f0_cgraph" id="aexperiment_8c_a64b39230f5d52dc24dffb96d67e0b3f0_cgraph">
+<area shape="rect" title="Senaryo değişiminde tüm sayaçları, kayıtları ve istatistikleri sıfırlar (FR&#45;86)." alt="" coords="5,29,142,56"/>
+<area shape="poly" title=" " alt="" coords="46,29,42,21,45,11,56,5,74,3,92,5,103,14,98,14,90,10,73,8,58,10,49,14,47,20,52,29"/>
+<area shape="rect" href="group__record.html#ga8e7d02fb46485aa025d6474d667a7151" title="Tüm slotları REC_FREE yapar." alt="" coords="190,29,265,56"/>
+<area shape="poly" title=" " alt="" coords="142,40,177,42,172,43,142,45"/>
+<area shape="poly" title=" " alt="" coords="200,28,196,21,199,11,210,5,227,3,246,5,257,15,252,14,244,10,227,8,212,10,203,14,201,20,205,30"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a100745978697e9aafaf6368750cf9319" name="a100745978697e9aafaf6368750cf9319"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a100745978697e9aafaf6368750cf9319">&#9670;&#160;</a></span>send_ctrl()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void send_ctrl </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct_tx_msg.html">TxMsg</a> *</td>          <td class="paramname"><span class="paramname"><em>m</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Bir kontrol satırını <span class="tt">txQ</span>'ya koyar (yalnızca ölçüm dışında çağrılır). </p>
+<dl class="params"><dt>Parametreler</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">m</td><td>Gönderilecek mesaj. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition"><a class="el" href="experiment_8c_source.html">experiment.c</a> dosyasının <a class="el" href="experiment_8c_source.html#l00134">134</a> numaralı satırında tanımlanmıştır.</p>
+<div class="dynheader">
+Bu fonksiyon için çağırılma şeması:</div>
+<div class="dyncontent">
+<div class="center"><img src="experiment_8c_a100745978697e9aafaf6368750cf9319_cgraph.png" border="0" usemap="#aexperiment_8c_a100745978697e9aafaf6368750cf9319_cgraph" loading="lazy" alt=""/></div>
+<map name="aexperiment_8c_a100745978697e9aafaf6368750cf9319_cgraph" id="aexperiment_8c_a100745978697e9aafaf6368750cf9319_cgraph">
+<area shape="rect" title="Bir kontrol satırını txQ&#39;ya koyar (yalnızca ölçüm dışında çağrılır)." alt="" coords="5,29,80,56"/>
+<area shape="poly" title=" " alt="" coords="28,28,27,12,33,5,43,3,52,5,58,14,53,14,49,10,42,8,36,10,32,14,33,29"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a8da8aacdbdcc652a338ede470cbe5645" name="a8da8aacdbdcc652a338ede470cbe5645"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8da8aacdbdcc652a338ede470cbe5645">&#9670;&#160;</a></span>send_status()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void send_status </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Güncel durumu <span class="tt">STA</span> satırı olarak gönderir. </p>
+
+<p class="definition"><a class="el" href="experiment_8c_source.html">experiment.c</a> dosyasının <a class="el" href="experiment_8c_source.html#l00165">165</a> numaralı satırında tanımlanmıştır.</p>
+<div class="dynheader">
+Bu fonksiyon için çağırılma şeması:</div>
+<div class="dyncontent">
+<div class="center"><img src="experiment_8c_a8da8aacdbdcc652a338ede470cbe5645_cgraph.png" border="0" usemap="#aexperiment_8c_a8da8aacdbdcc652a338ede470cbe5645_cgraph" loading="lazy" alt=""/></div>
+<map name="aexperiment_8c_a8da8aacdbdcc652a338ede470cbe5645_cgraph" id="aexperiment_8c_a8da8aacdbdcc652a338ede470cbe5645_cgraph">
+<area shape="rect" title="Güncel durumu STA satırı olarak gönderir." alt="" coords="5,29,98,56"/>
+<area shape="poly" title=" " alt="" coords="34,29,32,20,33,11,40,5,52,3,63,5,70,14,65,14,61,10,51,8,43,10,38,14,37,20,39,29"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a24a4cd75b94c0ec3648fe35c5c519c1c" name="a24a4cd75b94c0ec3648fe35c5c519c1c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a24a4cd75b94c0ec3648fe35c5c519c1c">&#9670;&#160;</a></span>set_leds()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void set_leds </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#a75f78b78e8b0504cfcbe2ef3f2ab4ecf">ExpState</a></td>          <td class="paramname"><span class="paramname"><em>st</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Durum LED'lerini günceller (FR-90). </p>
+<dl class="params"><dt>Parametreler</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">st</td><td>Gösterilecek durum. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition"><a class="el" href="experiment_8c_source.html">experiment.c</a> dosyasının <a class="el" href="experiment_8c_source.html#l00150">150</a> numaralı satırında tanımlanmıştır.</p>
+<div class="dynheader">
+Bu fonksiyon için çağırılma şeması:</div>
+<div class="dyncontent">
+<div class="center"><img src="experiment_8c_a24a4cd75b94c0ec3648fe35c5c519c1c_cgraph.png" border="0" usemap="#aexperiment_8c_a24a4cd75b94c0ec3648fe35c5c519c1c_cgraph" loading="lazy" alt=""/></div>
+<map name="aexperiment_8c_a24a4cd75b94c0ec3648fe35c5c519c1c_cgraph" id="aexperiment_8c_a24a4cd75b94c0ec3648fe35c5c519c1c_cgraph">
+<area shape="rect" title="Durum LED&#39;lerini günceller (FR&#45;90)." alt="" coords="5,29,76,56"/>
+<area shape="poly" title=" " alt="" coords="27,28,26,12,31,5,41,3,50,5,55,14,50,14,47,10,40,8,34,10,31,14,32,29"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="af5d44216a9fdf0c40a32a49456aa00e2" name="af5d44216a9fdf0c40a32a49456aa00e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af5d44216a9fdf0c40a32a49456aa00e2">&#9670;&#160;</a></span>status_name()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char * status_name </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>st</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Kayıt durumunun CSV'de kullanılan metin karşılığı. </p>
+<dl class="params"><dt>Parametreler</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">st</td><td><a class="el" href="group__record.html#ga17c31f95ff37e1dc2265d38639148099" title="RecStatus">RecStatus</a> değeri. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Döndürdüğü değer</dt><dd>Sabit dizge ("ok", "tx_drop", …). </dd></dl>
+
+<p class="definition"><a class="el" href="experiment_8c_source.html">experiment.c</a> dosyasının <a class="el" href="experiment_8c_source.html#l00224">224</a> numaralı satırında tanımlanmıştır.</p>
+<div class="dynheader">
+Bu fonksiyon için çağırılma şeması:</div>
+<div class="dyncontent">
+<div class="center"><img src="experiment_8c_af5d44216a9fdf0c40a32a49456aa00e2_cgraph.png" border="0" usemap="#aexperiment_8c_af5d44216a9fdf0c40a32a49456aa00e2_cgraph" loading="lazy" alt=""/></div>
+<map name="aexperiment_8c_af5d44216a9fdf0c40a32a49456aa00e2_cgraph" id="aexperiment_8c_af5d44216a9fdf0c40a32a49456aa00e2_cgraph">
+<area shape="rect" title="Kayıt durumunun CSV&#39;de kullanılan metin karşılığı." alt="" coords="5,29,102,56"/>
+<area shape="poly" title=" " alt="" coords="36,29,33,20,35,11,42,5,54,3,66,5,73,14,68,14,63,10,53,8,44,10,39,14,38,20,41,29"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="acecfcb7d9b54cb77a18ece094ed3e6ce" name="acecfcb7d9b54cb77a18ece094ed3e6ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acecfcb7d9b54cb77a18ece094ed3e6ce">&#9670;&#160;</a></span>telemetry_start()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void telemetry_start </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Aktif senaryonun telemetrisini başlatır (S0'da hiçbir şey yapmaz). </p>
+
+<p class="definition"><a class="el" href="experiment_8c_source.html">experiment.c</a> dosyasının <a class="el" href="experiment_8c_source.html#l00190">190</a> numaralı satırında tanımlanmıştır.</p>
+<div class="dynheader">
+Bu fonksiyon için çağırılma şeması:</div>
+<div class="dyncontent">
+<div class="center"><img src="experiment_8c_acecfcb7d9b54cb77a18ece094ed3e6ce_cgraph.png" border="0" usemap="#aexperiment_8c_acecfcb7d9b54cb77a18ece094ed3e6ce_cgraph" loading="lazy" alt=""/></div>
+<map name="aexperiment_8c_acecfcb7d9b54cb77a18ece094ed3e6ce_cgraph" id="aexperiment_8c_acecfcb7d9b54cb77a18ece094ed3e6ce_cgraph">
+<area shape="rect" title="Aktif senaryonun telemetrisini başlatır (S0&#39;da hiçbir şey yapmaz)." alt="" coords="5,29,114,56"/>
+<area shape="poly" title=" " alt="" coords="40,29,37,20,39,11,47,5,60,3,73,5,81,14,76,14,71,10,59,8,49,10,43,14,42,20,45,29"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ac6856919cff066de2cd9c7b3a0183e78" name="ac6856919cff066de2cd9c7b3a0183e78"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac6856919cff066de2cd9c7b3a0183e78">&#9670;&#160;</a></span>telemetry_stop()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void telemetry_stop </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Telemetriyi durdurur; görev bir sonraki periyotta döngüden çıkar. </p>
+
+<p class="definition"><a class="el" href="experiment_8c_source.html">experiment.c</a> dosyasının <a class="el" href="experiment_8c_source.html#l00184">184</a> numaralı satırında tanımlanmıştır.</p>
+<div class="dynheader">
+Bu fonksiyon için çağırılma şeması:</div>
+<div class="dyncontent">
+<div class="center"><img src="experiment_8c_ac6856919cff066de2cd9c7b3a0183e78_cgraph.png" border="0" usemap="#aexperiment_8c_ac6856919cff066de2cd9c7b3a0183e78_cgraph" loading="lazy" alt=""/></div>
+<map name="aexperiment_8c_ac6856919cff066de2cd9c7b3a0183e78_cgraph" id="aexperiment_8c_ac6856919cff066de2cd9c7b3a0183e78_cgraph">
+<area shape="rect" title="Telemetriyi durdurur; görev bir sonraki periyotta döngüden çıkar." alt="" coords="5,29,113,56"/>
+<area shape="poly" title=" " alt="" coords="39,29,36,20,38,11,46,5,59,3,72,5,80,14,75,14,70,10,59,8,49,10,43,14,42,20,45,29"/>
+</map>
+</div>
+
+</div>
+</div>
+<a name="doc-var-members" id="doc-var-members"></a><h2 id="header-doc-var-members" class="groupheader">Değişken Dokümantasyonu</h2>
+<a id="a2a79deec69839765c61c958fb3120ac6" name="a2a79deec69839765c61c958fb3120ac6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2a79deec69839765c61c958fb3120ac6">&#9670;&#160;</a></span>k_scen</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="struct_scenario.html">Scenario</a> k_scen[]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>İlk değer:</b><div class="fragment"><div class="line">                             = {</div>
+<div class="line">    { <span class="stringliteral">&quot;S0&quot;</span>,   0u, 0u                 },   </div>
+<div class="line">    { <span class="stringliteral">&quot;S1&quot;</span>, 100u, 0u                 },   </div>
+<div class="line">    { <span class="stringliteral">&quot;S2&quot;</span>,  20u, 0u                 },   </div>
+<div class="line">    { <span class="stringliteral">&quot;S3&quot;</span>,  10u, 0u                 },   </div>
+<div class="line">    { <span class="stringliteral">&quot;S4&quot;</span>,  10u, <a class="code hl_define" href="app__config_8h.html#a79ac455185030f7029538dae02ece170">APP_WORK_ITERS_S4</a>  },   </div>
+<div class="line">    { <span class="stringliteral">&quot;S5&quot;</span>,  10u, <a class="code hl_define" href="app__config_8h.html#a8a0d5c0b77a1748b1119f66709951662">APP_WORK_ITERS_S5</a>  },   </div>
+<div class="line">}</div>
+<div class="ttc" id="aapp__config_8h_html_a79ac455185030f7029538dae02ece170"><div class="ttname"><a href="app__config_8h.html#a79ac455185030f7029538dae02ece170">APP_WORK_ITERS_S4</a></div><div class="ttdeci">#define APP_WORK_ITERS_S4</div><div class="ttdoc">S4 için ek CPU işi [iterasyon] — hedef ≈ 2 ms (FR-23).</div><div class="ttdef"><b>Definition</b> <a href="app__config_8h_source.html#l00084">app_config.h:84</a></div></div>
+<div class="ttc" id="aapp__config_8h_html_a8a0d5c0b77a1748b1119f66709951662"><div class="ttname"><a href="app__config_8h.html#a8a0d5c0b77a1748b1119f66709951662">APP_WORK_ITERS_S5</a></div><div class="ttdeci">#define APP_WORK_ITERS_S5</div><div class="ttdoc">S5 için ek CPU işi [iterasyon] — hedef ≈ 5 ms: 5 000 / 0,1254 ≈ 39 873.</div><div class="ttdef"><b>Definition</b> <a href="app__config_8h_source.html#l00086">app_config.h:86</a></div></div>
+</div><!-- fragment -->
+<p>Ödevin altı zorunlu senaryosu (MR, §6.1). </p>
+
+<p class="definition"><a class="el" href="experiment_8c_source.html">experiment.c</a> dosyasının <a class="el" href="experiment_8c_source.html#l00036">36</a> numaralı satırında tanımlanmıştır.</p>
+
+</div>
+</div>
+<a id="a398151c73899b321caa6150bfdd317a0" name="a398151c73899b321caa6150bfdd317a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a398151c73899b321caa6150bfdd317a0">&#9670;&#160;</a></span>k_state_name</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* const k_state_name[] = { &quot;IDLE&quot;, &quot;ARMED&quot;, &quot;WARMUP&quot;, &quot;MEASURING&quot;, &quot;DRAINING&quot;, &quot;DONE&quot; }</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Durum adlarının protokoldeki karşılıkları (STA satırı). </p>
+
+<p class="definition"><a class="el" href="experiment_8c_source.html">experiment.c</a> dosyasının <a class="el" href="experiment_8c_source.html#l00051">51</a> numaralı satırında tanımlanmıştır.</p>
+
+</div>
+</div>
+<a id="a2b0031cc0316e3d8300c8fe5477dc37a" name="a2b0031cc0316e3d8300c8fe5477dc37a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b0031cc0316e3d8300c8fe5477dc37a">&#9670;&#160;</a></span>s_announced</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool s_announced</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Açılış duyurusu (BOOT + STA) gönderildi mi. </p>
+
+<p class="definition"><a class="el" href="experiment_8c_source.html">experiment.c</a> dosyasının <a class="el" href="experiment_8c_source.html#l00068">68</a> numaralı satırında tanımlanmıştır.</p>
+
+</div>
+</div>
+<a id="ad8934369958d041ba0042b064e87498c" name="ad8934369958d041ba0042b064e87498c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad8934369958d041ba0042b064e87498c">&#9670;&#160;</a></span>s_measuring</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">volatile bool s_measuring</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Buton ISR'ının okuduğu ölçüm bayrağı. </p>
+<p>Yazar: ButtonTask. </p>
+
+<p class="definition"><a class="el" href="experiment_8c_source.html">experiment.c</a> dosyasının <a class="el" href="experiment_8c_source.html#l00071">71</a> numaralı satırında tanımlanmıştır.</p>
+
+</div>
+</div>
+<a id="a55760ad245fc711d01e8fb826f9cc52f" name="a55760ad245fc711d01e8fb826f9cc52f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a55760ad245fc711d01e8fb826f9cc52f">&#9670;&#160;</a></span>s_scen</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t s_scen</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Aktif senaryonun senaryo tablosundaki indeksi (0…5). </p>
+
+<p class="definition"><a class="el" href="experiment_8c_source.html">experiment.c</a> dosyasının <a class="el" href="experiment_8c_source.html#l00062">62</a> numaralı satırında tanımlanmıştır.</p>
+
+</div>
+</div>
+<a id="a559ab9839337bb5e80263c49981941c2" name="a559ab9839337bb5e80263c49981941c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a559ab9839337bb5e80263c49981941c2">&#9670;&#160;</a></span>s_state</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#a75f78b78e8b0504cfcbe2ef3f2ab4ecf">ExpState</a> s_state = EXP_IDLE</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Durum makinesinin iç durumu. </p>
+<dl class="section user"><dt>Paylaşılan durum</dt><dd>Yalnızca ButtonTask (<a class="el" href="group__expfsm.html#ga00ae2ef3be10429aec51bc3a4dff5744" title="exp_tick">exp_tick</a>) yazar ve okur; aşağıdaki iki bayrak hariç. </dd></dl>
+
+<p class="definition"><a class="el" href="experiment_8c_source.html">experiment.c</a> dosyasının <a class="el" href="experiment_8c_source.html#l00060">60</a> numaralı satırında tanımlanmıştır.</p>
+
+</div>
+</div>
+<a id="a43b5e5cf9b8c9c1db8d8c4898f3755ca" name="a43b5e5cf9b8c9c1db8d8c4898f3755ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a43b5e5cf9b8c9c1db8d8c4898f3755ca">&#9670;&#160;</a></span>s_state_since</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TickType_t s_state_since</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>İçinde bulunulan duruma girildiği an [tick]; zamanlı geçişler için. </p>
+
+<p class="definition"><a class="el" href="experiment_8c_source.html">experiment.c</a> dosyasının <a class="el" href="experiment_8c_source.html#l00066">66</a> numaralı satırında tanımlanmıştır.</p>
+
+</div>
+</div>
+<a id="a54f31cc65639d951ae70154cd9684027" name="a54f31cc65639d951ae70154cd9684027"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a54f31cc65639d951ae70154cd9684027">&#9670;&#160;</a></span>s_target</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t s_target = <a class="el" href="app__config_8h.html#a5c5bcb9a362ae368d9748df92dad6610">APP_DEFAULT_TARGET</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Bu koşuda ulaşılması gereken olay sayısı (<span class="tt">CMD,START,n</span>). </p>
+
+<p class="definition"><a class="el" href="experiment_8c_source.html">experiment.c</a> dosyasının <a class="el" href="experiment_8c_source.html#l00064">64</a> numaralı satırında tanımlanmıştır.</p>
+
+</div>
+</div>
+<a id="aad4c2719201b52822a6935913146597a" name="aad4c2719201b52822a6935913146597a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aad4c2719201b52822a6935913146597a">&#9670;&#160;</a></span>s_tel_active</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">volatile bool s_tel_active</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>TelemetryTask periyodik döngüde mi. </p>
+<p>Yazar: TelemetryTask. </p>
+
+<p class="definition"><a class="el" href="experiment_8c_source.html">experiment.c</a> dosyasının <a class="el" href="experiment_8c_source.html#l00075">75</a> numaralı satırında tanımlanmıştır.</p>
+
+</div>
+</div>
+<a id="aaebd20a48a7ff16c4ca6bfbb1d4b3130" name="aaebd20a48a7ff16c4ca6bfbb1d4b3130"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaebd20a48a7ff16c4ca6bfbb1d4b3130">&#9670;&#160;</a></span>s_tel_run</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">volatile bool s_tel_run</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>TelemetryTask'ın döngü koşulu. </p>
+<p>Yazar: ButtonTask. </p>
+
+<p class="definition"><a class="el" href="experiment_8c_source.html">experiment.c</a> dosyasının <a class="el" href="experiment_8c_source.html#l00073">73</a> numaralı satırında tanımlanmıştır.</p>
+
+</div>
+</div>
+<a id="a4c9899cbae225958e0c82d2f6c9c23e5" name="a4c9899cbae225958e0c82d2f6c9c23e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c9899cbae225958e0c82d2f6c9c23e5">&#9670;&#160;</a></span>s_tel_task</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TaskHandle_t s_tel_task</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>TelemetryTask tutamacı; durum makinesi telemetriyi bununla uyandırır. </p>
+
+<p class="definition"><a class="el" href="experiment_8c_source.html">experiment.c</a> dosyasının <a class="el" href="experiment_8c_source.html#l00077">77</a> numaralı satırında tanımlanmıştır.</p>
+
+</div>
+</div>
+<a id="a8030a230f5923624fc5f3712097a438e" name="a8030a230f5923624fc5f3712097a438e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8030a230f5923624fc5f3712097a438e">&#9670;&#160;</a></span>s_txq_hwm_meas</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t s_txq_hwm_meas</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><span class="tt">txQ</span> yüksek su seviyesinin <b>ölçüm fazı sonundaki</b> değeri (FR-65). </p>
+<p>Canlı sayaç <span class="tt">g_cnt_task.txq_hwm</span> döküm sırasında da artar: 30+ REC satırı aynı kuyruktan geçer ve sayacı kuyruk kapasitesine kadar şişirir (S2 resmî koşusunda 16/16 görüldü). Rapora giren değer ölçüm fazını anlatmalıdır, bu yüzden DRAINING'e geçerken anlık görüntü alınır ve <span class="tt">CNT</span> satırında bu bildirilir. </p>
+
+<p class="definition"><a class="el" href="experiment_8c_source.html">experiment.c</a> dosyasının <a class="el" href="experiment_8c_source.html#l00087">87</a> numaralı satırında tanımlanmıştır.</p>
+
+</div>
+</div>
+<a id="ad1d77b309e0230b091f455e7aa951a05" name="ad1d77b309e0230b091f455e7aa951a05"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad1d77b309e0230b091f455e7aa951a05">&#9670;&#160;</a></span>s_work_sink</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">volatile uint32_t s_work_sink</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><span class="tt"><a class="el" href="group__expfsm.html#gab7a2216305ceb4f8aed8be62c9b7cc26" title="Ek CPU işi: sonucu kullanılan, optimize edilemeyen sabit iterasyonlu hesap (FR-23).">calibrated_work</a></span> sonucunun yazıldığı yer; derleyicinin döngüyü silmesini engeller. </p>
+
+<p class="definition"><a class="el" href="experiment_8c_source.html">experiment.c</a> dosyasının <a class="el" href="experiment_8c_source.html#l00107">107</a> numaralı satırında tanımlanmıştır.</p>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><b>firmware</b></li><li class="navelem"><b>Core</b></li><li class="navelem"><b>Src</b></li><li class="navelem"><a href="experiment_8c.html">experiment.c</a></li>
+    <li class="footer">Oluşturan <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.18.0 </li>
+  </ul>
+</div>
+</body>
+</html>
