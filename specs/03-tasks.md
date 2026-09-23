@@ -217,14 +217,19 @@ Bugün iş yok. Yalnızca istersen:
 # Cuma 25 — KALİBRASYON VE ÖLÇÜM 🔴
 ### 🏁 Gün hedefi: 180 olayın tamamı cebinde
 
-### T-16 · CPU yükü kalibrasyonu
-- [ ] `calibrated_work()` — LCG + `volatile` sink
-- [ ] İterasyon başına süreyi `timer_us()` ile ölç
-- [ ] 2 ms ve 5 ms için iterasyon sayılarını bul
-- [ ] **Gerçek ölçülen süreleri** not et (hedefe eşit olmayabilir — sorun değil, raporlanır)
-- [ ] Derleme optimizasyonu değişirse yeniden kalibre
-- **Kanıt:** Ölçülen süreler tabloda
+### T-16 · CPU yükü kalibrasyonu ✅ *(23.09.2026)*
+- [x] `calibrated_work()` — LCG + `volatile` sink; `vTaskDelay` yok, kesme kapatma yok
+- [x] İterasyon süresi **deney koşullarında** ölçüldü: **125,4 ns** (sıcak flash önbelleği)
+- [x] Açılıştaki soğuk-önbellek ölçümü (143,1 ns) %14 yanıltıcı çıktı; kalibrasyon koşan deneyden alındı
+- [x] S4 = 15 949 iterasyon, S5 = 39 873 iterasyon
+- [x] ⚠️ **Yeni sabit ilk yüklemede flash'a gitmemişti** (ninja, başlık düzenlemesiyle aynı saniyede koştuğu için yeniden derlemedi). Artık `k_scen` tablosu **flash'tan okunarak** doğrulanıyor.
+- **Kanıt:** ✅ Ölçülen iş süresi **S4 = 2 001,6 µs (+0,1 %)**, **S5 = 5 008,4 µs (+0,2 %)**; periyot 10 000 µs → ek CPU talebi %20,0 ve %50,1
 - **Gereksinim:** FR-23…25
+
+### T-16b · `txq_hwm` ölçüm anlık görüntüsü ✅
+- [x] Canlı `txq_hwm` döküm sırasında da artıyordu: S2 resmî koşusunda 16/16 (kuyruk kapasitesi) göründü, oysa 50 Hz'de hat %28 dolu
+- [x] DRAINING'e geçerken anlık görüntü alınıp `CNT` satırında o bildiriliyor
+- **Gereksinim:** FR-65, AR-11
 
 ### T-17 · Deneme koşusu
 - [ ] S0 ve S3'ü baştan sona koş

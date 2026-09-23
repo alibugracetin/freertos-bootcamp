@@ -70,6 +70,16 @@ static volatile bool s_tel_active;
 static TaskHandle_t  s_tel_task;
 
 /**
+ * @brief   `txQ` yüksek su seviyesinin **ölçüm fazı sonundaki** değeri (FR-65).
+ *
+ * Canlı sayaç `g_cnt_task.txq_hwm` döküm sırasında da artar: 30+ REC satırı aynı
+ * kuyruktan geçer ve sayacı kuyruk kapasitesine kadar şişirir (S2 resmî koşusunda
+ * 16/16 görüldü). Rapora giren değer ölçüm fazını anlatmalıdır, bu yüzden
+ * DRAINING'e geçerken anlık görüntü alınır ve `CNT` satırında bu bildirilir.
+ */
+static uint32_t s_txq_hwm_meas;
+
+/**
  * @brief   Gerçekleşen telemetri istatistikleri (AR-11).
  * @par Paylaşılan durum
  *      Yazar: TelemetryTask (koşarken). Okur: ButtonTask, yalnızca telemetri dururken.
@@ -174,6 +184,7 @@ static void reset_measurement(void)
     memset((void *)&g_cnt_isr, 0, sizeof g_cnt_isr);
     taskEXIT_CRITICAL();
     memset((void *)&g_cnt_task, 0, sizeof g_cnt_task);
+    s_txq_hwm_meas = 0u;
     g_diag.max_t1_minus_t0  = 0u;
     g_diag.max_dma_to_tc_us = 0u;
 }
@@ -242,7 +253,7 @@ static void dump_records(void)
     SEND_LINE("CNT,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu",
               (unsigned long)ct->txq_drop_tel, (unsigned long)ct->txq_drop_btn, (unsigned long)ct->rec_mismatch,
               (unsigned long)ct->uart_err, (unsigned long)ct->uart_timeout, (unsigned long)ct->rec_mismatch_tx,
-              (unsigned long)ct->fmt_err_tel, (unsigned long)ct->fmt_err_btn, (unsigned long)ct->txq_hwm,
+              (unsigned long)ct->fmt_err_tel, (unsigned long)ct->fmt_err_btn, (unsigned long)s_txq_hwm_meas,
               (unsigned long)ct->cmd_err);
 
     SEND_LINE("END,%s,%lu", sn, (unsigned long)n);
@@ -359,6 +370,7 @@ void exp_tick(void)
     case EXP_MEASURING:
         if (g_cnt_isr.events >= s_target) {
             s_measuring = false;                  /* yeni olay açılmaz */
+            s_txq_hwm_meas = g_cnt_task.txq_hwm;  /* dökümden önceki değer */
             telemetry_stop();
             enter(EXP_DRAINING);
         }

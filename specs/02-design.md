@@ -660,6 +660,18 @@ void EXTI0_IRQHandler(void);
 
 **Dikkat:** `t₄−t₃` bir buton mesajı için yaklaşık sabit kalmalıdır (≈5.56 ms hat süresi) — çünkü hat süresi baud'a bağlıdır, yüke değil. Eğer ölçümde `t₄−t₃` senaryolarla birlikte artıyorsa, bu ya TC yolunun yanlış kurulduğuna (R-2) ya da DMA'nın beklenmedik şekilde geciktiğine işarettir. Bu, tasarımın **kendi kendini sınayan** noktasıdır.
 
+### 12.2 Kalibrasyon sonucu (T-16, 23.09.2026)
+
+| Senaryo | İterasyon | Ölçülen iş süresi | Hedef | Periyot | Ek CPU talebi |
+|---|---|---|---|---|---|
+| S4 | 15 949 | **2 001,6 µs** (max 2 010) | 2 000 µs | 10 000 µs | **%20,0** |
+| S5 | 39 873 | **5 008,4 µs** (max 5 014) | 5 000 µs | 10 000 µs | **%50,1** |
+
+İterasyon süresi **125,4 ns** (Debug, -O0). Açılışta scheduler öncesi ölçülen 143,1 ns
+soğuk flash önbelleğinden gelir ve %14 yüksektir; kalibrasyon deney koşullarındaki
+değerle yapıldı. Ölçülen süre duvar saatidir; TelemetryTask en yüksek öncelikte
+olduğu için preemption içermez, ancak kesmeler (UART, DMA, tick) dahildir.
+
 **CPU % ile UART % toplanmaz** — biri işlemci zamanı, diğeri hat kapasitesi; farklı kaynaklardır.
 
 ### 12.1 İlk gözlemler (T-10, 22.09.2026 — S0 ve S3'te 5'er olay, Debug -O0)

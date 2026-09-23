@@ -71,13 +71,18 @@
 /**
  * @brief S4 için ek CPU işi [iterasyon] — hedef ≈ 2 ms (FR-23).
  *
- * **İlk kalibrasyon (22.09.2026, Debug -O0):** açılışta `calibrated_work(100 000)`
- * = 14 305 µs ölçüldü → 2 000 µs × 100 000 / 14 305 ≈ 13 981 iterasyon.
- * Derleme ayarı değişirse (ör. -O2) bu değer geçersizdir; T-16'da ölçüm
- * firmware'inin son ayarlarıyla doğrulanır ve TST satırındaki gerçek iş süresi raporlanır.
+ * **Kalibrasyon (T-16, 23.09.2026, Debug -O0).** İki ölçüm alındı:
+ * - Açılışta, scheduler öncesi: `calibrated_work(100 000)` = 14 305 µs → 143,1 ns/iterasyon
+ * - Koşan deneyde (S5 denemesi, TST satırı): 34 953 iterasyon = 4 383 µs → **125,4 ns/iterasyon**
+ *
+ * Aradaki %14 fark flash önbelleğinden (ART) gelir: açılıştaki ilk çalıştırma
+ * soğuk önbellekle, deneydeki tekrarlar sıcak önbellekle koşar. Kalibrasyon
+ * **deney koşullarındaki** değerle yapılır; açılış ölçümü yalnızca kaba bir
+ * kontroldür. Derleme ayarı değişirse (ör. -O2) bu sabitler geçersizdir.
+ * Gerçekleşen iş süresi her koşuda TST satırında raporlanır (FR-25).
  */
-#define APP_WORK_ITERS_S4      13981u
-/** @brief S5 için ek CPU işi [iterasyon] — hedef ≈ 5 ms: 5 000 × 100 000 / 14 305 ≈ 34 953. */
-#define APP_WORK_ITERS_S5      34953u
+#define APP_WORK_ITERS_S4      15949u
+/** @brief S5 için ek CPU işi [iterasyon] — hedef ≈ 5 ms: 5 000 / 0,1254 ≈ 39 873. Bkz. @ref APP_WORK_ITERS_S4. */
+#define APP_WORK_ITERS_S5      39873u
 
 #endif /* APP_CONFIG_H */
